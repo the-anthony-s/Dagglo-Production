@@ -41,6 +41,12 @@ gem 'safely_block'
 
 
 
+## Background Jobs (Add Sidekiq later) 
+# Single-process Ruby asynchronous processing library
+gem 'sucker_punch', '~> 2.0'
+
+
+
 
 
 # Reduces boot times through caching; required in config/boot.rb
