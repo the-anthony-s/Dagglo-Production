@@ -26,6 +26,15 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 
+
+## Environment
+# HAML
+gem "haml-rails"
+# Autoprefix
+gem "autoprefixer-rails"
+
+
+
 ## Errors
 # Rescue and report exceptions in non-critical code. Read more: https://github.com/ankane/safely
 gem 'safely_block'
