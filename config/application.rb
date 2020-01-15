@@ -12,5 +12,8 @@ module Dagglo
     config.load_defaults 6.0
     # Use SuckerPunch for background jobs.
     config.active_job.queue_adapter = :sucker_punch
+    # Internationalization
+    config.i18n.available_locales = [:en, :ru]
+    config.i18n.default_locale = :ru
   end
 end

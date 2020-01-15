@@ -28,10 +28,12 @@ gem 'jbuilder', '~> 2.7'
 
 
 ## Environment
-# HAML
+# HAML markup language
 gem "haml-rails"
-# Autoprefix
+# Autoprefix for Styles
 gem "autoprefixer-rails"
+# Internationalization
+gem 'i18n-tasks', '~> 0.9.30'
 
 
 

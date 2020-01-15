@@ -1,2 +1,9 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.html.haml
+= content_tag :li do
+  = link_to 'English', locale: :en
+- end unless current_page?(locale: :en)
+
+= content_tag :li do
+  = link_to 'Русский', locale: :ru
+- end unless current_page?(locale: :ru)
+
+%h1 #{t (:hello)}
