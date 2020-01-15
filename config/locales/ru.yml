@@ -1,3 +1,11 @@
 ---
 ru:
+  buttons:
+    user_registration: Зарегистрироваться
+    user_session: Аккаунт
+    user_destroy_session: Выход
+    
+  errors:
+    messages:
+      not_saved: Не удалось сохранить
   hello: Привет

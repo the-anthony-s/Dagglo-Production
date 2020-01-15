@@ -4,6 +4,9 @@ Rails.application.configure do
   # Google Analytics
   GA.tracker = "UA-116052505-1"
 
+  # Default Mailer url
+  config.action_mailer.default_url_options = { :host => 'dagglo.com' }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -26,7 +29,10 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
+
+  # Compress JS using a preprocessor.
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -47,7 +53,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

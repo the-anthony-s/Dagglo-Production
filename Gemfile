@@ -42,6 +42,8 @@ gem 'google-analytics-rails', '1.1.1'
 ## Assets
 # Icons
 gem 'font-awesome-sass', '~> 5.9.0'
+# Authentication solution
+gem 'devise'
 
 
 

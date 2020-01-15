@@ -8,3 +8,8 @@
 
 
 %h1 #{t (:hello)}
+- if user_signed_in?
+  %p #{current_user.email}
+  %p #{link_to t('buttons.user_destroy_session'), destroy_user_session_path, method: :delete}
+- else
+  %p #{link_to t('buttons.user_registration'), new_user_registration_path}

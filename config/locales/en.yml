@@ -1,3 +1,11 @@
 ---
 en:
-  hello: Hello world
+  buttons:
+    user_registration: Sign Up
+    user_session: Log In
+    user_destroy_session: Logout
+
+  errors:
+    messages:
+      not_saved: Not saved
+  hello: Hi
