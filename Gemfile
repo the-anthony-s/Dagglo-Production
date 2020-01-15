@@ -34,6 +34,14 @@ gem "haml-rails"
 gem "autoprefixer-rails"
 # Internationalization
 gem 'i18n-tasks', '~> 0.9.30'
+# Google Analytics
+gem 'google-analytics-rails', '1.1.1'
+
+
+
+## Assets
+# Icons
+gem 'font-awesome-sass', '~> 5.9.0'
 
 
 

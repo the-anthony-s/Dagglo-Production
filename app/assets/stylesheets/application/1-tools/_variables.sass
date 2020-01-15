@@ -1,0 +1,48 @@
+// Content width
+$content-width-primary: calc(1512px + (var(--gap) * 2))
+$content-width-section: calc(1024px + (var(--gap) * 2))
+$content-width-tight: calc(682px + (var(--gap) * 2))
+$content-width-product: calc(1300px + (var(--gap) * 2))
+
+
+// CSS variables
+\:root
+    --font: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif
+    --size-typo-default: 10px
+    --size-typo-xs: 12px
+    --size-typo-s: 14px
+    --size-typo-m: 15px
+    --size-typo-l: 18px
+    --size-typo-xl: 20px
+    --size-typo-xxl: 26px
+    --size-typo-xxxl: 32px
+    --size-typo-xxxxl: 38px
+    --size-typo-xxxxxl: 46px
+    --size-typo-xxxxxxl: 56px
+    --line-height-typo-xs: 22px
+    --line-height-typo-s: 20px
+    --line-height-typo-m: 22px
+    --line-height-typo-l: 1.4
+    --line-height-typo-xl: 1.3
+    --line-height-typo-xxl: 1.2
+    --line-height-typo-xxxl: 32px
+    --line-height-typo-xxxxl: 1.2
+    --line-height-typo-xxxxxl: 1.2
+    --line-height-typo-xxxxxxl: 1
+
+    +tablet
+        // --size-typo-m: 15px
+        --size-typo-xxxxxl: 58px
+        --size-typo-xxxxxxl: 96px
+        --line-height-typo-m: 24px
+
+
+    +desktop-sm
+        --size-typo-l: 20px
+        --size-typo-xl: 28px
+        --size-typo-xxl: 38px
+        --size-typo-xxxl: 42px
+        --size-typo-xxxxl: 52px
+        --size-typo-xxxxxl: 72px
+        --size-typo-xxxxxxl: 110px
+        --line-height-typo-xxxl: 42px

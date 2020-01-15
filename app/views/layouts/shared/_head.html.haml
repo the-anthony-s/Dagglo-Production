@@ -1,0 +1,11 @@
+%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+%title #{content_for?(:title) ? yield(:title) : 'Dagglo'}
+= csrf_meta_tags
+= csp_meta_tag
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+
+-# FontAwesome package
+%script{:crossorigin => "anonymous", :integrity => "sha384-NZ61boOcl3WY4W94TxWmzNrE/dZbP7g9IY8FECz/RXQXC1XKSv357JckOVRE8GM8", :src => "https://kit.fontawesome.com/ca37ffc099.js"}
+-# Google Analytics -> Only production
+= analytics_init if GoogleAnalytics.valid_tracker? && Rails.env.production?
