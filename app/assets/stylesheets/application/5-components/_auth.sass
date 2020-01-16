@@ -1,0 +1,25 @@
+.auth
+    width: 100%
+    height: calc(100vh - var(--navbar-height))
+    padding-top: var(--gap-m)
+    padding-bottom: var(--gap-m)
+    +desktop-sm
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+
+.auth-content
+    width: 100%
+    max-width: 500px
+    margin: 0 auto
+
+.auth-header
+    width: 100%
+    // text-align: center
+    margin-bottom: var(--gap)
+    display: block
+
+.auth-list
+    &-item + &-item
+        margin-top: var(--gap-xs)

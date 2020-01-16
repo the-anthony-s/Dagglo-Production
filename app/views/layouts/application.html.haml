@@ -3,4 +3,11 @@
   %head
     = render partial: "layouts/shared/head"
   %body
-    = yield
+
+    -flash.each do |name, msg|
+      = content_tag(:div, msg, class: "alert alert-info")
+
+    = render partial: "layouts/shared/navbar"
+
+    %main(id="main" class="layout")
+      = yield

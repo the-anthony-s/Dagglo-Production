@@ -1,7 +1,30 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :store_user_location!, if: :storable_location?
+  before_action :set_time_zone, if: :user_signed_in?
   before_action :set_locale
+
+
+  # Default Time Zone detector
+  # Works with jstz -> webpack -> timezone.js
+  def set_time_zone
+    if current_user.time_zone.present?
+      Time.zone = current_user.time_zone
+    else
+      # Get browser time zone if current user's time_zone value = nil
+      Time.zone = ActiveSupport::TimeZone.find_tzinfo(cookies[:timezone])
+    end
+  end
+
+  def browser_time_zone
+    browser_tz = ActiveSupport::TimeZone.find_tzinfo(cookies[:timezone])
+    ActiveSupport::TimeZone.all.find { |zone| zone.tzinfo == browser_tz } || Time.zone
+  rescue TZInfo::UnknownTimezone, TZInfo::InvalidTimezoneIdentifier
+    Time.zone
+  end
+  helper_method :browser_time_zone
+
   
 
   private
@@ -15,5 +38,26 @@ class ApplicationController < ActionController::Base
 
     def default_url_options(options = {})
       { locale: I18n.locale }.merge options
+    end
+
+
+    # Return user back after login
+    def storable_location?
+      request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+    end
+
+
+    def store_user_location!
+      store_location_for(:user, request.fullpath)
+    end
+
+
+    def after_sign_in_path_for(resource_or_scope)
+      stored_location_for(resource_or_scope) || super
+    end
+
+
+    def after_sign_out_path_for(resource_or_scope)
+      request.referrer || super
     end
 end

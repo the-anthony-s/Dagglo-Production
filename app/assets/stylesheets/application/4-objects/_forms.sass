@@ -1,0 +1,116 @@
+// Form block
+.form
+    width: 100%
+    display: block
+    position: relative
+    z-index: 1
+
+
+
+// Form Block parts
+.form-row
+    width: 100%
+    position: relative
+    display: block
+    &+&
+      margin-top: var(--gap-s)
+
+.form-submit
+    width: 100%
+    position: relative
+    margin-top: var(--gap-m)
+    &-center
+        text-align: center
+
+.form-footer
+    margin-top: var(--gap-s)
+
+.form-actions
+    text-align: center
+    margin-top: var(--gap-m)
+    position: relative
+    display: block
+
+
+
+// Form Grid -> 2 columns only
+.form-grid
+    display: grid
+    grid-row-gap: var(--gap-s)
+    grid-column-gap: var(--gap-s)
+    grid-template-columns: repeat(1, 1fr)
+    +mobile
+        grid-template-columns: repeat(2, 1fr)
+
+.form-col
+    grid-column-end: span 1
+
+
+
+// Label
+.form-label
+    width: 100%
+    position: relative
+    display: block
+    margin-bottom: var(--gap-xxs)
+    color: $color-font-secondary
+    font-size: var(--size-typo-xs)
+    font-weight: 500
+    line-height: var(--line-height-typo-xs)
+
+
+
+// Input
+.form-input
+    width: 100%
+    position: relative
+    display: block
+
+
+
+// Control input, textarea
+.form-control
+    display: block
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    padding: 8px var(--gap-s)
+    appearance: none
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    background: $gray-lighter
+    width: 100%
+    position: relative
+    z-index: 1
+    &:focus
+        background: $white
+        border-color: $color-border-dark
+
+
+// Devise Error
+#error_explanation
+    border: 1px solid $red
+    border-radius: $border-radius
+    background: rgba($red, .05)
+    padding: var(--gap-s)
+    margin-bottom: var(--gap)
+    & > h2
+        color: $color-font-primary
+        font-size: var(--size-typo-m)
+        font-weight: 700
+        line-height: var(--line-height-size-m)
+        vertical-align: baseline
+        margin-bottom: var(--gap-xs)
+    & > ul
+        display: block
+        width: 100%
+    & > ul > li
+        color: $color-font-primary
+        font-size: var(--size-typo-s)
+        font-weight: 400
+        line-height: var(--line-height-typo-s)
+        width: 100%
+        position: relative
+    & > ul > li + li 
+        margin-top: var(--gap-xs)

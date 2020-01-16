@@ -44,6 +44,8 @@ gem 'google-analytics-rails', '1.1.1'
 gem 'font-awesome-sass', '~> 5.9.0'
 # Authentication solution
 gem 'devise'
+# Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
+gem 'invisible_captcha'
 
 
 

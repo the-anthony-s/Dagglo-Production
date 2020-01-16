@@ -8,6 +8,7 @@
 
 
 %h1 #{t (:hello)}
+%p Timezone: #{Time.zone}
 - if user_signed_in?
   %p #{current_user.email}
   %p #{link_to t('buttons.user_destroy_session'), destroy_user_session_path, method: :delete}

@@ -1,0 +1,36 @@
+= content_for :title, "Log In"
+
+%section(class="auth")
+  %div(class="content")
+    %div(class="auth-content")
+      %div(class="auth-header")
+        %h1(class="text text-xxl text-bold") Log into Dagglo
+      %div(class="auth-body")
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form"}) do |f|
+          = render "devise/shared/error_messages", resource: resource
+          %div(class="form-row")
+            %div(class="form-label")
+              = f.label :email, "Email"
+            %div(class="form-form")
+              = f.email_field :email, class: "form-control", autocomplete: "email"
+          %div(class="form-row")
+            %div(class="form-label")
+              = f.label :password, "Password"
+            %div(class="form-form")
+              = f.password_field :password, class: "form-control", autocomplete: "current-password"
+          
+          %div(class="form-submit form-submit-center")
+            = button_tag "Log In", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Loading.."}
+          %div(class="form-footer text-center")
+            %p(class="text text-xs") Secure Login with reCAPTCHA subject to Google #{link_to "Terms", "", class: "link"} & #{link_to "Privacy", "", class: "link"}
+          %div(class="form-actions")
+            %ul(class="auth-list")
+              = render partial: "users/shared/links"
+
+
+
+
+-# - if devise_mapping.rememberable?
+-#   .field
+-#     = f.check_box :remember_me
+-#     = f.label :remember_me

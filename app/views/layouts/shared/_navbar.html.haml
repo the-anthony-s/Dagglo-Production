@@ -1,0 +1,23 @@
+%nav(id="primaryNavbar" class="navbar")
+  %div(class="navbar-container")
+    %div(class="navbar-left")
+      %div(class="navbar-root")
+        = link_to root_path, class: "navbar-root-link" do
+          root
+
+
+    - unless controller.controller_name == "pages" && controller.action_name == "home"
+      %div(class="navbar-center")
+        = form_tag "", method: :get, class: "navbar-form", role: "search" do
+          %div(class="navbar-form-input")
+            = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-form-control', type: "search", id: "globalSearch", autocomplete: "off"
+          %div(class="navbar-form-icon") #{icon "far", "search"}
+
+
+    %div(class="navbar-right")
+      %div(class="navbar-mobile") mobile
+
+      %div(class="navbar-desktop")
+        %ul(class="navbar-list")
+          %li(class="navbar-list-item") #{link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"}
+          %li(class="navbar-list-item") #{link_to t('buttons.user_registration'), new_user_registration_path, class: "button"}

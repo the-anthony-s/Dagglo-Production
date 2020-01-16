@@ -1,0 +1,55 @@
+.button
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 500
+    text-decoration: none
+    text-transform: none
+    padding: 10px var(--gap)
+    line-height: var(--line-height-typo-s)
+    background: $gray-light
+    text-align: center
+    width: auto
+    border: 1px solid $gray-light
+    border-radius: $border-radius
+    user-select: none
+    appearance: none
+    cursor: pointer
+    white-space: nowrap
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-text-size-adjust: none
+    touch-action: manipulation
+    outline: none
+    display: inline-block
+
+    &:hover
+        background: $gray
+        border-color: $gray
+    
+    & > span + span
+        margin-left: 6px
+
+
+.button:disabled,
+.button[disabled]
+    opacity: .5
+    cursor: not-allowed
+
+
+
+// Action
+.button-action
+    color: $white
+    background: $color-secondary
+    border-color: $color-secondary
+    &:hover
+        color: $white
+        background: $color-secondary-dark
+        border-color: $color-secondary-dark
+
+    
+
+// Styles
+.button-responsive
+    width: 100%
+    +mobile
+        width: auto
