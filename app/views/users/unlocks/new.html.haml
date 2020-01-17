@@ -15,7 +15,7 @@
             %div(class="form-form")
               = f.email_field :email, class: "form-control", autocomplete: "email"
           %div(class="form-submit form-submit-center")
-            = button_tag "Continue", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Sending email.."}
+            = button_tag "Continue", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Sending email.."}
           %div(class="form-actions")
             %ul(class="auth-list")
               = render partial: "users/shared/links"

@@ -1,126 +1,354 @@
 .navbar
-	height: auto
-	width: 100%
-	// border-bottom: 1px solid $color-border
-	z-index: 10
-
+    height: auto
+    width: 100%
+    // border-bottom: 1px solid $color-border
+    z-index: 10
 
 .navbar-container
-	width: 100%
-	height: var(--navbar-height)
-	display: flex
-	flex-direction: row
-	justify-content: space-between
-	align-items: center
-	padding: 0 var(--gap)
-
+    width: 100%
+    height: var(--navbar-height)
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    padding: 0 0 0 var(--gap)
+    +desktop-sm
+        padding: 0 var(--gap)
 
 .navbar-left
-	flex: 0 0 auto
-	width: auto
-	margin-right: var(--gap)
-
+    flex: 0 0 auto
+    width: auto
+    margin-right: var(--gap)
 
 .navbar-center
-	flex: 1 1 100%
-	max-width: 100%
-
+    flex: 1 1 100%
+    max-width: 100%
+    z-index: 11
 
 .navbar-right
-	flex: 0 0 auto
-	width: auto
-	margin-left: var(--gap)
+    flex: 0 0 auto
+    width: auto
+    margin-left: var(--gap)
+    z-index: 11
 
 
 
 // Mobile navigation
 .navbar-mobile
-	display: block
-	+desktop-sm
-		display: none
+    display: block
+
+    +desktop-sm
+        display: none
 
 
 
 // Desktop navigation
 .navbar-desktop
-	display: none
-	+desktop-sm
-		display: block
+    display: none
+
+    +desktop-sm
+        display: block
 
 
 
 // List -> Desktop menu
 .navbar-list
-	display: flex
-	flex-direction: row
-	align-items: center
-	height: 100%
-	&-item + &-item
-		margin-left: var(--gap)
+    display: flex
+    flex-direction: row
+    align-items: center
+    height: 100%
+
+    &-item + &-item
+        margin-left: var(--gap)
 
 
 
-// Block -> Mobile menu
-
-	
-	
 // Link
 .navbar-link
-	color: $color-font-primary
-	font-size: var(--size-typo-s)
-	font-weight: 400
-	appearance: none
-	outline: none
-	position: relative
-	vertical-align: baseline
-	text-decoration: none
+    color: $color-font-secondary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    appearance: none
+    outline: none
+    position: relative
+    vertical-align: baseline
+    text-decoration: none
+
+    &:hover
+        color: $color-font-primary
 
 
 
 // Search
 .navbar-form
-	width: 100%
-	max-width: 600px
-	display: none
-	flex-direction: row
-	align-items: center
-	position: relative
-	border: 2px solid $color-border
-	border-radius: 24px
-	overflow: hidden
-	background: $white
-	+desktop-sm
-		display: flex
-	
-	&.is-focused 
-		border-color: $color-border-dark
+    width: 100%
+    max-width: 600px
+    display: none
+    flex-direction: row
+    align-items: center
+    position: relative
+    border: 2px solid $color-border
+    border-radius: 24px
+    overflow: hidden
+    background: $white
+
+    +desktop-sm
+        display: flex
+
+    &.is-focused
+        border-color: $color-border-dark
 
 .navbar-form-input
-	flex: 1 1 100%
-	max-width: 100%
-	position: relative
+    flex: 1 1 100%
+    max-width: 100%
+    position: relative
 
 .navbar-form-control
-	color: $color-font-primary
-	font-size: var(--size-typo-s)
-	font-weight: 400
-	line-height: var(--line-height-typo-s)
-	letter-spacing: .01em
-	width: 100%
-	appearance: none
-	box-shadow: none
-	border: 0
-	border-radius: 0
-	padding: 8px 0px 8px var(--gap-s)
-	position: relative
-	display: block
-	&:focus
-		border-color: $color-border-dark
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    letter-spacing: 0.01em
+    width: 100%
+    appearance: none
+    box-shadow: none
+    border: 0
+    border-radius: 0
+    padding: 8px 0px 8px var(--gap-s)
+    position: relative
+    display: block
+
+    &:focus
+        border-color: $color-border-dark
 
 .navbar-form-icon
-	color: $color-secondary
-	font-size: var(--size-typo-m)
-	line-height: var(--line-height-typo-m)
-	display: block
-	flex: 0 0 auto
-	padding: 0 var(--gap-s)
+    color: $color-secondary
+    font-size: var(--size-typo-m)
+    line-height: var(--line-height-typo-m)
+    display: block
+    flex: 0 0 auto
+    padding: 0 var(--gap-s)
+
+
+
+// Profile button
+.navbar-profile
+    background: transparent
+    appearance: none
+    box-shadow: none
+    outline: none
+    border: 0
+    border-radius: 0
+    overflow: hidden
+    cursor: pointer
+
+.navbar-profile-picture
+    display: block
+    position: relative
+
+    & > img
+        height: 40px
+        width: 40px
+        display: block
+        position: relative
+        object-fit: cover
+        border-radius: 50%
+
+
+
+// Dropdown
+.navbar-dropdown-item
+    position: relative
+
+.navbar-dropdown
+    min-width: 182px
+    border: 0
+    border-radius: $border-radius
+    box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
+    position: absolute
+    visibility: hidden
+    opacity: 0
+    z-index: 1
+    background-color: $white
+    user-select: none
+    transition: 125ms all ease
+    transform: translate3d(0, 0, 0)
+    transform: translateY(0) scale(1)
+    will-change: transform, opacity
+    right: 0
+
+.navbar-dropdown-item.is-open > .navbar-dropdown
+    visibility: visible
+    opacity: 1
+    transform: translateY(5px) scale(1)
+
+.navbar-dropdown-list
+    padding-top: var(--gap-xs)
+    padding-bottom: var(--gap-xs)
+    &-item-separator
+        border-top: 1px solid $color-border
+        border-bottom: 1px solid $color-border
+    &-item
+				width: 100%
+				position: relative
+				display: block
+
+.navbar-dropdown-link
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    vertical-align: baseline
+    display: block
+    padding: var(--gap-xs) var(--gap-s)
+
+    &:hover
+        color: $color-font-primary
+        background: $gray-light
+
+
+
+// Block -> Mobile menu
+$cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
+
+.navbar-burger
+    position: relative
+    display: inline-block
+    height: var(--navbar-height)
+    width: var(--navbar-height)
+    cursor: pointer
+    border: 0
+    border-radius: 50%
+    transform: rotate(0deg)
+    transition: all 0.3s $cubic
+    user-select: none
+    -webkit-tap-highlight-color: transparent
+    z-index: 99
+    
+    &-container
+        width: 18px
+        height: 8px
+        position: relative
+        display: block
+        margin: -4px auto 0
+        top: 50%
+        &-bar
+            width: 100%
+            height: 2px
+            display: block
+            position: relative
+            background: $color-font-secondary
+            transtion: all .2s $cubic
+            transition-delay: 0s
+            
+            &Top
+                transform: translateY(0px) rotate(0deg)
+
+            &Btm
+                transform: translateY(6px) rotate(0deg)
+
+.navbar-burger.is-open
+    transform: rotate(90deg)
+    background: $white
+
+    .navbar-burger-container .navbar-burger-container-bar
+        transition: all 0.2s $cubic
+        transition-delay: 0.1s
+        background: $color-font-primary
+
+        &Top
+            transform: translateY(4px) rotate(45deg)
+
+        &Btm
+            transform: translateY(2px) rotate(-45deg)
+
+
+
+// Collapse -> Mobile Menu
+.navbar-collapse
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    min-height: 100vh
+    overflow-y: auto
+    background: $white
+    z-index: 9
+    transition: all .15s ease
+    visibility: hidden
+    opacity: 0
+
+    &.is-open
+        visibility: visible
+        opacity: 1
+        +desktop-sm
+            display: none !important
+
+.navbar-collapse-container
+    padding: var(--navbar-height) var(--gap) 45vh
+
+.navbar-collapse-profile
+    display: block
+    position: relative
+    padding: var(--gap) 0
+    &-container
+        display: flex
+        flex-direction: column
+        position: relative
+    &-picture
+        display: block
+        position: relative
+        margin-bottom: var(--gap-m)
+        & > img
+            margin: 0 auto
+            border: 0;
+            border-radius: 50%
+            height: 68px
+            width: 68px
+            position: relative
+            display: block
+            object-fit: cover
+    &-actions
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: space-around
+    &-action
+        flex: 0 0 auto
+    &-link
+        color: $color-font-secondary
+        font-size: var(--size-typo-s)
+        font-weight: 400
+        line-height: var(--line-height-typo-s)
+        appearance: none
+        text-transform: none
+        text-decoration: none
+        position: relative
+        &:hover, &:action, &:focus
+            color: $color-font-primary
+
+.navbar-collapse-block
+    display: block
+    position: relative
+    width: 100%
+    padding: var(--gap) 0
+    border-top: 1px solid $color-border
+  
+.navbar-collapse-link
+    color: $color-font-primary
+    font-size: var(--size-typo-m)
+    font-weight: 400
+    line-height: var(--line-height-typo-m)
+    letter-spacing: .06em
+    text-decoration: none
+    appearance: none
+    padding: var(--gap-s) 0
+    display: block
+    transition: all .15s ease
+    &:active, &:focus, &:hover
+        background: $gray-light
+        border: 0
+        border-radius: $border-radius
+        padding: var(--gap-s)

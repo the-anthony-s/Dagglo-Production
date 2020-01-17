@@ -2,7 +2,7 @@
 %html
   %head
     = render partial: "layouts/shared/head"
-  %body
+  %body(id="pageContainer")
 
     -flash.each do |name, msg|
       = content_tag(:div, msg, class: "alert alert-info")

@@ -6,18 +6,70 @@
           root
 
 
-    - unless controller.controller_name == "pages" && controller.action_name == "home"
-      %div(class="navbar-center")
-        = form_tag "", method: :get, class: "navbar-form", role: "search" do
-          %div(class="navbar-form-input")
-            = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-form-control', type: "search", id: "globalSearch", autocomplete: "off"
-          %div(class="navbar-form-icon") #{icon "far", "search"}
+    -# - unless controller.controller_name == "pages" && controller.action_name == "home"
+    %div(class="navbar-center")
+      = form_tag "", method: :get, class: "navbar-form", role: "search" do
+        %div(class="navbar-form-input")
+          = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-form-control', type: "search", id: "globalSearch", autocomplete: "off"
+        %div(class="navbar-form-icon") #{icon "far", "search"}
 
 
     %div(class="navbar-right")
-      %div(class="navbar-mobile") mobile
+      %div(class="navbar-mobile")
+        %ul(class="navbar-list")
+          %li(class="navbar-list-item")
+            %div(id="navbarBurger" class="navbar-burger")
+              %div(class="navbar-burger-container")
+                %div(class="navbar-burger-container-bar navbar-burger-container-barTop")
+                %div(class="navbar-burger-container-bar navbar-burger-container-barBtm")
 
       %div(class="navbar-desktop")
         %ul(class="navbar-list")
-          %li(class="navbar-list-item") #{link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"}
-          %li(class="navbar-list-item") #{link_to t('buttons.user_registration'), new_user_registration_path, class: "button"}
+          
+          - if user_signed_in?
+            %li(class="navbar-list-item") #{link_to "Start selling", "", class: "navbar-link"}
+
+            %li(class="navbar-list-item navbar-dropdown-item")
+              = button_tag class: "navbar-profile navbar-dropdown-trigger" do
+                %div(class="navbar-profile-picture")
+                  = image_tag current_user.avatar(300, 300), loading: "lazy"
+              %div(class="navbar-dropdown")
+                %ul(class="navbar-dropdown-list")
+                  %li(class="navbar-dropdown-list-item")
+                    = link_to "Orders", "", class: "navbar-dropdown-link"
+                  %li(class="navbar-dropdown-list-item")
+                    = link_to "Favorites", "", class: "navbar-dropdown-link"
+                  %li(class="navbar-dropdown-list-item")
+                    = link_to "Account", "", class: "navbar-dropdown-link"
+                  %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
+                    = link_to "Seller account", "", class: "navbar-dropdown-link"
+                  %li(class="navbar-dropdown-list-item")
+                    = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link"
+            
+          - else
+            %li(class="navbar-list-item") #{link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"}
+            %li(class="navbar-list-item") #{link_to t('buttons.user_registration'), new_user_registration_path, class: "button"}
+
+
+
+  %div(class="navbar-collapse")
+    %div(class="navbar-collapse-container")
+      %div(class="navbar-collapse-profile")
+        %div(class="navbar-collapse-profile-container")
+          %div(class="navbar-collapse-profile-picture")
+            = image_tag current_user.avatar(300, 300), loading: "lazy"
+          %div(class="navbar-collapse-profile-actions")
+            %div(class="navbar-collapse-profile-action")
+              = link_to "Account", edit_user_registration_path, class: "navbar-collapse-profile-link"
+            %div(class="navbar-collapse-profile-action")
+              = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-collapse-profile-link"
+      %div(class="navbar-collapse-menu")
+        %ul(class="navbar-collapse-block")
+          %li(class="navbar-collapse-block-item") 
+            = link_to root_path, class: "navbar-collapse-link" do
+              %span Start selling
+              %p(class="text text-xs space-top-xxs text-secondary") Register today, get 2 months free
+        %ul(class="navbar-collapse-block")
+          %li(class="navbar-collapse-block-item") #{link_to "Home", root_path, class: "navbar-collapse-link"}
+          %li(class="navbar-collapse-block-item") #{link_to "Catalog", "", class: "navbar-collapse-link"}
+          %li(class="navbar-collapse-block-item") #{link_to "Contacts", "", class: "navbar-collapse-link"}
