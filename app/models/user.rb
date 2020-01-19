@@ -5,14 +5,22 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
+
+  
+  has_one :seller, dependent: :delete, foreign_key: :owner_id # -> seller account
+  has_one :seller_account
+
+
   
   validates_presence_of :first_name, :last_name
 
 
+  
   # Return User's full name
   def full_name
     "#{first_name} #{last_name}" unless !first_name.present? && !last_name.present?
   end
+
 
 
   # Return image_data -> Avatar or Default
@@ -26,6 +34,15 @@ class User < ApplicationRecord
       false
     else
       ActionController::Base.helpers.asset_path("defaults/" + ["avatar.png"].compact.join('_'))
+    end
+  end
+
+
+
+  # Seller Account
+  def s_account
+    if seller_account.present?
+      seller_account.seller
     end
   end
 end

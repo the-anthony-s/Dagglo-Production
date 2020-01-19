@@ -11,4 +11,4 @@ function setCookie(name, value) {
 
 const timezone = jstz.determine();
 setCookie("timezone", timezone.name());
-// console.log(timezone.name());
+// console.log("Timezone: " + timezone.name());

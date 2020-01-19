@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_180327) do
+ActiveRecord::Schema.define(version: 2020_01_17_193932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "seller_accounts", force: :cascade do |t|
+    t.integer "role"
+    t.boolean "owner", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "seller_id"
+    t.index ["seller_id"], name: "index_seller_accounts_on_seller_id"
+    t.index ["user_id"], name: "index_seller_accounts_on_user_id"
+  end
+
+  create_table "sellers", force: :cascade do |t|
+    t.string "name"
+    t.string "business_number"
+    t.text "about"
+    t.string "country"
+    t.date "founding_date"
+    t.integer "status", default: 0
+    t.text "image_data"
+    t.text "cover_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_sellers_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

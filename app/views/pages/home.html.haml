@@ -1,16 +1,32 @@
-= content_tag :li do
-  = link_to 'English', locale: :en
-- end unless current_page?(locale: :en)
+-# = content_tag :li do
+-#   = link_to 'English', locale: :en
+-# - end unless current_page?(locale: :en)
 
-= content_tag :li do
-  = link_to 'Русский', locale: :ru
-- end unless current_page?(locale: :ru)
+-# = content_tag :li do
+-#   = link_to 'Русский', locale: :ru
+-# - end unless current_page?(locale: :ru)
 
 
-%h1 #{t (:hello)}
-%p Timezone: #{Time.zone}
-- if user_signed_in?
-  %p #{current_user.email}
-  %p #{link_to t('buttons.user_destroy_session'), destroy_user_session_path, method: :delete}
-- else
-  %p #{link_to t('buttons.user_registration'), new_user_registration_path}
+.section
+  .content
+    %h1 #{t (:hello)}
+    %p Timezone: #{Time.zone}
+
+.section
+  .content
+    %h1 Sellers
+    %ul
+      - @sellers = Seller.all
+      - @sellers.each do |s|
+        %li #{link_to "#{s.name}", s}
+
+
+
+
+
+
+
+
+-# Google Content
+-# margin-left: 150px;
+-# margin-right: 150px;

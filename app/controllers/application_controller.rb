@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :store_user_location!, if: :storable_location?
   before_action :set_time_zone, if: :user_signed_in?
-  before_action :set_locale
+  # before_action :set_locale
+
 
 
   # Default Time Zone detector
@@ -29,16 +30,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def set_locale
-      I18n.locale = params[:locale] || I18n.default_locale
-      # current_user.locale
-      # request.env["HTTP_ACCEPT_LANGUAGE"]
-    end
+    # def set_locale
+    #   I18n.locale = params[:locale] || I18n.default_locale
+    #   # current_user.locale
+    #   # request.env["HTTP_ACCEPT_LANGUAGE"]
+    # end
 
+    # def default_url_options(options = {})
+    #   { locale: I18n.locale }.merge options
+    # end
 
-    def default_url_options(options = {})
-      { locale: I18n.locale }.merge options
-    end
 
 
     # Return user back after login
@@ -46,16 +47,13 @@ class ApplicationController < ActionController::Base
       request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
     end
 
-
     def store_user_location!
       store_location_for(:user, request.fullpath)
     end
 
-
     def after_sign_in_path_for(resource_or_scope)
       stored_location_for(resource_or_scope) || super
     end
-
 
     def after_sign_out_path_for(resource_or_scope)
       request.referrer || super

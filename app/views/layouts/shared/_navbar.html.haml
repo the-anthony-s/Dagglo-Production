@@ -27,7 +27,8 @@
         %ul(class="navbar-list")
           
           - if user_signed_in?
-            %li(class="navbar-list-item") #{link_to "Start selling", "", class: "navbar-link"}
+            - unless current_user.s_account
+              %li(class="navbar-list-item") #{link_to "Start selling", new_seller_path, class: "navbar-link"}
 
             %li(class="navbar-list-item navbar-dropdown-item")
               = button_tag class: "navbar-profile navbar-dropdown-trigger" do
@@ -41,8 +42,9 @@
                     = link_to "Favorites", "", class: "navbar-dropdown-link"
                   %li(class="navbar-dropdown-list-item")
                     = link_to "Account", "", class: "navbar-dropdown-link"
-                  %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
-                    = link_to "Seller account", "", class: "navbar-dropdown-link"
+                  - if current_user.s_account
+                    %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
+                      = link_to "Seller account", dashboard_seller_path(current_user.s_account), class: "navbar-dropdown-link"
                   %li(class="navbar-dropdown-list-item")
                     = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link"
             
@@ -56,19 +58,29 @@
     %div(class="navbar-collapse-container")
       %div(class="navbar-collapse-profile")
         %div(class="navbar-collapse-profile-container")
-          %div(class="navbar-collapse-profile-picture")
-            = image_tag current_user.avatar(300, 300), loading: "lazy"
-          %div(class="navbar-collapse-profile-actions")
-            %div(class="navbar-collapse-profile-action")
-              = link_to "Account", edit_user_registration_path, class: "navbar-collapse-profile-link"
-            %div(class="navbar-collapse-profile-action")
-              = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-collapse-profile-link"
+          - if user_signed_in?
+            %div(class="navbar-collapse-profile-picture")
+              = image_tag current_user.avatar(300, 300), loading: "lazy"
+            %div(class="navbar-collapse-profile-actions")
+              %div(class="navbar-collapse-profile-action")
+                = link_to "Account", edit_user_registration_path, class: "navbar-collapse-profile-link"
+              %div(class="navbar-collapse-profile-action")
+                = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-collapse-profile-link"
+          - else
+            %div(class="navbar-collapse-profile-actions")
+              %div(class="navbar-collapse-profile-action")
+                = link_to "Log In", new_user_session_path, class: "navbar-collapse-profile-link"
+              %div(class="navbar-collapse-profile-action")
+                = link_to "Sign Up", new_user_registration_path, class: "navbar-collapse-profile-link"
       %div(class="navbar-collapse-menu")
         %ul(class="navbar-collapse-block")
           %li(class="navbar-collapse-block-item") 
-            = link_to root_path, class: "navbar-collapse-link" do
-              %span Start selling
-              %p(class="text text-xs space-top-xxs text-secondary") Register today, get 2 months free
+            - unless user_signed_in? && current_user.s_account
+              = link_to new_seller_path, class: "navbar-collapse-link" do
+                %span Start selling
+                %p(class="text text-xs space-top-xxs text-secondary") Register today, get 2 months free
+            - else
+              = link_to "#{current_user.s_account.name}", "", class: "navbar-collapse-link"
         %ul(class="navbar-collapse-block")
           %li(class="navbar-collapse-block-item") #{link_to "Home", root_path, class: "navbar-collapse-link"}
           %li(class="navbar-collapse-block-item") #{link_to "Catalog", "", class: "navbar-collapse-link"}

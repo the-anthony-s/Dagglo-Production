@@ -46,6 +46,8 @@ gem 'font-awesome-sass', '~> 5.9.0'
 gem 'devise'
 # Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
 gem 'invisible_captcha'
+# Beautiful ID for the routes
+gem 'friendly_id', '~> 5.2.4'
 
 
 
