@@ -1,0 +1,61 @@
+// Variables
+$dashboard-left-width: 256px
+$dashboard-right-width: 256px
+
+.dashboard
+    position: relative
+    display: flex
+    flex-direction: column
+    margin: 0
+    padding: 0
+    width: 100%
+    min-height: 100vh
+    background: $white
+
+    +desktop-sm
+        flex-direction: row
+
+.dashboard-left
+    position: sticky
+    top: 0
+    left: 0
+    right: 0
+    flex: 1 1 100%
+    margin: 0
+    padding: 0
+    background: $white
+    z-index: 10
+
+    +desktop-sm
+        flex: 0 0 auto
+        position: fixed
+        height: 100vh
+        width: $dashboard-left-width
+        overflow-y: auto
+        background: $gray-lighter
+
+.dashboard-center
+    position: relative
+    min-height: 100vh
+    flex: 1 1 100%
+    flex-direction: column
+    margin: 0
+
+    +desktop-sm
+        padding-left: $dashboard-left-width
+
+        // padding-right: $dashboard-right-width
+
+.dashboard-right
+    position: relative
+    flex: 1 1 100%
+
+    +desktop-sm
+        flex: 0 0 auto
+        position: fixed
+        height: 100vh
+        width: $dashboard-right-width
+        overflow-y: auto
+        background: $gray-lighter
+        top: 0
+        right: 0

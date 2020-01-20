@@ -80,7 +80,7 @@
                 %span Start selling
                 %p(class="text text-xs space-top-xxs text-secondary") Register today, get 2 months free
             - else
-              = link_to "#{current_user.s_account.name}", "", class: "navbar-collapse-link"
+              = link_to "#{current_user.s_account.name}", dashboard_seller_path(current_user.s_account), class: "navbar-collapse-link"
         %ul(class="navbar-collapse-block")
           %li(class="navbar-collapse-block-item") #{link_to "Home", root_path, class: "navbar-collapse-link"}
           %li(class="navbar-collapse-block-item") #{link_to "Catalog", "", class: "navbar-collapse-link"}

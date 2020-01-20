@@ -3,6 +3,8 @@ class SellersController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_seller, except: [:show, :new, :create, :destroy]
 
+  layout :seller_dashboard_layout, except: [:show, :new]
+
 
   def new
     if current_user.s_account
@@ -27,26 +29,34 @@ class SellersController < ApplicationController
 
 
   def destroy
-    if @seller.owner
-      @seller.destroy
-      redirect_to new_seller_path, notice: "Seller account completely removed"
-    else
-      redirect_to root_path, notice: "#{current_user.first_name}, only the owner can delete seller account"
-    end
+    safely {
+      if @seller.owner
+        @seller.destroy
+        redirect_to new_seller_path, notice: "Seller account completely removed"
+      else
+        redirect_to root_path, notice: "#{current_user.first_name}, only the owner can delete seller account"
+      end
+    }
   end
 
 
   def update
-    if @seller.update(seller_params)
-      byebug
-    else
-      byebug
-    end
+    safely {
+      if @seller.update(seller_params)
+        byebug
+      else
+        byebug
+      end
+    }
   end
 
 
   def show
-    @seller = Seller.find(params[:id])
+    @seller = Seller.friendly.find(params[:id])
+  end
+
+
+  def dashboard
   end
 
 

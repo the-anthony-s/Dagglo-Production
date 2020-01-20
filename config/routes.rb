@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   
 
   # Site primary pages -> Home, About, Terms, Privacy

@@ -1,4 +1,14 @@
-.section
-  .content
-    %p #{@seller.name}
-    %p Owner: #{@seller.owner.full_name}
+= content_for :title, "Home"
+
+
+%div(class="container")
+  
+  %section(class="section")
+    %div(class="content")
+      %div(class="header")
+        %div(class="header-title")
+          %h1(class="text text-l text-medium") Something here
+        %div(class="header-actions")
+          %div(class="header-actions-item") action
+      %div(class="body")
+        %p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas obcaecati distinctio ullam rerum placeat voluptate velit enim laborum praesentium odio, voluptatibus autem tempora dolorem quibusdam quo eaque cumque, nobis voluptates.

@@ -10,10 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_17_193932) do
+ActiveRecord::Schema.define(version: 2020_01_19_023736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.text "type_of_products"
+    t.text "conditions_allowed"
+    t.text "approval_required"
+    t.text "cover_date"
+    t.boolean "pause", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "barcode"
+    t.text "about"
+    t.string "country"
+    t.integer "min_amount"
+    t.integer "num_offers"
+    t.boolean "manufacturer_warranty"
+    t.integer "status", default: 0
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.bigint "owner_user_id"
+    t.bigint "owner_seller_id"
+    t.string "slug"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["owner_seller_id"], name: "index_products_on_owner_seller_id"
+    t.index ["owner_user_id"], name: "index_products_on_owner_user_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
 
   create_table "seller_accounts", force: :cascade do |t|
     t.integer "role"
@@ -24,6 +72,29 @@ ActiveRecord::Schema.define(version: 2020_01_17_193932) do
     t.bigint "seller_id"
     t.index ["seller_id"], name: "index_seller_accounts_on_seller_id"
     t.index ["user_id"], name: "index_seller_accounts_on_user_id"
+  end
+
+  create_table "seller_products", force: :cascade do |t|
+    t.integer "unit_price"
+    t.integer "min_order_price"
+    t.string "sku", limit: 10
+    t.string "harmonized_system_code"
+    t.string "country_code_of_origin"
+    t.string "province_code_of_origin"
+    t.string "barcode"
+    t.string "packaging"
+    t.text "packaging_details"
+    t.string "shelf_life"
+    t.string "supply_ability"
+    t.string "weight"
+    t.string "status"
+    t.boolean "pause"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "product_id_id"
+    t.bigint "seller_id_id"
+    t.index ["product_id_id"], name: "index_seller_products_on_product_id_id"
+    t.index ["seller_id_id"], name: "index_seller_products_on_seller_id_id"
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -38,7 +109,9 @@ ActiveRecord::Schema.define(version: 2020_01_17_193932) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "owner_id"
+    t.string "slug"
     t.index ["owner_id"], name: "index_sellers_on_owner_id"
+    t.index ["slug"], name: "index_sellers_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

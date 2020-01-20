@@ -36,6 +36,12 @@ gem "autoprefixer-rails"
 gem 'i18n-tasks', '~> 0.9.30'
 # Google Analytics
 gem 'google-analytics-rails', '1.1.1'
+# Active link tracker
+gem 'active_link_to'
+# Beautiful ID for the routes
+gem 'friendly_id', '~> 5.2.4'
+# Category trees
+gem 'ancestry'
 
 
 
@@ -46,9 +52,6 @@ gem 'font-awesome-sass', '~> 5.9.0'
 gem 'devise'
 # Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
 gem 'invisible_captcha'
-# Beautiful ID for the routes
-gem 'friendly_id', '~> 5.2.4'
-
 
 
 ## Errors
