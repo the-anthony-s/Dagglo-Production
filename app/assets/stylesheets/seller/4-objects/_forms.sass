@@ -67,6 +67,10 @@
     display: block
 
 
+.form-caption
+    margin-top: var(--gap-xs)
+
+
 
 // Control input, textarea
 .form-control
@@ -86,6 +90,17 @@
     &:focus
         background: $white
         border-color: $color-border-dark
+    &-textarea
+        min-height: 140px
+
+
+.form-input-select
+    display: flex
+    flex-direction: row
+    justify-content: center
+
+    select + select
+        margin-left: var(--gap-xxs)
 
 
 // Devise Error
@@ -114,3 +129,167 @@
         position: relative
     & > ul > li + li 
         margin-top: var(--gap-xs)
+
+
+// Drag & Drop file form
+.form-file
+    display: flex
+    align-items: center
+
+.form-file-current
+    flex: 0 0 auto
+    margin-right: var(--gap)
+    height: var(--icon)
+    width: var(--icon)
+    background: transparent
+    border: 0
+    border-radius: 50%
+    position: relative
+    overflow: hidden
+
+    & > img
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
+        object-fit: cover
+        height: 100%
+        width: 100%
+
+.form-file-control
+    flex: 1 1 100%
+    max-width: 100%
+    border: 1px dashed $color-border
+    border-radius: $border-radius
+    background-color: $gray-lighter
+    position: relative
+    width: 100%
+    max-width: 100%
+    margin: 0 auto
+    padding: var(--gap-s) var(--gap)
+    display: flex
+    flex-direction: column
+    margin: 0 auto
+    transition: 0.2s
+    text-align: center
+    cursor: pointer
+
+    &.is-active,
+    &:focus,
+    &:hover
+        border-color: $color-border-dark
+    
+    &:focus,
+    &.is-active
+        border-color: $color-secondary
+
+.form-file-icon
+    color: $color-font-secondary
+    font-size: var(--size-typo-xxxxl)
+    margin-bottom: var(--gap-s)
+
+.form-file-link
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    display: inline-block
+    vertical-align: middle
+
+.form-file-msg
+    margin-top: var(--gap-xxs)
+    color: $color-font-secondary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    display: inline-block
+    vertical-align: middle
+
+.form-droparea
+    position: absolute
+    left: 0
+    top: 0
+    height: 100%
+    width: 100%
+    cursor: pointer
+    opacity: 0
+
+    &:focus 
+        outline: none
+
+
+// Select2 overwrite
+.select2-container
+    width: 100% !important
+
+.select2-container--default .select2-selection--single
+    border: 1px solid $color-border !important
+    border-radius: $border-radius !important
+    padding: 8px var(--gap-s) !important
+    background: $gray-lighter !important
+    width: 100% !important
+    position: relative !important
+    z-index: 1 !important
+    height: 40px !important
+
+.select2-selection__arrow
+    height: 100% !important
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple
+    border-color: $color-border-dark !important
+    border-bottom-right-radius: 0 !important
+    border-bottom-left-radius: 0 !important
+
+.select2-selection__rendered
+    color: $color-font-primary !important
+    font-size: var(--size-typo-s) !important 
+    font-weight: 400 !important
+    line-height: var(--line-height-typo-s) !important
+    padding: 0 !important
+
+.select2-dropdown
+    border: 1px solid $color-border !important
+    border-radius: $border-radius !important
+    border-top: none !important
+    border-top-left-radius: 0 !important
+    border-top-right-radius: 0 !important
+
+.select2-container--open .select2-dropdown--below
+    border-color: $color-border-dark !important
+    overflow: hidden !important
+
+.select2-search--dropdown
+    border-bottom: 1px solid $color-border-dark !important
+    padding: var(--gap-xs) !important
+
+.select2-container--default .select2-search--dropdown .select2-search__field
+    border: 1px solid $color-border !important
+    border-radius: $border-radius !important
+    color: $color-font-primary !important
+    font-size: var(--size-typo-s) !important 
+    font-weight: 400 !important
+    line-height: var(--line-height-typo-s) !important
+    background: $gray-lighter !important
+    padding: var(--gap-xxs) var(--gap-xs) !important
+
+.select2-results__option
+    color: $color-font-primary !important
+    font-size: var(--size-typo-s) !important
+    line-height: var(--line-height-typo-s) !important
+    font-weight: 400 !important
+    letter-spacing: .02em !important
+    padding: var(--gap-xs) var(--gap-s) !important
+
+.select2-container--default .select2-results__option[aria-selected=true]
+    background: $gray !important
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]
+    color: $color-font-primary-light !important
+    background: $color-secondary !important

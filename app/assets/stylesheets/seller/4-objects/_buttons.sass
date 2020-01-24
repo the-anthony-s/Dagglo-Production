@@ -4,7 +4,7 @@
     font-weight: 500
     text-decoration: none
     text-transform: none
-    padding: 10px var(--gap)
+    padding: var(--gap-xs) var(--gap)
     line-height: var(--line-height-typo-s)
     background: $gray-light
     text-align: center
@@ -24,35 +24,98 @@
     &:hover
         background: $gray
         border-color: $gray
-    
+
     & > span + span
         margin-left: 6px
 
-
 .button:disabled,
 .button[disabled]
-    opacity: .5
+    opacity: 0.5
     cursor: not-allowed
-
-
 
 // Action
 .button-action
     color: $white
     background: $color-secondary
     border-color: $color-secondary
+
     &:hover
         color: $white
         background: $color-secondary-dark
         border-color: $color-secondary-dark
 
-    
-
 // Styles
 .button-responsive
     width: 100%
+
     +mobile
         width: auto
-    
+
 .button-wide
     width: 100%
+
+// Button -> Circle
+.button-circle
+    color: $color-font-secondary
+    font-size: var(--size-typo-xs)
+    font-weight: 500
+    line-height: var(--line-height-typo-xs)
+    letter-spacing: 0.04em
+    appearance: none
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    text-align: center
+
+    &-icon
+        height: var(--circle)
+        width: var(--circle)
+        color: $color-font-primary
+        font-size: var(--size-typo-xxxl)
+        font-weight: 500
+        line-height: var(--line-height-typo-xxl)
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        border: 0
+        border-radius: 50%
+        background: $white
+        box-shadow: rgba(25, 28, 31, 0.04) 0px 0.5rem 1rem 0px, rgba(25, 28, 31, 0.08) 0px 0.9rem 2rem 0px, rgba(25, 28, 31, 0.05) 0px 1px 0px 0px inset
+
+    &-name
+        margin-top: var(--gap-xxs)
+
+    &:hover > &-icon,
+    &:focus > &-icon,
+    &:active > &-icon
+        box-shadow: rgba(25, 28, 31, 0.06) 0px 0.7rem 1.3rem 0px, rgba(25, 28, 31, 0.12) 0px 1rem 2.2rem 0px, rgba(25, 28, 31, 0.05) 0px 1px 0px 0px inset
+
+    &:hover > &-name,
+    &:focus > &-name,
+    &:active > &-name
+        color: $color-font-primary
+
+.button-circle-action
+    & > .button-circle-icon
+        color: $color-font-primary-light
+        background: $color-secondary
+        box-shadow: rgba($color-secondary, 0.09) 0px 0.5rem 1rem 0px, rgba($color-secondary, 0.18) 0px 0.9rem 2rem 0px
+
+    &:hover > .button-circle-icon,
+    &:focus > .button-circle-icon,
+    &:active > .button-circle-icon
+        background: $color-secondary-dark
+        box-shadow: rgba($color-secondary-dark, 0.12) 0px 0.7rem 1.3rem 0px, rgba($color-secondary-dark, 0.24) 0px 1rem 2.2rem 0px
+
+.button-circle-delete
+    &:hover > .button-circle-icon,
+    &:focus > .button-circle-icon,
+    &:active > .button-circle-icon
+        color: $red
+
+    &:hover > .button-circle-name,
+    &:focus > .button-circle-name,
+    &:active > .button-circle-name
+        color: $red

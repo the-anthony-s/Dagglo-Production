@@ -4,9 +4,6 @@
     = render partial: "layouts/shared/seller-head"
   %body(id="pageContainer")
 
-    -flash.each do |name, msg|
-      = content_tag(:div, msg, class: "alert alert-info")
-
     -# = render partial: "layouts/shared/navbar"
 
     %main(id="main" class="dashboard")
@@ -14,4 +11,6 @@
         = render partial: "sellers/shared/sidebar"
       
       %div(class="dashboard-center")
+        -flash.each do |name, msg|
+          = content_tag(:div, msg, class: "alert alert-info")
         = yield

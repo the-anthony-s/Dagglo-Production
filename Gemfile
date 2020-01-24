@@ -52,6 +52,10 @@ gem 'font-awesome-sass', '~> 5.9.0'
 gem 'devise'
 # Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
 gem 'invisible_captcha'
+# Forms
+gem 'simple_form'
+gem "selectize-rails"
+gem 'country_select', require: 'country_select_without_sort_alphabetical'
 
 
 ## Errors
@@ -84,6 +88,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Static analysis tool which checks Ruby on Rails applications for security vulnerabilities
+  gem 'brakeman'
 end
 
 

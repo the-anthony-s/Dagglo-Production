@@ -1,5 +1,5 @@
 .section
   .content-tight
-    = form_for @seller do |f|
+    = form_for Seller.new do |f|
       = f.text_field :name
       = f.submit

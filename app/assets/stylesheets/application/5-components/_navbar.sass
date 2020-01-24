@@ -82,21 +82,23 @@
 // Search
 .navbar-form
     width: 100%
-    max-width: 600px
-    display: none
+    max-width: 584px
+    display: flex
     flex-direction: row
     align-items: center
     position: relative
-    border: 2px solid $color-border
-    border-radius: 24px
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    box-shadow: 0 2px 3px rgba($black, .06)
     overflow: hidden
     background: $white
 
-    +desktop-sm
-        display: flex
+    // +desktop-sm
+    //     display: flex
 
     &.is-focused
         border-color: $color-border-dark
+        box-shadow: 0 2px 3px rgba($black, .08)
 
 .navbar-form-input
     flex: 1 1 100%
@@ -106,7 +108,7 @@
 .navbar-form-control
     color: $color-font-primary
     font-size: var(--size-typo-s)
-    font-weight: 400
+    font-weight: 500
     line-height: var(--line-height-typo-s)
     letter-spacing: 0.01em
     width: 100%
@@ -114,7 +116,7 @@
     box-shadow: none
     border: 0
     border-radius: 0
-    padding: 8px 0px 8px var(--gap-s)
+    padding: 10px 0px 10px var(--gap-s)
     position: relative
     display: block
 
@@ -349,7 +351,13 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     transition: all .15s ease
     &:active, &:focus, &:hover, &.active
         font-weight: 600
-        background: $gray-light
+        background: $gray-lighter
+        border: 0
+        border-radius: $border-radius
+        padding: var(--gap-s)
+    &.active
+        font-weight: 600
+        background: $gray
         border: 0
         border-radius: $border-radius
         padding: var(--gap-s)

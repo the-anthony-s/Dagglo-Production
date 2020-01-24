@@ -1,0 +1,37 @@
+// Grid Default Layouts
+.grid-2
+    display: grid
+    grid-row-gap: var(--gap)
+    grid-column-end: var(--gap)
+    grid-template-columns: repeat(1, 1fr)
+
+    +tablet
+        grid-template-columns: repeat(1, 1fr)
+
+.grid-3
+    display: grid
+    grid-row-gap: var(--gap)
+    grid-column-end: var(--gap)
+    grid-template-columns: repeat(1, 1fr)
+    
+    +tablet
+        grid-template-columns: repeat(3, 1fr)
+
+.col
+    grid-column-end: span 1
+
+.grid-settings
+    display: grid
+    grid-row-gap: var(--gap-r-m)
+    grid-column-gap: var(--gap-r-m)
+    grid-template-columns: repeat(1, 1fr)
+
+    +mobile
+        grid-template-columns: repeat(2, 1fr)
+
+
+    +desktop
+        grid-template-columns: repeat(3, 1fr)
+
+.col-settings
+    grid-column-end: span 1

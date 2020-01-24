@@ -2,8 +2,7 @@
   %div(class="sidebar-container")
 
     %div(class="sidebar-top")
-      -# = link_to dashboard_seller_path(@seller), class: "sidebar-acc" do
-      %div(class="sidebar-acc")
+      = link_to dashboard_seller_path(@seller), class: "sidebar-acc" do
         %div(class="sidebar-acc-picture")
           = image_tag @seller.logo(150, 150), loading: "lazy"
         %div(class="sidebar-acc-header")
@@ -17,27 +16,36 @@
 
       %ul(class="sidebar-links")
         %li(class="sidebar-links-item") 
-          = active_link_to "Home", dashboard_seller_path(@seller), class: "sidebar-link", active: :exclusive
+          = active_link_to "Home", dashboard_seller_path, class: "sidebar-link", active: :exclusive
         %li(class="sidebar-links-item") 
-          = active_link_to "Products", "/", class: "sidebar-link", active: :exclusive
+          = active_link_to "Products", products_seller_path, class: "sidebar-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']]
         %li(class="sidebar-links-item") 
-          = active_link_to "Locations", "/", class: "sidebar-link", active: :exclusive
+          = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: :exclusive
         %li(class="sidebar-links-item") 
-          = active_link_to "Settings", "/", class: "sidebar-link", active: :exclusive
+          = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers'], ['account', 'general', 'settings', 'payments', 'shipping', 'faq']]
 
     %div(class="sidebar-bottom")
       %ul(class="sidebar-footer")
+        
+        -# Sidebar announcement
+        -# %li(class="sidebar-footer-item")
+        -#   %div(class="sidebar-footer-card")
+        -#     %div(class="sidebar-footer-card-header")
+        -#       %p(class="text text-xs text-medium") Heading
+        -#     %div(class="sidebar-footer-card-body")
+        -#       %p(class="text text-xs text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempore non quaerat, autem ea maiores.
+        
         %li(class="sidebar-footer-item")
-          %div(class="sidebar-footer-card")
-            %div(class="sidebar-footer-card-header")
-              %p(class="text text-xs text-medium") Heading
-            %div(class="sidebar-footer-card-body")
-              %p(class="text text-xs text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempore non quaerat, autem ea maiores.
+          = link_to root_path, class: "sidebar-footer-link" do
+            %span #{icon "far", "store"}
+            %span to dagglo.com
         %li(class="sidebar-footer-item")
           = link_to destroy_user_session_path, method: :delete, class: "sidebar-footer-link" do
             %span #{icon "far", "sign-out-alt"}
             %span Logout
     
+
+    -# Mobile Navigation
     %div(class="sidebar-mobile")
       %div(class="sidebar-burger")
         %div(class="sidebar-burger-container")
@@ -65,16 +73,16 @@
         %div(class="sidebar-collapse-menu")
           %ul(class="sidebar-collapse-block")
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to dashboard_seller_path(@seller), class: "sidebar-collapse-link", active: :exclusive do
+              = active_link_to dashboard_seller_path, class: "sidebar-collapse-link", active: :exclusive do
                 %span Home
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to "/", class: "sidebar-collapse-link", active: :exclusive do
+              = active_link_to products_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']] do
                 %span Products
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to "/", class: "sidebar-collapse-link", active: :exclusive do
+              = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: :exclusive do
                 %span Locations
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to "/", class: "sidebar-collapse-link", active: :exclusive do
+              = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers'], ['account', 'general', 'settings']] do
                 %span Settings
           %ul(class="sidebar-collapse-block")
             %li(class="sidebar-collapse-block-item") 

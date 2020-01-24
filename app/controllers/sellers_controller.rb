@@ -43,9 +43,9 @@ class SellersController < ApplicationController
   def update
     safely {
       if @seller.update(seller_params)
-        byebug
+        redirect_to settings_seller_path, notice: "#{@seller.name} updated"
       else
-        byebug
+        redirect_to settings_seller_path, notice: "Something went wrong during #{@seller.name} update"
       end
     }
   end
@@ -57,6 +57,16 @@ class SellersController < ApplicationController
 
 
   def dashboard
+  end
+
+
+  def products
+    @seller_products = @seller.seller_products.includes(:product).all.order(created_at: :desc)
+    # @inventory = @seller.inventory_items.includes(:product).all
+  end
+
+  def account
+    @seller_accounts = SellerAccount.all.where(seller_id: @seller.id)
   end
 
 

@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(version: 2020_01_19_023736) do
     t.boolean "pause"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "product_id_id"
-    t.bigint "seller_id_id"
-    t.index ["product_id_id"], name: "index_seller_products_on_product_id_id"
-    t.index ["seller_id_id"], name: "index_seller_products_on_seller_id_id"
+    t.bigint "product_id"
+    t.bigint "seller_id"
+    t.index ["product_id"], name: "index_seller_products_on_product_id"
+    t.index ["seller_id"], name: "index_seller_products_on_seller_id"
   end
 
   create_table "sellers", force: :cascade do |t|

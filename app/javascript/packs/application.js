@@ -21,6 +21,8 @@ require("jquery")
 import "packs/time/timezone";
 
 // Navbar files
-import "packs/navbar/search";
 import "packs/navbar/dropdown";
-import "packs/navbar/hamburger";
+import "packs/navbar/search";
+
+// Mobile features
+import "packs/mobile/hamburger";

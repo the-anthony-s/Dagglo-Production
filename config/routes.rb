@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # end
 
 
-  # Users Controller -> Devise
+  ## Users Controller -> Devise
   devise_for :users, path: 'user', path_names: {sing_in: "sign_in", sing_out: "sign_out", sing_up: "sign_up", edit: "edit"}, :controllers => {
     :registrations            => "users/registrations",
     :confirmations            => "users/confirmations",
@@ -26,14 +26,36 @@ Rails.application.routes.draw do
 
 
 
-  resources :sellers, path: "seller", except: [:index, :edit] do
+  ## Seller Routes -> Admin + Show views
+  resource :seller, path: "seller", except: [:index, :show, :new, :create] do
     member do
-      get 'dashboard', action: :dashboard, as: :dashboard
+      get 'dashboard',                    action: :dashboard, as: :dashboard
+      get 'products',                     action: :products, as: :products
+      get 'locations',                    action: :locations, as: :locations
+      
+      # Settings routes
+      get 'settings',                     action: :settings, as: :settings
+      get 'settings/general',             action: :general, as: :settings_general
+      get 'settings/account',             action: :account, as: :settings_account
+      # get 'settings/payments',            action: :payments, as: :settings_payments
+      # get 'settings/shipping',            action: :shipping, as: :settings_shipping
+      # get 'settings/faq',                 action: :payments, as: :settings_faq
+
+      resources :seller_products, path: "products/inventory", as: :inventories, only: [:show, :edit, :update, :destroy]
+      resources :seller_accounts, path: "account", as: :accounts, only: [:show]
     end
   end
-
-
   
+  resources :sellers, path: "seller", only: [:new, :create]
+  get 'seller/:id', to: "sellers#show", as: :show_seller
+
+
+
+  ## Product Routes
+  resources :products, path: "seller/products", except: [:show, :destroy, :update, :edit]
+  get 'product/:id', to: "products#show", as: :show_product
+  
+
 
   # Site primary pages -> Home, About, Terms, Privacy
   get '/home', to: "pages#home"

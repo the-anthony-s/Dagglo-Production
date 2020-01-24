@@ -18,6 +18,27 @@ class Seller < ApplicationRecord
   validates_presence_of :name
 
 
+
+  # Product statuses 
+  enum status: {
+    pending: 0,
+    active: 1,
+    paused: 2,
+    banned: 3
+  }
+
+  def get_status
+    status
+  end
+
+
+  # Date formatting
+  def member_since
+    created_at.strftime("%b %d, %Y")
+  end
+
+
+
   # Return Seller Logo
   def logo(height = nil, width = nil)
     if image_data.present?
@@ -30,6 +51,7 @@ class Seller < ApplicationRecord
       ActionController::Base.helpers.asset_path("defaults/" + ["logo.png"].compact.join('_'))
     end
   end
+
 
 
   # Return Seller Cover Image

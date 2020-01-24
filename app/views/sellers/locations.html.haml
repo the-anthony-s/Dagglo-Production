@@ -1,0 +1,20 @@
+= content_for :title, "Locations"
+
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Locations
+        %div(class="header-actions")
+          %div(class="header-actions-item")
+            = link_to "", class: "button-circle button-circle-action" do
+              %div(class="button-circle-icon") #{icon "fal", "plus"}
+              %div(class="button-circle-name") Add new
+
+          -# %div(class="header-actions-item")
+          -#   = link_to :back, class: "button-circle" do
+          -#     %div(class="button-circle-icon") #{icon "fal", "long-arrow-left"}
+          -#     %div(class="button-circle-name") Back

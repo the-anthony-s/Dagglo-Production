@@ -18,5 +18,9 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 
 
+
 import "packs/time/timezone";
-import "packs/navbar/hamburger";
+import "packs/mobile/hamburger";
+import "packs/links/disabled";
+import "packs/forms/main";
+import "packs/forms/select2";

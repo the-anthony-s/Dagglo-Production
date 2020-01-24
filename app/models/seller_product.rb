@@ -8,4 +8,17 @@ class SellerProduct < ApplicationRecord
   validates_presence_of :product_id
 
 
+
+  # Get assigned product barcode
+  def get_barcode
+    if barcode.present?
+      barcode
+    elsif !barcode.present? && product.barcode.present?
+      product.barcode
+    else
+      nil
+    end
+  end
+
+
 end

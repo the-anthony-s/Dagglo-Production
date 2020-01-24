@@ -45,4 +45,18 @@ class User < ApplicationRecord
       seller_account.seller
     end
   end
+
+
+
+  # User Greetings
+  def hello
+    case Time.zone.now.hour
+    when 4..11 then 'Morning'
+    when 12..17 then 'Good afternoon'
+    when 18..23 then 'Evening'
+    else
+      'Hi'
+    end
+  end
+
 end

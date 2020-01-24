@@ -137,17 +137,17 @@
     outline: none
     width: 100%
     display: block
-    border-right: 3px solid transparent
     padding: var(--gap-s) var(--gap)
     vertical-align: baseline
 
     &:hover
-        border-color: $color-border-dark
+        background: $gray-light
     
     &.active
         color: $color-font-primary
         font-weight: 600
-        border-color: $color-primary
+        // border-color: $color-primary
+        background: $gray
     
     & > span + span
         margin-left: var(--gap-xxs)
@@ -324,9 +324,15 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     padding: var(--gap-s) 0
     display: block
     transition: all .15s ease
-    &:active, &:focus, &:hover, &.active
+    &:active, &:focus, &:hover
         font-weight: 600
-        background: $gray-light
+        background: $gray-lighter
+        border: 0
+        border-radius: $border-radius
+        padding: var(--gap-s)
+    &.active
+        font-weight: 600
+        background: $gray
         border: 0
         border-radius: $border-radius
         padding: var(--gap-s)

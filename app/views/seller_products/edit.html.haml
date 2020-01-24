@@ -1,0 +1,129 @@
+= content_for :title, @seller_product.product.name
+
+
+%div(class="container")
+
+  -# = form_for @seller_product, :html => { class: "form", :multipart => true } do |f|
+  = form_for :seller_product, url: inventory_path(@seller_product), method: :patch, :html => { class: "form", :multipart => true } do |f|
+    
+    %div(class="header")
+      %div(class="content")
+        %div(class="header-container")
+          %div(class="header-title")
+            %h1(class="text text-xxl text-medium") #{@seller_product.product.name}
+          %div(class="header-actions")
+            %div(class="header-actions-item")
+              = link_to inventory_path(@seller_product), method: :delete, class: "button-circle button-circle-delete" do
+                %div(class="button-circle-icon") #{icon "fal", "trash"}
+                %div(class="button-circle-name") Delete
+            
+            %div(class="header-actions-item")
+              = link_to inventory_path(@seller_product), class: "button-circle" do
+                %div(class="button-circle-icon") #{icon "fal", "eye"}
+                %div(class="button-circle-name") View
+
+
+
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium") Pricing:
+          %div(class="section-annotated-content")
+            %div(class="form-grid")
+              %div(class="form-col")
+                %div(class="form-row")
+                  %div(class="form-label")
+                    = f.label :unit_price, "Unit price"
+                  %div(class="form-input")
+                    = f.text_field :unit_price, autocomplete: "off", class: "form-control"
+              %div(class="form-col")
+                %div(class="form-row")
+                  %div(class="form-label")
+                    = f.label :min_order_price, "Minimum order price"
+                  %div(class="form-input")
+                    = f.text_field :min_order_price, autocomplete: "off", class: "form-control"
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium") Inventory:
+          %div(class="section-annotated-content")
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :sku, "SKU (stock keeping unit)"
+              %div(class="form-input")
+                = f.text_field :sku, autocomplete: "off", class: "form-control"
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :barcode, "Barcode (ISBN, UPC, GTIN, etc.)"
+              %div(class="form-input")
+                -# = f.text_field :barcode, autocomplete: "off", class: "form-control", value: @seller_product.get_barcode
+                %p(class="text text-s") 
+                  %span(class="text-m text-bold") #{@seller_product.get_barcode}
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :shelf_life, "Shelf life"
+              %div(class="form-input")
+                = f.text_field :shelf_life, autocomplete: "off", class: "form-control"
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :supply_ability, "Supply ability"
+              %div(class="form-input")
+                = f.text_field :supply_ability, autocomplete: "off", class: "form-control"
+            -# %div(class="form-row")
+            -#   %div(class="form-label")
+            -#     = f.label :description, "Product description:"
+            -#   %div(class="form-input")
+            -#     = f.text_area :description, autocomplete: "off", class: "form-control form-control-textarea"
+            -#   %div(class="form-caption")
+            -#     %p(class="text text-xs text-secondary") Used as additional information to your customer. Will be on product pages.
+
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium") Shipping:
+          %div(class="section-annotated-content")
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :weight, "Unit weight"
+              %div(class="form-input")
+                = f.text_field :weight, autocomplete: "off", class: "form-control"
+              %div(class="form-caption")
+                %p(class="text text-xs text-secondary") Used to calculate shipping rates at checkout and label prices during fulfillment.
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :country_code_of_origin, "Country/Region of origin"
+              %div(class="form-input")
+                = f.country_select("country_code_of_origin", {:include_blank => "Choose country"}, {class: "js-states form-control", id: "selectCountry"}, required: true, autofocus: false)
+              %div(class="form-caption")
+                %p(class="text text-xs text-secondary") In most cases, where the product is manufactured.
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :harmonized_system_code, "HS (Harmonized System) code"
+              %div(class="form-input")
+                = f.text_field :harmonized_system_code, autocomplete: "off", class: "form-control"
+              %div(class="form-caption")
+                %p(class="text text-xs text-secondary") Used by border officers to classify this product.
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :packaging, "Packaging"
+              %div(class="form-input")
+                = f.text_field :packaging, autocomplete: "off", class: "form-control"
+              %div(class="form-caption")
+                %p(class="text text-xs text-secondary") Used by delivery companies provided by Dagglo. Also will be displayed on product pages as an additional information for your customers.
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :packaging_details, "Packaging details"
+              %div(class="form-input")
+                = f.text_area :packaging_details, autocomplete: "off", class: "form-control form-control-textarea"
+
+    %div(class="actions")
+      %div(class="content")
+        %div(class="actions-container")
+          %div(class="actions-item")
+            = button_tag "Save inventory", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Updating..."}

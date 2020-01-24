@@ -18,8 +18,15 @@
     %ul
       - @sellers = Seller.all
       - @sellers.each do |s|
-        %li #{link_to "#{s.name}", s}
+        %li #{link_to "#{s.name}", show_seller_path(s)}
 
+.section
+  .content
+    %h1 Products
+    %ul
+      - @products = Product.all
+      - @products.each do |p|
+        %li #{link_to "#{p.name}", show_product_path(p)}
 
 
 

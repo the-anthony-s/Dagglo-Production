@@ -1,0 +1,62 @@
+.list
+    display: block
+
+.list-item
+    display: block
+
+// .list-item + .list-item
+//     border-top: 1px solid $color-border
+
+.list-container
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding-top: var(--gap-xs)
+    padding-bottom: var(--gap-xs)
+
+    &-center
+        align-items: center
+
+a.list-container
+    transition: all 0.2s ease
+    border: 0
+    border-radius: $border-radius
+    overflow: hidden
+
+a.list-container:hover,
+a.list-container:focus,
+a.list-container:active
+    background: $gray-light
+    padding-right: var(--gap-xs)
+    padding-left: var(--gap-xs)
+
+.list-picture
+    flex: 0 0 auto
+    margin-right: var(--gap-s)
+
+    &-rounded
+        border-radius: 50%
+        overflow: hidden
+
+    & > img
+        height: var(--circle)
+        width: var(--circle)
+        position: relative
+        display: block
+        border: 0
+        border-radius: $border-radius
+
+.list-main
+    flex: 1 1 100%
+    max-width: 100%
+
+.list-actions
+    display: flex
+    flex-direction: row
+    align-items: center
+
+    &-item
+        flex: 0 0 auto
+
+    &-item + &-item
+        margin-left: var(--gap-s)

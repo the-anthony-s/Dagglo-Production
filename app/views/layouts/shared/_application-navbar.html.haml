@@ -44,7 +44,7 @@
                     = link_to "Account", "", class: "navbar-dropdown-link"
                   - if current_user.s_account
                     %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
-                      = link_to "Seller account", dashboard_seller_path(current_user.s_account), class: "navbar-dropdown-link"
+                      = link_to "Seller account", dashboard_seller_path, class: "navbar-dropdown-link"
                   %li(class="navbar-dropdown-list-item")
                     = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link"
             
@@ -80,7 +80,9 @@
                 %span Start selling
                 %p(class="text text-xs space-top-xxs text-secondary") Register today, get 2 months free
             - else
-              = link_to "#{current_user.s_account.name}", dashboard_seller_path(current_user.s_account), class: "navbar-collapse-link"
+              = link_to dashboard_seller_path, class: "navbar-collapse-link" do
+                %span #{current_user.s_account.name}
+                %p(class="text text-xs space-top-xxs text-secondary") Seller dashboard. Opens in a new window.
         %ul(class="navbar-collapse-block")
           %li(class="navbar-collapse-block-item") #{link_to "Home", root_path, class: "navbar-collapse-link"}
           %li(class="navbar-collapse-block-item") #{link_to "Catalog", "", class: "navbar-collapse-link"}

@@ -1,0 +1,79 @@
+= content_for :title, "General"
+
+%div(class="container")
+
+  = form_for @seller, :html => {class: "form"} do |f|
+
+    %div(class="header")
+      %div(class="content")
+        %div(class="header-container")
+          %div(class="header-title")
+            %h1(class="text text-xxl text-medium") General
+          -# %div(class="header-actions")
+          -#   %div(class="header-actions-item")
+          -#     = link_to :back, class: "button-circle" do
+          -#       %div(class="button-circle-icon") #{icon "fal", "long-arrow-left"}
+          -#       %div(class="button-circle-name") Back
+
+
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Store details:
+            %p(class="text text-s text-secondary space-bot-xs") Dagglo and your customers will use this information to learn more about you and your company.
+            %p(class="text text-s text-secondary") Business number will help us verify your company and increase sales.
+          %div(class="section-annotated-content")
+            
+            %div(class="form-row")
+              %div(class="form-row")
+                %div(class="form-label")
+                  = f.label :image_data, "Logo"
+                %div(class="form-input")
+                  %div(class="form-file")
+                    %div(class="form-file-current")
+                      = image_tag @seller.logo(300, 300), loading: "lazy"
+                    %div(class="form-file-control")
+                      %span(class="form-file-link") Drag and drop or
+                      %span(class="form-file-msg js-set-number") upload from files
+                      = f.file_field :image, multiple: false, class: "form-droparea", autocomplete: "off"
+            
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :business_number, "Business number"
+              %div(class="form-input")
+                - if @seller.business_number.present?
+                  %p(class="text text-m text-medium") #{@seller.business_number}
+                - else
+                  = f.text_field :business_number, class: "form-control", autofocus: false, autocomplete: "off"
+
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :name, "Legal business name"
+              %div(class="form-input")
+                = f.text_field :name, class: "form-control", autofocus: false, autocomplete: "off"
+
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :founding_date, "Founding date"
+              %div(class="form-input form-input-select")
+                = f.date_select :founding_date, {:order => [:day, :month, :year], :start_year => 1958, :end_year => Time.current.year, :prompt => { :day => 'Day:', :month => 'Month:', :year => 'Year:' }}, {:class => "form-control"}
+
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :country, "Country"
+              %div(class="form-input d-form-input-select")
+                = f.country_select("country", {:include_blank => "Choose country"}, {class: "js-states form-control", id: "selectCountry"}, required: true, autofocus: false)
+
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :about, "About"
+              %div(class="form-input form-input-select")
+                = f.text_area :about, class: "form-control form-control-textarea", autofocus: false, autocomplete: "off"
+    
+    %div(class="actions")
+      %div(class="content")
+        %div(class="actions-container")
+          %div(class="actions-item")
+            = button_tag "Save", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Saving..."}

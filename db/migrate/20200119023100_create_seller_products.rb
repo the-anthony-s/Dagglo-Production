@@ -19,8 +19,8 @@ class CreateSellerProducts < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_reference :seller_products, :product_id, index: true
-    add_reference :seller_products, :seller_id, index: true
+    add_reference :seller_products, :product, index: true
+    add_reference :seller_products, :seller, index: true
 
   end
 end

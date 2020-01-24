@@ -1,0 +1,57 @@
+= content_for :title, "Plan and permissions"
+
+
+%div(class="container")
+  
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Plan and permissions
+        -# %div(class="header-actions")
+        -#   %div(class="header-actions-item")
+        -#     = link_to :back, class: "button-circle" do
+        -#       %div(class="button-circle-icon") #{icon "fal", "long-arrow-left"}
+        -#       %div(class="button-circle-name") Back
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="section-annotated")
+        %div(class="section-annotated-annotation")
+          %p(class="text text-m text-medium space-bot-xs") Plan details:
+          %p(class="text text-s text-secondary") View our #{link_to "terms of service", "", class: "link"} and #{link_to "privacy policy", "", class: "link"}.
+        %div(class="section-annotated-content")
+          %div(class="card")
+            %div(class="card-grid")
+              %div(class="card-col")
+                %div(class="card-body")
+                  %p(class="text text-s text-secondary space-bot-xxxs") Member since:
+                  %p(class="text text-s text-medium") #{@seller.member_since}
+              %div(class="card-col")
+                %div(class="card-body")
+                  %p(class="text text-s text-secondary space-bot-xxxs") Current plan:
+                  %p(class="text text-s text-medium") --
+              %div(class="card-col")
+                %div(class="card-body")
+                  %p(class="text text-s text-secondary space-bot-xxxs") Status:
+                  %p(class="text text-s text-medium") #{@seller.get_status}
+  
+  %section(class="section")
+    %div(class="content")
+      %div(class="section-annotated")
+        %div(class="section-annotated-annotation")
+          %p(class="text text-m text-medium") Connected accounts:
+        %div(class="section-annotated-content")
+          %div(class="body")
+            %ul(class="list")
+              - @seller_accounts.each do |acc|
+                %li(class="list-item")
+                  -# %div(class="list-container list-container-center")
+                  = link_to account_path(acc), class: "list-container list-container-center" do
+                    %div(class="list-picture list-picture-rounded")
+                      = image_tag acc.user.avatar(300, 300), loading: "lazy"
+                    %div(class="list-main")
+                      %h1(class="text text-s text-medium") #{acc.user.full_name}
+                      %p(class="text text-s text-secondary") Owner
+          %div(class="body")
+            = link_to "Invite Contributor", "", class: "button button-wide"

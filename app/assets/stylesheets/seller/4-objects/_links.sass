@@ -13,10 +13,24 @@ a,
     & > span + span
         margin-left: 4px
 
+// Link variations
+.link-icon
+    color: $color-font-secondary
+    font-size: var(--size-typo-l)
+    line-height: var(--line-height-typo-l)
+    padding: var(--gap-xxs)
 
+    &:hover, &:focus, &:active
+        color: $color-font-secondary
+        background: $gray-light
 
+// Link Styles
 .link-secondary
     color: $color-font-secondary
-    
+
     &:hover
         color: $color-font-primary
+
+#disabledLink
+    opacity: 0.3 !important
+    cursor: not-allowed !important
