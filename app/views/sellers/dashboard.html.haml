@@ -1,9 +1,6 @@
 = content_for :title, "Home"
 
 
--# Welcome message
--# account summary
--# activities
 -# announcements
 
 
@@ -29,4 +26,4 @@
   - unless current_user.confirmed_at.present? || @seller.business_number.present?
     = render partial: "sellers/dashboard/summary"
 
-  
+  = render partial: "sellers/dashboard/activities"

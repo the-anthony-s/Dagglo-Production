@@ -16,10 +16,11 @@ $dashboard-right-width: 256px
         flex-direction: row
 
 .dashboard-left
-    position: sticky
-    top: 0
-    left: 0
-    right: 0
+    position: relative
+    // position: sticky
+    // top: 0
+    // left: 0
+    // right: 0
     flex: 1 1 100%
     margin: 0
     padding: 0
@@ -29,6 +30,9 @@ $dashboard-right-width: 256px
     +desktop-sm
         flex: 0 0 auto
         position: fixed
+        top: 0
+        left: 0
+        right: 0
         height: 100vh
         width: $dashboard-left-width
         overflow-y: auto

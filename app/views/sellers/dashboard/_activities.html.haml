@@ -1,0 +1,11 @@
+%section(class="section")
+  %div(class="content")
+    %div(class="header-section")
+      %div(class="header-section-title")
+        %h1(class="text text-m text-medium") Recent activity
+      %div(class="header-section-actions")
+        %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+    
+    %div(class="body")
+      %ul(class="activities")
+        = render_activities(@activities)

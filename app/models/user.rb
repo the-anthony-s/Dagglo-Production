@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :trackable, :confirmable
 
 
-  
+
+  # Database refereces
   has_one :seller, dependent: :delete, foreign_key: :owner_id # -> seller account
   has_one :seller_account
 

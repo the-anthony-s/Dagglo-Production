@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+
   protect_from_forgery with: :exception
+
+  after_action :track_action
 
   before_action :store_user_location!, if: :storable_location?
   before_action :set_time_zone, if: :user_signed_in?
@@ -25,6 +29,14 @@ class ApplicationController < ActionController::Base
     Time.zone
   end
   helper_method :browser_time_zone
+
+
+
+  # Public_event configurations
+  def user_seller_account
+    @user_account ||= current_user.s_account
+  end
+  helper_method :user_account
 
   
 
@@ -57,5 +69,14 @@ class ApplicationController < ActionController::Base
 
     def after_sign_out_path_for(resource_or_scope)
       request.referrer || super
+    end
+
+  
+  
+  protected
+
+    # Track current_user's actions
+    def track_action
+      ahoy.track "Viewed #{controller_name}##{action_name}", request.filtered_parameters
     end
 end

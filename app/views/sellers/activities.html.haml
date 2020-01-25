@@ -1,0 +1,16 @@
+= content_for :title, "Activities"
+
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Activity
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="body")
+        %ul(class="activities")
+          = render_activities(@activities)

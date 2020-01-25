@@ -6,6 +6,12 @@ class Product < ApplicationRecord
 
 
 
+  include PublicActivity::Model
+  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
+          recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
+
+
+
   # belongs_to :category, :foreign_key => 'category_id'
   belongs_to :owner_user, optional: true, class_name: "User"
   belongs_to :owner_seller, optional: true, class_name: "Seller"

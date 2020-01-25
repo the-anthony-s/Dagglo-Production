@@ -1,5 +1,10 @@
 class SellerProduct < ApplicationRecord
 
+  include PublicActivity::Model
+  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
+          recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
+
+
 
   belongs_to :seller, :foreign_key => 'seller_id'
   belongs_to :product, :foreign_key => 'product_id'

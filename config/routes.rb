@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get 'dashboard',                    action: :dashboard, as: :dashboard
       get 'products',                     action: :products, as: :products
       get 'locations',                    action: :locations, as: :locations
+      get 'activities',                   action: :activities, as: :activities
       
       # Settings routes
       get 'settings',                     action: :settings, as: :settings

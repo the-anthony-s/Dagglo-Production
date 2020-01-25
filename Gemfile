@@ -45,6 +45,14 @@ gem 'ancestry'
 
 
 
+## Analytics
+# Log users activity, info: https://github.com/ankane/ahoy, jquery is a MUST!!!
+gem 'ahoy_matey'
+# Public Activity tracking
+gem 'public_activity'
+
+
+
 ## Assets
 # Icons
 gem 'font-awesome-sass', '~> 5.9.0'
@@ -56,6 +64,8 @@ gem 'invisible_captcha'
 gem 'simple_form'
 gem "selectize-rails"
 gem 'country_select', require: 'country_select_without_sort_alphabetical'
+# Geolocation
+gem 'geocoder'
 # Money formatting
 gem "money"
 
