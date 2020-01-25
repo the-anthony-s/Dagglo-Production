@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
   ## Product Routes
   resources :products, path: "seller/products", except: [:show, :destroy, :update, :edit]
+  resources :product_steps
   get 'product/:id', to: "products#show", as: :show_product
   
 

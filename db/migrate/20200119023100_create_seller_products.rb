@@ -1,8 +1,8 @@
 class CreateSellerProducts < ActiveRecord::Migration[6.0]
   def change
     create_table :seller_products do |t|
-      t.integer :unit_price
-      t.integer :min_order_price
+      t.money :unit_price
+      t.money :min_order_price
       t.string :sku, limit: 10
       t.string :harmonized_system_code
       t.string :country_code_of_origin

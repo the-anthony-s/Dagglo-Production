@@ -1,9 +1,9 @@
 class Product < ApplicationRecord
 
-
   # Custom IDs for URLs
   extend FriendlyId
   friendly_id :name, use: :slugged, :use => :history
+
 
 
   # belongs_to :category, :foreign_key => 'category_id'
@@ -12,6 +12,7 @@ class Product < ApplicationRecord
 
   has_many :seller_products, dependent: :delete_all
   has_many :sellers, :through => :seller_products
+
 
 
   # Mandatory fields
@@ -47,6 +48,5 @@ class Product < ApplicationRecord
       ActionController::Base.helpers.asset_path("defaults/" + ["product.png"].compact.join('_'))
     end
   end
-
 
 end

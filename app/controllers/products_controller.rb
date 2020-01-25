@@ -20,31 +20,17 @@ class ProductsController < ApplicationController
   def create
     safely {
       @product = Product.new(product_params)
-
       if @product.valid?
-        
         # Validate Product Barcode with already existed barcodes
         if Product.where(barcode: @product.barcode).present?
-          
-          # Validate if SellerProduct with the same Product ID exists
-          if @seller.seller_products.where(product_id: @product.id).present?
-            redirect_to products_seller_path, notice: "#{@product.name} has been already listed in your inventory"
-          else
-            product = Product.where(barcode: @product.barcode).last
-            seller_product = SellerProduct.create(seller_id: @seller.id, product_id: product.id)
-            redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} already exists on Dagglo. We merged existed product with your account. If you need help, please contact our customer support."
-          end
-        
+          product = Product.where(barcode: @product.barcode).last
+          seller_product = SellerProduct.create(seller_id: @seller.id, product_id: product.id)
+          redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} already exists on Dagglo. We merged existed product with your account."
         else
           @product.save
-
-          # Add creater ID (Seller ID) for the future reference
-          @product.update_attributes(owner_user_id: current_user.id, owner_seller_id: @seller.id)
           seller_product = SellerProduct.create(seller_id: @seller.id, product_id: @product.id)
-
           redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} created"
         end
-        
       else
         redirect_to :new, notice: "An error occurred during registration, try again or contact support"
       end

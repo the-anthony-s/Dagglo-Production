@@ -2,7 +2,7 @@
   %div(class="sidebar-container")
 
     %div(class="sidebar-top")
-      = link_to dashboard_seller_path(@seller), class: "sidebar-acc" do
+      = link_to dashboard_seller_path, class: "sidebar-acc" do
         %div(class="sidebar-acc-picture")
           = image_tag @seller.logo(150, 150), loading: "lazy"
         %div(class="sidebar-acc-header")

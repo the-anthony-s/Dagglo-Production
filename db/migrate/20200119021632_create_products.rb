@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :barcode
       t.text :about
       t.string :country
-      t.integer :min_amount
+      t.money :min_price
       t.integer :num_offers
       t.boolean :manufacturer_warranty
       t.integer :status, default: 0

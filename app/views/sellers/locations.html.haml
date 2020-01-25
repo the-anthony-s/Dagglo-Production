@@ -18,3 +18,16 @@
           -#   = link_to :back, class: "button-circle" do
           -#     %div(class="button-circle-icon") #{icon "fal", "long-arrow-left"}
           -#     %div(class="button-circle-name") Back
+
+
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="body")
+      %div(class="banner")
+        %div(class="banner-icon")
+          = icon "fal", "globe-americas"
+        %div(class="banner-message")
+          %h1(class="text text-xl") No locations yet
+        %div(class="banner-action")
+          = link_to "Add location", "", class: "link"

@@ -1,7 +1,7 @@
 .button
     color: $color-font-primary
     font-size: var(--size-typo-s)
-    font-weight: 500
+    font-weight: 400
     text-decoration: none
     text-transform: none
     padding: var(--gap-xs) var(--gap)
@@ -9,7 +9,7 @@
     background: $gray-light
     text-align: center
     width: auto
-    border: 1px solid $gray-light
+    border: 1px solid $color-border
     border-radius: $border-radius
     user-select: none
     appearance: none
@@ -19,11 +19,11 @@
     -webkit-text-size-adjust: none
     touch-action: manipulation
     outline: none
-    display: inline-block
+    display: inline-flex
 
     &:hover
         background: $gray
-        border-color: $gray
+        border-color: $color-border-dark
 
     & > span + span
         margin-left: 6px

@@ -14,6 +14,7 @@
         -#       %div(class="button-circle-icon") #{icon "fal", "long-arrow-left"}
         -#       %div(class="button-circle-name") Back
 
+
   %section(class="section")
     %div(class="content")
       %div(class="section-annotated")
@@ -22,25 +23,27 @@
           %p(class="text text-s text-secondary") View our #{link_to "terms of service", "", class: "link"} and #{link_to "privacy policy", "", class: "link"}.
         %div(class="section-annotated-content")
           %div(class="card")
-            %div(class="card-grid")
-              %div(class="card-col")
+            %div(class="grid-2-3")
+              %div(class="col")
                 %div(class="card-body")
                   %p(class="text text-s text-secondary space-bot-xxxs") Member since:
                   %p(class="text text-s text-medium") #{@seller.member_since}
-              %div(class="card-col")
+              %div(class="col")
                 %div(class="card-body")
                   %p(class="text text-s text-secondary space-bot-xxxs") Current plan:
                   %p(class="text text-s text-medium") --
-              %div(class="card-col")
+              %div(class="col")
                 %div(class="card-body")
                   %p(class="text text-s text-secondary space-bot-xxxs") Status:
                   %p(class="text text-s text-medium") #{@seller.get_status}
   
+
   %section(class="section")
     %div(class="content")
       %div(class="section-annotated")
         %div(class="section-annotated-annotation")
-          %p(class="text text-m text-medium") Connected accounts:
+          %p(class="text text-m text-medium space-bot-xs") Connected accounts:
+          %p(class="text text-s text-secondary") Manage what staff can see or do in your store.
         %div(class="section-annotated-content")
           %div(class="body")
             %ul(class="list")
@@ -55,3 +58,28 @@
                       %p(class="text text-s text-secondary") Owner
           %div(class="body")
             = link_to "Invite Contributor", "", class: "button button-wide"
+
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="section-annotated")
+        %div(class="section-annotated-annotation")
+          %p(class="text text-m text-medium") Seller account status:
+        %div(class="section-annotated-content")
+          %div(class="body")
+            %div(class="card")
+              %div(class="grid-1-2")
+                %div(class="col")
+                  %div(class="card-body")
+                    %div(class="text-center")
+                      %h1(class="text text-xxxl space-bot-l") #{icon "fal", "pause"}
+                      %p(class="text text-s space-bot-xxxs") Pause your account
+                      %p(class="text text-s text-secondary space-bot-l") Take a break from selling at a reduced plan price. Your settings will be saved until you’re ready to sell again.
+                      = link_to "Pause account", "", class: "button"
+                %div(class="col")
+                  %div(class="card-body")
+                    %div(class="text-center")
+                      %h1(class="text text-xxxl space-bot-l") #{icon "fal", "times-circle"}
+                      %p(class="text text-s space-bot-xxxs") Close your account
+                      %p(class="text text-s text-secondary space-bot-l") Turn off your online sales. All related to #{@seller.name} information will be forever removed from Dagglo.
+                      = link_to "Close account", "", class: "button"

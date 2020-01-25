@@ -1,0 +1,47 @@
+%section(class="section")
+  %div(class="content-wide")
+    %div(class="onboarding")
+      %div(class="onboarding-body")
+        -# Title side
+        %div(class="onboarding-title")
+          %div(class="onboarding-title-top")
+            %h3(class="text text-xl") Welcome to your seller account 🥳! Here are some tips to help you get started.
+          %div(class="onboarding-title-bottom")
+            %div(class="onboarding-progress")
+              %div(class="onboarding-progress-title")
+                %p(class="text text-xs text-secondary") Account Progress
+                %p(class="text text-xl text-medium")
+                  %span(class="text-success") #{@seller.onboarding_percent.round}%
+              %div(class="onboarding-progress-bar-back")
+                %div(class="onboarding-progress-bar-front js-progressBar" data-value="#{@seller.onboarding_percent.round}")
+              - if @seller.onboarding_completed_at.present?
+                %div(class="onboarding-progress-caption")
+                  %p(class="text text-xs text-secondary") Completed at #{@seller.onboarding_completed_at.strftime("%I:%M %p, %d %B, %Y")}
+
+        %div(class="onboarding-panel")
+          
+          %ul(class="onboarding-steps")
+            %li(class="onboarding-step")
+              = link_to settings_general_seller_path, class: "onboarding-container" do
+                %div(class="onboarding-icon") #{onboarding_step_icon @seller.has_business_info?}
+                %div(class="onboarding-main")
+                  %p(class="text text-m") Add business information
+                  %p(class="text text-s text-secondary") Let your customers know more about your business. Add information about your company.
+            %li(class="onboarding-step")
+              = link_to new_product_path, class: "onboarding-container" do
+                %div(class="onboarding-icon") #{onboarding_step_icon @seller.has_product?}
+                %div(class="onboarding-main")
+                  %p(class="text text-m") Add new inventory or product
+                  %p(class="text text-s text-secondary") Add products you sell or wish to sell and start growing today.
+            -# %li(class="onboarding-step")
+            -#   = link_to new_seller_location_path(current_user.account), class: "onboarding-container" do
+            -#     %div(class="onboarding-icon") #{onboarding_step_icon @seller.has_location?}
+            -#     %div(class="onboarding-main")
+            -#       %p(class="text text-m") Add business location
+            -#       %p(class="text text-m text-secondary") Help us find you the right clients. Add your company addresses to our system.
+            -# %li(class="onboarding-step")
+            -#   = link_to settings_payment_seller_path(current_user.account), class: "onboarding-container" do
+            -#     %div(class="onboarding-icon") #{onboarding_step_icon @seller.has_payment?}
+            -#     %div(class="onboarding-main")
+            -#       %p(class="text text-s") Setup payment options
+            -#       %p(class="text text-s text-secondary") You can get paid online or offline. Add preferable payment option.

@@ -47,3 +47,12 @@
                         = link_to "View", inventory_path(item), class: "button button-responsive"
                       %div(class="table-actions-item") 
                         = link_to "Edit", edit_inventory_path(item), class: "button button-responsive"
+        
+        - else
+          %div(class="banner")
+            %div(class="banner-icon")
+              = icon "fal", "box-alt"
+            %div(class="banner-message")
+              %h1(class="text text-xl") No products yet
+            %div(class="banner-action")
+              = link_to "Add product", new_product_path, class: "link"

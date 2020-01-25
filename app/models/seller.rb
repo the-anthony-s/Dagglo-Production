@@ -1,5 +1,8 @@
 class Seller < ApplicationRecord
 
+  # Onboarding steps
+  include SellerOnboarding
+
 
   # Custom IDs for URLs
   extend FriendlyId

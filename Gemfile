@@ -56,6 +56,8 @@ gem 'invisible_captcha'
 gem 'simple_form'
 gem "selectize-rails"
 gem 'country_select', require: 'country_select_without_sort_alphabetical'
+# Money formatting
+gem "money"
 
 
 ## Errors
@@ -64,9 +66,13 @@ gem 'safely_block'
 
 
 
-## Background Jobs (Add Sidekiq later) 
+## Performance
+# Right amount of Rails eager loading. Read more: https://github.com/salsify/goldiloader
+gem 'goldiloader'
 # Single-process Ruby asynchronous processing library
 gem 'sucker_punch', '~> 2.0'
+# A fast JSON parser and Object marshaller
+gem 'oj'
 
 
 

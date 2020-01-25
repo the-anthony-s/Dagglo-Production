@@ -24,3 +24,4 @@ import "packs/mobile/hamburger";
 import "packs/links/disabled";
 import "packs/forms/main";
 import "packs/forms/select2";
+import "packs/charts/bars";

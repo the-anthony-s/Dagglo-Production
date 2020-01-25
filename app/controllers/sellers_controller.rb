@@ -20,7 +20,7 @@ class SellersController < ApplicationController
       @seller = current_user.create_seller(seller_params)
       if @seller.save
         SellerAccount.create(user: current_user, seller: @seller, owner: true)
-        redirect_to root_path, notice: "#{@seller.name} created"
+        redirect_to dashboard_seller_path, notice: "#{@seller.name} created"
       else
         redirect_to :new, notice: "An error occurred during registration, try again or contact support"
       end

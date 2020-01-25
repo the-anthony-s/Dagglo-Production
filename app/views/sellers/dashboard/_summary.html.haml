@@ -1,0 +1,55 @@
+%section(class="section")
+  %div(class="content")
+    %div(class="header-section")
+      %div(class="header-section-title")
+        %h1(class="text text-m text-medium") Account summary
+    
+    %div(class="body")
+      %ul(class="card-stack")
+
+        -# Check if current user confirmed email
+        - unless current_user.confirmed_at.present?
+          %li(class="card-stack-item")
+            %div(class="card")
+              %div(class="card-header")
+                %div(class="card-header-main")
+                  %p(class="text text-m text-medium") Keep your account secure by verifying your email address
+              %div(class="card-body")
+                %p(class="text text-s") If you get locked out of your account, Dagglo can email you instructions to reset your password. To verify your email address, follow these steps:
+              %ul(class="card-list")
+                %li(class="card-list-item")
+                  %div(class="card-list-container")
+                    %div(class="card-list-icon")
+                      = icon "fal", "envelope"
+                    %div(class="card-list-main") 
+                      %p(class="text text-s") 
+                        Send a verification email to 
+                        %span(class="text-medium") #{current_user.email}
+                      %p(class="text text-s text-secondary") This confirms that Dagglo can reach you.
+                %li(class="card-list-item")
+                  %div(class="card-list-container")
+                    %div(class="card-list-icon")
+                      = icon "fal", "mouse-pointer"
+                    %div(class="card-list-main") 
+                      %p(class="text text-s") Follow the link in the verification email
+                      %p(class="text text-s text-secondary") This confirms that you can access your email account.
+              %div(class="card-footer")
+                %div(class="card-footer-actions")
+                  %div(class="card-footer-action")
+                    = link_to "Resend confirmation", new_user_confirmation_path, class: "button", :'data-remote' => "true"
+                  %div(class="card-footer-action") #{link_to "Settings", "", class: "link"}
+
+            
+          
+          -# Check if seller has business number
+          - unless @seller.business_number.present?
+            %li(class="card-stack-item")
+              %div(class="card")
+                %div(class="card-header")
+                  %div(class="card-header-main")
+                    %p(class="text text-m text-medium") Add a business number to build trust with customers
+                %div(class="card-body")
+                  %p(class="text text-s") 76% of customers look for verification label. Verification signs and company information encourage them to buy from you.
+                %div(class="card-footer")
+                  %div(class="card-footer-actions")
+                    %div(class="card-footer-action") #{link_to "Add business number", settings_general_seller_path, class: "button"}

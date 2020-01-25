@@ -2,18 +2,109 @@
     position: relative
     display: block
 
-    box-shadow: 0 0 0 1px $color-border
-    // box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px 0px, rgba(0, 0, 0, 0.08) 0px 8px 16px 0px
+    // box-shadow: 0 0 0 1px $color-border
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px 0px, rgba(0, 0, 0, 0.08) 0px 8px 16px 0px
+    // box-shadow: rgba(63, 63, 68, 0.05) 0 0 1px 1px, rgba(63,63,68,.05) 0 1px 3px 0
     border: 0
     border-radius: $border-radius
+    overflow: hidden
 
 .card-header
     display: flex
     flex-direction: row
     align-items: center
+    padding: var(--gap-s) var(--gap-s) 0
+
+    &-icon
+        color: $color-font-secondary
+        font-size: var(--size-typo-m)
+        line-height: var(--line-height-typo-m)
+        font-weight: 500
+        flex: 0 0 auto
+        min-width: 24px
+        text-align: center
+        margin-right: var(--gap-s)
+    
+    &-main
+        flex: 1 1 100%
+        max-width: 100%
+        text-align: left
+        display: block
+
+    &-actions
+        display: flex
+        flex-direction: row
+        align-items: center
+        
+        &-item + &-item
+            margin-left: var(--gap-s)
 
 .card-body
     padding: var(--gap-s)
+    display: block
+    position: relative
+
+.card-footer
+    padding: 0 var(--gap-s) var(--gap-s)
+    
+    &-actions
+        display: flex
+        flex-direction: row
+        align-items: center
+    &-action + &-action
+        margin-left: var(--gap-s)
+
+
+// Card List
+.card-list
+    display: block
+    width: 100%
+    position: relative
+    border-top: 1px solid $color-border
+    border-bottom: 1px solid $color-border
+    // padding-top: var(--gap-s)
+    // padding-bottom: var(--gap-s)
+    margin-bottom: var(--gap-s)
+
+    &-item + &-item
+        border-top: 1px solid $color-border
+
+.card-list-container
+    padding: var(--gap-xs) var(--gap-s)
+    display: flex
+    flex-direction: row
+    align-items: flex-start
+    
+    +tablet
+        align-items: center
+
+.card-list-icon
+    border: 0
+    border-radius: $border-radius
+    color: $color-font-secondary
+    font-size: var(--size-typo-l)
+    background: $gray
+    padding: var(--gap-xs)
+    margin-right: var(--gap-s)
+    flex: 0 0 auto
+    height: 40px
+    width: 40px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+
+
+// Card Stack
+.card-stack
+    display: block
+    width: 100%
+    position: relative
+
+    &-item + &-item
+        margin-top: var(--gap)
+
 
 // Card Grid
 .card-grid

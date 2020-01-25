@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_023736) do
+ActiveRecord::Schema.define(version: 2020_01_24_210842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_023736) do
     t.string "barcode"
     t.text "about"
     t.string "country"
-    t.integer "min_amount"
+    t.money "min_price", scale: 2
     t.integer "num_offers"
     t.boolean "manufacturer_warranty"
     t.integer "status", default: 0
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2020_01_19_023736) do
   end
 
   create_table "seller_products", force: :cascade do |t|
-    t.integer "unit_price"
-    t.integer "min_order_price"
+    t.money "unit_price", scale: 2
+    t.money "min_order_price", scale: 2
     t.string "sku", limit: 10
     t.string "harmonized_system_code"
     t.string "country_code_of_origin"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_023736) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "owner_id"
     t.string "slug"
+    t.datetime "onboarding_completed_at"
     t.index ["owner_id"], name: "index_sellers_on_owner_id"
     t.index ["slug"], name: "index_sellers_on_slug", unique: true
   end
