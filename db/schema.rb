@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_052451) do
+ActiveRecord::Schema.define(version: 2020_01_25_084429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,8 +131,27 @@ ActiveRecord::Schema.define(version: 2020_01_25_052451) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "seller_id"
+    t.bigint "seller_location_id"
     t.index ["seller_id"], name: "index_seller_accounts_on_seller_id"
+    t.index ["seller_location_id"], name: "index_seller_accounts_on_seller_location_id"
     t.index ["user_id"], name: "index_seller_accounts_on_user_id"
+  end
+
+  create_table "seller_locations", force: :cascade do |t|
+    t.string "name"
+    t.string "street"
+    t.string "city"
+    t.string "zip"
+    t.string "state"
+    t.string "country"
+    t.float "longitude"
+    t.float "latitude"
+    t.string "phone"
+    t.boolean "pause", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "seller_id"
+    t.index ["seller_id"], name: "index_seller_locations_on_seller_id"
   end
 
   create_table "seller_products", force: :cascade do |t|

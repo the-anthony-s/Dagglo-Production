@@ -1,0 +1,2 @@
+module SellerLocationsHelper
+end

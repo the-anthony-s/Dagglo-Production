@@ -9,6 +9,8 @@
     %div(class="header")
       %div(class="content")
         %div(class="header-container")
+          %div(class="header-picture")
+            = image_tag @seller_product.product.photo(300, 300), loading: "lazy"
           %div(class="header-title")
             %h1(class="text text-xxl text-medium") #{@seller_product.product.name}
           %div(class="header-actions")

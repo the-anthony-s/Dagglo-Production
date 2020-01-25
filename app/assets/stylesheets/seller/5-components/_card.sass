@@ -35,9 +35,26 @@
         display: flex
         flex-direction: row
         align-items: center
+        flex: 0 0 auto
+        margin-left: var(--gap-s)
         
         &-item + &-item
             margin-left: var(--gap-s)
+
+    &-profile
+        flex: 0 0 auto
+        margin-left: var(--gap-s)
+        
+        &-photo
+            position: relative
+            display: block
+
+            & > img
+                height: var(--icon)
+                width: var(--icon)
+                display: block
+                border: 0
+                border-radius: 50%
 
 .card-body
     padding: var(--gap-s)

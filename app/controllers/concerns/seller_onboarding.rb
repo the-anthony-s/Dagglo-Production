@@ -12,7 +12,7 @@ module SellerOnboarding
   def onboarding_percent
     return 100 if onboarding_completed_at?
 
-    steps = [:has_business_info?, :has_product?]
+    steps = [:has_business_info?, :has_product?, :has_location?]
     complete = steps.select { |step| send(step) }
     percent = complete.length / steps.length.to_f * 100
     update(onboarding_completed_at: Time.current) if percent == 100
@@ -31,7 +31,7 @@ module SellerOnboarding
 
 
   def has_location?
-    # seller_locations.present?
+    seller_locations.present?
   end
 
 

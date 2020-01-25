@@ -83,6 +83,8 @@ gem 'goldiloader'
 gem 'sucker_punch', '~> 2.0'
 # A fast JSON parser and Object marshaller
 gem 'oj'
+# Stores
+gem 'redis-rails'
 
 
 

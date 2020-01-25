@@ -66,12 +66,19 @@ class SellersController < ApplicationController
     # @inventory = @seller.inventory_items.includes(:product).all
   end
 
+  
   def account
     @seller_accounts = SellerAccount.all.where(seller_id: @seller.id)
   end
 
+  
   def activities
     @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(recipient_type: "Seller", recipient_id: @seller).order(created_at: :desc)
+  end
+
+
+  def locations
+    @seller_locations = @seller.seller_locations.all
   end
 
 

@@ -21,6 +21,7 @@ class Seller < ApplicationRecord
 
   has_many :seller_accounts, dependent: :delete_all
   has_many :seller_products, dependent: :delete_all
+  has_many :seller_locations, dependent: :delete_all
 
 
 

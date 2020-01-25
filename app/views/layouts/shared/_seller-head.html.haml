@@ -4,7 +4,7 @@
 %meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge"}
 %meta{:name => "HandheldFriendly", :contnet => "true"}
 %meta{:name => "MobileOptimized", :content => "176"}
-%title #{content_for?(:title) ? "#{yield(:title)} | #{current_user.s_account.name}" : "#{current_user.s_account.name}"}
+%title #{content_for?(:title) ? "#{yield(:title)} at #{current_user.s_account.name}" : "#{current_user.s_account.name}"}
 = csrf_meta_tags
 = csp_meta_tag
 = stylesheet_link_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'

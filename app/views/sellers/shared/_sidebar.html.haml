@@ -20,7 +20,7 @@
         %li(class="sidebar-links-item") 
           = active_link_to "Products", products_seller_path, class: "sidebar-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']]
         %li(class="sidebar-links-item") 
-          = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: :exclusive
+          = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']]
         %li(class="sidebar-links-item") 
           = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers'], ['account', 'general', 'settings', 'payments', 'shipping', 'faq']]
 
@@ -79,7 +79,7 @@
               = active_link_to products_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']] do
                 %span Products
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: :exclusive do
+              = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']] do
                 %span Locations
             %li(class="sidebar-collapse-block-item") 
               = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers'], ['account', 'general', 'settings']] do

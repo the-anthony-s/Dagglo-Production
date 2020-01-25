@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
       resources :seller_products, path: "products/inventory", as: :inventories, only: [:show, :edit, :update, :destroy]
       resources :seller_accounts, path: "account", as: :accounts, only: [:show]
+      resources :seller_locations, path: "locations", as: :locations, only: [:show, :new, :create, :update, :destroy, :edit]
     end
   end
   
@@ -54,7 +55,6 @@ Rails.application.routes.draw do
 
   ## Product Routes
   resources :products, path: "seller/products", except: [:show, :destroy, :update, :edit]
-  resources :product_steps
   get 'product/:id', to: "products#show", as: :show_product
   
 

@@ -1,0 +1,26 @@
+= content_for :title, "#{@seller_location.name}"
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-picture")
+          = image_tag @seller_location.map_photo, loading: "lazy"
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") #{@seller_location.name}
+          %p(class="text text-s text-secondary") #{@seller_location.address}
+        %div(class="header-actions")
+          %div(class="header-actions-item")
+            = link_to edit_location_path(@seller_location), class: "button-circle" do
+              %div(class="button-circle-icon") #{icon "fal", "cog"}
+              %div(class="button-circle-name") Edit
+
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="header-section")
+        %div(class="header-section-title")
+          %h1(class="text text-l text-medium") Recent activities
+        %div(class="header-section-actions")
+          %div(class="header-section-actions-item") #{link_to "View all", "", class: "link"}
