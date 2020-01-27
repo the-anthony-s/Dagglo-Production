@@ -7,6 +7,19 @@
     %div(class="body")
       %ul(class="card-stack")
 
+
+
+        - if !@seller.subscribed? && @seller.owner
+          %li(class="card-stack-item")
+            %div(class="card")
+              %div(class="card-body") 
+                %h1(class="text text-m text-medium") #{current_user.first_name}, you have 12 days left of your trial
+              %div(class="card-footer") 
+                %div(class="card-footer-actions") 
+                  %div(class="card-footer-action") #{link_to "View plans", seller_pricing_path, class: "button"}
+
+
+
         -# Check if current user confirmed email
         - unless current_user.confirmed_at.present?
           %li(class="card-stack-item")
@@ -39,8 +52,8 @@
                     = link_to "Resend confirmation", new_user_confirmation_path, class: "button", :'data-remote' => "true"
                   %div(class="card-footer-action") #{link_to "Settings", edit_user_registration_path, class: "link"}
 
-            
-          
+
+
           -# Check if seller has business number
           - unless @seller.business_number.present?
             %li(class="card-stack-item")

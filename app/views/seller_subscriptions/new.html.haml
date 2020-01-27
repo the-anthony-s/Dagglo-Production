@@ -1,0 +1,65 @@
+= content_for :title, "Confirm #{@seller_plan.name} plan"
+
+%div(class="container")
+
+
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Confirm #{@seller_plan.name} plan
+
+
+  - if @seller.card_last4?
+    = form_with url: seller_subscription_path, local: true, id: "existing-card" do |f|
+      %section(class="section")
+        %div(class="content")
+          %div(class="section-annotated")
+            %div(class="section-annotated-annotation")
+              %p(class="text text-m text-medium") Credit Card information:
+            %div(class="section-annotated-content")
+              
+              %div(class="form-row")
+                %div(class="form-label")
+                  %label(for="card-element") Card on file
+                %div(class="form-input")
+                  %p(class="text text-m text-bold") #{@seller.card_brand} ending in #{@seller.card_last4}
+                  %p(class="text text-s") Expires #{@seller.card_exp_month} / #{@seller.card_exp_year}
+                  %br/
+                  = link_to "Use a new card", "#", id: "use-new-card", class: "link"
+      
+      %div(class="actions")
+        %div(class="content")
+          %div(class="actions-container")
+            %div(class="actions-item")
+              = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}
+
+
+  = form_with url: seller_subscription_path, local: true, id: "payment-form", class: ("form form-none" if @seller.card_last4?) do |f|    
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium") Credit Card information:
+          %div(class="section-annotated-content")
+            
+            %div(class="form-row")
+              %div(class="form-label")
+                %label(for="card-element") Credit or debit card
+              %div(class="form-input")
+                %div(id="card-element" class="form-control")
+                %div(id="card-errors" role="alert")
+            
+            %div(class="form-row")
+              %div(class="form-label")
+                %label(for="name_on_card") Name on Card
+              %div(class="form-input")
+                = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
+                = f.hidden_field :plan_id, value: @seller_plan.id
+
+    %div(class="actions")
+      %div(class="content")
+        %div(class="actions-container")
+          %div(class="actions-item")
+            = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}

@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: sellers
+#
+#  id                      :bigint           not null, primary key
+#  name                    :string
+#  business_number         :string
+#  about                   :text
+#  country                 :string
+#  founding_date           :date
+#  status                  :integer          default("pending")
+#  image_data              :text
+#  cover_data              :text
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  owner_id                :bigint
+#  slug                    :string
+#  onboarding_completed_at :datetime
+#  stripe_id               :string
+#  card_brand              :string
+#  card_last4              :string
+#  card_exp_month          :string
+#  card_exp_year           :string
+#
+
 class Seller < ApplicationRecord
 
   # Onboarding steps
@@ -22,6 +47,8 @@ class Seller < ApplicationRecord
   has_many :seller_accounts, dependent: :delete_all
   has_many :seller_products, dependent: :delete_all
   has_many :seller_locations, dependent: :delete_all
+  has_many :seller_subscriptions, dependent: :delete_all
+  has_many :seller_charges, dependent: :delete_all
 
 
 
@@ -68,6 +95,78 @@ class Seller < ApplicationRecord
   # Return Seller Cover Image
   def cover(height = nil, width = nil)
     ActionController::Base.helpers.asset_path("defaults/" + ["image.png"].compact.join('_'))
+  end
+
+
+
+  # Subscription
+  def subscribed?
+    subscription && subscription.active?
+  end
+
+  def subscription
+    seller_subscriptions.last
+  end
+
+  def subscribe(plan, options={})
+    stripe_customer if !stripe_id?
+
+    args = {
+      customer: stripe_id,
+      items: [{ plan: plan }],
+      expand: ['latest_invoice.payment_intent'],
+      off_session: true,
+    }.merge(options)
+
+    args[:trial_from_plan] = true if !args[:trial_period_days]
+
+    sub = Stripe::Subscription.create(args)
+
+    subscription = seller_subscriptions.create(
+      stripe_id: sub.id,
+      stripe_plan: plan,
+      status: sub.status,
+      trial_ends_at: (sub.trial_end ? Time.at(sub.trial_end) : nil),
+      ends_at: nil,
+    )
+
+    if sub.status == "incomplete" && ["requires_action", "requires_payment_method"].include?(sub.latest_invoice.payment_intent.status)
+      raise PaymentIncomplete.new(sub.latest_invoice.payment_intent), "Subscription requires authentication"
+    end
+
+    subscription
+  end
+
+  def create_setup_intent
+    stripe_customer if !stripe_id
+    Stripe::SetupIntent.create(customer: stripe_id)
+  end
+
+  def update_seller_card(payment_method_id)
+    stripe_customer if !stripe_id?
+
+    payment_method = Stripe::PaymentMethod.attach(payment_method_id, { customer: stripe_id })
+    Stripe::Customer.update(stripe_id, invoice_settings: { default_payment_method: payment_method.id })
+
+    update(
+      card_brand: payment_method.card.brand.titleize,
+      card_last4: payment_method.card.last4,
+      card_exp_month: payment_method.card.exp_month,
+      card_exp_year: payment_method.card.exp_year,
+    )
+  end
+
+  def stripe_customer
+    if stripe_id
+      Stripe::Customer.retrieve(stripe_id)
+    else
+      customer = Stripe::Customer.create(
+        email: owner.email,
+        name: owner.full_name
+      )
+      update(stripe_id: customer.id)
+      customer
+    end
   end
 
 end

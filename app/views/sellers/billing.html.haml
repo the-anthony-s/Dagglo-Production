@@ -1,0 +1,76 @@
+= content_for :title, "Billing"
+
+%div(class="container")
+
+  = form_for @seller, :html => {class: "form"} do |f|
+
+    %div(class="header")
+      %div(class="content")
+        %div(class="header-container")
+          %div(class="header-title")
+            %h1(class="text text-xxl text-medium") Billing
+
+    
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Billing information:
+            %p(class="text text-s text-secondary") Your bills are paid using your active payment method.
+          %div(class="section-annotated-content")
+            %div(class="body")
+              - if @seller_subscription && @seller_subscription.on_trial?
+                %p(class="text text-s") You are trialing the #{@seller_subscription.strip_plan} plan.
+                %br/
+                = link_to "Change plan", edit_seller_subscription_path, class: "link"
+              - elsif @seller_subscription && @seller_subscription.on_grace_period?
+                %p.text.text-s Your subscription has been canceled and you have access until #{@seller_subscription.ends_at.to_date.to_s(:long)}
+                %br/
+                = link_to "Resume subscription", resume_seller_subscription_path, method: :patch
+              - elsif @seller_subscription && @seller_subscription.active?
+                %p.text.text-s You are subscribed to the #{@seller_subscription.stripe_plan} plan.
+                %br/
+                = link_to "Change plan", edit_seller_subscription_path, class: "link"
+              - else
+                %p.text.text-s You are not subscribed. #{link_to "Subscribe", seller_pricing_path, class: "link"}
+
+
+            %div(class="body")
+              - if @seller.card_last4?
+                %p(class="text text-m") #{@seller.card_brand} ending in #{@seller.card_last4}
+                %p(class="text text-s") Exipres #{@seller.card_exp_month} / #{@seller.card_exp_year}
+                = link_to "Update card", edit_seller_card_path, class: "link"
+              - else
+                %p Add a credit card and use it to pay your bills.
+                = link_to "Add credit card", edit_seller_card_path, class: "link"
+            
+
+            - if @seller_subscription.active? && !@seller_subscription.on_grace_period?
+              %div(class="body")
+                %p #{@seller_subscription.stripe_plan}
+                = link_to "Cancel subscription", seller_subscription_path, method: :delete, class: "link", data: { confirm: "Are you sure you want to cancel?" }
+
+            
+              
+    
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Bills:
+            %p(class="text text-s text-secondary") Your monthly bill is on a 30-day cycle.
+          %div(class="section-annotated-content")
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Finance overview:
+            %p(class="text text-s text-secondary") An overview of your billing and payouts.
+          %div(class="section-annotated-content")
+            %div(class="body")
+              %ul
+                - @seller.seller_charges.order(created_at: :desc).each do |charge|
+                  %p #{charge.created_at.to_date.to_s(:long)} | #{charge.card_brand} ending in #{charge.card_last4} | #{formatted_amount charge.amount}
+                  = link_to "Download", seller_charge_path(charge, format: :pdf), target: :_blank

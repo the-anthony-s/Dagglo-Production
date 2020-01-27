@@ -1,0 +1,43 @@
+= content_for :title, "Update Credit Card"
+
+%div(class="container")
+
+  = form_with url: seller_card_path, method: :patch, local: true, id: "payment-form", class: "form", data: { setup_intent: @setup_intent.client_secret } do |f|
+
+    %div(class="header")
+      %div(class="content")
+        %div(class="header-container")
+          %div(class="header-title")
+            - if @seller.card_last4?
+              %h1(class="text text-xxl text-medium") #{@seller.card_brand} ending in #{@seller.card_last4}
+              %p(class="text text-s text-secondary") Expires #{@seller.card_exp_month} / #{@seller.card_exp_year}
+            - else
+              %h1(class="text text-xxl text-medium") Update Credit Card
+
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m space-bot-xxs") Credit card:
+            %p(class="text text-s text-secondary") Add a credit card and use it to pay your bills.
+          %div(class="section-annotated-content")
+            
+            %div(class="form-row")
+              %div(class="form-label")
+                %label(for="card-element") Credit or debit card
+              %div(class="form-input")
+                %div(id="card-element" class="form-control")
+                %div(id="card-errors" role="alert")
+            
+            %div(class="form-row")
+              %div(class="form-label")
+                %label(for="name_on_card") Name on Card
+              %div(class="form-input")
+                = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
+    
+    %div(class="actions")
+      %div(class="content")
+        %div(class="actions-container")
+          %div(class="actions-item")
+            = button_tag "Update Credit Card", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Updating..."}

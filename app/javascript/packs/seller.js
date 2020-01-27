@@ -28,3 +28,4 @@ import "packs/links/disabled";
 import "packs/forms/main";
 import "packs/forms/select2";
 import "packs/charts/bars";
+import "packs/payments/stripe-subscription";

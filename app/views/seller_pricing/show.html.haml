@@ -1,0 +1,24 @@
+-# - @seller_plan.each do |sp|
+-#   %p #{sp.name}
+
+
+= content_for :title, "Pick a plan for your seller account"
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Pick a plan for your store
+  
+  %section(class="section")
+    %div(class="content")
+      %div(class="body")
+        %div(class="grid-1-2")
+          - @seller_plans.each do |plan|
+            %div(class="col")
+              .text-center
+                %h1(class="text text-m space-bot-s") #{plan.name}
+                %p(class="text text-xxxl text-medium space-bot-xxl") #{formatted_amount plan.amount}
+                = link_to "Subscribe", new_seller_subscription_path(plan_id: plan.id), class: "button button-action"

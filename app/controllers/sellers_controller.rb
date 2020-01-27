@@ -1,7 +1,7 @@
 class SellersController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
-  before_action :set_seller, except: [:show, :new, :create, :destroy]
+  before_action :set_seller, except: [:show, :new, :create]
 
   layout :seller_dashboard_layout, except: [:show, :new]
 
@@ -22,7 +22,7 @@ class SellersController < ApplicationController
         SellerAccount.create(user: current_user, seller: @seller, owner: true)
         redirect_to dashboard_seller_path, notice: "#{@seller.name} created"
       else
-        redirect_to :new, notice: "An error occurred during registration, try again or contact support"
+        render :new, notice: "An error occurred during registration, try again or contact support"
       end
     }
   end
@@ -30,7 +30,8 @@ class SellersController < ApplicationController
 
   def destroy
     safely {
-      if @seller.owner
+      if current_user.s_account.present? && current_user.seller.present?
+        @seller = current_user.seller
         @seller.destroy
         redirect_to new_seller_path, notice: "Seller account completely removed"
       else
@@ -79,6 +80,11 @@ class SellersController < ApplicationController
 
   def locations
     @seller_locations = @seller.seller_locations.all
+  end
+
+
+  def billing
+    @seller_subscription = @seller.subscription
   end
 
 

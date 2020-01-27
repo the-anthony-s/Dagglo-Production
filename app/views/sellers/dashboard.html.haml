@@ -22,4 +22,5 @@
   - unless current_user.confirmed_at.present? || @seller.business_number.present?
     = render partial: "sellers/dashboard/summary"
 
-  = render partial: "sellers/dashboard/activities"
+  - if @activities.present?
+    = render partial: "sellers/dashboard/activities"

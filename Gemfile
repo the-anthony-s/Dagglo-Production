@@ -68,6 +68,8 @@ gem 'country_select', require: 'country_select_without_sort_alphabetical'
 gem 'geocoder'
 # Money formatting
 gem "money"
+# PDF Receipts templete
+gem 'receipts'
 
 
 ## Errors
@@ -85,6 +87,13 @@ gem 'sucker_punch', '~> 2.0'
 gem 'oj'
 # Stores
 gem 'redis-rails'
+
+
+
+## Payments
+# Stripe
+gem 'stripe'
+gem 'stripe_event'
 
 
 
@@ -108,6 +117,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Static analysis tool which checks Ruby on Rails applications for security vulnerabilities
   gem 'brakeman'
+  # Add a comment summarizing the current schema to the top or bottom
+  gem 'annotate'
 end
 
 

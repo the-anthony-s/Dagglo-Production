@@ -22,7 +22,7 @@
         %li(class="sidebar-links-item") 
           = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']]
         %li(class="sidebar-links-item") 
-          = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers'], ['account', 'general', 'settings', 'payments', 'shipping', 'faq']]
+          = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']]
 
     %div(class="sidebar-bottom")
       %ul(class="sidebar-footer")
@@ -82,7 +82,7 @@
               = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']] do
                 %span Locations
             %li(class="sidebar-collapse-block-item") 
-              = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers'], ['account', 'general', 'settings']] do
+              = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']] do
                 %span Settings
           %ul(class="sidebar-collapse-block")
             %li(class="sidebar-collapse-block-item") 

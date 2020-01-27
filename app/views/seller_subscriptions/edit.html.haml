@@ -1,0 +1,28 @@
+-# - @seller_plan.each do |sp|
+-#   %p #{sp.name}
+
+
+= content_for :title, "Change your plan"
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") Change your plan
+  
+  %section(class="section")
+    %div(class="content")
+      %div(class="body")
+        %div(class="grid-1-2")
+          - @seller_plans.each do |plan|
+            %div(class="col")
+              .text-center
+                %h1(class="text text-m space-bot-s") #{plan.name}
+                %p(class="text text-xxxl text-medium space-bot-xxl") #{formatted_amount plan.amount}
+
+                - if plan.stripe_id == @seller_subscription.stripe_plan
+                  = link_to "Current plan", settings_account_seller_path, class: "button"
+                - else
+                  = link_to "Switch plan", seller_subscription_path(plan_id: plan.id), method: :patch, data: { confirm: "Are you sure you want to change your plan?" }, class: "button button-action"

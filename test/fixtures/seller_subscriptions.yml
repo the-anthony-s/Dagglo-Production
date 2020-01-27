@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: seller_subscriptions
+#
+#  id            :bigint           not null, primary key
+#  seller_id     :bigint           not null
+#  stripe_id     :string
+#  stripe_plan   :string
+#  status        :string
+#  trial_ends_at :datetime
+#  ends_at       :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seller: one
+  stripe_id: MyString
+  stripe_plan: MyString
+  status: MyString
+  trial_ends_at: 2020-01-25 17:54:56
+  ends_at: 2020-01-25 17:54:56
+
+two:
+  seller: two
+  stripe_id: MyString
+  stripe_plan: MyString
+  status: MyString
+  trial_ends_at: 2020-01-25 17:54:56
+  ends_at: 2020-01-25 17:54:56

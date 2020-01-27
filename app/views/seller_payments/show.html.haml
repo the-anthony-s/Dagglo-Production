@@ -1,0 +1,63 @@
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-title")
+          - if @seller_payment_intent.status == "succeeded"
+            %h1(class="text text-xxl text-medium") Payment Successful
+            %p(class="text text-s") #{current_user.first_name}, this payment was already successfully confirmed.
+          - elsif @seller_payment_intent.status == "canceled"
+            %h1(class="text text-xxl text-medium") Payment Canceled
+            %p(class="text text-s") #{current_user.first_name}, this payment was cancelled.
+          - else
+            %h1(class="text text-xxl text-medium") Confirm your #{formatted_amount @seller_payment_intent.amount} payment
+            %p(class="text text-s space-bot-xxl") #{current_user.first_name}, extra confirmation is needed to process your payment.
+        
+        %div(class="header-actions")
+          %div(class="header-actions-item")
+            = link_to dashboard_seller_path, class: "button-circle button-circle-action" do
+              %div(class="button-circle-icon") #{icon "fal", "home"}
+              %div(class="button-circle-name") back home
+          %div(class="header-actions-item")
+            = link_to "", class: "button-circle button-circle-action" do
+              %div(class="button-circle-icon") #{icon "fal", "envelope"}
+              %div(class="button-circle-name") Help
+
+
+
+
+
+  = form_with url: seller_payment_path(@seller_payment_intent.id), method: :patch, local: true, id: "payment-form", class: "form", data: { payment_intent: @seller_payment_intent.client_secret, status: @seller_payment_intent.status } do |f|
+    = tag.div id: "card-details", class: ("form-none" if @seller_payment_intent.status == "requires_action") do
+
+      %section(class="section")
+        %div(class="content")
+          %div(class="section-annotated")
+            %div(class="section-annotated-annotation")
+              %p(class="text text-m space-bot-xs") Credit card details:
+              %p(class="text text-s text-secondary") #{current_user.first_name}, please confirme your credit card details.
+            %div(class="section-annotated-content")
+              %div(class="form-row")
+                %div(class="form-label")
+                  %label(for="card-element") Credit or debit Card
+                %div(class="form-input")
+                  %div(id="card-element" class="form-control") 
+
+                %div(class="form-row")
+                  %div(class="form-label")
+                    %label(for="name_on_card") Name on Card
+                  %div(class="form-input")
+                    = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
+
+
+      
+      %div(id="card-errors")
+
+      %div(class="actions")
+        %div(class="content")
+          %div(class="actions-container")
+            %div(class="actions-item")
+              = button_tag "Pay #{formatted_amount(@seller_payment_intent.amount)}", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}
+            %div(class="actions-item")
+              = link_to "Back to #{@seller.name}", dashboard_seller_path, class: "link link-secondary"

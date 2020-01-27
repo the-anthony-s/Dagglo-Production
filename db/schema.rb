@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_084429) do
+ActiveRecord::Schema.define(version: 2020_01_25_225814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,20 @@ ActiveRecord::Schema.define(version: 2020_01_25_084429) do
     t.index ["user_id"], name: "index_seller_accounts_on_user_id"
   end
 
+  create_table "seller_charges", force: :cascade do |t|
+    t.bigint "seller_id", null: false
+    t.string "stripe_id"
+    t.integer "amount"
+    t.integer "amount_refunded"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_seller_charges_on_seller_id"
+  end
+
   create_table "seller_locations", force: :cascade do |t|
     t.string "name"
     t.string "street"
@@ -152,6 +166,15 @@ ActiveRecord::Schema.define(version: 2020_01_25_084429) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "seller_id"
     t.index ["seller_id"], name: "index_seller_locations_on_seller_id"
+  end
+
+  create_table "seller_plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "amount"
+    t.string "interval"
+    t.string "stripe_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "seller_products", force: :cascade do |t|
@@ -177,6 +200,18 @@ ActiveRecord::Schema.define(version: 2020_01_25_084429) do
     t.index ["seller_id"], name: "index_seller_products_on_seller_id"
   end
 
+  create_table "seller_subscriptions", force: :cascade do |t|
+    t.bigint "seller_id", null: false
+    t.string "stripe_id"
+    t.string "stripe_plan"
+    t.string "status"
+    t.datetime "trial_ends_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_seller_subscriptions_on_seller_id"
+  end
+
   create_table "sellers", force: :cascade do |t|
     t.string "name"
     t.string "business_number"
@@ -191,6 +226,11 @@ ActiveRecord::Schema.define(version: 2020_01_25_084429) do
     t.bigint "owner_id"
     t.string "slug"
     t.datetime "onboarding_completed_at"
+    t.string "stripe_id"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
     t.index ["owner_id"], name: "index_sellers_on_owner_id"
     t.index ["slug"], name: "index_sellers_on_slug", unique: true
   end
@@ -228,4 +268,6 @@ ActiveRecord::Schema.define(version: 2020_01_25_084429) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "seller_charges", "sellers"
+  add_foreign_key "seller_subscriptions", "sellers"
 end

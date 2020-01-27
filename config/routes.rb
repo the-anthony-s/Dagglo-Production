@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount StripeEvent::Engine, at: "/webhooks/stripe"
   
   # Internationalization support
   # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
@@ -38,13 +39,22 @@ Rails.application.routes.draw do
       get 'settings',                     action: :settings, as: :settings
       get 'settings/general',             action: :general, as: :settings_general
       get 'settings/account',             action: :account, as: :settings_account
-      # get 'settings/payments',            action: :payments, as: :settings_payments
+      get 'settings/billing',             action: :billing, as: :settings_billing
       # get 'settings/shipping',            action: :shipping, as: :settings_shipping
       # get 'settings/faq',                 action: :payments, as: :settings_faq
 
       resources :seller_products, path: "products/inventory", as: :inventories, only: [:show, :edit, :update, :destroy]
       resources :seller_accounts, path: "account", as: :accounts, only: [:show]
       resources :seller_locations, path: "locations", as: :locations, only: [:show, :new, :create, :update, :destroy, :edit]
+      
+      # Payment routes
+      resource :seller_card, path: "settings/billing/card"
+      resource :seller_pricing, path: "settings/account/pricing", as: :seller_pricing, controller: :seller_pricing
+      resource :seller_subscription, path: "settings/account/plan", as: :seller_subscription do
+        patch :resume
+      end
+      resources :seller_payments, path: "settings/account/plan/payment", as: :seller_payments
+      resources :seller_charges, path: "settings/billing/charges", as: :seller_charges
     end
   end
   

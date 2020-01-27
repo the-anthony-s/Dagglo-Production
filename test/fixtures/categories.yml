@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id                 :bigint           not null, primary key
+#  name               :string
+#  ancestry           :string
+#  type_of_products   :text
+#  conditions_allowed :text
+#  approval_required  :text
+#  cover_date         :text
+#  pause              :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  slug               :string
+#
+
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined. If you add columns to the
