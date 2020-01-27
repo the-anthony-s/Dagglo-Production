@@ -169,4 +169,22 @@ class Seller < ApplicationRecord
     end
   end
 
+  def credit_card_icon
+    if card_brand == "Visa"
+      "cc-visa"
+    elsif card_brand == "Mastercard"
+      "cc-mastercard"
+    elsif card_brand == "Amex"
+      "cc-amex"
+    elsif card_brand == "Discover"
+      "cc-discover"
+    elsif card_brand == "Diners Club"
+      "cc-diners-club"
+    elsif card_brand == "JCB"
+      "cc-jcb"
+    else
+      "credit-card"
+    end
+  end
+
 end

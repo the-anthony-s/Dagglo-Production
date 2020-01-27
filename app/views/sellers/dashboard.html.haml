@@ -19,7 +19,7 @@
   - if @seller.should_see_onboarding?
     = render partial: "sellers/dashboard/onboarding"
 
-  - unless current_user.confirmed_at.present? || @seller.business_number.present?
+  - unless current_user.confirmed_at.present? && @seller.business_number.present?
     = render partial: "sellers/dashboard/summary"
 
   - if @activities.present?

@@ -1,0 +1,33 @@
+.alert-container
+    position: fixed
+    right: 0
+    left: 0
+    bottom: var(--gap-xs)
+    z-index: 500
+    display: flex
+    flex-direction: column
+    align-items: center
+    pointer-events: none
+    // background: black
+
+.alert
+    max-width: 364px
+    color: $color-font-primary-light
+    font-size: var(--size-typo-s)
+    background-color: $black
+    border-radius: 0
+    box-shadow: 0 7px 14px 0 rgba(60,66,87, 0.12), 0 3px 6px 0 rgba($black, 0.12)
+    transition: all 0.1s
+    pointer-events: all
+    cursor: pointer
+    padding: var(--gap-s) var(--gap-s)
+    margin: 0 var(--gap-xs)
+
+    +tablet
+        border-radius: $border-radius
+
+    &:hover, &:focus, &:active
+        background: rgba($black, .9)
+
+.alert + .alert
+    margin-top: var(--gap-xs)

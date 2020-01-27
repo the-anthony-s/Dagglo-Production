@@ -16,6 +16,12 @@
 #
 
 class SellerCharge < ApplicationRecord
+  
+  # include PublicActivity::Model
+  # tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
+  #         recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
+  
+  
   belongs_to :seller
 
 
@@ -48,8 +54,8 @@ class SellerCharge < ApplicationRecord
       ["Charged to", "#{card_brand} ending in **** **** **** #{card_last4}"]
     ]
 
-    line_items << ["Amount Refunded", ApplicationController.helpers.formatted_amount(amount)] if amount_refunded?
-    line_items
+    # line_items << ["Amount Refunded", ApplicationController.helpers.formatted_amount(amount)] if amount_refunded?
+    # line_items
   end
 
   def refund(amount: nil)

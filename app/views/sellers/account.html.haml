@@ -21,22 +21,70 @@
         %div(class="section-annotated-annotation")
           %p(class="text text-m text-medium space-bot-xs") Plan details:
           %p(class="text text-s text-secondary") View our #{link_to "terms of service", "", class: "link"} and #{link_to "privacy policy", "", class: "link"}.
+          - if !@seller_subscription
+            %p(class="text text-s text-secondary space-top-m") #{link_to "Compare plans", seller_pricing_path, class: "link"} with different features and rates.
         %div(class="section-annotated-content")
-          %div(class="card")
-            %div(class="grid-2-3")
-              %div(class="col")
+          %div(class="body")
+            %div(class="card")
+              %div(class="grid-1-3")
+                %div(class="col")
+                  %div(class="card-body")
+                    %p(class="text text-s text-secondary space-bot-xxxs") Member since:
+                    %p(class="text text-s text-medium") #{@seller.member_since}
+                %div(class="col")
+                  %div(class="card-body")
+                    - @ss = @seller.subscription
+                    %p(class="text text-s text-secondary space-bot-xxxs") Current plan:
+                    - if @ss.present?
+                      %p(class="text text-s text-medium") #{@ss.stripe_plan}
+                    - else
+                      %p(class="text text-s text-medium") ---
+                %div(class="col")
+                  %div(class="card-body")
+                    %p(class="text text-s text-secondary space-bot-xxxs") Status:
+                    - if @seller_subscription
+                      %p(class="text text-s text-medium") #{@seller_subscription.status.humanize}
+                    - else
+                      %p(class="text text-s text-medium") Incomplete
+          
+          %div(class="body")
+
+            - if @seller_subscription && @seller_subscription.on_trial?
+              %div(class="card")
+                %div(class="card-header")
+                  %div(class="card-header-main") 
+                    %h1(class="text text-m text-medium") #{@seller_subscription.stripe_plan} trial period
                 %div(class="card-body")
-                  %p(class="text text-s text-secondary space-bot-xxxs") Member since:
-                  %p(class="text text-s text-medium") #{@seller.member_since}
-              %div(class="col")
+                  %p(class="text text-s") #{current_user.first_name}, you have #{pluralize((@seller_subscription.trial_ends_at.to_date - Time.now.to_date).to_i, 'day')} left of your trial. The first payment will be on #{@seller_subscription.trial_ends_at.to_date.to_s(:long)}.
+                %div(class="card-footer")
+                  %div(class="card-footer-actions")
+                    %div(class="card-footer-action") #{link_to "Change plan", edit_seller_subscription_path, class: "button"}
+            
+            - elsif @seller_subscription && @seller_subscription.on_grace_period?
+              %div(class="card")
+                %div(class="card-header")
+                  %div(class="card-header-main") 
+                    %h1(class="text text-m text-medium") Subscription canceled
                 %div(class="card-body")
-                  - @ss = @seller.subscription
-                  %p(class="text text-s text-secondary space-bot-xxxs") Current plan:
-                  %p(class="text text-s text-medium") #{@ss.stripe_plan}
-              %div(class="col")
+                  %p(class="text text-s") Your subscription has been canceled. The access will remain until #{@seller_subscription.ends_at.to_date.to_s(:long)}.
+                %div(class="card-footer")
+                  %div(class="card-footer-actions")
+                    %div(class="card-footer-action") #{link_to "Resume subscription", resume_seller_subscription_path, method: :patch, class: "button"}
+
+            - elsif @seller_subscription && @seller_subscription.active?
+              %div(class="card")
+                %div(class="card-header")
+                  %div(class="card-header-main") 
+                    %h1(class="text text-m text-medium") Active subscription
                 %div(class="card-body")
-                  %p(class="text text-s text-secondary space-bot-xxxs") Status:
-                  %p(class="text text-s text-medium") #{@seller.get_status}
+                  %p(class="text text-s") You are subscribed to the #{@seller_subscription.stripe_plan} plan.
+                %div(class="card-footer")
+                  %div(class="card-footer-actions")
+                    %div(class="card-footer-action") #{link_to "Change plan", edit_seller_subscription_path, class: "button"}
+                    %div(class="card-footer-action") #{link_to "Cancel", seller_subscription_path, method: :delete, class: "link link-secondary", data: { confirm: "Are you sure you want to cancel?" }}
+        
+            -#   - else
+            -#     %p.text.text-s You are not subscribed. #{link_to "Subscribe", seller_pricing_path, class: "link"}
   
 
   %section(class="section")

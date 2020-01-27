@@ -8,7 +8,9 @@ class SellerAccountsController < ApplicationController
 
 
   def show
+    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(owner_type: "User", owner_id: @seller_account.user, recipient_id: @seller_account.seller).limit(3)
   end
+
 
 
   private

@@ -17,17 +17,25 @@
         %div(class="content")
           %div(class="section-annotated")
             %div(class="section-annotated-annotation")
-              %p(class="text text-m text-medium") Credit Card information:
+              %p(class="text text-m text-medium space-bot-xxs") Use existing Credit Card:
+              %p(class="text text-s text-secondary") Only the owner of seller account (#{@seller.owner.full_name}) can create, update, or cancel the subscription.
             %div(class="section-annotated-content")
-              
-              %div(class="form-row")
-                %div(class="form-label")
-                  %label(for="card-element") Card on file
-                %div(class="form-input")
-                  %p(class="text text-m text-bold") #{@seller.card_brand} ending in #{@seller.card_last4}
-                  %p(class="text text-s") Expires #{@seller.card_exp_month} / #{@seller.card_exp_year}
-                  %br/
-                  = link_to "Use a new card", "#", id: "use-new-card", class: "link"
+
+              %div(class="body")
+                %div(class="credit-card")
+                  %div(class="credit-card-container")
+                    %div(class="credit-card-number") 
+                      %h1(class="text text-l text-medium text-primary-light") **** **** **** #{@seller.card_last4}
+                    %div(class="credit-card-date") 
+                      %p(class="text text-s text-primary-light") #{@seller.card_exp_month} / #{@seller.card_exp_year}
+                    %div(class="credit-card-footer")
+                      %div(class="credit-card-footer-item")
+                        %p(class="text text-s text-primary-light") #{@seller.owner.full_name}
+                      %div(class="credit-card-footer-item") 
+                        %p(class="text text-xxl text-primary-light") #{icon "fab", "#{@seller.credit_card_icon}"}
+                
+                %div(class="credit-card-caption")
+                  %p(class="text text-s") #{link_to "Use a new card", "#", id: "use-new-card", class: "link"}
       
       %div(class="actions")
         %div(class="content")
@@ -41,7 +49,8 @@
       %div(class="content")
         %div(class="section-annotated")
           %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium") Credit Card information:
+            %p(class="text text-m text-medium space-bot-xxs") Credit Card information:
+            %p(class="text text-s text-secondary") Only the owner of seller account (#{@seller.owner.full_name}) can create, update, or cancel the subscription.
           %div(class="section-annotated-content")
             
             %div(class="form-row")

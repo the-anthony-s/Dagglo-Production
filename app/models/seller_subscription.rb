@@ -15,7 +15,13 @@
 
 class SellerSubscription < ApplicationRecord
   belongs_to :seller
-  
+
+
+  include PublicActivity::Model
+  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
+          recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
+
+
   def active?
     ["trialing", "active"].include?(status) && (ends_at.nil? || on_grace_period? || on_trial?)
   end

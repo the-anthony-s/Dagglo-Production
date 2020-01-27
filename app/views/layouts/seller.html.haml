@@ -6,11 +6,14 @@
 
     -# = render partial: "layouts/shared/navbar"
 
+    %div(tabindez="-1")
+      %div(class="alert-container")
+        - flash.each do |name, msg|
+          %div(class="alert alert-#{name}") #{content_tag(:p, msg, class: "text text-s text-primary-light")}
+
     %main(id="main" class="dashboard")
       %div(class="dashboard-left")
         = render partial: "sellers/shared/sidebar"
       
       %div(class="dashboard-center")
-        -flash.each do |name, msg|
-          = content_tag(:div, msg, class: "alert alert-info")
         = yield

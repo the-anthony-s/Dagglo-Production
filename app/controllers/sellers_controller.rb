@@ -69,6 +69,7 @@ class SellersController < ApplicationController
 
   
   def account
+    @seller_subscription = @seller.subscription
     @seller_accounts = SellerAccount.all.where(seller_id: @seller.id)
   end
 

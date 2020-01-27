@@ -1,0 +1,31 @@
+%li(class="activities-item")
+  %div(class="activity")
+    
+    - if activity.trackable
+      
+      %div(class="activity-container")
+        
+        %div(class="activity-icon")
+          %div(class="activity-icon-recipient")
+            = image_tag activity.trackable.seller.logo(300, 300), loading: "lazy"
+          %div(class="activity-icon-action activity-icon-action-destroy")
+            = icon "fal", "trash-alt"
+        
+        %div(class="activity-main")
+          %div(class="activity-message")
+            %p(class="text text-s") #{link_to "Subscription", settings_account_seller_path, class: "link"} canceled by #{link_to activity.owner.full_name, account_path(activity.owner.seller_account), class: "link"}
+          %div(class="activity-time")
+            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+
+    - else
+      
+      %div(class="activity-container")
+        %div(class="activity-icon")
+          %div(class="activity-icon-lost")
+            = icon "far", "ghost"
+        
+        %div(class="activity-main")
+          %div(class="activity-message")
+            %p(class="text text-s") Activity is not available
+          %div(class="activity-time")
+            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago

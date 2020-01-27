@@ -48,6 +48,11 @@ class SellerLocationsController < ApplicationController
   end
 
 
+  def show
+    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(trackable_type: "SellerLocation", trackable_id: @seller_location, recipient_id: @seller_location.seller_id).limit(5)
+  end
+
+
   private
 
     def set_seller

@@ -8,6 +8,7 @@ class SellerProductsController < ApplicationController
 
 
   def show
+    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(trackable_type: "SellerProduct", trackable_id: @seller_product, recipient_id: @seller_product.seller_id).limit(5)
   end
 
 

@@ -9,13 +9,17 @@
           = image_tag @seller_account.user.avatar(300, 300), loading: "lazy"
         %div(class="header-title")
           %h1(class="text text-xxl text-medium") #{@seller_account.user.full_name}
-          %p(class="text text-s text-secondary") Owner
+          %p(class="text text-s text-secondary") [role title]
 
 
   %section(class="section")
     %div(class="content")
       %div(class="header-section")
         %div(class="header-section-title")
-          %h1(class="text text-l text-medium") Recent activities
+          %h1(class="text text-m text-medium") Recent activity
         %div(class="header-section-actions")
-          %div(class="header-section-actions-item") #{link_to "View all", "", class: "link"}
+          %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+      
+      %div(class="body")
+        %ul(class="activities")
+          = render_activities(@activities)
