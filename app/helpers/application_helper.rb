@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  # Shrine configuration
+  def upload_server
+    Rails.configuration.upload_server 
+  end
+
+
+
   # Use for title content
   def title(page_title)
     content_for(:title) { page_title }

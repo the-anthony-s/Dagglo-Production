@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_225814) do
+ActiveRecord::Schema.define(version: 2020_01_27_224051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 2020_01_25_225814) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "product_photos", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "name"
+    t.text "image_data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_photos_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -268,6 +277,7 @@ ActiveRecord::Schema.define(version: 2020_01_25_225814) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "product_photos", "products"
   add_foreign_key "seller_charges", "sellers"
   add_foreign_key "seller_subscriptions", "sellers"
 end

@@ -30,3 +30,18 @@ import "packs/forms/select2";
 import "packs/charts/bars";
 import "packs/payments/stripe-subscription";
 import "packs/alerts/alert";
+
+
+
+// Uppy File Uploader for Shrine gem
+import {singleFileUpload, multipleFileUpload} from 'packs/forms/uppy';
+
+document.addEventListener('turbolinks:load', () => {
+  document.querySelectorAll('input[type=file]').forEach(fileInput => {
+    if (fileInput.multiple) {
+      multipleFileUpload(fileInput)
+    } else {
+      singleFileUpload(fileInput)
+    }
+  })
+})

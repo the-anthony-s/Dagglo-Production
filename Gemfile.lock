@@ -74,6 +74,22 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.7.4)
       execjs
+    aws-eventstream (1.0.3)
+    aws-partitions (1.269.0)
+    aws-sdk-core (3.89.1)
+      aws-eventstream (~> 1.0, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.28.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.60.1)
+      aws-sdk-core (~> 3, >= 3.83.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.0)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -91,6 +107,7 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.5)
+    content_disposition (1.0.0)
     countries (3.0.0)
       i18n_data (~> 0.8.0)
       sixarm_ruby_unaccent (~> 1.1)
@@ -106,10 +123,13 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    down (5.1.0)
+      addressable (~> 2.5)
     errbase (0.2.0)
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    fastimage (2.1.7)
     ffi (1.12.1)
     font-awesome-sass (5.9.0)
       sassc (>= 1.11)
@@ -150,10 +170,14 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
     i18n_data (0.8.0)
+    image_processing (1.10.3)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     invisible_captcha (1.0.0)
       rails (>= 4.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    jmespath (1.4.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -167,6 +191,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
     mimemagic (0.3.3)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -258,6 +283,10 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    roda (3.28.0)
+      rack
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     ruby_dep (1.5.0)
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
@@ -279,6 +308,9 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     sexp_processor (4.13.0)
+    shrine (3.2.1)
+      content_disposition (~> 1.0)
+      down (~> 5.1)
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -316,6 +348,10 @@ GEM
       thread_safe (~> 0.1)
     unicode-display_width (1.6.1)
     unicode_utils (1.4.0)
+    uppy-s3_multipart (0.3.2)
+      aws-sdk-s3 (~> 1.0)
+      content_disposition (~> 1.0)
+      roda (>= 2.27, < 4)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.1)
@@ -347,6 +383,7 @@ DEPENDENCIES
   ancestry
   annotate
   autoprefixer-rails
+  aws-sdk-s3 (~> 1.14)
   bootsnap (>= 1.4.2)
   brakeman
   bundler
@@ -354,6 +391,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   country_select
   devise
+  fastimage
   font-awesome-sass (~> 5.9.0)
   friendly_id (~> 5.2.4)
   geocoder
@@ -361,9 +399,11 @@ DEPENDENCIES
   google-analytics-rails (= 1.1.1)
   haml-rails
   i18n-tasks (~> 0.9.30)
+  image_processing (~> 1.10)
   invisible_captcha
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
+  marcel
   money
   oj
   pg (>= 0.18, < 2.0)
@@ -376,14 +416,16 @@ DEPENDENCIES
   sass-rails (>= 6)
   selectize-rails
   selenium-webdriver
+  shrine (~> 3.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
   stripe_event
-  sucker_punch (~> 2.0)
+  sucker_punch
   turbolinks (~> 5)
   tzinfo-data
+  uppy-s3_multipart (>= 0.3.2)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

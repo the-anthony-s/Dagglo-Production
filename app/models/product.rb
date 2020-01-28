@@ -40,12 +40,17 @@ class Product < ApplicationRecord
 
   has_many :seller_products, dependent: :delete_all
   has_many :sellers, :through => :seller_products
+  has_many :product_photos, dependent: :destroy
+
+
+  accepts_nested_attributes_for :product_photos, allow_destroy: true
+
+  include ImageUploader::Attachment(:image)
 
 
 
   # Mandatory fields
-  validates :name, presence: true
-  validates :barcode, presence: true
+  validates_presence_of :name, :barcode
   # validates :category_id, presence: true
 
 
@@ -66,7 +71,7 @@ class Product < ApplicationRecord
 
   # Get product first photo
   def photo(height = nil, width = nil)
-    if image_data.present?
+    if image.present?
       if height != nil && width != nil
         image.derivation_url(:thumbnail, height, width).to_s
       else

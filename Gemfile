@@ -82,7 +82,7 @@ gem 'safely_block'
 # Right amount of Rails eager loading. Read more: https://github.com/salsify/goldiloader
 gem 'goldiloader'
 # Single-process Ruby asynchronous processing library
-gem 'sucker_punch', '~> 2.0'
+gem 'sucker_punch'
 # A fast JSON parser and Object marshaller
 gem 'oj'
 # Stores
@@ -94,6 +94,16 @@ gem 'redis-rails'
 # Stripe
 gem 'stripe'
 gem 'stripe_event'
+
+
+
+## File handling
+gem 'shrine', '~> 3.0'
+gem 'aws-sdk-s3', '~> 1.14'
+gem 'image_processing', '~> 1.10'
+gem 'uppy-s3_multipart', '>= 0.3.2'
+gem 'marcel'
+gem 'fastimage'
 
 
 

@@ -12,6 +12,10 @@
           %h1(class="text text-xxl text-medium") #{@seller_product.product.name}
         %div(class="header-actions")
           %div(class="header-actions-item")
+            = link_to edit_product_path(@seller_product.product_id), class: "button-circle button-circle-action" do
+              %div(class="button-circle-icon") #{icon "fal", "pen"}
+              %div(class="button-circle-name") EE
+          %div(class="header-actions-item")
             = link_to edit_inventory_path(@seller_product), class: "button-circle button-circle-action" do
               %div(class="button-circle-icon") #{icon "fal", "pen"}
               %div(class="button-circle-name") Edit

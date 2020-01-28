@@ -1,6 +1,4 @@
 document.addEventListener("turbolinks:load", function () {
-  console.log("alert.js");
-
   $('.alert').each(function () {
     window.setTimeout(function () {
       $(".alert").fadeOut(100, function () {

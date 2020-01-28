@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   
   before_action :authenticate_user!, except: [:show, :index]
-  # before_action :set_product, only: [:show]
+  before_action :set_product, only: [:show, :edit, :update]
   before_action :set_seller, except: [:show, :index]
   
   layout :seller_dashboard_layout, except: [:show, :index]
@@ -33,6 +33,17 @@ class ProductsController < ApplicationController
         end
       else
         redirect_to :new, notice: "An error occurred during registration, try again or contact support"
+      end
+    }
+  end
+
+
+  def update
+    safely {
+      if @product.update(product_params)
+        redirect_to products_seller_path, notice: "#{@product.name} updated"
+      else
+        render :edit, notice: "Something went wrong during #{@product.name} update"
       end
     }
   end

@@ -10,11 +10,24 @@ module Dagglo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+
     # Use SuckerPunch for background jobs.
     config.active_job.queue_adapter = :sucker_punch
+    
     # Internationalization
     # config.i18n.available_locales = [:en, :ru]
     # config.i18n.default_locale = :en
     # config.i18n.fallbacks = true
+
+    config.autoload_paths += %w[lib]
+
+    # supports :s3, :s3_multipart, or :app
+    config.upload_server = if ENV["UPLOAD_SERVER"].present?
+      ENV["UPLOAD_SERVER"].to_sym
+    elsif Rails.env.production?
+      :s3
+    else
+      :app
+    end
   end
 end
