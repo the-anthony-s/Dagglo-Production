@@ -9,6 +9,7 @@
 #  country                 :string
 #  founding_date           :date
 #  status                  :integer          default("pending")
+#  private                 :boolean          default(FALSE)
 #  image_data              :text
 #  cover_data              :text
 #  created_at              :datetime         not null

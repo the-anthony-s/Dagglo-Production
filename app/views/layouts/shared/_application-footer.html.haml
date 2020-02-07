@@ -1,0 +1,16 @@
+%footer(id="primaryFooter" class="footer")
+  %div(class="footer-container")
+    %div(class="footer-block")
+      %ul(class="footer-list")
+        %li(class="footer-list-item")
+          = link_to "Home", root_path, class: "footer-link"
+        %li(class="footer-list-item")
+          = link_to "Sell on Dagglo", sell_path, class: "footer-link"
+        %li(class="footer-list-item")
+          = link_to "Contact us", "", class: "footer-link"
+        %li(class="footer-list-item")
+          = link_to "Terms of Service", "", class: "footer-link"
+        %li(class="footer-list-item")
+          = link_to "Privacy Policy", "", class: "footer-link"
+    %div(class="footer-block")
+      %p(class="text text-xs text-secondary") Copyright © #{Time.current.year} Dagglo Inc. All rights reserved.

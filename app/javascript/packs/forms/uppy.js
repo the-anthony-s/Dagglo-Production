@@ -16,7 +16,7 @@ const randomstring = require('randomstring')
 
 const singleFileUpload = (fileInput) => {
   const imagePreview = document.getElementById(fileInput.dataset.previewElement)
-  const formGroup = fileInput.parentNode
+  const formGroup    = fileInput.parentNode
 
   formGroup.removeChild(fileInput)
 

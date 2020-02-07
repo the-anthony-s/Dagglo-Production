@@ -7,11 +7,10 @@ class CreateSellers < ActiveRecord::Migration[6.0]
       t.string :country
       t.date :founding_date
       t.integer :status, :default => 0
+      t.boolean :private, :default => false
       t.text :image_data
       t.text :cover_data
       t.timestamps
     end
-
-    add_reference :sellers, :owner, index: true, reference: { to_table: :users }
   end
 end

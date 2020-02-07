@@ -1,0 +1,4 @@
+.section
+  .content
+    - @products.each do |p|
+      %p #{link_to p.name, show_product_path(p), class: "link"}

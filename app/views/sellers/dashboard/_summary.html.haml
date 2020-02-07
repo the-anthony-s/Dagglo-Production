@@ -3,13 +3,13 @@
     %div(class="header-section")
       %div(class="header-section-title")
         %h1(class="text text-m text-medium") Account summary
-    
+
     %div(class="body")
       %ul(class="card-stack")
 
 
 
-        - if !@seller.subscribed? && @seller.owner
+        - if !@seller.subscribed? && current_user.seller_account.role = "owner"
           %li(class="card-stack-item")
             %div(class="card")
               %div(class="card-body")
@@ -18,7 +18,7 @@
                   %p(class="text text-m text-medium") Get your seller account ready for 2020
                   %p(class="text text-s space-top-xs space-bot-l") Pick a plan until April 1st 2020, get 2 months free.
                   = link_to "View plans", seller_pricing_path, class: "button button-action"
-        
+
         - if @seller.seller_subscriptions.present? && @seller.seller_subscriptions.last.status == "trialing"
           %li(class="card-stack-item")
             %div(class="card")
@@ -39,16 +39,16 @@
                   %div(class="card-list-container")
                     %div(class="card-list-icon")
                       = icon "fal", "envelope"
-                    %div(class="card-list-main") 
-                      %p(class="text text-s") 
-                        Send a verification email to 
+                    %div(class="card-list-main")
+                      %p(class="text text-s")
+                        Send a verification email to
                         %span(class="text-medium") #{current_user.email}
                       %p(class="text text-s text-secondary") This confirms that Dagglo can reach you.
                 %li(class="card-list-item")
                   %div(class="card-list-container")
                     %div(class="card-list-icon")
                       = icon "fal", "mouse-pointer"
-                    %div(class="card-list-main") 
+                    %div(class="card-list-main")
                       %p(class="text text-s") Follow the link in the verification email
                       %p(class="text text-s text-secondary") This confirms that you can access your email account.
               %div(class="card-footer")

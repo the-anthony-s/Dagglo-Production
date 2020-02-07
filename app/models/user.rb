@@ -34,22 +34,22 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable, :confirmable
 
 
 
   # Database refereces
-  has_one :seller, dependent: :delete, foreign_key: :owner_id # -> seller account
   has_one :seller_account
+  has_one :seller, through: :seller_account
 
 
-  
+
   validates_presence_of :first_name, :last_name
 
 
-  
+
   # Return User's full name
   def full_name
     "#{first_name} #{last_name}" unless !first_name.present? && !last_name.present?
@@ -58,14 +58,15 @@ class User < ApplicationRecord
 
 
   # Return image_data -> Avatar or Default
+  include ImageUploader::Attachment(:image)
+
   def avatar(height = nil, width = nil)
     if image_data.present?
-      # if (height != nil) && (width != nil)
-      #   image.derivation_url(:thumbnail, height, width).to_s
-      # else
-      #   image.url
-      # end
-      false
+      if (height != nil) && (width != nil)
+        image.derivation_url(:thumbnail, height, width).to_s
+      else
+        image.url
+      end
     else
       ActionController::Base.helpers.asset_path("defaults/" + ["avatar.png"].compact.join('_'))
     end

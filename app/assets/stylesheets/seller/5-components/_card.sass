@@ -1,11 +1,8 @@
 .card
     position: relative
     display: block
-
-    // box-shadow: 0 0 0 1px $color-border
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px 0px, rgba(0, 0, 0, 0.08) 0px 8px 16px 0px
-    // box-shadow: rgba(63, 63, 68, 0.05) 0 0 1px 1px, rgba(63,63,68,.05) 0 1px 3px 0
-    border: 0
+    box-shadow: rgba(17, 51, 83, 0.02) 0px 4px 12px 0px
+    border: 1px solid $color-border
     border-radius: $border-radius
     overflow: hidden
 
@@ -24,7 +21,7 @@
         min-width: 24px
         text-align: center
         margin-right: var(--gap-s)
-    
+
     &-main
         flex: 1 1 100%
         max-width: 100%
@@ -37,14 +34,14 @@
         align-items: center
         flex: 0 0 auto
         margin-left: var(--gap-s)
-        
+
         &-item + &-item
             margin-left: var(--gap-s)
 
     &-profile
         flex: 0 0 auto
         margin-left: var(--gap-s)
-        
+
         &-photo
             position: relative
             display: block
@@ -63,7 +60,7 @@
 
 .card-footer
     padding: 0 var(--gap-s) var(--gap-s)
-    
+
     &-actions
         display: flex
         flex-direction: row
@@ -91,7 +88,7 @@
     display: flex
     flex-direction: row
     align-items: flex-start
-    
+
     +tablet
         align-items: center
 

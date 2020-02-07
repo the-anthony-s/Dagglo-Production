@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  
+
   invisible_captcha only: [:create], honeypot: [:email, :first_name, :last_name], on_spam: :on_spam
   # before_action :set_user, only: [:security, :payments]
 
@@ -58,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # Redirect user after each setting update
     def after_update_path_for(resource)
       flash[:notice] =  "Account succesfully updated."
-      user_profile_path
+      edit_user_registration_path
     end
 
 

@@ -14,13 +14,16 @@
             = link_to "", class: "button-circle button-circle-action" do
               %div(class="button-circle-icon") #{icon "fal", "envelope"}
               %div(class="button-circle-name") Help
-          
+
 
   - if @seller.should_see_onboarding?
     = render partial: "sellers/dashboard/onboarding"
 
-  - unless current_user.confirmed_at.present? && @seller.business_number.present?
+  - unless current_user.confirmed_at.present? && @seller.business_number
     = render partial: "sellers/dashboard/summary"
 
   - if @activities.present?
     = render partial: "sellers/dashboard/activities"
+
+  - if @announcements.present?
+    = render partial: "sellers/dashboard/announcements"

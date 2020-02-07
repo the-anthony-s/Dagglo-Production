@@ -1,7 +1,7 @@
 class ImageUploader < Shrine
   ALLOWED_TYPES  = %w[image/jpeg image/png image/webp]
   MAX_SIZE       = 10*1024*1024 # 10 MB
-  MAX_DIMENSIONS = [5000, 5000] # 5000x5000
+  MAX_DIMENSIONS = [15000, 15000] # 5000x5000
 
   THUMBNAILS = {
     small:  [300, 300],

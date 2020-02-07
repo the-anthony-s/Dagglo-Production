@@ -134,7 +134,7 @@
         line-height: var(--line-height-typo-s)
         width: 100%
         position: relative
-    & > ul > li + li 
+    & > ul > li + li
         margin-top: var(--gap-xs)
 
 
@@ -186,7 +186,7 @@
     &:focus,
     &:hover
         border-color: $color-border-dark
-    
+
     &:focus,
     &.is-active
         border-color: $color-secondary
@@ -228,8 +228,54 @@
     cursor: pointer
     opacity: 0
 
-    &:focus 
+    &:focus
         outline: none
+
+
+
+// Form Visuals -> Seller Image/Cover -> General settings
+.form-visuals
+    display: block
+    width: 100%
+    position: relative
+
+    &-container
+        position: relative
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        padding: var(--gap)
+        min-height: 192px
+
+    &-cover
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
+        border: 0
+        border-radius: $border-radius
+        overflow: hidden
+
+        & > img
+            height: 100%
+            width: 100%
+            object-fit: cover
+
+    &-logo
+        position: relative
+        display: block
+
+        & > img
+            height: var(--icon-l)
+            width: var(--icon-l)
+            display: block
+            object-fit: cover
+            position: relative
+            border: 0
+            border-radius: $border-radius
+            box-shadow: 0 0 4px 0px rgba($black, .1)
+
 
 
 // Select2 overwrite
@@ -256,7 +302,7 @@
 
 .select2-selection__rendered
     color: $color-font-primary !important
-    font-size: var(--size-typo-s) !important 
+    font-size: var(--size-typo-s) !important
     font-weight: 400 !important
     line-height: var(--line-height-typo-s) !important
     padding: 0 !important
@@ -280,7 +326,7 @@
     border: 1px solid $color-border !important
     border-radius: $border-radius !important
     color: $color-font-primary !important
-    font-size: var(--size-typo-s) !important 
+    font-size: var(--size-typo-s) !important
     font-weight: 400 !important
     line-height: var(--line-height-typo-s) !important
     background: $gray-lighter !important

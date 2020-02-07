@@ -1,0 +1,65 @@
+// Search block
+.home-search-section
+    width: 100%
+    position: relative
+    z-index: 1
+    display: block
+    padding-top: var(--gap-m)
+    padding-bottom: var(--gap-m)
+
+.home-search-wrapper
+    max-width: 664px
+    width: 100%
+    margin: 0 auto
+    display: block
+
+.home-search-header
+    text-align: center
+    display: block
+    margin-bottom: var(--gap)
+
+.home-search
+    display: flex
+    flex-direction: row
+    align-items: center
+    position: relative
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    box-shadow: 0 2px 3px rgba($black, .06)
+    overflow: hidden
+    background: $white
+
+    &.is-focused
+        border-color: $color-border-dark
+        box-shadow: 0 2px 3px rgba($black, .08)
+  
+.home-search-input
+    flex: 1 1 100%
+    max-width: 100%
+    position: relative
+
+.home-search-control
+    color: $color-font-primary
+    font-size: var(--size-typo-s)
+    font-weight: 500
+    line-height: var(--line-height-typo-s)
+    letter-spacing: 0.01em
+    width: 100%
+    appearance: none
+    box-shadow: none
+    border: 0
+    border-radius: 0
+    padding: 10px 0px 10px var(--gap-s)
+    position: relative
+    display: block
+
+    &:focus
+        border-color: $color-border-dark
+
+.home-search-icon
+    color: $color-secondary
+    font-size: var(--size-typo-m)
+    line-height: var(--line-height-typo-m)
+    display: block
+    flex: 0 0 auto
+    padding: 0 var(--gap-s)

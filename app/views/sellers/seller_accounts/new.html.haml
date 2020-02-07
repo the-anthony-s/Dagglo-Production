@@ -1,0 +1,7 @@
+.section
+  .content
+    -# = form_for [@seller, SellerAccount.new] do |f|
+    -# = form_for SellerAcc do |f|
+    = form_for :seller_account, url: accounts_path(@seller_account), method: :post do |f|
+      = f.text_field :email, required: true, placeholder: "Email"
+      = f.submit

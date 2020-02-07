@@ -1,0 +1,19 @@
+%section(class="section")
+  %div(class="content")
+    %div(class="header-section")
+      %div(class="header-section-title")
+        %h1(class="text text-m text-medium") What's New
+      %div(class="header-section-actions")
+        %div(class="header-section-actions-item") #{link_to "View all", announcements_seller_path, class: "link"}
+
+    %div(class="body")
+      - @announcements.each do |a|
+        %ul(class="list")
+          %li(class="list-item")
+            = button_tag class: "list-container list-container-center list-container-expand" do
+              %div(class="list-date")
+                %p(class="text text-s text-secondary") #{a.created_at.strftime("%b %d")}
+              %div(class="list-main")
+                %h1(class="text text-s text-medium") #{a.name}
+            %div(class="list-expand-content")
+              %p(class="text text-s") #{a.content}

@@ -1,0 +1,29 @@
+= content_for :title, @seller_product.product.name
+
+
+%div(class="container")
+
+  %div(class="header")
+    %div(class="content")
+      %div(class="header-container")
+        %div(class="header-picture")
+          = image_tag @seller_product.product.photo(300, 300), loading: "lazy"
+        %div(class="header-title")
+          %h1(class="text text-xxl text-medium") #{@seller_product.product.name}
+        %div(class="header-actions")
+          %div(class="header-actions-item")
+            = link_to edit_inventory_path(@seller_product), class: "button-circle button-circle-action" do
+              %div(class="button-circle-icon") #{icon "fal", "pen"}
+              %div(class="button-circle-name") Edit
+
+  %section(class="section")
+    %div(class="content")
+      %div(class="header-section")
+        %div(class="header-section-title")
+          %h1(class="text text-m text-medium") Recent activity
+        %div(class="header-section-actions")
+          %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+      
+      %div(class="body")
+        %ul(class="activities")
+          = render_activities(@activities)

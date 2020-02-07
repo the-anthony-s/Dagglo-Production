@@ -23,6 +23,21 @@ require("jquery")
 
 import "packs/time/timezone";
 import "packs/navbar/dropdown";
-import "packs/navbar/search";
+import "packs/forms/search";
 import "packs/mobile/hamburger";
+import "packs/alerts/alert";
 
+
+
+// Uppy File Uploader for Shrine gem
+import {singleFileUpload, multipleFileUpload} from 'packs/forms/uppy';
+
+document.addEventListener('turbolinks:load', () => {
+  document.querySelectorAll('input[type=file]').forEach(fileInput => {
+    if (fileInput.multiple) {
+      multipleFileUpload(fileInput)
+    } else {
+      singleFileUpload(fileInput)
+    }
+  })
+})

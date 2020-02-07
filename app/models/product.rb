@@ -28,20 +28,14 @@ class Product < ApplicationRecord
 
 
 
-  include PublicActivity::Model
-  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
-          recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
-
-
-
   # belongs_to :category, :foreign_key => 'category_id'
+  belongs_to :category
   belongs_to :owner_user, optional: true, class_name: "User"
   belongs_to :owner_seller, optional: true, class_name: "Seller"
 
   has_many :seller_products, dependent: :delete_all
   has_many :sellers, :through => :seller_products
   has_many :product_photos, dependent: :destroy
-
 
   accepts_nested_attributes_for :product_photos, allow_destroy: true
 
@@ -55,7 +49,33 @@ class Product < ApplicationRecord
 
 
 
-  # Product statuses 
+  # Search configurations
+  searchkick callbacks: :async, conversions: :conversions, match: :text_middle, searchable: [:name, :barcode], suggest: [:name]
+
+  scope :search_import, -> { includes(:seller_products, :sellers, :category) }
+
+  def search_data
+    {
+      name: name,
+      barcode: barcode,
+      product_country: country,
+      # description: description,
+      # category: category.name,
+      # sellers: sellers.map(&:name),
+      conversions: map_conversions
+      # conversions: searches.group(:query).uniq.count(:user_id)
+    }
+  end
+
+  # https://github.com/ankane/searchkick#keep-getting-better
+  def map_conversions
+    results = Searchjoy::Search.where(convertable_id: id)
+    results.each_with_object(Hash.new(0)) { |element, result| result[element.query] += 1 }
+  end
+
+
+
+  # Product statuses
   enum status: {
     pending: 0,
     active: 1,
@@ -71,9 +91,10 @@ class Product < ApplicationRecord
 
   # Get product first photo
   def photo(height = nil, width = nil)
-    if image.present?
+    if product_photos.present?
+      photo = product_photos.last
       if height != nil && width != nil
-        image.derivation_url(:thumbnail, height, width).to_s
+        photo.image.derivation_url(:thumbnail, height, width).to_s
       else
         image.url
       end

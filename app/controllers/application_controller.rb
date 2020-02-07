@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       Time.zone = current_user.time_zone
     else
       # Get browser time zone if current user's time_zone value = nil
-      Time.zone = ActiveSupport::TimeZone.find_tzinfo(cookies[:timezone])
+      # Time.zone = ActiveSupport::TimeZone.find_tzinfo(cookies[:timezone])
     end
   end
 
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :user_account
 
-  
+
 
   private
 
@@ -71,8 +71,8 @@ class ApplicationController < ActionController::Base
       request.referrer || super
     end
 
-  
-  
+
+
   protected
 
     # Track current_user's actions

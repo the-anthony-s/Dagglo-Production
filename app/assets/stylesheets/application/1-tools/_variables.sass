@@ -1,12 +1,12 @@
 // Content width
-$content-width-primary: calc(1512px + (var(--gap) * 2))
-$content-width-section: calc(1024px + (var(--gap) * 2))
-$content-width-tight: calc(682px + (var(--gap) * 2))
-$content-width-product: calc(1300px + (var(--gap) * 2))
+$content-width-primary: calc(1512px + (var(--gap-r) * 2))
+$content-width-section: calc(1024px + (var(--gap-r) * 2))
+$content-width-tight: calc(682px + (var(--gap-r) * 2))
+$content-width-product: calc(1300px + (var(--gap-r) * 2))
 
 
-    
-$border-radius: 3px
+
+$border-radius: 0px
 
 
 
@@ -20,8 +20,8 @@ $border-radius: 3px
     --size-typo-l: 1.25em
     --size-typo-xl: 1.5em
     --size-typo-xxl: 1.75em
-    --size-typo-xxxl: 2.25em
-    --size-typo-xxxxl: 3.75em
+    --size-typo-xxxl: 2em
+    --size-typo-xxxxl: 2.15em
 
     --line-height-typo-xs: 1.5
     --line-height-typo-s: 1.5
@@ -35,4 +35,12 @@ $border-radius: 3px
     --navbar-height: 60px
 
     +tablet
+        --size-typo-xxxl: 2.75em
+        --size-typo-xxxxl: 4.35em
+
         --navbar-height: 64px
+
+
+    +desktop
+        --size-typo-xxxl: 3.25em
+        --size-typo-xxxxl: 5.15em

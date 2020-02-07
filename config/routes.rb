@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   mount ImageUploader.derivation_endpoint => "/derivations/image"
 
-  
+
   # Internationalization support
   # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
   #   -> all routes here <-
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   devise_for :users, path: 'user', path_names: {sing_in: "sign_in", sing_out: "sign_out", sing_up: "sign_up", edit: "edit"}, :controllers => {
     :registrations            => "users/registrations",
     :confirmations            => "users/confirmations",
+    :invitations              => "users/invitations",
     # :omniauth_callbacks       => "sellers/omniauth_callbacks",
     :passwords                => "users/passwords",
     :sessions                 => "users/sessions",
@@ -54,7 +55,8 @@ Rails.application.routes.draw do
       get 'products',                     action: :products, as: :products
       get 'locations',                    action: :locations, as: :locations
       get 'activities',                   action: :activities, as: :activities
-      
+      get 'announcements',                action: :announcements, as: :announcements
+
       # Settings routes
       get 'settings',                     action: :settings, as: :settings
       get 'settings/general',             action: :general, as: :settings_general
@@ -63,39 +65,55 @@ Rails.application.routes.draw do
       # get 'settings/shipping',            action: :shipping, as: :settings_shipping
       # get 'settings/faq',                 action: :payments, as: :settings_faq
 
-      resources :seller_products, path: "products/inventory", as: :inventories, only: [:show, :edit, :update, :destroy]
-      resources :seller_accounts, path: "account", as: :accounts, only: [:show]
-      resources :seller_locations, path: "locations", as: :locations, only: [:show, :new, :create, :update, :destroy, :edit]
-      
+      resources :seller_products, path: "products/inventory", as: :inventories, only: [:show, :edit, :update, :destroy], module: :sellers
+      resources :seller_accounts, path: "account", as: :accounts, only: [:show, :edit, :update, :new, :create, :destroy], module: :sellers
+      resources :seller_locations, path: "locations", as: :locations, only: [:show, :new, :create, :update, :destroy, :edit], module: :sellers
+
       # Payment routes
-      resource :seller_card, path: "settings/billing/card"
-      resource :seller_pricing, path: "settings/account/pricing", as: :seller_pricing, controller: :seller_pricing
-      resource :seller_subscription, path: "settings/account/plan", as: :seller_subscription do
+      resource :seller_card, path: "settings/billing/card", module: :sellers
+      resource :seller_pricing, path: "settings/account/pricing", as: :seller_pricing, controller: :seller_pricing, module: :sellers
+      resource :seller_subscription, path: "settings/account/plan", as: :seller_subscription, module: :sellers do
         patch :resume
       end
       resources :seller_payments, path: "settings/account/plan/payment", as: :seller_payments
       resources :seller_charges, path: "settings/billing/charges", as: :seller_charges
     end
   end
-  
-  resources :sellers, path: "seller", only: [:new, :create]
+
+  resources :sellers, path: "seller", only: [:new, :create] do
+    post :private
+    post :public
+  end
   get 'seller/:id', to: "sellers#show", as: :show_seller
 
 
 
   ## Product Routes
-  resources :products, path: "seller/products", except: [:show, :destroy]
+  resources :products, path: "seller/products", except: [:show, :destroy, :edit, :update]
   get 'product/:id', to: "products#show", as: :show_product
-  
+
+
+  ## Categories
+  resources :categories, path: "categories", except: [:edit, :update, :destroy, :new]
+
+
+  # Search
+  mount Searchjoy::Engine, at: "searchjoy"
+
+  resource :search, path: "search", only: [:show]
+
 
 
   # Site primary pages -> Home, About, Terms, Privacy
-  get '/home', to: "pages#home"
+  get '/home',    to: "pages#home"
+  get '/promo',   to: "pages#promo"
+  get '/sell',    to: "pages#sell"
 
 
 
   # Root Path
-  root to: "pages#home"
+  # root to: "pages#home"
+  root to: "pages#promo"
 
 
 end # end of routes

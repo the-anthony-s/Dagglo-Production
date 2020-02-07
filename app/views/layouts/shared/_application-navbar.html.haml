@@ -1,4 +1,4 @@
-%nav(id="primaryNavbar" class="navbar")
+%nav(id="primaryNavbar" class="navbar"){class: content_for?(:navbar_class) ? yield(:navbar_class) : nil}
   %div(class="navbar-container")
     %div(class="navbar-left")
       %div(class="navbar-root")
@@ -6,12 +6,12 @@
           root
 
 
-    -# - unless controller.controller_name == "pages" && controller.action_name == "home"
-    %div(class="navbar-center")
-      = form_tag "", method: :get, class: "navbar-form", role: "search" do
-        %div(class="navbar-form-input")
-          = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-form-control', type: "search", id: "globalSearch", autocomplete: "off"
-        %div(class="navbar-form-icon") #{icon "far", "search"}
+    - unless controller.controller_name == "pages" && controller.action_name == "home"
+      %div(class="navbar-center")
+        = form_tag search_path, method: :get, class: "navbar-search", role: "search" do
+          %div(class="navbar-search-input")
+            = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-search-control', type: "search", id: "globalSearch", autocomplete: "off"
+          %div(class="navbar-search-icon") #{icon "far", "search"}
 
 
     %div(class="navbar-right")
@@ -25,15 +25,13 @@
 
       %div(class="navbar-desktop")
         %ul(class="navbar-list")
-          
+          %li(class="navbar-list-item") #{link_to "Catalog", categories_path, class: "navbar-link"}
+          %li(class="navbar-list-item") #{link_to "Sell on Dagglo", sell_path, class: "navbar-link"}
           - if user_signed_in?
-            - unless current_user.s_account
-              %li(class="navbar-list-item") #{link_to "Start selling", new_seller_path, class: "navbar-link"}
-
             %li(class="navbar-list-item navbar-dropdown-item")
               = button_tag class: "navbar-profile navbar-dropdown-trigger" do
                 %div(class="navbar-profile-picture")
-                  = image_tag current_user.avatar(300, 300), loading: "lazy"
+                  = image_tag current_user.avatar(100, 100), loading: "lazy"
               %div(class="navbar-dropdown")
                 %ul(class="navbar-dropdown-list")
                   %li(class="navbar-dropdown-list-item")
@@ -41,13 +39,16 @@
                   %li(class="navbar-dropdown-list-item")
                     = link_to "Favorites", "", class: "navbar-dropdown-link"
                   %li(class="navbar-dropdown-list-item")
-                    = link_to "Account", "", class: "navbar-dropdown-link"
+                    = link_to "Account", edit_user_registration_path, class: "navbar-dropdown-link"
                   - if current_user.s_account
                     %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
                       = link_to "Seller account", dashboard_seller_path, class: "navbar-dropdown-link"
+                  - else
+                    %li(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
+                      = link_to "Sign up to sell", new_seller_path, class: "navbar-dropdown-link"
                   %li(class="navbar-dropdown-list-item")
                     = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link"
-            
+
           - else
             %li(class="navbar-list-item") #{link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"}
             %li(class="navbar-list-item") #{link_to t('buttons.user_registration'), new_user_registration_path, class: "button"}
@@ -60,7 +61,7 @@
         %div(class="navbar-collapse-profile-container")
           - if user_signed_in?
             %div(class="navbar-collapse-profile-picture")
-              = image_tag current_user.avatar(300, 300), loading: "lazy"
+              = image_tag current_user.avatar(150, 150), loading: "lazy"
             %div(class="navbar-collapse-profile-actions")
               %div(class="navbar-collapse-profile-action")
                 = link_to "Account", edit_user_registration_path, class: "navbar-collapse-profile-link"
@@ -74,7 +75,7 @@
                 = link_to "Sign Up", new_user_registration_path, class: "navbar-collapse-profile-link"
       %div(class="navbar-collapse-menu")
         %ul(class="navbar-collapse-block")
-          %li(class="navbar-collapse-block-item") 
+          %li(class="navbar-collapse-block-item")
             - unless user_signed_in? && current_user.s_account
               = link_to new_seller_path, class: "navbar-collapse-link" do
                 %span Start selling

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_224051) do
+ActiveRecord::Schema.define(version: 2020_02_06_234440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
+  create_table "announcements", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image_data"
+    t.integer "audience"
+    t.boolean "hide"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
@@ -133,9 +143,26 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
+  create_table "searchjoy_searches", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "source"
+    t.string "search_type"
+    t.string "query"
+    t.string "normalized_query"
+    t.integer "results_count"
+    t.datetime "created_at"
+    t.string "convertable_type"
+    t.bigint "convertable_id"
+    t.datetime "converted_at"
+    t.index ["convertable_type", "convertable_id"], name: "index_searchjoy_searches_on_convertable"
+    t.index ["created_at"], name: "index_searchjoy_searches_on_created_at"
+    t.index ["search_type", "created_at"], name: "index_searchjoy_searches_on_search_type_and_created_at"
+    t.index ["search_type", "normalized_query", "created_at"], name: "index_searchjoy_searches_on_search_type_query"
+    t.index ["user_id"], name: "index_searchjoy_searches_on_user_id"
+  end
+
   create_table "seller_accounts", force: :cascade do |t|
     t.integer "role"
-    t.boolean "owner", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
@@ -182,6 +209,11 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.integer "amount"
     t.string "interval"
     t.string "stripe_id"
+    t.integer "num_of_products"
+    t.integer "num_of_locations"
+    t.integer "num_of_sub_accounts"
+    t.string "analytics"
+    t.boolean "pause", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -228,11 +260,11 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.string "country"
     t.date "founding_date"
     t.integer "status", default: 0
+    t.boolean "private", default: false
     t.text "image_data"
     t.text "cover_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "owner_id"
     t.string "slug"
     t.datetime "onboarding_completed_at"
     t.string "stripe_id"
@@ -240,7 +272,6 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.string "card_last4"
     t.string "card_exp_month"
     t.string "card_exp_year"
-    t.index ["owner_id"], name: "index_sellers_on_owner_id"
     t.index ["slug"], name: "index_sellers_on_slug", unique: true
   end
 
@@ -271,8 +302,20 @@ ActiveRecord::Schema.define(version: 2020_01_27_224051) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.bigint "invited_by_id"
+    t.integer "invitations_count", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invitations_count"], name: "index_users_on_invitations_count"
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end

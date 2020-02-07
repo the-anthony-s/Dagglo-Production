@@ -1,0 +1,49 @@
+.footer
+    width: 100%
+    position: relative
+    display: block
+    border-top: 1px solid $color-border
+
+.footer-container
+    width: 100%
+    padding: var(--gap) var(--gap-r)
+
+.footer-block
+    text-align: center
+
+    +tablet
+        text-align: left
+
+    & + &
+        margin-top: var(--gap)
+
+.footer-list
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+    text-align: center
+    width: 100%
+    margin: calc(var(--gap-xs) * (-1))
+
+    +tablet
+        align-items: left
+        text-align: left
+        justify-content: flex-start
+
+    &-item
+        padding: var(--gap-xs)
+
+.footer-link
+    color: $color-font-secondary
+    font-size: var(--size-typo-s)
+    font-weight: 400
+    line-height: var(--line-height-typo-s)
+    vertical-align: baseline
+    appearance: none
+    position: relative
+    display: block
+
+    &:hover, &:focus, &:active
+        color: $color-font-primary
+        text-decoration: underline

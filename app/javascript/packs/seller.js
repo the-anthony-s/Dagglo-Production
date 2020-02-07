@@ -25,6 +25,7 @@ require("jquery")
 import "packs/time/timezone";
 import "packs/mobile/hamburger";
 import "packs/links/disabled";
+import "packs/links/expand";
 import "packs/forms/main";
 import "packs/forms/select2";
 import "packs/charts/bars";

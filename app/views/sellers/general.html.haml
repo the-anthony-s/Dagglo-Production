@@ -16,6 +16,41 @@
           -#       %div(class="button-circle-name") Back
 
 
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Visual details:
+          %div(class="section-annotated-content")
+
+            %div(class="form-row")
+              %div(class="form-visuals")
+                %div(class="form-visuals-cover image-preview")
+                  = image_tag @seller.background(500, 500), loading: "lazy", class: "img-thumbnail file-upload-preview", id: "seller-cover"
+                %div(class="form-visuals-container")
+                  %div(class="form-visuals-logo image-preview")
+                    = image_tag @seller.logo(200, 200), loading: "lazy", class: "img-thumbnail file-upload-preview", id: "seller-image"
+
+            %div(class="form-row")
+              %div(class="form-grid")
+                %div(class="form-col")
+                  %div(class="form-label")
+                    = f.label :image, "Company logo"
+                  %div(class="form-input")
+                    = f.file_field :image,
+                      accept: ImageUploader::ALLOWED_TYPES.join(","),
+                      data: {upload_server: upload_server, preview_element: "seller-image", upload_result_element: "seller-image-upload-result"}
+                    = f.hidden_field :image, value: @seller.cached_image_data, id: "seller-image-upload-result"
+                %div(class="form-col")
+                  %div(class="form-label")
+                    = f.label :cover, "Background cover image"
+                  %div(class="form-input")
+                    = f.file_field :cover,
+                      accept: ImageUploader::ALLOWED_TYPES.join(","),
+                      data: {upload_server: upload_server, preview_element: "seller-cover", upload_result_element: "seller-cover-upload-result"}
+                    = f.hidden_field :cover, value: @seller.cached_cover_data, id: "seller-cover-upload-result"
+
+
 
     %section(class="section")
       %div(class="content")
@@ -25,20 +60,20 @@
             %p(class="text text-s text-secondary space-bot-xs") Dagglo and your customers will use this information to learn more about you and your company.
             %p(class="text text-s text-secondary") Business number will help us verify your company and increase sales.
           %div(class="section-annotated-content")
-            
-            %div(class="form-row")
-              %div(class="form-row")
-                %div(class="form-label")
-                  = f.label :image_data, "Logo"
-                %div(class="form-input")
-                  %div(class="form-file")
-                    %div(class="form-file-current")
-                      = image_tag @seller.logo(300, 300), loading: "lazy"
-                    %div(class="form-file-control")
-                      %span(class="form-file-link") Drag and drop or
-                      %span(class="form-file-msg js-set-number") upload from files
-                      = f.file_field :image, multiple: false, class: "form-droparea", autocomplete: "off"
-            
+
+            -# %div(class="form-row")
+            -#   %div(class="form-row")
+            -#     %div(class="form-label")
+            -#       = f.label :image, "Logo"
+            -#     %div(class="form-file")
+            -#       %div(class="image-preview")
+            -#         = image_tag @seller.logo(300, 300), class: "img-thumbnail file-upload-preview", id: "seller-image"
+            -#       %div(class="form-file-control")
+            -#         = f.file_field :image,
+            -#           accept: ImageUploader::ALLOWED_TYPES.join(","),
+            -#           data: {upload_server: upload_server, preview_element: "seller-image", upload_result_element: "seller-image-upload-result"}
+            -#         = f.hidden_field :image, value: @seller.cached_image_data, id: "seller-image-upload-result"
+
             %div(class="form-row")
               %div(class="form-label")
                 = f.label :business_number, "Business number"
@@ -71,7 +106,7 @@
                 = f.label :about, "About"
               %div(class="form-input form-input-select")
                 = f.text_area :about, class: "form-control form-control-textarea", autofocus: false, autocomplete: "off"
-    
+
     %div(class="actions")
       %div(class="content")
         %div(class="actions-container")

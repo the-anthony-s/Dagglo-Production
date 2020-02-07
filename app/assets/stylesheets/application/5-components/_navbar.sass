@@ -1,7 +1,7 @@
 .navbar
     height: auto
     width: 100%
-    // border-bottom: 1px solid $color-border
+    border-bottom: 1px solid $color-border
     z-index: 10
 
 .navbar-container
@@ -11,9 +11,9 @@
     flex-direction: row
     justify-content: space-between
     align-items: center
-    padding: 0 0 0 var(--gap)
+    padding: 0 0 0 var(--gap-r)
     +desktop-sm
-        padding: 0 var(--gap)
+        padding: 0 var(--gap-r)
 
 .navbar-left
     flex: 0 0 auto
@@ -68,6 +68,8 @@
     color: $color-font-secondary
     font-size: var(--size-typo-s)
     font-weight: 400
+    line-height: var(--line-height-typo-s)
+    letter-spacing: .02em
     appearance: none
     outline: none
     position: relative
@@ -80,7 +82,7 @@
 
 
 // Search
-.navbar-form
+.navbar-search
     width: 100%
     max-width: 584px
     display: flex
@@ -100,12 +102,12 @@
         border-color: $color-border-dark
         box-shadow: 0 2px 3px rgba($black, .08)
 
-.navbar-form-input
+.navbar-search-input
     flex: 1 1 100%
     max-width: 100%
     position: relative
 
-.navbar-form-control
+.navbar-search-control
     color: $color-font-primary
     font-size: var(--size-typo-s)
     font-weight: 500
@@ -123,7 +125,7 @@
     &:focus
         border-color: $color-border-dark
 
-.navbar-form-icon
+.navbar-search-icon
     color: $color-secondary
     font-size: var(--size-typo-m)
     line-height: var(--line-height-typo-m)
@@ -166,12 +168,12 @@
     min-width: 182px
     border: 0
     border-radius: $border-radius
-    box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
+    // box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
     position: absolute
     visibility: hidden
     opacity: 0
     z-index: 1
-    background-color: $white
+    background-color: $black
     user-select: none
     transition: 125ms all ease
     transform: translate3d(0, 0, 0)
@@ -188,25 +190,26 @@
     padding-top: var(--gap-xs)
     padding-bottom: var(--gap-xs)
     &-item-separator
-        border-top: 1px solid $color-border
-        border-bottom: 1px solid $color-border
+        border-top: 1px solid rgba($white, .1)
+        border-bottom: 1px solid rgba($white, .1)
     &-item
 				width: 100%
 				position: relative
 				display: block
 
 .navbar-dropdown-link
-    color: $color-font-primary
+    color: $color-font-primary-light
     font-size: var(--size-typo-s)
     font-weight: 400
     line-height: var(--line-height-typo-s)
     vertical-align: baseline
     display: block
     padding: var(--gap-xs) var(--gap-s)
+    background: transparent
 
     &:hover
-        color: $color-font-primary
-        background: $gray-light
+        color: $color-font-primary-light
+        background: $black-light
 
 
 
@@ -226,7 +229,7 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     user-select: none
     -webkit-tap-highlight-color: transparent
     z-index: 99
-    
+
     &-container
         width: 18px
         height: 8px
@@ -239,10 +242,10 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
             height: 2px
             display: block
             position: relative
-            background: $color-font-secondary
+            background: $color-font-primary
             transtion: all .2s $cubic
             transition-delay: 0.1s
-            
+
             &Top
                 transform: translateY(0px) rotate(0deg)
 
@@ -337,7 +340,7 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     width: 100%
     padding: var(--gap) 0
     border-top: 1px solid $color-border
-  
+
 .navbar-collapse-link
     color: $color-font-primary
     font-size: var(--size-typo-m)
@@ -361,3 +364,23 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
         border: 0
         border-radius: $border-radius
         padding: var(--gap-s)
+
+
+
+
+// Absolute navbar
+.navbar-absolute
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    background: transparent
+    border-bottom: none
+
+    & .navbar-burger-container-bar
+        background: $white
+
+    & .navbar-link
+        color: $color-font-primary-light
+        &:hover
+            color: $color-font-secondary-light

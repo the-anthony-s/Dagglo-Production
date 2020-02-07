@@ -27,4 +27,8 @@ class Category < ApplicationRecord
   has_many :products
 
 
+  # Scope
+  scope :is_active, -> { where(pause: false) }
+
+
 end

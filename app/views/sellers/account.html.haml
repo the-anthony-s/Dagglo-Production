@@ -2,7 +2,7 @@
 
 
 %div(class="container")
-  
+
   %div(class="header")
     %div(class="content")
       %div(class="header-container")
@@ -46,24 +46,24 @@
                       %p(class="text text-s text-medium") #{@seller_subscription.status.humanize}
                     - else
                       %p(class="text text-s text-medium") Incomplete
-          
+
           %div(class="body")
 
             - if @seller_subscription && @seller_subscription.on_trial?
               %div(class="card")
                 %div(class="card-header")
-                  %div(class="card-header-main") 
+                  %div(class="card-header-main")
                     %h1(class="text text-m text-medium") #{@seller_subscription.stripe_plan} trial period
                 %div(class="card-body")
                   %p(class="text text-s") #{current_user.first_name}, you have #{pluralize((@seller_subscription.trial_ends_at.to_date - Time.now.to_date).to_i, 'day')} left of your trial. The first payment will be on #{@seller_subscription.trial_ends_at.to_date.to_s(:long)}.
                 %div(class="card-footer")
                   %div(class="card-footer-actions")
                     %div(class="card-footer-action") #{link_to "Change plan", edit_seller_subscription_path, class: "button"}
-            
+
             - elsif @seller_subscription && @seller_subscription.on_grace_period?
               %div(class="card")
                 %div(class="card-header")
-                  %div(class="card-header-main") 
+                  %div(class="card-header-main")
                     %h1(class="text text-m text-medium") Subscription canceled
                 %div(class="card-body")
                   %p(class="text text-s") Your subscription has been canceled. The access will remain until #{@seller_subscription.ends_at.to_date.to_s(:long)}.
@@ -74,7 +74,7 @@
             - elsif @seller_subscription && @seller_subscription.active?
               %div(class="card")
                 %div(class="card-header")
-                  %div(class="card-header-main") 
+                  %div(class="card-header-main")
                     %h1(class="text text-m text-medium") Active subscription
                 %div(class="card-body")
                   %p(class="text text-s") You are subscribed to the #{@seller_subscription.stripe_plan} plan.
@@ -82,17 +82,18 @@
                   %div(class="card-footer-actions")
                     %div(class="card-footer-action") #{link_to "Change plan", edit_seller_subscription_path, class: "button"}
                     %div(class="card-footer-action") #{link_to "Cancel", seller_subscription_path, method: :delete, class: "link link-secondary", data: { confirm: "Are you sure you want to cancel?" }}
-        
+
             -#   - else
             -#     %p.text.text-s You are not subscribed. #{link_to "Subscribe", seller_pricing_path, class: "link"}
-  
+
 
   %section(class="section")
     %div(class="content")
       %div(class="section-annotated")
         %div(class="section-annotated-annotation")
           %p(class="text text-m text-medium space-bot-xs") Connected accounts:
-          %p(class="text text-s text-secondary") Manage what staff can see or do in your store.
+          %p(class="text text-s text-secondary space-bot-xs") Manage what staff can see or do in your store.
+          %p(class="text text-s text-secondary") #{link_to "Add more users", new_account_path, class: "link"}
         %div(class="section-annotated-content")
           %div(class="body")
             %ul(class="list")
@@ -101,10 +102,11 @@
                   -# %div(class="list-container list-container-center")
                   = link_to account_path(acc), class: "list-container list-container-center" do
                     %div(class="list-picture list-picture-rounded")
-                      = image_tag acc.user.avatar(300, 300), loading: "lazy"
+                      = image_tag acc.user.avatar(150, 150), loading: "lazy"
                     %div(class="list-main")
                       %h1(class="text text-s text-medium") #{acc.user.full_name}
-                      %p(class="text text-s text-secondary") Owner
+                      - if acc.role?
+                        %p(class="text text-s text-secondary") #{acc.role.capitalize}
           -# %div(class="body")
           -#   = link_to "Invite Contributor", "", class: "button button-wide"
 
@@ -121,10 +123,16 @@
                 %div(class="col")
                   %div(class="card-body")
                     %div(class="text-center")
-                      %h1(class="text text-xxxl space-bot-l") #{icon "fal", "pause"}
-                      %p(class="text text-s space-bot-xxxs") Pause your account
-                      %p(class="text text-s text-secondary space-bot-l") Take a break from selling at a reduced plan price. Your settings will be saved until you’re ready to sell again.
-                      = link_to "Pause account", "", class: "button"
+                      - if @seller.private
+                        %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock-open"}
+                        %p(class="text text-s space-bot-xxxs") Make account public
+                        %p(class="text text-s text-secondary space-bot-l") Go public and increase the amount of customers. Your seller profile will be visible to all users and search engines.
+                        = button_to "Go public", seller_public_path(@seller), class: "button"
+                      - else
+                        %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock"}
+                        %p(class="text text-s space-bot-xxxs") Make account private
+                        %p(class="text text-s text-secondary space-bot-l") Your account will be invisible to all users and search engines. However, you can still take direct orders from your customers.
+                        = button_to "Go private", seller_private_path(@seller), class: "button"
                 %div(class="col")
                   %div(class="card-body")
                     %div(class="text-center")

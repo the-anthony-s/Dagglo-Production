@@ -9,6 +9,7 @@
 #  country                 :string
 #  founding_date           :date
 #  status                  :integer          default("pending")
+#  private                 :boolean          default(FALSE)
 #  image_data              :text
 #  cover_data              :text
 #  created_at              :datetime         not null
@@ -27,7 +28,7 @@ class Seller < ApplicationRecord
 
   # Onboarding steps
   include SellerOnboarding
-  
+
 
 
   include PublicActivity::Model
@@ -42,13 +43,13 @@ class Seller < ApplicationRecord
 
 
 
-  belongs_to :owner, class_name: "User"
 
   has_many :seller_accounts, dependent: :delete_all
+  has_many :users, through: :seller_accounts
   has_many :seller_products, dependent: :delete_all
   has_many :seller_locations, dependent: :delete_all
   has_many :seller_subscriptions, dependent: :delete_all
-  has_many :seller_charges, dependent: :delete_all
+  has_many :seller_charges
 
 
 
@@ -57,7 +58,12 @@ class Seller < ApplicationRecord
 
 
 
-  # Product statuses 
+  # Scopes
+  scope :is_public, -> { where(private: false, status: 1) }
+
+
+
+  # Product statuses
   enum status: {
     pending: 0,
     active: 1,
@@ -77,9 +83,11 @@ class Seller < ApplicationRecord
 
 
 
-  # Return Seller Logo
+  # Images configuration
+  include ImageUploader::Attachment(:image)
+
   def logo(height = nil, width = nil)
-    if image_data.present?
+    if image.present?
       if height != nil && width != nil
         image.derivation_url(:thumbnail, height, width).to_s
       else
@@ -93,8 +101,18 @@ class Seller < ApplicationRecord
 
 
   # Return Seller Cover Image
-  def cover(height = nil, width = nil)
-    ActionController::Base.helpers.asset_path("defaults/" + ["image.png"].compact.join('_'))
+  include ImageUploader::Attachment(:cover)
+
+  def background(height = nil, width = nil)
+    if cover.present?
+      if height != nil && width != nil
+        cover.derivation_url(:thumbnail, height, width).to_s
+      else
+        cover.url
+      end
+    else
+      ActionController::Base.helpers.asset_path("defaults/" + ["image.png"].compact.join('_'))
+    end
   end
 
 

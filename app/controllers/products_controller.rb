@@ -1,14 +1,15 @@
 class ProductsController < ApplicationController
-  
+
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show]
   before_action :set_seller, except: [:show, :index]
-  
+  before_action :convert_search, only: [:show, :show_product]
+
   layout :seller_dashboard_layout, except: [:show, :index]
 
 
   def show
-    @product = Product.friendly.find(params[:id])
+      puts "\n\n\n\n\n #{@product.name} \n\n\n\n\n\n"
   end
 
 
@@ -32,7 +33,7 @@ class ProductsController < ApplicationController
           redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} created"
         end
       else
-        redirect_to :new, notice: "An error occurred during registration, try again or contact support"
+        render :new, notice: "An error occurred during registration, try again or contact support"
       end
     }
   end
@@ -57,12 +58,11 @@ class ProductsController < ApplicationController
       params.require(:product).permit!
     end
 
-
     def set_product
       @product = Product.friendly.find(params[:id])
     end
 
-    
+
     def set_seller
       @seller = current_user.s_account
     end
@@ -76,5 +76,12 @@ class ProductsController < ApplicationController
       end
     end
 
+
+    def convert_search
+      return if request.referer.blank?
+      referer = CGI::parse(request.referer)['query'][0]
+      query_to_convert = Searchjoy::Search.where(normalized_query: referer).last
+      query_to_convert.convert(@product) unless query_to_convert.nil?
+    end
 
 end

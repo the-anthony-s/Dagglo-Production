@@ -4,21 +4,17 @@
   %div(class="content")
     %div(class="auth-content")
       %div(class="auth-header")
-        %h1(class="text text-xxl text-bold") Log into Dagglo
+        %h1(class="text text-xxl text-medium") Log into Dagglo
       %div(class="auth-body")
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form"}) do |f|
           = render "devise/shared/error_messages", resource: resource
           %div(class="form-row")
-            %div(class="form-label")
-              = f.label :email, "Email"
             %div(class="form-form")
-              = f.email_field :email, class: "form-control", autocomplete: "email"
+              = f.email_field :email, class: "form-control", autocomplete: "email", placeholder: "Email address"
           %div(class="form-row")
-            %div(class="form-label")
-              = f.label :password, "Password"
             %div(class="form-form")
-              = f.password_field :password, class: "form-control", autocomplete: "current-password"
-          
+              = f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "Password"
+
           %div(class="form-submit form-submit-center")
             = button_tag "Log In", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Loading.."}
           %div(class="form-footer text-center")

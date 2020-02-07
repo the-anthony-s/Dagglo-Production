@@ -1,0 +1,29 @@
+%section(class="section section-page section-gray section-page-separator")
+  %div(class="content")
+    %div(class="section-page-block")
+      %p(class="text text-eyebrow text-secondary") Available categories
+      %h1(class="text text-xxl text-medium") Complete catalog
+
+
+- @roots = Category.roots.is_active.all
+- @roots.each do |root|
+  %div(class="section section-page section-page-separator")
+    %div(class="content")
+      %div(class="header")
+        %h1(class="text text-xl text-medium") #{root.name}
+      %div(class="section-block")
+        %div(class="grid-2-4")
+          - root.children.each do |category|
+            %div(class="col")
+              %h1(class="text text-m text-secondary") #{category.name}
+
+
+%div(class="section section-page section-page-separator")
+  %div(class="content")
+    %div(class="grid-1-3")
+      %div(class="col")
+        Sign up to sell
+      %div(class="col")
+        Available categories
+      %div(class="col")
+        Contact us

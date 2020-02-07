@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -42,6 +42,8 @@ gem 'active_link_to'
 gem 'friendly_id', '~> 5.2.4'
 # Category trees
 gem 'ancestry'
+# Seed data generator
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 
 
@@ -58,6 +60,7 @@ gem 'public_activity'
 gem 'font-awesome-sass', '~> 5.9.0'
 # Authentication solution
 gem 'devise'
+gem 'devise_invitable', '~> 2.0.0'
 # Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
 gem 'invisible_captcha'
 # Forms
@@ -94,6 +97,14 @@ gem 'redis-rails'
 # Stripe
 gem 'stripe'
 gem 'stripe_event'
+
+
+
+## Search
+# Elasticsearch by Instacard
+gem 'searchkick'
+# Search analytics
+gem 'searchjoy'
 
 
 

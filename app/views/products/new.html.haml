@@ -11,7 +11,7 @@
           %div(class="header-title")
             %h1(class="text text-xxl text-medium") New product
 
-    
+
     %section(class="section")
       %div(class="content")
         %div(class="section-annotated")
@@ -24,7 +24,7 @@
                 = f.label :barcode, "Product barcode"
               %div(class="form-input")
                 = f.text_field :barcode, class: "form-control", required: true, autocomplete: "off"
-    
+
     %section(class="section")
       %div(class="content")
         %div(class="section-annotated")
@@ -62,7 +62,7 @@
                 = f.label :category_id, "Product category"
               %div(class="form-input")
                 = f.select :category_id, Category.all.pluck(:name, :id), {:include_blank => "Choose category"}, {class: "js-categories form-control", id: "selectCategory"}
-    
+
     %section(class="section")
       %div(class="content")
         %div(class="section-annotated")
@@ -71,10 +71,8 @@
             %p(class="text text-s text-secondary") Upload one good quality picture of the product
           %div(class="section-annotated-content")
             %div(class="form-row")
-              - if @product.persisted?
-                .form-group
-                  = f.label :photos, "Select photos"
-                  = f.file_field :photos, multiple: true, accept: ImageUploader::ALLOWED_TYPES.join(","), data: { upload_server: upload_server }
+              = f.label :product_photos, "Select photos"
+              = f.file_field :product_photos, multiple: true, accept: ImageUploader::ALLOWED_TYPES.join(","), data: { upload_server: upload_server }
 
 
               -# %div(class="form-file")
@@ -83,7 +81,7 @@
               -#     %span(class="form-file-link") Drag and drop or
               -#     %span(class="form-file-msg js-set-number") upload from files
               -#     = f.file_field :image_data, multiple: false, class: "form-droparea", autocomplete: "off"
-              
+
     %div(class="actions")
       %div(class="content")
         %div(class="actions-container")
