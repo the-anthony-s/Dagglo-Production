@@ -7,6 +7,9 @@ Rails.application.configure do
   # Default Mailer url
   config.action_mailer.default_url_options = { :host => 'dagglo.com' }
 
+  # Access to credentials
+  config.config.read_encrypted_secrets = true
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
