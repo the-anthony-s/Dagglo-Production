@@ -1,4 +1,4 @@
-Stripe.api_key = Rails.application.credentials.stripe[:private_key]
+Stripe.api_key = Rails.application.credentials[Rails.env.to_sym][:stripe][:private_key]
 
 class PaymentIncomplete < StandardError
   attr_reader :payment_intent
@@ -10,7 +10,7 @@ class PaymentIncomplete < StandardError
 end
 
 
-StripeEvent.signing_secret = ENV['STRIPE_SIGNING_SECRET'] || Rails.application.credentials.stripe[:signing_secret]
+StripeEvent.signing_secret = ENV['STRIPE_SIGNING_SECRET'] || Rails.application.credentials[Rails.env.to_sym][:stripe][:signing_secret]
 StripeEvent.configure do |events|
   events.subscribe 'charge.succeeded', SellerChargeSucceededWebhook.new
   events.subscribe 'charge.refunded', SellerChargeRefundedWebhook.new
