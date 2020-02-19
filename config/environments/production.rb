@@ -11,6 +11,9 @@ Rails.application.configure do
   # Access to credentials
   config.read_encrypted_secrets = true
 
+  # To keep using the current cache store, you can turn off cache versioning entirely
+  config.active_record.cache_versioning = false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
