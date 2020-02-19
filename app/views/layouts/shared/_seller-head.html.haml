@@ -9,7 +9,7 @@
 = csp_meta_tag
 
 %script(src="https://js.stripe.com/v3/")
-= tag.meta name: "stripe-key", content: Rails.application.credentials.stripe[:public_key]
+= tag.meta name: "stripe-key", content: Rails.application.credentials[Rails.env.to_sym][:stripe][:public_key]
 = stylesheet_link_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'seller', 'data-turbolinks-track': 'reload'
 
