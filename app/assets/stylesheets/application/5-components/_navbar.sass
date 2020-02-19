@@ -6,6 +6,8 @@
 
 .navbar-container
     width: 100%
+    max-width: $content-width-primary
+    margin: 0 auto
     height: var(--navbar-height)
     display: flex
     flex-direction: row
@@ -65,7 +67,7 @@
 
 // Link
 .navbar-link
-    color: $color-font-secondary
+    color: $color-font-primary
     font-size: var(--size-typo-s)
     font-weight: 400
     line-height: var(--line-height-typo-s)
@@ -77,7 +79,7 @@
     text-decoration: none
 
     &:hover
-        color: $color-font-primary
+        color: $color-font-secondary
 
 
 
@@ -110,15 +112,15 @@
 .navbar-search-control
     color: $color-font-primary
     font-size: var(--size-typo-s)
-    font-weight: 500
+    font-weight: 400
     line-height: var(--line-height-typo-s)
-    letter-spacing: 0.01em
+    letter-spacing: 0.018em
     width: 100%
     appearance: none
     box-shadow: none
     border: 0
     border-radius: 0
-    padding: 10px 0px 10px var(--gap-s)
+    padding: var(--gap-xs) 0px var(--gap-xs) var(--gap-s)
     position: relative
     display: block
 
@@ -168,12 +170,12 @@
     min-width: 182px
     border: 0
     border-radius: $border-radius
-    // box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
+    box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
     position: absolute
     visibility: hidden
     opacity: 0
     z-index: 1
-    background-color: $black
+    background: $white
     user-select: none
     transition: 125ms all ease
     transform: translate3d(0, 0, 0)
@@ -190,17 +192,18 @@
     padding-top: var(--gap-xs)
     padding-bottom: var(--gap-xs)
     &-item-separator
-        border-top: 1px solid rgba($white, .1)
-        border-bottom: 1px solid rgba($white, .1)
+        border-top: 1px solid $color-border
+        border-bottom: 1px solid $color-border
     &-item
-				width: 100%
-				position: relative
-				display: block
+        width: 100%
+        position: relative
+        display: block
 
 .navbar-dropdown-link
-    color: $color-font-primary-light
+    color: $color-font-primary
     font-size: var(--size-typo-s)
     font-weight: 400
+    letter-spacing: .03em
     line-height: var(--line-height-typo-s)
     vertical-align: baseline
     display: block
@@ -208,8 +211,7 @@
     background: transparent
 
     &:hover
-        color: $color-font-primary-light
-        background: $black-light
+        background: $gray-light
 
 
 
@@ -346,7 +348,7 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     font-size: var(--size-typo-m)
     font-weight: 400
     line-height: var(--line-height-typo-m)
-    letter-spacing: .06em
+    letter-spacing: .03em
     text-decoration: none
     appearance: none
     padding: var(--gap-s) 0
@@ -376,6 +378,21 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
     left: 0
     background: transparent
     border-bottom: none
+
+    & .navbar-burger-container-bar
+        background: $white
+
+    & .navbar-link
+        color: $color-font-primary-light
+        &:hover
+            color: $color-font-secondary-light
+
+
+
+// Dark navbar
+.navbar-dark
+    background: $black
+    border-bottom-color: $black
 
     & .navbar-burger-container-bar
         background: $white

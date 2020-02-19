@@ -73,6 +73,8 @@ gem 'geocoder'
 gem "money"
 # PDF Receipts templete
 gem 'receipts'
+# Hide deleted records but keep them in the database
+gem "paranoia", "~> 2.2"
 
 
 ## Errors
@@ -115,6 +117,12 @@ gem 'image_processing', '~> 1.10'
 gem 'uppy-s3_multipart', '>= 0.3.2'
 gem 'marcel'
 gem 'fastimage'
+
+
+
+## Contact form / Emails
+# Mandrill -> Email sender
+gem 'mandrill-api', require: "mandrill"
 
 
 

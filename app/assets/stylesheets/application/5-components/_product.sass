@@ -1,0 +1,33 @@
+// Product Card
+.product-card
+    display: block
+    width: 100%
+
+.product-card-link
+    display: block
+
+.product-card-photo
+    position: relative
+    border: 0
+    border-radius: $border-radius
+    overflow: hidden
+    background: transparent
+
+    &::before
+        content: ''
+        padding-bottom: 100%
+        display: block
+
+    & > img
+        margin: 0 auto
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
+        height: 100%
+        // width: 100%
+
+.product-card-info
+    margin-top: var(--gap-s)
+    text-align: center

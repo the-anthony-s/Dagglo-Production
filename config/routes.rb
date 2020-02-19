@@ -51,9 +51,11 @@ Rails.application.routes.draw do
   ## Seller Routes -> Admin + Show views
   resource :seller, path: "seller", except: [:index, :show, :new, :create] do
     member do
+      get 'help',                         action: :help, as: :help
       get 'dashboard',                    action: :dashboard, as: :dashboard
       get 'products',                     action: :products, as: :products
       get 'locations',                    action: :locations, as: :locations
+      # get 'users',                        action: :users, as: :users
       get 'activities',                   action: :activities, as: :activities
       get 'announcements',                action: :announcements, as: :announcements
 
@@ -88,26 +90,38 @@ Rails.application.routes.draw do
 
 
 
+  ## Carriers
+  resources :carriers, path: "carrier", only: [:new, :create]
+
+
+
   ## Product Routes
   resources :products, path: "seller/products", except: [:show, :destroy, :edit, :update]
   get 'product/:id', to: "products#show", as: :show_product
 
 
   ## Categories
-  resources :categories, path: "categories", except: [:edit, :update, :destroy, :new]
+  resources :categories, path: "categories", only: [:show, :index]
 
 
   # Search
   mount Searchjoy::Engine, at: "searchjoy"
 
-  resource :search, path: "search", only: [:show]
+  resource :search, path: "search", only: [:show], controller: :search
 
 
 
   # Site primary pages -> Home, About, Terms, Privacy
-  get '/home',    to: "pages#home"
-  get '/promo',   to: "pages#promo"
-  get '/sell',    to: "pages#sell"
+  get '/home',          to: "pages#home"
+  get '/promo',         to: "pages#promo"
+  get '/sell',          to: "pages#sell"
+  get '/terms',         to: "pages#terms"
+  get '/privacy',       to: "pages#privacy"
+
+
+
+  # Contacts
+  resources :contacts, only: [:new, :create], path: "contacts"
 
 
 
@@ -115,5 +129,6 @@ Rails.application.routes.draw do
   # root to: "pages#home"
   root to: "pages#promo"
 
+  match "*path" => redirect("/"), via: [:get, :post] # if 404 -> go to homepage
 
 end # end of routes

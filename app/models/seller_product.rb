@@ -25,6 +25,8 @@
 
 class SellerProduct < ApplicationRecord
 
+  acts_as_paranoid
+
   include PublicActivity::Model
   tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
           recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }

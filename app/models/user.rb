@@ -32,6 +32,9 @@
 #
 
 class User < ApplicationRecord
+
+  acts_as_paranoid
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -81,6 +84,11 @@ class User < ApplicationRecord
     end
   end
 
+  def s_owner
+    if seller_account.present?
+      seller_account.role == "owner"
+    end
+  end
 
 
   # User Greetings

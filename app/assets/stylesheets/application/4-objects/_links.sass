@@ -1,13 +1,13 @@
 a,
 .link
-    color: $color-secondary
+    color: $blue
     font-size: inhitit
     font-weight: 400
     text-decoration: none
     display: inline-block
 
     &:hover, &:focus
-        color: $color-font-primary
+        color: $blue-dark
         text-decoration: none
 
     & > span + span
@@ -20,3 +20,15 @@ a,
     
     &:hover
         color: $color-font-primary
+
+
+.link-promo
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    border-bottom: 1px solid $color-font-primary
+    padding: var(--gap-xs) 0
+    color: $color-font-primary
+    font-weight: 500
+    font-size: var(--size-typo-xxxl)
+    line-height: var(--line-height-size-xxl)

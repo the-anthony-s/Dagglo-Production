@@ -16,9 +16,19 @@ class Sellers::SellerAccountsController < ApplicationController
     seller_account.seller = @seller
 
     if seller_account.save
-      redirect_to settings_account_seller_path, notice: "Success"
+      redirect_to settings_account_seller_path, notice: "#{seller_account.user.full_name || seller_account.user.email} invited to #{seller_account.seller.name}"
     else
       render :new, alert: "Fail"
+    end
+  end
+
+
+  def destroy
+    if current_user.seller_account.role == "owner"
+      @seller_account.destroy
+      redirect_to settings_account_seller_path, notice: "#{@seller_account.user.full_name || @seller_account.user.email} removed from #{@seller.name}"
+    else
+      redirect_to dashboard_seller_path, notice: "You don't have access to delete users from #{@seller.name}"
     end
   end
 
@@ -32,7 +42,7 @@ class Sellers::SellerAccountsController < ApplicationController
   private
 
     def seller_account_params
-      params.require(:seller_account).permit(:email)
+      params.require(:seller_account).permit(:email, :role)
     end
 
 

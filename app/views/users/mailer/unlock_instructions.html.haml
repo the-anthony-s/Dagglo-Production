@@ -1,5 +1,144 @@
-%p
-  Hello #{@resource.email}!
-%p Your account has been locked due to an excessive number of unsuccessful sign in attempts.
-%p Click the link below to unlock your account:
-%p= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token)
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Unlock Instructions
+    %style{:media => "all", :rel => "stylesheet", :type => "text/css"}
+      :css
+        *:not(br):not(tr):not(html) {
+          font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+          box-sizing: border-box;
+          text-rendering: optimizeLegibility;
+          -webkit-box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+          color: #0e1012;
+          font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.2;
+          padding: 16px 0;
+          width: 100%;
+          max-width: 648px;
+          margin: 0 auto;
+          position: relative;
+          display: block
+          -webkit-text-size-adjust: none;
+        }
+        
+        .navbar {
+          width: 100%;
+          display: block;
+          margin-bottom: 64px;
+          text-align: left;
+        }
+        
+        .header {
+          width: 100%;
+          display: block;
+          margin-bottom: 32px;
+        }
+        
+        .content {
+          width: 100%;
+          position: relative;
+          display: block;
+        }
+        
+        .content + .content {
+          margin-top: 16px;
+          padding-top: 16px;
+          border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .content-block + .content-block {
+          margin-top: 16px;
+        }
+        
+        .footer {
+          margin-top: 64px;
+        }
+        
+        .footer > span {
+          color: #0e1012;
+          font-size: 16px;
+          font-weight: 400;
+          letter-spacing: .3px;
+          line-height: 24px;
+        }
+        
+        .hello-world {
+          color: #333333;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 22px;
+          letter-spacing: .2px;
+          text-align: center;
+          margin-top: 32px;
+        }
+        
+        .center {
+          text-align: center;
+        }
+        
+        a {
+          text-decoration: none;
+          color: #0075eb;
+        }
+        
+        h1 {
+          color: #0e1012;
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 1.4;
+          padding: 0;
+          margin: 0;
+        }
+        
+        p {
+          color: #333333;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          padding: 0;
+          margin: 0;
+        }
+        
+        p + p {
+          margin-top: 16px; 
+        }
+        
+        .button {
+          color: white;
+          font-size: 15px;
+          font-weight: 400;
+          letter-spacing: .5px;
+          line-height: 22px;
+          padding: 16px 32px;
+          min-width: 200px;
+          text-align: center;
+          background: #0e1012;
+          text-decoration: none;
+          display: inline-block;
+        }
+  %body
+    %section.navbar
+      navbar
+    %section.header.center
+      %h1 Reset Password Instructions
+    %section.content
+      .content-block.center
+        %p #{@resource.first_name}, your account has been locked due to an excessive number of unsuccessful sign in attempts. Click the link below to unlock your account:
+      .content-block.center
+        = link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token), class: "button"
+    %section.footer
+      %span
+        Thank you,
+        %br/
+        The Dagglo Team.
+    .hello-world Making wholesale better, together. Copyright © #{Time.current.year} Dagglo Inc.

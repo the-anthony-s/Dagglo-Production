@@ -83,12 +83,11 @@
     appearance: none
     border: 1px solid $color-border
     border-radius: $border-radius
-    background: $gray-lighter
+    background: $white
     width: 100%
     position: relative
     z-index: 1
     &:focus
-        background: $white
         border-color: $color-border-dark
     &-textarea
         min-height: 140px
@@ -346,3 +345,19 @@
 .select2-container--default .select2-results__option--highlighted[aria-selected]
     color: $color-font-primary-light !important
     background: $color-secondary !important
+
+
+
+// Uppy trumps
+.uppy-FileInput-btn
+    color: $color-font-primary !important
+    font-size: var(--size-typo-s) !important
+    font-weight: 500 !important
+    letter-spacing: .03em !important
+    padding: 10px var(--gap) !important
+    border-color: $black !important
+    border-radius: $border-radius !important
+    &:hover
+        color: $white !important
+        background: $black-light !important
+        border-color: $black-light !important

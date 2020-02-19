@@ -1,95 +1,113 @@
 = content_for :title, "Sell on Dagglo"
-= content_for :navbar_class, "navbar-absolute"
+= content_for :navbar_class, "navbar-dark"
 
-%header(id="promo#{Time.current.year}" class="hero")
-  %div(class="hero-background")
-    = image_tag asset_path('defaults/image.png'), loading: "lazy"
-  %div(class="content")
-    %div(class="hero-container")
-      %div(class="hero-header")
-        %div(class="hero-header-title")
-          %h1(class="text text-xxxl text-medium hero-title") Start locally, scale globally.
-        %div(class="hero-header-caption")
-          %p(class="text text-xxl hero-caption") Dagglo for Sellers is a business account platform for wholesale management, designed to save you time and money.
-        %div(class="hero-header-actions")
-          %div(class="hero-header-actions-item")
-            = link_to "Sign up to sell", new_seller_path, class: "button"
-          %div(class="hero-header-actions-item")
-            = link_to "Learn more about selling", "", class: "link"
+%div.page-container
 
-
-
-%section(class="section section-page")
-  %div(class="content")
-    %div(class="header header-center")
-      %h1(class="text text-xl text-medium") Sales. Analytics. Shipping. Made simple.
-
-    %div(class="section-page-block")
-      %div(class="grid-1-3")
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "tasks"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Order management
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "chart-network"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Analytics
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "shipping-fast"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Shipping
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "file-invoice-dollar"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Customers
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "users"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Collaborations
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "globe"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Localization
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
+    %header.hero
+        %div.hero-background-simple
+            = image_tag asset_path('hero/sell-hero.jpg'), loading: "lazy"
+        %div.hero-container.hero-container-lg
+            %div.content-page
+                %div.hero-header.hero-header-simple
+                    %div.hero-header-title
+                        %h1.text.text-xxxl.text-medium.text-primary-light Start locally, scale globally
+                    %div.hero-header-caption
+                        %p.text.text-xl.text-primary-light Dagglo for Sellers is a business account platform for wholesale management, designed to save you time and money.
+                    %div.hero-header-action
+                        - if user_signed_in? && current_user.s_account.present?
+                            = link_to "#{current_user.s_account.name}", dashboard_seller_path, class: "button button-light"
+                        - else
+                            = link_to "Get Early Access", new_seller_path, class: "button button-light"
 
 
 
-%section(class="secton section-gray section-page")
-  %div(class="content")
-    %div(class="header header-center")
-      %h1(class="text text-xl text-medium") No surprises, just fair and honest pricing
+    %section.section.section-page
+        %div.content-page
+            %div.section-header
+                %h1.text.text-xxl.text-medium Sales. Analytics. Shipping. Made simple.
+            %div.section-body
+                %div.grid-1-3
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "tasks"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Order managment
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary A streamlined way to process orders.
+                    
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "chart-bar"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Analytics
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary Real time data of your product sell- through.
+
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "usd-circle"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Net 60 (soon)
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary Increase sales by offering Net 60 to your leads and accounts.
+                    
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "globe-americas"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Customers
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary Contact your future customers directly with built-in chat functionality.
+
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "users"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Collaborations & Locations
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary Manage your team and locations on one dashboard.
+                    
+                    %div.col
+                        %div.testimonial
+                            %div.testimonial-icon #{icon "far", "megaphone"}
+                            %div.testimonial-header
+                                %h1.text.text-m.text-medium Marketing
+                            %div.testimonial-body
+                                %p.text.text-s.text-secondary Increase your online presence and sell everywhere.
+
+
+    - if @seller_plans.present?
+        %section.section.section-page
+            %div.content-page
+                %div.section-header
+                    %h1.text.text-xxl.text-medium No surprises, just fair and honest pricing
+                %div.section-body
+                    %div.grid-1-2
+                        - @seller_plans.each do |plan|
+                            %div.col
+                                %div.pricing
+                                    %div.pricing-title
+                                        %h1.text.text-eyebrow #{plan.name}
+                                    %div.pricing-price
+                                        %div.pricing-price-currency USD
+                                        %div.pricing-price-amount #{formatted_amount plan.amount}
+                                        %div.pricing-price-interval / #{plan.interval}
+                                    %div.pricing-desc
+                                        %div.pricing-desc-item
+                                            %div.pricing-desc-icon #{icon "far", "check"}
+                                            %div.pricing-desc-body 
+                                                %p.text.text-s #{plan.num_of_products} product showcases
+                                        %div.pricing-desc-item
+                                            %div.pricing-desc-icon #{icon "far", "check"}
+                                            %div.pricing-desc-body 
+                                                %p.text.text-s #{plan.num_of_locations} supported locations
+                                        %div.pricing-desc-item
+                                            %div.pricing-desc-icon #{icon "far", "check"}
+                                            %div.pricing-desc-body 
+                                                %p.text.text-s #{plan.num_of_locations} sub-accounts
+                                        %div.pricing-desc-item
+                                            %div.pricing-desc-icon #{icon "far", "check"}
+                                            %div.pricing-desc-body 
+                                                %p.text.text-s #{plan.analytics} analytics
+
+

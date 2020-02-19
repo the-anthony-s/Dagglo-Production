@@ -1,0 +1,9 @@
+%div(class="category-card")
+    %meta{:content => "#{category.name}", :itemprop => "name"}/
+    %meta{:content => "#{index}", :itemprop => "position"}/
+    %meta{:content => "#{category_path(category)}", :itemprop => "url"}/
+    = link_to category_path(category), class: "category-card-container" do
+        -# %div(class="category-card-image")
+        -#     = image_tag category.background(150, 150), loading: "lazy"
+        %div(class="category-card-name")
+            %h1(class="text text-s text-medium") #{category.name}

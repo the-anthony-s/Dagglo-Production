@@ -1,7 +1,34 @@
-.section
-  .content
-    -# = form_for [@seller, SellerAccount.new] do |f|
-    -# = form_for SellerAcc do |f|
-    = form_for :seller_account, url: accounts_path(@seller_account), method: :post do |f|
-      = f.text_field :email, required: true, placeholder: "Email"
-      = f.submit
+= content_for :title, "Add new staff"
+
+
+%div(class="container")
+
+  = form_for :seller_account, url: accounts_path(@seller_account), method: :post, :html => { class: "form" } do |f|
+
+    %div(class="header")
+      %div(class="content")
+        %div(class="header-container")
+          %div(class="header-title")
+            %h1(class="text text-xxl text-medium") Add new staff
+
+
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium space-bot-xs") Add staff:
+            %p(class="text text-s text-secondary space-bot-xs") Enter email to send an invitation to #{@seller.name}
+          %div(class="section-annotated-content")
+            %div(class="form-row")
+              %div(class="form-label")
+                = f.label :email, "Email"
+              %div(class="form-input")
+                = f.text_field :email, class: "form-control", required: true, autocomplete: "email"
+                = f.hidden_field :role, value: "manager"
+
+
+    %div(class="actions")
+      %div(class="content")
+        %div(class="actions-container")
+          %div(class="actions-item")
+            = button_tag "Send invitation", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Saving..."}

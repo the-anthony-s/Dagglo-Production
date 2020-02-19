@@ -1,0 +1,26 @@
+.category-card
+    display: block
+    position: relative
+    width: 100%
+
+    &-container
+        display: flex
+        flex-direction: row
+        align-items: center
+
+    &-image
+        flex: 0 0 auto
+        display: block
+        margin-right: var(--gap-s)
+        border: 0
+        border-radius: 100%
+        overflow: hidden
+
+        & > img
+            height: 48px
+            width: 48px
+            object-fit: cover
+
+            +desktop-sm
+                height: 68px
+                width: 68px

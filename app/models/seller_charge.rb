@@ -16,6 +16,8 @@
 #
 
 class SellerCharge < ApplicationRecord
+
+  acts_as_paranoid
   
   # include PublicActivity::Model
   # tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },

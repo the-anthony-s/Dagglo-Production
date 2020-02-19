@@ -6,27 +6,29 @@
         %div(class="sidebar-acc-picture")
           = image_tag @seller.logo(150, 150), loading: "lazy"
         %div(class="sidebar-acc-header")
-          %div(class="sidebar-acc-header-business") 
+          %div(class="sidebar-acc-header-business")
             %p(class="text text-s text-medium") #{@seller.name}
-          %div(class="sidebar-acc-header-name") 
+          %div(class="sidebar-acc-header-name")
             %p(class="text text-s text-secondary") #{current_user.full_name}
         %div(class="sidebar-acc-beta") beta
 
     %div(class="sidebar-center")
 
       %ul(class="sidebar-links")
-        %li(class="sidebar-links-item") 
+        %li(class="sidebar-links-item")
           = active_link_to "Home", dashboard_seller_path, class: "sidebar-link", active: :exclusive
-        %li(class="sidebar-links-item") 
+        %li(class="sidebar-links-item")
           = active_link_to "Products", products_seller_path, class: "sidebar-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']]
-        %li(class="sidebar-links-item") 
+        %li(class="sidebar-links-item")
           = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']]
-        %li(class="sidebar-links-item") 
+        %li(class="sidebar-links-item")
           = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']]
+
+
 
     %div(class="sidebar-bottom")
       %ul(class="sidebar-footer")
-        
+
         -# Sidebar announcement
         -# %li(class="sidebar-footer-item")
         -#   %div(class="sidebar-footer-card")
@@ -34,7 +36,7 @@
         -#       %p(class="text text-xs text-medium") Heading
         -#     %div(class="sidebar-footer-card-body")
         -#       %p(class="text text-xs text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempore non quaerat, autem ea maiores.
-        
+
         %li(class="sidebar-footer-item")
           = link_to root_path, class: "sidebar-footer-link" do
             %span #{icon "far", "store"}
@@ -43,7 +45,7 @@
           = link_to destroy_user_session_path, method: :delete, class: "sidebar-footer-link" do
             %span #{icon "far", "sign-out-alt"}
             %span Logout
-    
+
 
     -# Mobile Navigation
     %div(class="sidebar-mobile")
@@ -51,7 +53,7 @@
         %div(class="sidebar-burger-container")
           %div(class="sidebar-burger-container-bar sidebar-burger-container-barTop")
           %div(class="sidebar-burger-container-bar sidebar-burger-container-barBtm")
-    
+
     %div(class="sidebar-collapse")
       %div(class="sidebar-collapse-container")
         %div(class="sidebar-collapse-profile")
@@ -72,24 +74,24 @@
                   = link_to "Sign Up", new_user_registration_path, class: "sidebar-collapse-profile-link"
         %div(class="sidebar-collapse-menu")
           %ul(class="sidebar-collapse-block")
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = active_link_to dashboard_seller_path, class: "sidebar-collapse-link", active: :exclusive do
                 %span Home
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = active_link_to products_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']] do
                 %span Products
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']] do
                 %span Locations
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']] do
                 %span Settings
           %ul(class="sidebar-collapse-block")
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = link_to root_path, class: "sidebar-collapse-link" do
                 %span #{icon "far", "store"}
                 %span Return to Dagglo
-            %li(class="sidebar-collapse-block-item") 
+            %li(class="sidebar-collapse-block-item")
               = link_to root_path, class: "sidebar-collapse-link" do
                 %span #{icon "far", "sign-out-alt"}
                 %span Logout

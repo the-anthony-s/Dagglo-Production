@@ -13,30 +13,30 @@
               %div(class="form-col")
                 %div(class="form-label")
                   = f.label :first_name, "First name"
-                %div(class="form-form")
+                %div(class="form-input")
                   = invisible_captcha :first_name
                   = f.text_field :first_name, placeholder: nil, class: "form-control", autocomplete: "first name"
               %div(class="form-col")
                 %div(class="form-label")
                   = f.label :last_name, "Last name"
-                %div(class="form-form")
+                %div(class="form-input")
                   = invisible_captcha :last_name
                   = f.text_field :last_name, placeholder: nil, class: "form-control", autocomplete: "last name"
           %div(class="form-row")
             %div(class="form-label")
               = f.label :email, "Email"
-            %div(class="form-form")
+            %div(class="form-input")
               = invisible_captcha :email
               = f.email_field :email, placeholder: nil, class: "form-control", autocomplete: "email"
           %div(class="form-row")
             %div(class="form-label")
               = f.label :password, "Password"
-            %div(class="form-form")
+            %div(class="form-input")
               = f.password_field :password, placeholder: "#{@minimum_password_length}+ characters", class: "form-control", autocomplete: "new-password"
           %div(class="form-submit form-submit-center")
-            = button_tag "Create account", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Creating.."}
+            = button_tag "Create account", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Creating.."}
           %div(class="form-footer text-center")
-            %p(class="text text-s") By creating an account, you agree to our #{link_to "Terms of Service", "", class: "link"} and have read and understood the #{link_to "Privacy Policy", "", class: "link"}
+            %p(class="text text-s") By creating an account, you agree to our #{link_to "Terms of Service", terms_path, target: :_blank, class: "link"} and have read and understood the #{link_to "Privacy Policy", privacy_path, target: :_blank, class: "link"}
           %div(class="form-actions")
             %ul(class="auth-list")
               = render partial: "users/shared/links"

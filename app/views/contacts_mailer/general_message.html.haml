@@ -1,0 +1,14 @@
+%body{:style => "padding: 12px; margin: 0;"}
+  - if @contact.first_name.present? && @contact.last_name.present?
+    %p{:style => "margin: 0; font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} Name: #{@contact.first_name} #{@contact.last_name}
+  - if @contact.email.present?
+    %p{:style => "margin: 0; font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} Email: #{@contact.email}
+  - if @contact.created_at.present?
+    %p{:style => "margin: 0; font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} Date: #{@contact.created_at}
+  - if @contact.phone_number.present?
+    %p{:style => "margin: 0; font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} Phone: #{@contact.phone_number}
+  - if @contact.company.present?
+    %p{:style => "margin: 0; font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} Seller account: #{@contact.company}
+  %hr{:style => "border: 0; border-bottom: 1px solid #999;"}/
+  - if @contact.message.present?
+    %p{:style => "font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif; font-size: 14px; line-height: 20px; font-weight: 400; letter-spacing: .2px;"} #{@contact.message.html_safe}

@@ -20,9 +20,9 @@
       %div(class="section-annotated")
         %div(class="section-annotated-annotation")
           %p(class="text text-m text-medium space-bot-xs") Plan details:
-          %p(class="text text-s text-secondary") View our #{link_to "terms of service", "", class: "link"} and #{link_to "privacy policy", "", class: "link"}.
-          - if !@seller_subscription
-            %p(class="text text-s text-secondary space-top-m") #{link_to "Compare plans", seller_pricing_path, class: "link"} with different features and rates.
+          %p(class="text text-s text-secondary") View our #{link_to "terms of service", terms_path, target: :_blank, class: "link"} and #{link_to "privacy policy", privacy_path, target: :_blank, class: "link"}.
+          -# - if !@seller_subscription && current_user.s_owner
+          -#   %p(class="text text-s text-secondary space-top-m") #{link_to "Compare plans", seller_pricing_path, class: "link"} with different features and rates.
         %div(class="section-annotated-content")
           %div(class="body")
             %div(class="card")
@@ -92,8 +92,9 @@
       %div(class="section-annotated")
         %div(class="section-annotated-annotation")
           %p(class="text text-m text-medium space-bot-xs") Connected accounts:
-          %p(class="text text-s text-secondary space-bot-xs") Manage what staff can see or do in your store.
-          %p(class="text text-s text-secondary") #{link_to "Add more users", new_account_path, class: "link"}
+          %p(class="text text-s text-secondary") Manage what staff can see or do in your store.
+          - if current_user.s_owner
+            %p(class="text text-s text-secondary space-top-xs") #{link_to "Add more users", new_account_path, class: "link"}
         %div(class="section-annotated-content")
           %div(class="body")
             %ul(class="list")
@@ -102,41 +103,42 @@
                   -# %div(class="list-container list-container-center")
                   = link_to account_path(acc), class: "list-container list-container-center" do
                     %div(class="list-picture list-picture-rounded")
-                      = image_tag acc.user.avatar(150, 150), loading: "lazy"
+                      = image_tag acc.user.avatar(150, 150) || asset_path("defaults/avatar.png"), loading: "lazy"
                     %div(class="list-main")
-                      %h1(class="text text-s text-medium") #{acc.user.full_name}
+                      %h1(class="text text-s text-medium") #{acc.user.full_name || acc.user.email}
                       - if acc.role?
                         %p(class="text text-s text-secondary") #{acc.role.capitalize}
           -# %div(class="body")
           -#   = link_to "Invite Contributor", "", class: "button button-wide"
 
 
-  %section(class="section")
-    %div(class="content")
-      %div(class="section-annotated")
-        %div(class="section-annotated-annotation")
-          %p(class="text text-m text-medium") Seller account status:
-        %div(class="section-annotated-content")
-          %div(class="body")
-            %div(class="card")
-              %div(class="grid-1-2")
-                %div(class="col")
-                  %div(class="card-body")
-                    %div(class="text-center")
-                      - if @seller.private
-                        %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock-open"}
-                        %p(class="text text-s space-bot-xxxs") Make account public
-                        %p(class="text text-s text-secondary space-bot-l") Go public and increase the amount of customers. Your seller profile will be visible to all users and search engines.
-                        = button_to "Go public", seller_public_path(@seller), class: "button"
-                      - else
-                        %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock"}
-                        %p(class="text text-s space-bot-xxxs") Make account private
-                        %p(class="text text-s text-secondary space-bot-l") Your account will be invisible to all users and search engines. However, you can still take direct orders from your customers.
-                        = button_to "Go private", seller_private_path(@seller), class: "button"
-                %div(class="col")
-                  %div(class="card-body")
-                    %div(class="text-center")
-                      %h1(class="text text-xxxl space-bot-l") #{icon "fal", "times-circle"}
-                      %p(class="text text-s space-bot-xxxs") Close your account
-                      %p(class="text text-s text-secondary space-bot-l") Turn off your online sales. All related to #{@seller.name} information will be forever removed from Dagglo.
-                      = link_to "Close account", seller_path, method: :delete, class: "button"
+  - if current_user.s_owner
+    %section(class="section")
+      %div(class="content")
+        %div(class="section-annotated")
+          %div(class="section-annotated-annotation")
+            %p(class="text text-m text-medium") Seller account status:
+          %div(class="section-annotated-content")
+            %div(class="body")
+              %div(class="card")
+                %div(class="grid-1-2")
+                  %div(class="col")
+                    %div(class="card-body")
+                      %div(class="text-center")
+                        - if @seller.private
+                          %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock-open"}
+                          %p(class="text text-s space-bot-xxxs") Make account public
+                          %p(class="text text-s text-secondary space-bot-l") Go public and increase the amount of customers. Your seller profile will be visible to all users and search engines.
+                          = button_to "Go public", seller_public_path(@seller), class: "button"
+                        - else
+                          %h1(class="text text-xxxl space-bot-l") #{icon "fal", "lock"}
+                          %p(class="text text-s space-bot-xxxs") Make account private
+                          %p(class="text text-s text-secondary space-bot-l") Your account will be invisible to all users and search engines. However, you can still take direct orders from your customers.
+                          = button_to "Go private", seller_private_path(@seller), class: "button"
+                  %div(class="col")
+                    %div(class="card-body")
+                      %div(class="text-center")
+                        %h1(class="text text-xxxl space-bot-l") #{icon "fal", "times-circle"}
+                        %p(class="text text-s space-bot-xxxs") Close your account
+                        %p(class="text text-s text-secondary space-bot-l") Turn off your online sales. All related to #{@seller.name} information will be forever removed from Dagglo.
+                        = link_to "Close account", seller_path, method: :delete, class: "button"

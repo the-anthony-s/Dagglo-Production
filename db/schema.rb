@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_234440) do
+ActiveRecord::Schema.define(version: 2020_02_17_003434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,19 +86,54 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "carrier_trucks", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+  end
+
+  create_table "carriers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "business_name"
+    t.string "business_email"
+    t.string "phone"
+    t.string "country"
+    t.string "state"
+    t.integer "num_of_trucks"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "carriers_carrier_trucks", id: false, force: :cascade do |t|
+    t.integer "carrier_id"
+    t.integer "carrier_truck_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "ancestry"
     t.text "type_of_products"
     t.text "conditions_allowed"
     t.text "approval_required"
-    t.text "cover_date"
+    t.text "cover_data"
     t.boolean "pause", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
     t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "email"
+    t.string "phone_number"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -137,7 +172,9 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.bigint "owner_user_id"
     t.bigint "owner_seller_id"
     t.string "slug"
+    t.datetime "deleted_at"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["owner_seller_id"], name: "index_products_on_owner_seller_id"
     t.index ["owner_user_id"], name: "index_products_on_owner_user_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -168,6 +205,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.bigint "user_id"
     t.bigint "seller_id"
     t.bigint "seller_location_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_seller_accounts_on_deleted_at"
     t.index ["seller_id"], name: "index_seller_accounts_on_seller_id"
     t.index ["seller_location_id"], name: "index_seller_accounts_on_seller_location_id"
     t.index ["user_id"], name: "index_seller_accounts_on_user_id"
@@ -184,6 +223,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.string "card_exp_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_seller_charges_on_deleted_at"
     t.index ["seller_id"], name: "index_seller_charges_on_seller_id"
   end
 
@@ -201,6 +242,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "seller_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_seller_locations_on_deleted_at"
     t.index ["seller_id"], name: "index_seller_locations_on_seller_id"
   end
 
@@ -237,6 +280,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id"
     t.bigint "seller_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_seller_products_on_deleted_at"
     t.index ["product_id"], name: "index_seller_products_on_product_id"
     t.index ["seller_id"], name: "index_seller_products_on_seller_id"
   end
@@ -272,6 +317,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.string "card_last4"
     t.string "card_exp_month"
     t.string "card_exp_year"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_sellers_on_deleted_at"
     t.index ["slug"], name: "index_sellers_on_slug", unique: true
   end
 
@@ -310,7 +357,9 @@ ActiveRecord::Schema.define(version: 2020_02_06_234440) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.datetime "deleted_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

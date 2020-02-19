@@ -1,99 +1,109 @@
-= content_for :navbar_class, "navbar-absolute"
+= content_for :navbar_class, "navbar-dark"
 
-%header(id="promo#{Time.current.year}" class="hero")
-  %div(class="hero-background")
-    = image_tag asset_path('hero/home-hero.jpg'), loading: "lazy"
-  %div(class="content")
-    %div(class="hero-container hero-container-high")
-      %div(class="hero-header")
-        %div(class="hero-header-title")
-          %h1(class="text text-xxxl text-medium hero-title") Making wholesale better, together.
-        %div(class="hero-header-caption")
-          %p(class="text text-xxl hero-caption") Dagglo dreams of making wholesale for a more simple and transparent.
-        %div(class="hero-header-actions")
-          %div(class="hero-header-actions-item")
-            = link_to "Sign up to sell", new_seller_path, class: "button"
-          %div(class="hero-header-actions-item")
-            = link_to "Learn more about selling", "", class: "link"
+%div(class="page-container")
 
-
-
-%section(class="section section-page")
-  %div(class="content")
-    %div(class="header header-center")
-      %h1(class="text text-xl text-medium") We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.
-
-    %div(class="section-page-block")
-      %div(class="grid-1-3")
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "circle-notch"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Transparency
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") With clear, upfront pricing and unrivaled visibility, you always have the information needed to make the right business decisions.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "hand-point-up"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") Wholesale at your fingertips
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") Our streamlined workflow and 24/7 support keeps your business rolling, quickly, and efficiently.
-
-        %div(class="col")
-          %div(class="testimonial")
-            %div(class="testimonial-container")
-              %div(class="testimonial-icon")
-                = icon "far", "rocket-launch"
-              %div(class="testimonial-header")
-                %h1(class="text text-m text-medium") The Uber of freight
-              %div(class="testimonial-body")
-                %p(class="text text-s text-secondary") Uber technology has revolutionized the way people move. Now, we’re doing the same for the freight industry.
-
-
-%section(class="section section-gray section-page")
-  %div(class="content")
-    %div(class="banner")
-      %div(class="banner-container")
-        %div(class="banner-main")
-          %div(class="banner-title")
-            %h1(class="text text-xxl text-medium") Get Seller Early Access today
-          %div(class="banner-caption")
-            %p(class="text text-l text-secondary") Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        %div(class="banner-action")
-          = link_to "Apply now", sell_path, class: "button button-promo button-action"
+    %header(id="welcome" class="hero")
+        %div(class="hero-container")
+            %div(class="content-page")
+                %div(class="hero-header")
+                    %div(class="hero-header-message")
+                        %div(class="hero-header-message-container")
+                            %span(class="hero-header-message-new") new
+                            %span(class="hero-header-message-content") Sign up to sell before April 1st, get 3 months free
+                    %div(class="hero-header-title")
+                        %h1(class="text text-xxxl text-medium") Making wholesale better, together
+                    %div(class="hero-header-caption")
+                        %p(class="text text-l text-secondary") Dagglo dreams of making wholesale for a more simple and transparent.
+                    %div(class="hero-header-actions")
+                        %div(class="hero-header-actions-item") 
+                            = link_to sell_path, class: "button-hero" do
+                                %div(class="button-hero-icon") #{icon "far", "money-check-edit"}
+                                %div(class="button-hero-name") Seller
+                        %div(class="hero-header-actions-item") 
+                            = link_to new_carrier_path, class: "button-hero" do
+                                %div(class="button-hero-icon") #{icon "far", "truck"}
+                                %div(class="button-hero-name") Carrier
+        %div(class="hero-background")
+            = image_tag asset_path('hero/promo-hero.jpg'), loading: "lazy"
 
 
 
+    %section(class="section section-page")
+        %div(class="content-page")
+            %div(class="section-header section-header-center")
+                %h1(class="text text-xxl text-medium") We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.
+            %div(class="section-body")
+                %div(class="grid-1-3")
+                    %div(class="col")
+                        %div(class="testimonial")
+                            %div(class="testimonial-container")
+                                %div(class="testimonial-icon")
+                                    = icon "fal", "circle-notch"
+                                %div(class="testimonial-header")
+                                    %h1(class="text text-l text-medium") All on one platform
+                                %div(class="testimonial-body")
+                                    %p(class="text text-s text-secondary") Personalization, smart delivery, marketing, collaborations, order management, analytics.
+                    %div(class="col")
+                        %div(class="testimonial")
+                            %div(class="testimonial-container")
+                                %div(class="testimonial-icon")
+                                    = icon "fal", "globe"
+                                %div(class="testimonial-header")
+                                    %h1(class="text text-l text-medium") Sell everywhere
+                                %div(class="testimonial-body")
+                                    %p(class="text text-s text-secondary") On Dagglo, Instagram, Facebook, online store, in-store. One dashboard manages everything.
+                    %div(class="col")
+                        %div(class="testimonial")
+                            %div(class="testimonial-container")
+                                %div(class="testimonial-icon")
+                                    = icon "fal", "rocket-launch"
+                                %div(class="testimonial-header")
+                                    %h1(class="text text-l text-medium") Simple and safe
+                                %div(class="testimonial-body")
+                                    %p(class="text text-s text-secondary") Sales. Analytics. Shipping. Made simple. All for you.
 
-    -# %div(class="section-page-block section-page-block-separator")
-    -#   %div(class="grid-1-3")
-    -#     %div(class="col")
-    -#       %div(class="testimonial")
-    -#         = link_to "", clas: "testimonial-container" do
-    -#           %div(class="testimonial-header")
-    -#             %h1(class="text text-xxl text-medium") Start selling
-    -#           %div(class="testimonial-body")
-    -#             %p(class="text text-m text-secondary") Learn more about selling on Dagglo
-    -#
-    -#
-    -#     %div(class="col")
-    -#       %div(class="testimonial")
-    -#         = link_to "", clas: "testimonial-container" do
-    -#           %div(class="testimonial-header")
-    -#             %h1(class="text text-xxl text-medium") Available categories
-    -#           %div(class="testimonial-body")
-    -#             %p(class="text text-m text-secondary") Learn more about selling on Dagglo
-    -#
-    -#     %div(class="col")
-    -#       %div(class="testimonial")
-    -#         = link_to "", clas: "testimonial-container" do
-    -#           %div(class="testimonial-header")
-    -#             %h1(class="text text-xxl text-medium") Contact us
-    -#           %div(class="testimonial-body")
-    -#             %p(class="text text-m text-secondary") Learn more about selling on Dagglo
+
+
+    %section(class="section section-page")
+        %div(class="content-page")
+            %div(class="section-header")
+                %div(class="section-header section-header-center")
+                    %h1(class="text text-xxl text-medium") Explore Our Categories
+            %div(class="section-body")
+                %div(class="grid-1-3")
+                    - @categories = Category.is_active.roots.all
+                    - @categories.each_with_index do |category, index|
+                        %div(class="col")
+                            = render partial: "categories/elements/card", :locals => {:category => category, :index => index}
+            %div(class="section-body")
+                = link_to "View more", categories_path, class: "button button-wide button-action"
+    
+
+
+    %section(class="section section-page")
+        %div(class="content-page")
+            %div(class="section-body")
+                %div(class="grid-1-2")
+                    %div(class="col")
+                        = link_to sell_path, class: "link-promo" do
+                            %div(class="link-promo-body") Sign up to sell
+                            %div(class="link-promo-icon") #{icon "far", "long-arrow-right"}
+                    %div(class="col")
+                        = link_to new_carrier_path, class: "link-promo" do
+                            %div(class="link-promo-body") Carrier
+                            %div(class="link-promo-icon") #{icon "far", "long-arrow-right"}
+
+
+
+-# %section(class="section section-gray section-page")
+-#   %div(class="content-page")
+-#     %div(class="banner")
+-#       %div(class="banner-container")
+-#         %div(class="banner-main")
+-#           %div(class="banner-title")
+-#             %h1(class="text text-xxxl text-medium") Early access for sellers
+-#           %div(class="banner-caption")
+-#             %p(class="text text-l text-secondary") Sign up before April 1st, 2020 and get 3 first months free.
+-#         %div(class="banner-action")
+-#           %div(class="banner-action-item")
+-#             = link_to "Learn more", sell_path, class: "button button-promo button-primary"

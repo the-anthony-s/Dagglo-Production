@@ -1,0 +1,63 @@
+= content_for :title, "Help"
+
+
+%div(class="container")
+
+    %div(class="header")
+        %div(class="content")
+            %div(class="header-container")
+                %div(class="header-title")
+                    %h1(class="text text-xxl text-medium") Contact us
+
+
+
+    = form_for Contact.new, :html => {class: "form"} do |f|
+        %section.section
+            %div.content
+                %div.section-annotated
+                    %div.section-annotated-annotation
+                        %p(class="text text-m text-medium") Email form:
+                        = f.hidden_field :company, autocomplete: "off", class: "form-control", value: "#{@seller.name}"
+                    %div.section-annotated-content
+                        %div.form-row
+                            %div.form-grid
+                                %div.form-col
+                                    %div.form-label
+                                        = f.label :first_name, "First name"
+                                    %div.form-input
+                                        = f.text_field :first_name, autocomplete: "off", class: "form-control", value: "#{current_user.first_name}"
+                                %div.form-col
+                                    %div.form-label
+                                        = f.label :last_name, "Last name"
+                                    %div.form-input
+                                        = f.text_field :last_name, autocomplete: "off", class: "form-control", value: "#{current_user.last_name}"
+                        
+                        %div.form-row
+                            %div.form-grid
+                                %div.form-col
+                                    %div.form-label
+                                        = f.label :phone_number, "Phone number"
+                                    %div.form-input
+                                        = f.text_field :phone_number, autocomplete: "off", class: "form-control"
+                                %div.form-col
+                                    %div.form-label
+                                        = f.label :email, "Email address"
+                                    %div.form-input
+                                        = f.text_field :email, autocomplete: "off", class: "form-control", value: "#{current_user.email}"
+                        
+                        %div.form-row
+                            %div.form-label
+                                = f.label :message, "Message"
+                            %div.form-input
+                                = f.text_area :message, class: "form-control form-control-textarea"
+
+        
+
+        %div.actions
+            %div.content
+                %div.actions-container
+                    %div.actions-item
+                        = invisible_captcha :email
+                        = invisible_captcha :message
+                        = button_tag "Send email", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Sending..."}
+

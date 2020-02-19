@@ -7,10 +7,13 @@
         %li(class="footer-list-item")
           = link_to "Sell on Dagglo", sell_path, class: "footer-link"
         %li(class="footer-list-item")
-          = link_to "Contact us", "", class: "footer-link"
+          = link_to "Sign up to be a carrier", new_carrier_path, class: "footer-link"
         %li(class="footer-list-item")
-          = link_to "Terms of Service", "", class: "footer-link"
+          -# = link_to "Contact us", new_contact_path, class: "footer-link"
+          = mail_to "help@dagglo.com", "Contacts", class: "footer-link"
         %li(class="footer-list-item")
-          = link_to "Privacy Policy", "", class: "footer-link"
+          = link_to "Terms of Service", terms_path, class: "footer-link"
+        %li(class="footer-list-item")
+          = link_to "Privacy Policy", privacy_path, class: "footer-link"
     %div(class="footer-block")
       %p(class="text text-xs text-secondary") Copyright © #{Time.current.year} Dagglo Inc. All rights reserved.

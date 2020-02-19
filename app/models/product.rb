@@ -22,6 +22,8 @@
 
 class Product < ApplicationRecord
 
+  acts_as_paranoid
+
   # Custom IDs for URLs
   extend FriendlyId
   friendly_id :name, use: :slugged, :use => :history
@@ -44,23 +46,19 @@ class Product < ApplicationRecord
 
 
   # Mandatory fields
-  validates_presence_of :name, :barcode
-  # validates :category_id, presence: true
+  validates_presence_of :name, :barcode, :category
 
 
 
   # Search configurations
-  searchkick callbacks: :async, conversions: :conversions, match: :text_middle, searchable: [:name, :barcode], suggest: [:name]
-
-  scope :search_import, -> { includes(:seller_products, :sellers, :category) }
+  searchkick callbacks: :async, conversions: [:conversions], match: :text_middle, searchable: [:name, :barcode, :category], suggest: [:name, :barcode, :category]
+  scope :search_import, -> { includes(:category) }
 
   def search_data
     {
       name: name,
       barcode: barcode,
-      product_country: country,
-      # description: description,
-      # category: category.name,
+      category: category.name,
       # sellers: sellers.map(&:name),
       conversions: map_conversions
       # conversions: searches.group(:query).uniq.count(:user_id)

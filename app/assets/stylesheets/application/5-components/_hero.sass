@@ -1,92 +1,136 @@
 .hero
-    display: block
+    width: 100%
+    margin-right: auto
+    margin-left: auto
     position: relative
+    display: block
+
+
+// Background image, Block mobile, Absolute Tablet
+.hero-background
+    height: 282px
     width: 100%
-
-
-
-// Use to define the size of hero object
-.hero-container
-    padding-top: calc(var(--gap-r-m) + var(--navbar-height))
-    padding-bottom: var(--gap-r-m)
-    width: 100%
-    display: flex
-    flex-direction: column
-    justify-content: flex-end
+    position: relative
+    background: $black
 
     +desktop-sm
-        justify-content: center
-
-
-.hero-container-high
-    min-height: 90vh
-
-    +tablet
-        max-height: 542px
-
-
-
-// Image/Video background
-.hero-background
-    position: absolute
-    top: 0
-    left: 0
-    bottom: 0
-    right: 0
-    height: 100%
-    width: 100%
+        height: 100%
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
 
     & > img
         height: 100%
         width: 100%
         object-fit: cover
-        // filter: grayscale(50%)
 
+.hero-background-simple
+    height: 100%
+    width: 100%
+    position: relative
+    background: $black
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+
+    &::after
+        content: ""
+        background: rgba($black, .3)
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+
+    & > img
+        display: none
+        height: 100%
+        width: 100%
+        object-fit: cover
+
+        +tablet
+            display: block
+
+
+// Hero height
+.hero-container
+    width: 100%
+    padding-top: var(--gap-r-m)
+    padding-bottom: var(--gap-r-m)
 
 
 // Header
 .hero-header
+    width: 100%
+    text-align: center
     background: $white
-    max-width: 640px
+
+    +desktop-sm
+        text-align: left
+        padding: var(--gap-r) var(--gap-r)
+        max-width: 522px
+
+.hero-header-message
+    margin-bottom: var(--gap-s)
+    &-container
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+        width: 100%
+
+        +desktop-sm
+            justify-content: flex-start
+    &-new
+        flex: 0 0 auto
+        background: $green
+        border-radius: 24px
+        color: $color-font-primary-light
+        font-size: 10px
+        font-weight: 500
+        text-transform: uppercase
+        padding: 2px var(--gap-xs)
+        margin-right: var(--gap-xs)
+    &-content
+        color: $color-font-primary
+        font-size: var(--size-typo-s)
+        font-weight: 400
+        line-height: var(--line-height-typo-s)
+        letter-spacing: .015em
+
+.hero-header-title
     width: 100%
-    padding: var(--gap)
-
-    +tablet
-        padding: 0
-        background: transparent
-
-
-.hero-header-title,
-.hero-header-caption,
-.hero-header-actions
-    width: 100%
+    display: block
 
 .hero-header-caption
     margin-top: var(--gap-s)
 
+.hero-header-action
+    margin-top: var(--gap)
 
 .hero-header-actions
     margin-top: var(--gap)
-    display: flex
-    flex-direction: column
     width: 100%
-    position: relative
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    
+    +desktop-sm
+        justify-content: flex-start
+
+    &-item
+        flex: 1 1 100%
 
     &-item + &-item
-        margin-top: var(--gap-s)
+        margin-top: 0
+        margin-left: var(--gap-s)
 
 
-
-
-.hero-title
-    color: $color-font-primary
-
-    +tablet
-        color: $color-font-primary-light
-
-
-.hero-caption
-    color: $color-font-secondary
-
-    +tablet
-        color: $color-font-secondary-light
+.hero-header-simple
+    background: transparent !important
+    padding: 0

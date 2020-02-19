@@ -82,7 +82,6 @@ class Seller < ApplicationRecord
   end
 
 
-
   # Images configuration
   include ImageUploader::Attachment(:image)
 

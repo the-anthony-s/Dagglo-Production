@@ -5,7 +5,6 @@ class SellersController < ApplicationController
 
   layout :seller_dashboard_layout, except: [:show, :new]
 
-
   def new
     safely {
       if current_user.s_account
@@ -36,9 +35,9 @@ class SellersController < ApplicationController
       if current_user.s_account.present? && current_user.seller.present?
         @seller = current_user.seller
 
-        if @seller.subscription
-          @seller.subscription.cancel
-        end
+        # if @seller.subscription
+        #   @seller.subscription.cancel
+        # end
 
         @seller.destroy
         redirect_to new_seller_path, notice: "Seller subscription canceled. #{@seller.name} deleted."

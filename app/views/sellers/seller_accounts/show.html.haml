@@ -6,11 +6,23 @@
     %div(class="content")
       %div(class="header-container")
         %div(class="header-picture")
-          = image_tag @seller_account.user.avatar(300, 300), loading: "lazy"
+          = image_tag @seller_account.user.avatar(300, 300) || asset_path("defaults/avatar.png"), loading: "lazy"
         %div(class="header-title")
           %h1(class="text text-xxl text-medium") #{@seller_account.user.full_name}
           - if @seller_account.role?
             %p(class="text text-m text-secondary") #{@seller_account.role.capitalize}
+        - if current_user.s_owner && current_user.seller_account.id != @seller_account.id
+          %div(class="header-actions")
+            %div(class="header-actions-item")
+              = form_for :seller_account, url: accounts_path(@seller_account) do |f|
+                = link_to account_path(@seller_account), class: "button-circle button-circle-delete", method: :delete do
+                  %div(class="button-circle-icon") #{icon "fal", "trash"}
+                  %div(class="button-circle-name") Delete
+          -# %div(class="header-actions-item")
+          -#   = link_to users_seller_path, class: "button-circle" do
+          -#     %div(class="button-circle-icon") #{icon "fal", "users"}
+          -#     %div(class="button-circle-name") Users
+
 
 
   - if @activities.present?

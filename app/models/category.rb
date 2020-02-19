@@ -31,4 +31,21 @@ class Category < ApplicationRecord
   scope :is_active, -> { where(pause: false) }
 
 
+
+  # Background image
+  include ImageUploader::Attachment(:cover)
+
+  def background(height = nil, width = nil)
+    if cover.present?
+      if height != nil && width != nil
+        cover.derivation_url(:thumbnail, height, width).to_s
+      else
+        image.url
+      end
+    else
+      ActionController::Base.helpers.asset_path("defaults/" + ["image.png"].compact.join('_'))
+    end
+  end
+
+
 end

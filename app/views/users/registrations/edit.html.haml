@@ -1,51 +1,76 @@
-.content
-  %h2
-    Edit #{resource_name.to_s.humanize}
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = render "devise/shared/error_messages", resource: resource
-    .field
-      = f.label :email
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %div
-        Currently waiting confirmation for: #{resource.unconfirmed_email}
-    .field
-      = f.label :password
-      %i (leave blank if you don't want to change it)
-      %br/
-      = f.password_field :password, autocomplete: "new-password"
-      - if @minimum_password_length
-        %br/
-        %em
-          = @minimum_password_length
-          characters minimum
-    .field
-      = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "new-password"
-    .field
-      = f.label :current_password
-      %i (we need your current password to confirm your changes)
-      %br/
-      = f.password_field :current_password, autocomplete: "current-password"
-    %br
-    %br
-    %br
-    .field
-      = f.label :image, "Avatar"
-      = f.file_field :image,
-        accept: ImageUploader::ALLOWED_TYPES.join(","),
-        data: {upload_server: upload_server, preview_element: "user-image", upload_result_element: "user-image-upload-result"}
-      = f.hidden_field :image, value: current_user.cached_image_data, id: "user-image-upload-result"
-      %div(class="image-preview")
-        = image_tag current_user.image_url(:medium).to_s, width: 300, class: "img-thumbnail file-upload-preview", id: "user-image"
-    %br
-    %br
-    %br
-    .actions
-      = f.submit "Update"
-  %h3 Cancel my account
-  %p
-    Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-  = link_to "Back", :back
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form", method: :put }) do |f|
+  %header(class="header")
+    %div(class="content-tight")
+      %div(class="header-container")
+        %div(class="header-profile")
+          %div(class="header-profile-image")
+            -# = image_tag current_user.avatar(300, 300), loading: "lazy"
+            = image_tag current_user.avatar(300, 300), class: "img-thumbnail file-upload-preview", id: "user-image", loading: "lazy"
+          %div(class="header-profile-name")
+            %h1(class="text text-l text-bold") #{current_user.full_name}
+          %div(class="header-profile-action")
+            = f.file_field :image, accept: ImageUploader::ALLOWED_TYPES.join(","), data: {upload_server: upload_server, preview_element: "user-image", upload_result_element: "user-image-upload-result"}
+            = f.hidden_field :image, value: current_user.cached_image_data, id: "user-image-upload-result"
+
+
+
+  %section(class="section")
+    %div(class="content-tight")
+
+      %div(class="section-body")
+        %div(class="section-body-header")
+          %h3(class="text text-l text-medium") Account Details
+        %div(class="section-body-block")
+          = render "devise/shared/error_messages", resource: resource
+          %div(class="form-row")
+            %div(class="form-grid")
+              %div(class="form-col")
+                %div(class="form-label")
+                  = f.label :first_name, "First name"
+                %div(class="form-input")
+                  = f.text_field :first_name, placeholder: nil, class: "form-control", autocomplete: "first name"
+              %div(class="form-col")
+                %div(class="form-label")
+                  = f.label :last_name, "Last name"
+                %div(class="form-input")
+                  = f.text_field :last_name, placeholder: nil, class: "form-control", autocomplete: "last name"
+          %div(class="form-row")
+            %div(class="form-label")
+              = f.label :email, "Email"
+            %div(class="form-input")
+              = f.email_field :email, placeholder: nil, class: "form-control", autocomplete: "email"
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              %div(class="form-caption")
+                %p(class="text text-s") Currently waiting confirmation for: #{resource.unconfirmed_email}
+      
+
+      %div(class="section-body")
+        %div(class="section-body-header")
+          %h3(class="text text-l text-medium") Change password
+        %div(class="section-body-block")
+          %div(class="form-row")
+            %div(class="form-grid")
+              %div(class="form-col")
+                %div(class="form-label")
+                  = f.label :current_password, "Current password"
+                %div(class="form-input")
+                  = f.password_field :current_password, placeholder: "#{@minimum_password_lenth}+ symbols", class: "form-control", autocomplete: "new-password"
+              %div(class="form-col")
+                %div(class="form-label")
+                  = f.label :password, "New password"
+                %div(class="form-input")
+                  = f.password_field :password, placeholder: "#{@minimum_password_lenth}+ symbols", class: "form-control", autocomplete: "new-password"
+
+            
+      %div(class="section-body")
+        %div(class="section-body-block")
+          %div(class="form-row text-center")
+            = f.submit "Update profile", class: "button button-save"
+
+
+-#     .actions
+-#       = f.submit "Update"
+-#   %h3 Cancel my account
+-#   %p
+-#     Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+-#   = link_to "Back", :back

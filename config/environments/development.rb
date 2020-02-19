@@ -4,6 +4,10 @@ Rails.application.configure do
   # Set up the default URL options for the Devise mailer in each environment
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  # Mailcatcher setup
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
   # Use for subdomains
   config.hosts << "lvh.me"
 

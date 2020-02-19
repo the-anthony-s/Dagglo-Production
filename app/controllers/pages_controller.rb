@@ -8,7 +8,10 @@ class PagesController < ApplicationController
     @seller_plans = SellerPlan.is_active.all.order(created_at: :asc)
   end
 
-  def show
-    render template: "pages/#{params[:page]}"
+  def terms
   end
+
+  def privacy
+  end
+
 end

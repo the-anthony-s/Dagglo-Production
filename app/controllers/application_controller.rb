@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   after_action :track_action
 
   before_action :store_user_location!, if: :storable_location?
-  before_action :set_time_zone, if: :user_signed_in?
+  before_action :set_time_zone
   # before_action :set_locale
 
 
@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
   # Default Time Zone detector
   # Works with jstz -> webpack -> timezone.js
   def set_time_zone
-    if current_user.time_zone.present?
+    if user_signed_in? && current_user.time_zone.present?
       Time.zone = current_user.time_zone
     else
       # Get browser time zone if current user's time_zone value = nil
-      # Time.zone = ActiveSupport::TimeZone.find_tzinfo(cookies[:timezone])
+      Time.zone = cookies[:timezone]
     end
   end
 

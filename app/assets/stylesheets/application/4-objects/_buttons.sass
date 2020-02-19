@@ -2,6 +2,7 @@
     color: $color-font-primary
     font-size: var(--size-typo-s)
     font-weight: 500
+    letter-spacing: .03em
     text-decoration: none
     text-transform: none
     padding: 10px var(--gap)
@@ -22,6 +23,7 @@
     display: inline-block
 
     &:hover
+        color: $color-font-primary
         background: $gray
         border-color: $gray
     
@@ -36,8 +38,44 @@
 
 
 
-// Action
-.button-action
+// Variations
+.button-light
+    color: $color-font-primary
+    background: $white
+    border-color: $white
+    &:hover
+        color: $color-font-primary
+        background: $gray
+        border-color: $gray
+
+.button-light-outline
+    color: $white
+    border-color: $white
+    background: transparent
+    &:hover
+        color: $color-font-primary
+        background: $gray
+        border-color: $gray
+
+.button-primary
+    color: $white
+    background: $pink
+    border-color: $pink
+    &:hover
+        color: $white
+        background: $pink-dark
+        border-color: $pink-dark
+
+.button-primary-outline
+    color: $black
+    border-color: $black
+    background: transparent
+    &:hover
+        color: $white
+        border-color: $black-light
+        background: $black-light
+
+.button-secondary
     color: $white
     background: $color-secondary
     border-color: $color-secondary
@@ -46,7 +84,31 @@
         background: $color-secondary-dark
         border-color: $color-secondary-dark
 
+.button-save
+    color: $white
+    border-color: $green
+    background: $green
+    &:hover
+        color: $white
+        border-color: $green-dark
+        background: $green-dark
+
+.button-delete
+    color: $red
+    background: $white
+    border-color: $white
+    &:hover
+        color: $red-dark
+        background: $red-lighter
+        border-color: $red-lighter
+
     
+
+// Modifications
+.button-action
+    border-radius: 24px
+
+
 
 // Styles
 .button-responsive
@@ -61,3 +123,32 @@
     font-size: var(--size-typo-m)
     line-height: var(--line-height-typo-m)
     padding: var(--gap-s) var(--gap-r-m)
+
+
+
+// Hero buttons
+.button-hero
+    padding: var(--gap-s) var(--gap-r)
+    background: $gray
+    border-radius: $border-radius
+    display: flex
+    flex-direction: column
+    text-align: center
+    color: $color-font-primary
+
+    &:hover, &:focus, &:active
+        background: $black
+        color: $white
+
+    &-icon
+        font-size: var(--size-typo-m)
+        font-weight: 500
+        line-height: var(--line-height-typo-m)
+        margin-bottom: var(--gap-xs)
+
+    &-name
+        font-size: var(--size-typo-l)
+        font-weight: 500
+        line-height: var(--line-height-typo-l)
+        width: 100%
+        text-align: center

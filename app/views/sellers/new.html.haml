@@ -1,5 +1,17 @@
-.section
-  .content-tight
-    = form_for Seller.new do |f|
-      = f.text_field :name
-      = f.submit
+= content_for :title, "Log In"
+
+%section(class="auth")
+  %div(class="content")
+    %div(class="auth-content")
+      %div(class="auth-header")
+        %h1(class="text text-xxl text-medium") Apply to Sell
+        %p(class="text text-m") Register before April 1st, get 3 months free
+      %div(class="auth-body")
+        = form_for(Seller.new, html: {class: "form"}) do |f|
+          %div(class="form-row")
+            %div(class="form-label")
+              = f.label :name, "Legal business name"
+            %div(class="form-input")
+              = f.text_field :name, class: "form-control", autocomplete: "off", placeholder: "My Business Ltd"
+            %div(class="form-submit form-submit-center")
+              = button_tag "Get Early Access", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Redirecting..."}

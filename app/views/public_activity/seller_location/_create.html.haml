@@ -13,7 +13,10 @@
         
         %div(class="activity-main")
           %div(class="activity-message")
-            %p(class="text text-s") #{link_to activity.trackable.name, location_path(activity.trackable_id), class: "link"} created by #{link_to activity.owner.full_name, account_path(activity.owner.seller_account), class: "link"}
+            %p(class="text text-s") 
+              = link_to activity.trackable.name, location_path(activity.trackable_id), class: "link"
+              created by
+              = link_to activity.owner.full_name, activity.owner.seller_account.present? ? account_path(activity.owner.seller_account) : settings_account_seller_path, class: "link"
           %div(class="activity-time")
             %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
 

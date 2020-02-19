@@ -1,0 +1,24 @@
+-# - if @products.suggestions.any?
+-#   llll
+
+-# .section
+-#   .content
+-#     - @products.each do |p|
+-#       %p #{link_to p.name, show_product_path(p), class: "link"}
+
+
+%section(class="section")
+  %div(class="content")
+    
+    - if @products.present?
+      %div(class="section-block")
+        %div(class="grid-products")
+          - @products.each_with_index do |product, index|
+            %div(class="col-products")
+              = render partial: "products/elements/product", :locals => {:product => product, :index => index}
+    
+    
+    - else
+      %div(class="section-block")
+        %h1(class="text text-xl text-bold") No results
+        %p(class="text text-l text-secondary") We couldn't find anything matching your search. Try searching other keywords.
