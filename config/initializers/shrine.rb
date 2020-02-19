@@ -6,10 +6,10 @@ when :s3, :s3_multipart
   require "shrine/storage/s3"
 
   s3_options = {
-    access_key_id:     Rails.application.credentials[Rails.env.to_sym][:digitalocean][:spaces_key],
-    secret_access_key: Rails.application.credentials[Rails.env.to_sym][:digitalocean][:spaces_secret],
-    region:            Rails.application.credentials[Rails.env.to_sym][:digitalocean][:spaces_region],
-    bucket:            Rails.application.credentials[Rails.env.to_sym][:digitalocean][:spaces_bucket],
+    access_key_id:     Rails.application.credentials.digitalocean[:spaces_key],
+    secret_access_key: Rails.application.credentials.digitalocean[:spaces_secret],
+    region:            Rails.application.credentials.digitalocean[:spaces_region],
+    bucket:            Rails.application.credentials.digitalocean[:spaces_bucket],
   }
 
   # both `cache` and `store` storages are needed
