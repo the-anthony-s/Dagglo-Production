@@ -27,8 +27,7 @@ module Dagglo
     elsif Rails.env.production?
       :s3
     else
-      # :app
-      :s3
+      :app
     end
   end
 end
