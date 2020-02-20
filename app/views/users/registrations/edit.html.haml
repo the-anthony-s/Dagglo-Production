@@ -4,7 +4,6 @@
       %div(class="header-container")
         %div(class="header-profile")
           %div(class="header-profile-image")
-            -# = image_tag current_user.avatar(300, 300), loading: "lazy"
             = image_tag current_user.avatar(300, 300), class: "img-thumbnail file-upload-preview", id: "user-image", loading: "lazy"
           %div(class="header-profile-name")
             %h1(class="text text-l text-bold") #{current_user.full_name}

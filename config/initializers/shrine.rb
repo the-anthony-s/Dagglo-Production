@@ -10,12 +10,15 @@ when :s3, :s3_multipart
     secret_access_key: Rails.application.credentials.digitalocean[:spaces_secret],
     region:            Rails.application.credentials.digitalocean[:spaces_region],
     bucket:            Rails.application.credentials.digitalocean[:spaces_bucket],
+    endpoint:          Rails.application.credentials.digitalocean[:spaces_endpoint]
   }
 
   # both `cache` and `store` storages are needed
   Shrine.storages = {
-    cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options),
-    store: Shrine::Storage::S3.new(**s3_options),
+    # cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options),
+    # store: Shrine::Storage::S3.new(**s3_options),
+    cache: Shrine::Storage::S3.new(prefix: "cache", upload_options: {acl: 'public-read'}, **s3_options),
+    store: Shrine::Storage::S3.new(prefix: 'store', upload_options: {acl: 'public-read'}, **s3_options)
   }
 when :app
   require "shrine/storage/file_system"
