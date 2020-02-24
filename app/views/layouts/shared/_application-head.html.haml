@@ -1,3 +1,18 @@
+%link{:href => "/apple-touch-icon.png", :rel => "apple-touch-icon", :sizes => "180x180"}/
+%link{:href => "/favicon-32x32.png", :rel => "icon", :sizes => "32x32", :type => "image/png"}/
+%link{:href => "/favicon-194x194.png", :rel => "icon", :sizes => "194x194", :type => "image/png"}/
+%link{:href => "/android-chrome-192x192.png", :rel => "icon", :sizes => "192x192", :type => "image/png"}/
+%link{:href => "/favicon-16x16.png", :rel => "icon", :sizes => "16x16", :type => "image/png"}/
+%link{:href => "/site.webmanifest", :rel => "manifest"}/
+%link{:color => "#000000", :href => "/safari-pinned-tab.svg", :rel => "mask-icon"}/
+%meta{:content => "Dagglo", :name => "apple-mobile-web-app-title"}/
+%meta{:content => "Dagglo", :name => "application-name"}/
+%meta{:content => "#000000", :name => "msapplication-TileColor"}/
+%meta{:content => "/mstile-144x144.png", :name => "msapplication-TileImage"}/
+%meta{:content => "#ffffff", :name => "theme-color"}/
+
+
+/ Primary Meta Tags
 %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
 %meta{:charset => "utf-8"}/
 %meta{:content => "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
@@ -5,8 +20,24 @@
 %meta{:name => "HandheldFriendly", :contnet => "true"}
 %meta{:name => "MobileOptimized", :content => "176"}
 %title #{content_for?(:title) ? "#{yield(:title)} | Dagglo" : 'Dagglo | Making wholesale better, together'}
+%meta{:content => "Dagglo | Making wholesale better, together", :name => "title"}/
+%meta{:content => "We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.", :name => "description"}/
+/ Open Graph / Facebook
+%meta{:content => "website", :property => "og:type"}/
+%meta{:content => "https://dagglo.com/", :property => "og:url"}/
+%meta{:content => "Dagglo | Making wholesale better, together", :property => "og:title"}/
+%meta{:content => "We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.", :property => "og:description"}/
+%meta{:content => "", :property => "og:image"}/
+/ Twitter
+%meta{:content => "summary_large_image", :property => "twitter:card"}/
+%meta{:content => "https://dagglo.com/", :property => "twitter:url"}/
+%meta{:content => "Dagglo | Making wholesale better, together", :property => "twitter:title"}/
+%meta{:content => "We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.", :property => "twitter:description"}/
+%meta{:content => "", :property => "twitter:image"}/
+
 = csrf_meta_tags
 = csp_meta_tag
+-# = display_meta_tags
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'

@@ -69,11 +69,24 @@
 
 
 .navbar-root
-    color: $color-secondary
-    font-size: var(--size-typo-l)
-    font-weight: 700
-    line-height: var(--line-height-typo-l)
-    display: block
+    display: flex
+    align-items: flex-end
+    &-logo
+        height: 32px
+        width: 32px
+        fill: $color-secondary
+    &-beta
+        color: $color-font-secondary
+        font-weight: 600
+        font-size: var(--size-typo-xs)
+        line-height: var(--line-height-typo-xs)
+        display: none
+        margin-left: var(--gap-xs)
+        +tablet
+            display: block
+    &:hover
+        &-logo
+            fill: $color-font-secondary
 
 
 .navbar-search

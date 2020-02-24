@@ -4,7 +4,12 @@
     %div(class="navbar-container")
       %div(class="navbar-left")
         = link_to root_path, class: "navbar-root" do
-          %span Dgl.
+          %span(class="navbar-root-logo")
+            %svg{:preserveaspectratio => "xMidYMid meet", :version => "1.0", :viewbox => "0 0 200.000000 200.000000", :xmlns => "http://www.w3.org/2000/svg"}
+              %g{:stroke => "none", :transform => "translate(0.000000,200.000000) scale(0.100000,-0.100000)"}
+                %path{:d => "M697 1890 c-206 -52 -337 -272 -281 -472 6 -20 23 -23 56 -8 22 10\n23 16 23 108 0 87 3 102 27 143 82 140 251 194 391 126 59 -30 133 -103 143\n-144 4 -13 10 -23 14 -23 22 0 70 24 70 35 0 22 -77 129 -115 158 -88 69 -228\n102 -328 77z"}
+                %path{:d => "M855 1399 c-352 -121 -648 -228 -657 -236 -38 -34 -35 -42 236 -633\n102 -223 194 -411 203 -418 12 -9 33 -12 63 -8 41 5 1001 331 1053 357 40 21\n67 52 67 78 0 25 -92 408 -130 541 -11 36 -35 130 -55 210 -62 252 -82 310\n-111 320 -14 6 -26 10 -27 10 -1 -1 -290 -100 -642 -221z"}
+          %span(class="navbar-root-beta") beta
       
       
       - unless controller.controller_name == "pages" && controller.action_name == "home"

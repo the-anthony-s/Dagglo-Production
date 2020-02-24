@@ -44,6 +44,8 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'ancestry'
 # Seed data generator
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+# Meta Tags -> SEO
+gem 'meta-tags'
 
 
 
