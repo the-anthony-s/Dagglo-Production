@@ -10,9 +10,11 @@ class PagesController < ApplicationController
   end
 
   def terms
+    @terms = Term.last
   end
 
   def privacy
+    @privacy = Privacy.last
   end
 
 end

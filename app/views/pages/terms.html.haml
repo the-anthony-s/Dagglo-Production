@@ -1,3 +1,10 @@
-.content-tight
-  %h1.space-bot-xxxl Terms of Use
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- if @terms.present?
+  %section(class="section section-page")
+    %div(class="content-tight")
+      %div(class="section-header")
+        %div(class="section-header-title")
+          %h1(class="text text-xxl text-bold") #{@terms.name}
+        %div(class="section-header-caption")
+          %p(class="text text-s text-secondary") PLEASE NOTE THAT YOUR USE OF AND ACCESS TO OUR SERVICES (DEFINED BELOW) ARE SUBJECT TO THE FOLLOWING TERMS; IF YOU DO NOT AGREE TO ALL OF THE FOLLOWING, YOU MAY NOT USE OR ACCESS THE SERVICES IN ANY MANNER.
+      %div(class="section-body")
+        %p #{@terms.content.html_safe}
