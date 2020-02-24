@@ -1,7 +1,7 @@
 // Mobile toggle menu
 document.addEventListener("turbolinks:load", function () {
   var burger = document.querySelector('.navbar-burger, .sidebar-burger'),
-      navbar = document.querySelector('.navbar'),
+      navbar = document.querySelector('.navbar, .sidebar'),
       menu = document.querySelector('.navbar-collapse, .sidebar-collapse'),
       body = document.querySelector('body');
 

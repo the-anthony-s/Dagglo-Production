@@ -1,97 +1,139 @@
 %div(class="sidebar")
-  %div(class="sidebar-container")
+  %div(class="sidebar-in")
+    %div(class="sidebar-container")
 
-    %div(class="sidebar-top")
-      = link_to dashboard_seller_path, class: "sidebar-acc" do
-        %div(class="sidebar-acc-picture")
-          = image_tag @seller.logo(150, 150), loading: "lazy"
-        %div(class="sidebar-acc-header")
-          %div(class="sidebar-acc-header-business")
-            %p(class="text text-s text-medium") #{@seller.name}
-          %div(class="sidebar-acc-header-name")
-            %p(class="text text-s text-secondary") #{current_user.full_name}
-        %div(class="sidebar-acc-beta") beta
+      %div(class="sidebar-top")
+        = link_to dashboard_seller_path, class: "sidebar-acc" do
+          %div(class="sidebar-acc-picture")
+            = image_tag @seller.logo(150, 150), loading: "lazy"
+          %div(class="sidebar-acc-header")
+            %div(class="sidebar-acc-header-business")
+              %p(class="text text-s text-medium") #{@seller.name}
+            %div(class="sidebar-acc-header-name")
+              %p(class="text text-s text-secondary") #{current_user.full_name}
+          %div(class="sidebar-acc-beta") beta
 
-    %div(class="sidebar-center")
+      %div(class="sidebar-center")
 
-      %ul(class="sidebar-links")
-        %li(class="sidebar-links-item")
-          = active_link_to "Home", dashboard_seller_path, class: "sidebar-link", active: :exclusive
-        %li(class="sidebar-links-item")
-          = active_link_to "Products", products_seller_path, class: "sidebar-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']]
-        %li(class="sidebar-links-item")
-          = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']]
-        %li(class="sidebar-links-item")
-          = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']]
-
-
-
-    %div(class="sidebar-bottom")
-      %ul(class="sidebar-footer")
-
-        -# Sidebar announcement
-        -# %li(class="sidebar-footer-item")
-        -#   %div(class="sidebar-footer-card")
-        -#     %div(class="sidebar-footer-card-header")
-        -#       %p(class="text text-xs text-medium") Heading
-        -#     %div(class="sidebar-footer-card-body")
-        -#       %p(class="text text-xs text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempore non quaerat, autem ea maiores.
-
-        %li(class="sidebar-footer-item")
-          = link_to root_path, class: "sidebar-footer-link" do
-            %span #{icon "far", "store"}
-            %span to dagglo.com
-        %li(class="sidebar-footer-item")
-          = link_to destroy_user_session_path, method: :delete, class: "sidebar-footer-link" do
-            %span #{icon "far", "sign-out-alt"}
-            %span Logout
+        %ul(class="sidebar-links")
+          %li(class="sidebar-links-item")
+            = active_link_to "Home", dashboard_seller_path, class: "sidebar-link", active: :exclusive
+          %li(class="sidebar-links-item")
+            = active_link_to "Products", products_seller_path, class: "sidebar-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']]
+          %li(class="sidebar-links-item")
+            = active_link_to "Locations", locations_seller_path, class: "sidebar-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']]
+          %li(class="sidebar-links-item")
+            = active_link_to "Settings", settings_seller_path, class: "sidebar-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']]
 
 
-    -# Mobile Navigation
-    %div(class="sidebar-mobile")
-      %div(class="sidebar-burger")
-        %div(class="sidebar-burger-container")
-          %div(class="sidebar-burger-container-bar sidebar-burger-container-barTop")
-          %div(class="sidebar-burger-container-bar sidebar-burger-container-barBtm")
+
+      %div(class="sidebar-bottom")
+        %ul(class="sidebar-footer")
+
+          -# Sidebar announcement
+          -# %li(class="sidebar-footer-item")
+          -#   %div(class="sidebar-footer-card")
+          -#     %div(class="sidebar-footer-card-header")
+          -#       %p(class="text text-xs text-medium") Heading
+          -#     %div(class="sidebar-footer-card-body")
+          -#       %p(class="text text-xs text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempore non quaerat, autem ea maiores.
+
+          %li(class="sidebar-footer-item")
+            = link_to root_path, class: "sidebar-footer-link" do
+              %span #{icon "far", "store"}
+              %span to dagglo.com
+          %li(class="sidebar-footer-item")
+            = link_to destroy_user_session_path, method: :delete, class: "sidebar-footer-link" do
+              %span #{icon "far", "sign-out-alt"}
+              %span Logout
+
+
+      -# Mobile Navigation
+      %div(class="sidebar-mobile")
+        %div(id="sidebarBurger" class="sidebar-burger")
+          %div(class="sidebar-burger-container")
+            %div(class="sidebar-burger-container-bar sidebar-burger-container-barTop")
+            %div(class="sidebar-burger-container-bar sidebar-burger-container-barBtm")
+
+      -# %div(class="sidebar-collapse")
+      -#   %div(class="sidebar-collapse-container")
+      -#     %div(class="sidebar-collapse-profile")
+      -#       %div(class="sidebar-collapse-profile-container")
+      -#         - if user_signed_in?
+      -#           %div(class="sidebar-collapse-profile-picture")
+      -#             = image_tag current_user.avatar(300, 300), loading: "lazy"
+      -#           %div(class="sidebar-collapse-profile-actions")
+      -#             %div(class="sidebar-collapse-profile-action")
+      -#               = link_to "Account", edit_user_registration_path, class: "sidebar-collapse-profile-link"
+      -#             %div(class="sidebar-collapse-profile-action")
+      -#               = link_to "Logout", destroy_user_session_path, method: :delete, class: "sidebar-collapse-profile-link"
+      -#         - else
+      -#           %div(class="sidebar-collapse-profile-actions")
+      -#             %div(class="sidebar-collapse-profile-action")
+      -#               = link_to "Log In", new_user_session_path, class: "sidebar-collapse-profile-link"
+      -#             %div(class="sidebar-collapse-profile-action")
+      -#               = link_to "Sign Up", new_user_registration_path, class: "sidebar-collapse-profile-link"
+      -#     %div(class="sidebar-collapse-menu")
+      -#       %ul(class="sidebar-collapse-block")
+      -#         %li(class="sidebar-collapse-block-item")
+      -#           = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']] do
+      -#             %span Settings
+      -#       %ul(class="sidebar-collapse-block")
+      -#         %li(class="sidebar-collapse-block-item")
+      -#           = link_to root_path, class: "sidebar-collapse-link" do
+      -#             %span #{icon "far", "store"}
+      -#             %span Return to Dagglo
+      -#         %li(class="sidebar-collapse-block-item")
+      -#           = link_to root_path, class: "sidebar-collapse-link" do
+      -#             %span #{icon "far", "sign-out-alt"}
+      -#             %span Logout
+
 
     %div(class="sidebar-collapse")
-      %div(class="sidebar-collapse-container")
-        %div(class="sidebar-collapse-profile")
-          %div(class="sidebar-collapse-profile-container")
-            - if user_signed_in?
-              %div(class="sidebar-collapse-profile-picture")
-                = image_tag current_user.avatar(300, 300), loading: "lazy"
-              %div(class="sidebar-collapse-profile-actions")
-                %div(class="sidebar-collapse-profile-action")
-                  = link_to "Account", edit_user_registration_path, class: "sidebar-collapse-profile-link"
-                %div(class="sidebar-collapse-profile-action")
-                  = link_to "Logout", destroy_user_session_path, method: :delete, class: "sidebar-collapse-profile-link"
-            - else
-              %div(class="sidebar-collapse-profile-actions")
-                %div(class="sidebar-collapse-profile-action")
-                  = link_to "Log In", new_user_session_path, class: "sidebar-collapse-profile-link"
-                %div(class="sidebar-collapse-profile-action")
-                  = link_to "Sign Up", new_user_registration_path, class: "sidebar-collapse-profile-link"
-        %div(class="sidebar-collapse-menu")
-          %ul(class="sidebar-collapse-block")
-            %li(class="sidebar-collapse-block-item")
-              = active_link_to dashboard_seller_path, class: "sidebar-collapse-link", active: :exclusive do
-                %span Home
-            %li(class="sidebar-collapse-block-item")
-              = active_link_to products_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']] do
-                %span Products
-            %li(class="sidebar-collapse-block-item")
-              = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']] do
-                %span Locations
-            %li(class="sidebar-collapse-block-item")
-              = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']] do
-                %span Settings
-          %ul(class="sidebar-collapse-block")
-            %li(class="sidebar-collapse-block-item")
-              = link_to root_path, class: "sidebar-collapse-link" do
-                %span #{icon "far", "store"}
-                %span Return to Dagglo
-            %li(class="sidebar-collapse-block-item")
-              = link_to root_path, class: "sidebar-collapse-link" do
-                %span #{icon "far", "sign-out-alt"}
-                %span Logout
+      %div(class="sidebar-collapse-block")
+        %ul(class="sidebar-collapse-links")
+          %li
+            = active_link_to dashboard_seller_path, class: "sidebar-collapse-link", active: :exclusive do
+              %span(class="sidebar-collapse-link-icon") #{icon "far", "home"}
+              %span(class="sidebar-collapse-link-content") Home
+          %li
+            = active_link_to products_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'products', 'seller_products'], ['show', 'edit', 'new', 'products']] do
+              %span(class="sidebar-collapse-link-icon") #{icon "far", "boxes-alt"}
+              %span(class="sidebar-collapse-link-content") Products
+          %li
+            = active_link_to locations_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_locations'], ['locations', 'show', 'edit', 'new']] do
+              %span(class="sidebar-collapse-link-icon") #{icon "far", "map-marker-alt"}
+              %span(class="sidebar-collapse-link-content") Locations
+          %li
+            = active_link_to settings_seller_path, class: "sidebar-collapse-link", active: [['sellers', 'seller_subscriptions', 'seller_cards', 'seller_payments', 'seller_charges', 'seller_pricing'], ['account', 'general', 'settings', 'billing', 'shipping', 'faq', 'new', 'show', 'edit']] do
+              %span(class="sidebar-collapse-link-icon") #{icon "far", "cog"}
+              %span(class="sidebar-collapse-link-content") Settings
+      
+      - if user_signed_in?
+        %div(class="sidebar-collapse-block")
+          = link_to edit_user_registration_path, class: "sidebar-collapse-profile" do
+            %div(class="sidebar-collapse-profile-avatar")
+              = image_tag current_user.avatar(100, 100), loading: "lazy"
+            %div(class="sidebar-collapse-profile-name")
+              %p(class="text text-s text-medium") #{current_user.full_name}
+        
+        %div(class="sidebar-collapse-block")
+          %ul(class="sidebar-collapse-links")
+            %li
+              = link_to "Logout", destroy_user_session_path, method: :delete, class: "sidebar-collapse-link"
+
+      - else
+        %div(class="sidebar-collapse-block")
+          %ul(class="sidebar-collapse-links")
+            %li
+              = link_to t('buttons.user_session'), new_user_session_path, class: "sidebar-collapse-link"
+            %li
+              = link_to t('buttons.user_registration'), new_user_registration_path, class: "sidebar-collapse-link"
+
+
+      %div(class="sidebar-collapse-block")
+        %ul(class="sidebar-collapse-links")
+          %li
+            = link_to root_path, class: "sidebar-collapse-link" do
+              %span(class="sidebar-collapse-link-icon") #{icon "far", "chevron-left"}
+              %span(class="sidebar-collapse-link-content") back to Dagglo

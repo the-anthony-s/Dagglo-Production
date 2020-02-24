@@ -1,52 +1,74 @@
-// Sidebar Positioning
 .sidebar
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    z-index: 99
+    +desktop-sm
+        position: relative
+        height: 100%
+        width: 100%
+
+.sidebar-in
     position: relative
-    height: 100%
     width: 100%
+    height: 100%
+    background: none
+
+
+.sidebar.is-open .sidebar-in
+    position: fixed
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    overflow-y: auto
+
 
 .sidebar-container
-    height: 100%
+    height: var(--navbar-height)
     width: 100%
     position: relative
     display: flex
     justify-content: space-between
     flex-direction: row
     align-items: center
-
+    z-index: 100
     +desktop-sm
+        height: 100%
         flex-direction: column
         align-items: center
+
 
 .sidebar-top
     flex: 1 1 100%
     width: 100%
     padding: var(--gap)
-
     +desktop-sm
         flex: 0 0 auto
+
 
 .sidebar-center
     flex: 1 1 100%
     display: none
     justify-content: center
     padding: 0 var(--gap)
-
     +tablet
         width: 100%
         padding: var(--gap) 0
-
-
     +desktop-sm
         display: flex
         align-items: center
         justify-content: flex-start
+
 
 .sidebar-bottom
     display: none
     flex: 1 1 100%
     width: 100%
     padding: var(--gap)
-
     +desktop-sm
         flex: 0 0 auto
         display: block
@@ -54,9 +76,9 @@
 
 .sidebar-mobile
     margin-left: var(--gap)
+    padding: 0 var(--gap)
     flex: 0 0 auto
     display: block
-
     +desktop-sm
         display: none
 
@@ -66,7 +88,6 @@
     display: flex
     flex-direction: row
     align-items: center
-
     +desktop-sm
         flex-direction: column
         align-items: flex-start
@@ -76,7 +97,6 @@
         flex: 0 0 auto
         width: auto
         position: relative
-
         & > img
             height: var(--icon)
             width: var(--icon)
@@ -90,7 +110,6 @@
         width: 100%
         positon: relative
         margin: var(--gap-s) 0
-
         +desktop-sm
             display: block
 
@@ -109,7 +128,6 @@
         border-radius: 24px
         padding: 2px var(--gap)
         margin-left: var(--gap-s)
-
         +desktop-sm
             margin-left: 0
 
@@ -120,12 +138,11 @@
     width: 100%
     position: relative
     display: none
-
     +desktop-sm
         display: block
-
     &-item
         width: 100%
+
 
 .sidebar-link
     color: $color-font-secondary
@@ -140,25 +157,20 @@
     display: block
     padding: var(--gap-s) var(--gap)
     vertical-align: baseline
-
     &:hover
         background: $gray-light
-    
     &.active
         color: $color-font-primary
         font-weight: 600
         // border-color: $color-primary
         background: $gray-light
-    
     & > span + span
         margin-left: var(--gap-xxs)
-
 
 
 // Footer
 .sidebar-footer
     display: block
-    
     &-item + &-item
         margin-top: var(--gap-s)
 
@@ -170,7 +182,6 @@
     line-height: var(--line-height-typo-s)
     vertical-align: baseline
     position: relative
-
     & > span + span
         margin-left: var(--gap-xxs)
       
@@ -179,163 +190,134 @@
     border: 1px solid $color-border-dark
     border-radius: $border-radius
     padding: var(--gap-xs)
-
     &-body
         margin-top: var(--gap-xs)
 
 
-
 // Mobile -> Hamburget + Collapse
-$cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99)
+$btn-transition: .12s ease-in-out
+$btn-delay: .05s
 
 .sidebar-burger
+    height: var(--navbar-height)
     position: relative
-    display: inline-block
-    height: var(--icon)
-    width: var(--icon)
     cursor: pointer
-    border: 0
-    border-radius: 50%
-    transform: rotate(0deg)
-    transition: all 0.3s $cubic
     user-select: none
     -webkit-tap-highlight-color: transparent
     z-index: 99
-    
     &-container
         width: 18px
         height: 8px
         position: relative
         display: block
-        margin: -4px auto 0
+        margin: -8px auto 0
         top: 50%
+        transform: rotate(0deg)
+        transition: $btn-transition
         &-bar
             width: 100%
             height: 2px
             display: block
             position: relative
-            background: $color-font-secondary
-            transtion: all .2s $cubic
-            transition-delay: 0.1s
-            
+            background: $color-font-primary
+            transtion: $btn-transition
+            transition-delay: $btn-delay
             &Top
                 transform: translateY(0px) rotate(0deg)
-
             &Btm
                 transform: translateY(6px) rotate(0deg)
-
+    &-name
+        display: none
+        color: $color-font-primary
+        font-size: var(--size-typo-s)
+        font-weight: 600
+        margin-left: var(--gap-xs)
+        +tablet
+            display: block
 
 .sidebar-burger.is-open
-    transform: rotate(90deg)
-    background: $white
-
+    .sidebar-burger-container
+        transform: rotate(90deg)
     .sidebar-burger-container .sidebar-burger-container-bar
-        transition: all 0.2s $cubic
-        transition-delay: 0.1s
+        transition: $btn-transition
+        transition-delay: $btn-delay
         background: $color-font-primary
 
         &Top
             transform: translateY(4px) rotate(45deg)
-
         &Btm
             transform: translateY(2px) rotate(-45deg)
-
-
+    
+    
+// Mobile collapse menu
 .sidebar-collapse
-    position: fixed
+    position: absolute
     top: 0
     right: 0
     left: 0
-    bottom: 0
-    width: 100%
-    min-height: 100vh
-    overflow-y: auto
+    padding-top: var(--navbar-height)
+    padding-bottom: var(--gap-r)
+    pointer-events: none
     background: $white
-    z-index: 9
-    transition: all .15s ease
-    visibility: hidden
     opacity: 0
-
+    transform: translateY(-20px)
+    transition: opacity .3s ease,transform .3s ease,-webkit-transform .3s ease
+    z-index: 1
+    +desktop-sm
+        display: none
+        visibility: hidden
+        opacity: 0
     &.is-open
-        visibility: visible
         opacity: 1
-        +desktop-sm
-            display: none !important
+        pointer-events: all
+        transform: translateY(0)
+        bottom: 0
 
-.sidebar-collapse-container
-    padding: 76px var(--gap) 45vh
-    +tablet
-        padding: 126px var(--gap) 45vh
-
-.sidebar-collapse-profile
-    display: block
-    position: relative
-    padding: var(--gap) 0
-    &-container
-        display: flex
-        flex-direction: column
-        position: relative
-    &-picture
-        display: block
-        position: relative
-        margin-bottom: var(--gap-m)
-        & > img
-            margin: 0 auto
-            border: 0;
-            border-radius: 50%
-            height: 68px
-            width: 68px
-            position: relative
-            display: block
-            object-fit: cover
-    &-actions
-        display: flex
-        flex-direction: row
-        flex-wrap: wrap
-        justify-content: space-around
-    &-action
-        flex: 0 0 auto
-    &-link
-        color: $color-font-secondary
-        font-size: var(--size-typo-s)
-        font-weight: 400
-        line-height: var(--line-height-typo-s)
-        appearance: none
-        text-transform: none
-        text-decoration: none
-        position: relative
-        &:hover, &:action, &:focus
-            color: $color-font-primary
 
 .sidebar-collapse-block
-    display: block
-    position: relative
-    width: 100%
-    padding: var(--gap) 0
-    border-top: 1px solid $color-border
-  
+    padding-top: var(--gap-r)
+    padding-bottom: var(--gap-r)
+    & + &
+        border-top: 1px solid $color-border
+
+
 .sidebar-collapse-link
     color: $color-font-primary
+    font-weight: 600
     font-size: var(--size-typo-m)
-    font-weight: 400
     line-height: var(--line-height-typo-m)
-    letter-spacing: .06em
-    text-decoration: none
-    appearance: none
-    padding: var(--gap-s) 0
-    display: block
-    transition: all .15s ease
-    &:active, &:focus, &:hover
-        font-weight: 600
-        background: $gray-lighter
+    padding: var(--gap-s) var(--gap-r)
+    display: flex
+    flex-direction: row
+    // align-items: center
+    .sidebar-collapse-link-icon
+        flex: 0 0 auto
+        width: 22px
+        margin-right: var(--gap-xs)
+        vertical-align: middle
+    .sidebar-collapse-link-content
+        flex: 1 1 100%
+        max-width: 100%
+
+    &:hover, &:focus, &.active
+        color: $color-font-primary
+        background: $gray-light
+
+
+.sidebar-collapse-profile
+    padding: var(--gap-r) var(--gap-r)
+    display: flex
+    align-items: center
+
+    .sidebar-collapse-profile-avatar
+        flex: 0 0 auto
+        width: auto
         border: 0
-        border-radius: $border-radius
-        padding: var(--gap-s)
-    &.active
-        font-weight: 600
-        background: $gray
-        border: 0
-        border-radius: $border-radius
-        padding: var(--gap-s)
-    & > span + span
-        margin-left: var(--gap-xs)
+        border-radius: 50%
+        overflow: hidden
+        margin-right: var(--gap-xs)
+
+        & > img
+            height: 42px
+            width: 42px
+            object-fit: cover
