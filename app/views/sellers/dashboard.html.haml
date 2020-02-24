@@ -11,7 +11,7 @@
           -# %p(class="text text-s text-secondary") Timezone: #{Time.now}
         %div(class="header-actions")
           %div(class="header-actions-item")
-            = link_to help_seller_path, class: "button-circle button-circle-action" do
+            = mail_to "help@dagglo.com", class: "button-circle button-circle-action" do
               %div(class="button-circle-icon") #{icon "fal", "envelope"}
               %div(class="button-circle-name") Help
 

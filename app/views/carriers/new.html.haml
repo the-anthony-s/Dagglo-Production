@@ -1,8 +1,8 @@
 %section.section.section-page
     %div.content.content-tight
         %div.section-header.section-header-center
-            %h1.text.text-xxxl Drive your business forward
-            %p.text.text-m.text-secondary With instant booking, free quick pay, facility ratings, and upfront, no-haggle pricing, Dagglo Carrier puts you in the driver’s seat. Submit the registration form to start hauling today.
+            %h1.text.text-xxl.text-bold.space-bot-l Drive your business forward
+            %p.text.text-m With instant booking, free quick pay, facility ratings, and upfront, no-haggle pricing, Dagglo Carrier puts you in the driver’s seat. Submit the registration form to start hauling today.
         %div.section-body
             = form_for(@carrier, :html => {class: "form"}) do |f|
                 %div.form-row
@@ -36,4 +36,4 @@
                     %div.form-input
                         = f.text_area :comment, class: "form-control form-control-textarea", autocompelte: "off"
                 %div.form-submit.text-center
-                    = f.submit "Submit", class: "button button-action button-primary button-responsive"
+                    = f.submit "Submit", class: "button button-primary button-responsive"

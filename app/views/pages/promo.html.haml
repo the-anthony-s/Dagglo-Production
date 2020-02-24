@@ -1,109 +1,83 @@
-= content_for :navbar_class, "navbar-dark"
-
-%div(class="page-container")
-
-    %header(id="welcome" class="hero")
-        %div(class="hero-container")
-            %div(class="content-page")
-                %div(class="hero-header")
-                    %div(class="hero-header-message")
-                        %div(class="hero-header-message-container")
-                            %span(class="hero-header-message-new") new
-                            %span(class="hero-header-message-content") Sign up to sell before April 1st, get 3 months free
-                    %div(class="hero-header-title")
-                        %h1(class="text text-xxxl text-medium") Making wholesale better, together
-                    %div(class="hero-header-caption")
-                        %p(class="text text-l text-secondary") Dagglo dreams of making wholesale for a more simple and transparent.
-                    %div(class="hero-header-actions")
-                        %div(class="hero-header-actions-item") 
-                            = link_to sell_path, class: "button-hero" do
-                                %div(class="button-hero-icon") #{icon "far", "money-check-edit"}
-                                %div(class="button-hero-name") Seller
-                        %div(class="hero-header-actions-item") 
-                            = link_to new_carrier_path, class: "button-hero" do
-                                %div(class="button-hero-icon") #{icon "far", "truck"}
-                                %div(class="button-hero-name") Carrier
-        %div(class="hero-background")
-            = image_tag asset_path('hero/promo-hero.jpg'), loading: "lazy"
+%header.hero
+    %div.hero-container
+        %div.content-page
+            %div.hero-header
+                %div.hero-header-announcement
+                    - if user_signed_in? && current_user.s_account
+                        = link_to dashboard_seller_path, target: :_blank, class: "container" do
+                            %span.label New
+                            %span.message Early access for wholesalers
+                            %span.arrow #{icon "far", "external-link"}
+                    - else
+                        = link_to new_seller_path, class: "container" do
+                            %span.label New
+                            %span.message Early access for wholesalers
+                %div.hero-header-title
+                    %h1.text.text-xxl.text-bold Making wholesale better, together
+                %div.hero-header-caption
+                    %p.text.text-l We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.
 
 
 
-    %section(class="section section-page")
-        %div(class="content-page")
-            %div(class="section-header section-header-center")
-                %h1(class="text text-xxl text-medium") We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.
-            %div(class="section-body")
-                %div(class="grid-1-3")
-                    %div(class="col")
-                        %div(class="testimonial")
-                            %div(class="testimonial-container")
-                                %div(class="testimonial-icon")
-                                    = icon "fal", "circle-notch"
-                                %div(class="testimonial-header")
-                                    %h1(class="text text-l text-medium") All on one platform
-                                %div(class="testimonial-body")
-                                    %p(class="text text-s text-secondary") Personalization, smart delivery, marketing, collaborations, order management, analytics.
-                    %div(class="col")
-                        %div(class="testimonial")
-                            %div(class="testimonial-container")
-                                %div(class="testimonial-icon")
-                                    = icon "fal", "globe"
-                                %div(class="testimonial-header")
-                                    %h1(class="text text-l text-medium") Sell everywhere
-                                %div(class="testimonial-body")
-                                    %p(class="text text-s text-secondary") On Dagglo, Instagram, Facebook, online store, in-store. One dashboard manages everything.
-                    %div(class="col")
-                        %div(class="testimonial")
-                            %div(class="testimonial-container")
-                                %div(class="testimonial-icon")
-                                    = icon "fal", "rocket-launch"
-                                %div(class="testimonial-header")
-                                    %h1(class="text text-l text-medium") Simple and safe
-                                %div(class="testimonial-body")
-                                    %p(class="text text-s text-secondary") Sales. Analytics. Shipping. Made simple. All for you.
+%section.section.section-page
+    %div.content-page
+        %div.section-body
+            %div.grid-1-3
+                %div.col
+                    %div.testimonial
+                        %div.testimonial-container
+                            %div.testimonial-icon
+                                = icon "fal", "dollar-sign"
+                            %div.testimonial-header
+                                %p.text.text-m.text-bold 100% free for all type of retailers
+                %div.col
+                    %div.testimonial
+                        %div.testimonial-container
+                            %div.testimonial-icon
+                                = icon "fal", "laptop-code"
+                            %div.testimonial-header
+                                %p.text.text-m.text-bold Developed for business with love
+                %div.col
+                    %div.testimonial
+                        %div.testimonial-container
+                            %div.testimonial-icon
+                                = icon "fal", "circle-notch"
+                            %div.testimonial-header
+                                %p.text.text-m.text-bold Sales, analytics. shipping, made simple
 
 
 
-    %section(class="section section-page")
-        %div(class="content-page")
-            %div(class="section-header")
-                %div(class="section-header section-header-center")
-                    %h1(class="text text-xxl text-medium") Explore Our Categories
-            %div(class="section-body")
-                %div(class="grid-1-3")
-                    - @categories = Category.is_active.roots.all
-                    - @categories.each_with_index do |category, index|
-                        %div(class="col")
-                            = render partial: "categories/elements/card", :locals => {:category => category, :index => index}
-            %div(class="section-body")
-                = link_to "View more", categories_path, class: "button button-wide button-action"
-    
-
-
-    %section(class="section section-page")
-        %div(class="content-page")
-            %div(class="section-body")
-                %div(class="grid-1-2")
-                    %div(class="col")
-                        = link_to sell_path, class: "link-promo" do
-                            %div(class="link-promo-body") Sign up to sell
-                            %div(class="link-promo-icon") #{icon "far", "long-arrow-right"}
-                    %div(class="col")
-                        = link_to new_carrier_path, class: "link-promo" do
-                            %div(class="link-promo-body") Carrier
-                            %div(class="link-promo-icon") #{icon "far", "long-arrow-right"}
-
-
-
--# %section(class="section section-gray section-page")
--#   %div(class="content-page")
--#     %div(class="banner")
--#       %div(class="banner-container")
--#         %div(class="banner-main")
--#           %div(class="banner-title")
--#             %h1(class="text text-xxxl text-medium") Early access for sellers
--#           %div(class="banner-caption")
--#             %p(class="text text-l text-secondary") Sign up before April 1st, 2020 and get 3 first months free.
--#         %div(class="banner-action")
--#           %div(class="banner-action-item")
--#             = link_to "Learn more", sell_path, class: "button button-promo button-primary"
+%section.section.section-page
+    %div.content-page
+        %div.section-header.section-header-center
+            %h1.text.text-xl.text-bold Amazing Opportunities for your business
+        %div.section-body
+            %div.grid-1-2
+                %div.col
+                    %div.account
+                        %div.account-container
+                            %div.account-icon
+                                = icon "far", "boxes"
+                            %div.account-name
+                                %h1.text.text-l.text-medium Wholesallers
+                            %div.account-caption
+                                %p.text.text-s.text-secondary A business account platform for wholesale management, designed to save you time and money.
+                            %div.account-actions
+                                -# %div.account-actions-item
+                                -#     = link_to "Get Early Access", new_seller_path, class: "button button-wide button-primary"
+                                %div.account-actions-item
+                                    = link_to "Learn more", sell_path, class: "link"
+                %div.col
+                    %div.account
+                        %div.account-container
+                            %div.account-icon
+                                = icon "far", "shipping-fast"
+                            %div.account-name
+                                %h1.text.text-l.text-medium Carriers
+                            %div.account-caption
+                                %p.text.text-s.text-secondary With instant booking, free quick pay, facility ratings, and upfront, no-haggle pricing.
+                            %div.account-actions
+                                -# %div.account-actions-item
+                                -#     = link_to "Sign Up Now", new_carrier_path, class: "button button-wide button-primary"
+                                %div.account-actions-item
+                                    = link_to "Learn more", new_carrier_path, class: "link"

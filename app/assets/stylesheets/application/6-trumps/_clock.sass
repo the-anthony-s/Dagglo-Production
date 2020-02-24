@@ -1,0 +1,45 @@
+@-webkit-keyframes timing
+    0%, 100%
+        opacity: 1
+    50%
+        opacity: 0
+
+@-moz-keyframes timing
+    0%, 100%
+        opacity: 1
+    50%
+        opacity: 0
+
+@keyframes timing
+    0%, 100%
+        opacity: 1
+    50%
+        opacity: 0
+
+
+.clock
+    display: block
+    width: 100%
+    position: relative
+
+
+.clock-timer
+    color: $color-font-primary
+    font-weight: 600
+    font-size: var(--size-typo-m)
+    line-height: var(--line-height-typo-m)
+    display: inline-flex
+    align-items: center
+
+
+.clock-timer-column
+    animation: timing 1s ease infinite
+
+
+.clock-timer-meridian
+    font-size: 8px
+    line-height: var(--size-typo-xs)
+    border: 2px solid $color-font-primary
+    border-radius: $border-radius
+    padding: 2px
+    margin-left: 4px

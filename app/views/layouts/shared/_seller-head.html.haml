@@ -11,6 +11,7 @@
 %script(src="https://js.stripe.com/v3/")
 = tag.meta name: "stripe-key", content: Rails.application.credentials.stripe[:public_key]
 = stylesheet_link_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'
+= stylesheet_pack_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'seller', 'data-turbolinks-track': 'reload'
 
 -# FontAwesome package

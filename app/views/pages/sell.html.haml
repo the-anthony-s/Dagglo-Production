@@ -1,113 +1,196 @@
-= content_for :title, "Sell on Dagglo"
-= content_for :navbar_class, "navbar-dark"
+= content_for :title, "Wholesalers"
 
-%div.page-container
-
-    %header.hero
-        %div.hero-background-simple
-            = image_tag asset_path('hero/sell-hero.jpg'), loading: "lazy"
-        %div.hero-container.hero-container-lg
-            %div.content-page
-                %div.hero-header.hero-header-simple
-                    %div.hero-header-title
-                        %h1.text.text-xxxl.text-medium.text-primary-light Start locally, scale globally
-                    %div.hero-header-caption
-                        %p.text.text-xl.text-primary-light Dagglo for Sellers is a business account platform for wholesale management, designed to save you time and money.
-                    %div.hero-header-action
+%header(class="hero")
+    %div(class="content-page")
+        %div(class="hero-container")
+            %div(class="hero-header")
+                %div(class="hero-header-title")
+                    %h1(class="text text-xxl text-bold") Start locally, scale globally
+                %div(class="hero-header-caption")
+                    %p(class="text text-l") Dagglo for Sellers is a business account platform for wholesale management, designed to save you time and money.
+                %div(class="hero-header-actions")
+                    %div(class="hero-header-actions-item")
                         - if user_signed_in? && current_user.s_account.present?
-                            = link_to "#{current_user.s_account.name}", dashboard_seller_path, class: "button button-light"
+                            = link_to "#{current_user.s_account.name}", dashboard_seller_path, class: "button button-primary"
                         - else
-                            = link_to "Get Early Access", new_seller_path, class: "button button-light"
+                            = link_to "Get Early Access Now", new_seller_path, class: "button button-primary"
+                    %div(class="hero-header-actions-item")
+                        %p(class="text text-s text-secondary") Sign up before April 1st and get 3 months free.
+
+            %div(class="hero-wallpaper")
+                = image_tag asset_path('hero/sell-hero.jpg'), loading: "lazy"
 
 
 
-    %section.section.section-page
-        %div.content-page
-            %div.section-header
-                %h1.text.text-xxl.text-medium Sales. Analytics. Shipping. Made simple.
-            %div.section-body
-                %div.grid-1-3
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "tasks"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Order managment
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary A streamlined way to process orders.
+%section(class="section section-page")
+    %div(class="content-page")
+        %div(class="section-header section-header-center")
+            %h1(class="text text-xl text-bold space-bot-m") Sales. Analytics. Shipping. Made simple.
+            %p(class="text text-l") Become a part of Dagglo
+        %div(class="section-body")
+            %div(class="grid-1-3")
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "tasks"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Order managment
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") A streamlined way to process orders.
+
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "chart-bar"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Analytics
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") Real time data of your product sell-through.
+
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "usd-circle"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Net 60 (soon)
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") Increase sales by offering Net 60 to your leads and accounts.
+
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "globe-americas"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Customers
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") Contact your future customers directly with built-in chat functionality.
+
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "users"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Collaborations & Locations
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") Manage your team and locations on one dashboard.
+
+                %div(class="col")
+                    %div(class="testimonial")
+                        %div(class="testimonial-container")
+                            %div(class="testimonial-icon")
+                                = icon "fal", "megaphone"
+                            %div(class="testimonial-header")
+                                %h1(class="text text-m text-medium") Marketing
+                            %div(class="testimonial-caption")
+                                %p(class="text text-s") Increase your online presence and sell everywhere.
+
+
+
+- if @seller_plans.present?
+    %section(class="section section-page")
+        %div(class="content-page")
+            %div(class="section-header section-header-center")
+                %h1(class="text text-xl text-bold") No surprises, just fair and honest pricing
+            %div(class="section-body")
+                %div(class="grid-1-2")
+                    - @seller_plans.each do |plan|
+                        %div(class="col")
+                            %div(class="pricing") 
+                                %div(class="pricing-title")
+                                    %h1(class="text text-eyebrow") #{plan.name}
+                                %div(class="pricing-price")
+                                    %div(class="pricing-price-currency") USD
+                                    %div(class="pricing-price-amount") #{formatted_amount plan.amount}
+                                    %div(class="pricing-price-interval") / #{plan.interval}
+                                %div(class="pricing-desc")
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body") 
+                                            %p(class="text text-s") #{plan.num_of_products} product showcases
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body") 
+                                            %p(class="text text-s") #{plan.num_of_locations} supported locations
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body") 
+                                            %p(class="text text-s") #{plan.num_of_locations} sub-accounts
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body") 
+                                            %p(class="text text-s") #{plan.analytics} analytics
+
+
+
+-# - if @categories.present?
+-#     %section(class="section section-page")
+-#         %div(class="content-page")
+-#             %div(class="section-header section-header-center")    
+-#                 %h1(class="text text-xl text-bold") Available categories
+-#             %div(class="section-body")
+-#                 %div(class="grid-1-3")
+-#                     - @categories.roots.each do |root|
+-#                         - root.children.order(name: :asc).each_with_index do |category, index|
+-#                             %div(class="col")
+-#                                 = render partial: "categories/elements/card", :locals => {category: category, index: index}
+                             
+
+
+
+- time = Time.current
+- time.in_time_zone("EST")
+%section(class="section section-page")
+    %div(class="content-page")
+        %div(class="section-header section-header-center")
+            %div(class="section-header-title")
+                %h1(class="text text-xl text-bold") Talk to us
+            %div(class="section-header-caption")
+                %p(class="text text-l") We like strangers.
+            %div(class="section-header-action")
+                = link_to "Get In Touch", new_contact_path, class: "button button-primary-outline"
+        %div(class="section-body")
+            %div(class="testimonial")
+                %div(class="testimonial-container")
+                    %div(class="testimonial-icon")
+                        = icon "fal", "globe-americas"
+                    %div(class="testimonial-header")
+                        %h1(class="text text-xl text-bold") Toronto
+                        %div(class="clock")
+                            %div(class="clock-timer")
+                                %span(class="clock-timer-hour") #{time.strftime("%I")}
+                                %span(class="clock-timer-column") :
+                                %span(class="clock-timer-minutes") #{time.strftime("%M")}
+                                %span(class="clock-timer-meridian") #{time.strftime("%p")}
+                    %div(class="testimonial-body")
+                        %p(class="text text-s") Monday-Friday 9:00 a.m. to 6:00 p.m.
+                    %div(class="testimonial-actions")
+                        - if (time.in_time_zone("EST").hour >= 9 && time.in_time_zone("EST").hour <= 18) && time.on_weekday?
+                            %div(class="testimonial-actions-item")
+                                %p(class="text text-m") +1 (289) 259 - 3488
+                        - else
+                            %div(class="testimonial-actions-item") 
+                                %p(class="text text-s text-secondary text-medium") Office closed
+                        %div(class="testimonial-actions-item")
+                            = mail_to "help@dagglo.com", "help@dagglo.com", class: "link"
+
+
                     
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "chart-bar"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Analytics
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary Real time data of your product sell- through.
-
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "usd-circle"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Net 60 (soon)
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary Increase sales by offering Net 60 to your leads and accounts.
-                    
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "globe-americas"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Customers
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary Contact your future customers directly with built-in chat functionality.
-
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "users"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Collaborations & Locations
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary Manage your team and locations on one dashboard.
-                    
-                    %div.col
-                        %div.testimonial
-                            %div.testimonial-icon #{icon "far", "megaphone"}
-                            %div.testimonial-header
-                                %h1.text.text-m.text-medium Marketing
-                            %div.testimonial-body
-                                %p.text.text-s.text-secondary Increase your online presence and sell everywhere.
-
-
-    - if @seller_plans.present?
-        %section.section.section-page
-            %div.content-page
-                %div.section-header
-                    %h1.text.text-xxl.text-medium No surprises, just fair and honest pricing
-                %div.section-body
-                    %div.grid-1-2
-                        - @seller_plans.each do |plan|
-                            %div.col
-                                %div.pricing
-                                    %div.pricing-title
-                                        %h1.text.text-eyebrow #{plan.name}
-                                    %div.pricing-price
-                                        %div.pricing-price-currency USD
-                                        %div.pricing-price-amount #{formatted_amount plan.amount}
-                                        %div.pricing-price-interval / #{plan.interval}
-                                    %div.pricing-desc
-                                        %div.pricing-desc-item
-                                            %div.pricing-desc-icon #{icon "far", "check"}
-                                            %div.pricing-desc-body 
-                                                %p.text.text-s #{plan.num_of_products} product showcases
-                                        %div.pricing-desc-item
-                                            %div.pricing-desc-icon #{icon "far", "check"}
-                                            %div.pricing-desc-body 
-                                                %p.text.text-s #{plan.num_of_locations} supported locations
-                                        %div.pricing-desc-item
-                                            %div.pricing-desc-icon #{icon "far", "check"}
-                                            %div.pricing-desc-body 
-                                                %p.text.text-s #{plan.num_of_locations} sub-accounts
-                                        %div.pricing-desc-item
-                                            %div.pricing-desc-icon #{icon "far", "check"}
-                                            %div.pricing-desc-body 
-                                                %p.text.text-s #{plan.analytics} analytics
+-#                                         %div.pricing-desc-item
+-#                                             %div.pricing-desc-icon #{icon "fal", "check"}
+-#                                             %div.pricing-desc-body 
+-#                                                 %p.text.text-s #{plan.num_of_locations} supported locations
+-#                                         %div.pricing-desc-item
+-#                                             %div.pricing-desc-icon #{icon "fal", "check"}
+-#                                             %div.pricing-desc-body 
+-#                                                 %p.text.text-s #{plan.num_of_locations} sub-accounts
+-#                                         %div.pricing-desc-item
+-#                                             %div.pricing-desc-icon #{icon "fal", "check"}
+-#                                             %div.pricing-desc-body 
+-#                                                 %p.text.text-s #{plan.analytics} analytics
 
 

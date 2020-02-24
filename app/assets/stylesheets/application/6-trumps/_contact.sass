@@ -1,0 +1,27 @@
+.contacts
+    border-top: 1px solid $color-border
+    border-bottom: 1px solid $color-border
+
+    li
+        padding: var(--gap-s) 0
+
+    li + li
+        border-top: 1px solid $color-border
+        
+
+.contact
+    display: flex
+    flex-direction: column
+    width: 100%
+    +tablet
+        flex-direction: row
+        justify-content: space-between
+
+    &-phone
+        flex: 1 1 100%
+        margin-top: var(--gap-xs)
+        +tablet
+            flex: 0 0 auto
+            margin-left: var(--gap-xs)
+            margin-top: 0
+            text-align: right

@@ -4,7 +4,7 @@
   %div(class="content")
     %div(class="auth-content")
       %div(class="auth-header")
-        %h1(class="text text-xxl text-bold") Change password
+        %h1(class="text text-xl text-medium") Change password
       %div(class="auth-body")
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form" }) do |f|
           = render "devise/shared/error_messages", resource: resource

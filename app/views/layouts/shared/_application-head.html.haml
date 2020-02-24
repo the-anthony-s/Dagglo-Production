@@ -4,10 +4,11 @@
 %meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge"}
 %meta{:name => "HandheldFriendly", :contnet => "true"}
 %meta{:name => "MobileOptimized", :content => "176"}
-%title #{content_for?(:title) ? "#{yield(:title)} | Dagglo" : 'Dagglo'}
+%title #{content_for?(:title) ? "#{yield(:title)} | Dagglo" : 'Dagglo | Making wholesale better, together'}
 = csrf_meta_tags
 = csp_meta_tag
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
 -# FontAwesome package

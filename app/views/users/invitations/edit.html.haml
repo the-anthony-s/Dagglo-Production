@@ -1,11 +1,49 @@
-%h2= t "devise.invitations.edit.header"
-= simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
-  = f.hidden_field :invitation_token
-  .form-inputs
-    = f.input :first_name
-    = f.input :last_name
-    = f.input :password
-    = f.input :password_confirmation
-  .form-actions
-    = f.button :submit, t("devise.invitations.edit.submit_button")
+= content_for :title, "Welcome"
+
+%section(class="auth")
+  %div(class="content")
+    %div(class="auth-content")
+      %div(class="auth-header text-center")
+        %h1(class="text text-xl text-medium") Welcome to Dagglo
+      %div(class="auth-body")
+        = simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: "form" }) do |f|
+          = f.error_notification
+          = f.hidden_field :invitation_token
+
+          %div(class="form-row")
+            %div(class="form-grid")
+              %div(class="col")
+                %div(class="form-label")
+                  = f.label :first_name, "First name"
+                %div(class="form-input")
+                  = f.text_field :first_name, class: "form-control", autocomplete: "first_name"
+              
+              %div(class="col")
+                %div(class="form-label")
+                  = f.label :last_name, "Last name"
+                %div(class="form-input")
+                  = f.text_field :last_name, class: "form-control", autocomplete: "last_name"
+
+          %div(class="form-row")
+            %div(class="form-label")
+              = f.label :password, "Password"
+            %div(class="form-input")
+              = f.password_field :password, placeholder: "#{@minimum_password_length}+ characters", class: "form-control", autocomplete: "new-password"
+
+          %div(class="form-submit form-submit-center")
+            = button_tag "Continue", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Loading.."}
+          %div(class="form-footer text-center")
+            %p(class="text text-xs") Secure Login with reCAPTCHA subject to Google #{link_to "Terms", terms_path, target: :_blank, class: "link"} & #{link_to "Privacy", privacy_path, target: :_blank, class: "link"}
+
+
+-# %h2= t "devise.invitations.edit.header"
+-# = simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put }) do |f|
+-#   = f.error_notification
+-#   = f.hidden_field :invitation_token
+-#   .form-inputs
+-#     = f.input :first_name
+-#     = f.input :last_name
+-#     = f.input :password
+-#     = f.input :password_confirmation
+-#   .form-actions
+-#     = f.button :submit, t("devise.invitations.edit.submit_button")

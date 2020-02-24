@@ -11,7 +11,7 @@
 
     = render partial: "layouts/shared/application-footer"
 
-    %div(tabindez="-1")
+    %div(tabindex="-1")
       %div(class="alert-container")
         - flash.each do |name, msg|
           %div(class="alert alert-#{name}") #{content_tag(:p, msg, class: "text text-s text-primary-light")}

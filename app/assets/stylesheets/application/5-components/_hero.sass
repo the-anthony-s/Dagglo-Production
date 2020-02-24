@@ -1,136 +1,84 @@
 .hero
     width: 100%
-    margin-right: auto
-    margin-left: auto
     position: relative
     display: block
 
 
-// Background image, Block mobile, Absolute Tablet
-.hero-background
-    height: 282px
-    width: 100%
-    position: relative
-    background: $black
-
-    +desktop-sm
-        height: 100%
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-
-    & > img
-        height: 100%
-        width: 100%
-        object-fit: cover
-
-.hero-background-simple
-    height: 100%
-    width: 100%
-    position: relative
-    background: $black
-    position: absolute
-    top: 0
-    right: 0
-    bottom: 0
-    left: 0
-
-    &::after
-        content: ""
-        background: rgba($black, .3)
-        position: absolute
-        top: 0
-        right: 0
-        bottom: 0
-        left: 0
-
-    & > img
-        display: none
-        height: 100%
-        width: 100%
-        object-fit: cover
-
-        +tablet
-            display: block
-
-
-// Hero height
 .hero-container
-    width: 100%
     padding-top: var(--gap-r-m)
     padding-bottom: var(--gap-r-m)
 
 
-// Header
 .hero-header
-    width: 100%
     text-align: center
-    background: $white
-
-    +desktop-sm
-        text-align: left
-        padding: var(--gap-r) var(--gap-r)
-        max-width: 522px
-
-.hero-header-message
-    margin-bottom: var(--gap-s)
-    &-container
-        display: flex
-        flex-direction: row
-        justify-content: center
-        align-items: center
-        width: 100%
-
-        +desktop-sm
-            justify-content: flex-start
-    &-new
-        flex: 0 0 auto
-        background: $green
-        border-radius: 24px
-        color: $color-font-primary-light
-        font-size: 10px
-        font-weight: 500
-        text-transform: uppercase
-        padding: 2px var(--gap-xs)
-        margin-right: var(--gap-xs)
-    &-content
-        color: $color-font-primary
-        font-size: var(--size-typo-s)
-        font-weight: 400
-        line-height: var(--line-height-typo-s)
-        letter-spacing: .015em
-
-.hero-header-title
+    max-width: 735px
     width: 100%
-    display: block
+    margin-right: auto
+    margin-left: auto
+    &-title
+        width: 100%
+    &-caption
+        margin-top: var(--gap-s)
 
-.hero-header-caption
-    margin-top: var(--gap-s)
-
-.hero-header-action
-    margin-top: var(--gap)
 
 .hero-header-actions
-    margin-top: var(--gap)
+    margin-top: var(--gap-r)
+    & > &-item + &-item
+        margin-top: var(--gap-xs)
+
+
+.hero-header-announcement
+    position: relative
+    margin-bottom: var(--gap)
+    display: inline-block
+    & .container
+        display: inline-flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+        background: $gray-light
+        padding: var(--gap-xs) var(--gap-xs)
+        border: 0
+        border-radius: 24px
+        &:hover
+            background: $gray
+    & .label
+        color: $white
+        font-size: var(--size-typo-xs)
+        font-weight: 600
+        text-transform: uppercase
+        line-height: var(--line-height-typo-xs)
+        border: 0
+        border-radius: 24px
+        background: $green
+        padding: var(--gap-xxs) var(--gap-xs)
+        margin-right: var(--gap-xs)
+    & .message
+        color: $color-font-primary
+        font-size: var(--size-typo-s)
+        line-height: var(--line-height-typo-s)
+        font-weight: 400
+    & .arrow
+        flex: 0 0 auto
+        margin-left: var(--gap-xs)
+        color: $color-font-primary
+        font-size: var(--size-typo-s)
+        line-height: var(--line-height-typo-s)
+        font-weight: 400
+
+
+.hero-wallpaper
     width: 100%
-    display: flex
-    flex-direction: row
-    justify-content: center
-    align-items: center
-    
-    +desktop-sm
-        justify-content: flex-start
+    position: relative
+    overflow: hidden
+    border-radius: 20px
+    max-height: 528px
+    & > img
+        height: 100%
+        width: 100%
+        object-fit: cover
+        vertical-align: baseline
+        display: block
 
-    &-item
-        flex: 1 1 100%
-
-    &-item + &-item
-        margin-top: 0
-        margin-left: var(--gap-s)
-
-
-.hero-header-simple
-    background: transparent !important
-    padding: 0
+.hero-header + .hero-wallpaper
+    margin-top: var(--gap-r-m)

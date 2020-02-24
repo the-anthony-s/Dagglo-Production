@@ -1,0 +1,58 @@
+= form_for Contact.new, :html => {class: "form"} do |f|
+    - if @contact.errors.any?
+        %div(class="form-row")
+            %div(id="error_explanation" class="form-error")
+                %div(class="form-error-container")
+                    %div(class="form-error-header")
+                        %h1(class="text text-l text-medium") #{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:}
+                    %div(class="form-error-body")
+                        %ul(class="form-error-list")
+                            - @contact.errors.full_messages.each do |message|
+                                %li = message
+    
+    %div(class="form-row")
+        %div(class="form-grid")
+            %div(class="col")
+                %div(class="form-label")
+                    = f.label :first_name, "First name"
+                %div(class="form-input")
+                    = f.text_field :first_name, value: user_signed_in? ? current_user.first_name : nil, class: "form-control", placeholder: "Your First Name"
+            %div(class="col")
+                %div(class="form-label")
+                    = f.label :last_name, "Last name"
+                %div(class="form-input")
+                    = f.text_field :last_name, value: user_signed_in? ? current_user.last_name : nil, class: "form-control", placeholder: "Your Last Name"
+
+
+    %div(class="form-row")
+        %div(class="form-grid")
+            %div(class="col")
+                %div(class="form-label")
+                    = f.label :company, "Legal Business Name"
+                %div(class="form-input")
+                    = f.text_field :company, value: (user_signed_in? && current_user.s_account) ? current_user.s_account.name : nil, class: "form-control", placeholder: "Your Legal Business Name"
+            %div(class="col")
+                %div(class="form-label")
+                    = f.label :phone_number, "Phone number"
+                %div(class="form-input")
+                    = f.text_field :phone_number, class: "form-control", placeholder: "Your Phone Number"
+
+
+    %div(class="form-row")
+        %div(class="form-label")
+            = f.label :email, "Email address"
+        %div(class="form-input")
+            = f.email_field :email, value: user_signed_in? ? current_user.email : nil, class: "form-control", placeholder: "Your Email Address"
+
+
+    %div(class="form-row")
+        %div(class="form-label")
+            = f.label :message, "How can we help?"
+        %div(class="form-input")
+            = f.text_area :message, class: "form-control form-control-textarea", placeholder: "Please enter your message..."
+
+        
+    %div(class="form-submit text-center")
+        = invisible_captcha :email
+        = invisible_captcha :message
+        = f.submit "Continue", class: "button button-secondary"

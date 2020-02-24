@@ -4,7 +4,7 @@
   %div(class="content")
     %div(class="auth-content")
       %div(class="auth-header")
-        %h1(class="text text-xxl text-bold") Unlock account
+        %h1(class="text text-xl text-medium") Unlock account
         %p(class="text text-s space-top-xs") Enter the email address you used when you joined and we’ll send you instructions to unlock your account.
       %div(class="auth-body")
         = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: "form" }) do |f|

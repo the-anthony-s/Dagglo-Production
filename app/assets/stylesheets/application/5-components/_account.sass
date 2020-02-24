@@ -1,0 +1,38 @@
+.account
+    position: relative
+    display: block
+
+
+.account-container
+    display: block
+    border: 2px solid $color-border
+    border-radius: $border-radius
+    padding: var(--gap-r)
+    text-align: center
+
+a.account-container:hover,
+a.account-container:focus
+    border-color: $color-border-dark
+
+
+.account-icon
+    color: $color-font-primary
+    font-size: var(--size-typo-xxxl)
+    line-height: var(--line-height-typo-xxxl)
+    display: block
+    margin-bottom: var(--gap-s)
+
+
+.account-name
+    width: 100%
+
+
+.account-caption
+    margin-top: var(--gap-xs)
+
+
+.account-actions
+    display: block
+    margin-top: var(--gap)
+    &-item + &-item
+        margin-top: var(--gap-xs)

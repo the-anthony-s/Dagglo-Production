@@ -1,16 +1,16 @@
 .button
     color: $color-font-primary
     font-size: var(--size-typo-s)
-    font-weight: 500
+    font-weight: 600
     letter-spacing: .03em
     text-decoration: none
     text-transform: none
-    padding: 10px var(--gap)
+    padding: var(--gap-xs) var(--gap)
     line-height: var(--line-height-typo-s)
     background: $gray-light
     text-align: center
     width: auto
-    border: 1px solid $gray-light
+    border: 2px solid $gray-light
     border-radius: $border-radius
     user-select: none
     appearance: none
@@ -67,13 +67,13 @@
         border-color: $pink-dark
 
 .button-primary-outline
-    color: $black
-    border-color: $black
+    color: $color-primary
+    border-color: $color-primary
     background: transparent
     &:hover
         color: $white
-        border-color: $black-light
-        background: $black-light
+        border-color: $color-primary
+        background: $color-primary
 
 .button-secondary
     color: $white

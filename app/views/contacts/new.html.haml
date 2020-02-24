@@ -1,2 +1,40 @@
-.content-page
-    Contacts
+- time = Time.current
+- time.in_time_zone("EST")
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        
+        %div(class="section-header section-header-center")
+            %div(class="section-header-title")
+                %h1(class="text text-xxl text-bold") Contact Us
+            %div(class="section-header-caption")
+                %p(class="text text-m") Humane customer support.. No answering machines or bots. Only communication with real people ready to run through a brick wall for you! 
+                -# We talk with you in the messenger of your choice.
+        %div(class="section-body")
+            %ul(class="contacts")
+                %li
+                    %div(class="contact")
+                        %div(class="contact-name") 
+                            %p(class="text text-s") Call in Canada
+                            %p(class="text text-xs text-secondary") Monday-Friday 9:00 a.m. to 6:00 p.m.
+                        %div(class="contact-phone")
+                            - if (time.in_time_zone("EST").hour >= 9 && time.in_time_zone("EST").hour <= 18) && time.on_weekday?
+                                %p(class="text text-s text-bold") +1 (289) 259 - 3488
+                            - else
+                                %p(class="text text-s text-secondary text-medium") Office closed
+                %li
+                    %div(class="contact")
+                        %div(class="contact-name") 
+                            %p(class="text text-s") Direct Email
+                        %div(class="contact-phone")
+                            %p(class="text text-s text-bold") #{mail_to "help@dagglo.com", "Send Email", class: "link"}
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-header section-header-center")
+            %div(class="section-header-title")
+                %h1(class="text text-l text-bold") Or
+            %div(class="section-header-caption")
+                %p(class="text text-m") Drop us a message and we’ll get back to you as soon as possible.
+        %div(class="section-body")
+            = render partial: "contacts/form"
