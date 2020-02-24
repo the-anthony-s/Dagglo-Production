@@ -10,7 +10,7 @@
 #  min_price             :money
 #  num_offers            :integer
 #  manufacturer_warranty :boolean
-#  status                :integer          default("pending")
+#  status                :integer          default("0")
 #  image_data            :text
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -18,6 +18,7 @@
 #  owner_user_id         :bigint
 #  owner_seller_id       :bigint
 #  slug                  :string
+#  deleted_at            :datetime
 #
 
 class Product < ApplicationRecord
@@ -99,6 +100,19 @@ class Product < ApplicationRecord
     else
       ActionController::Base.helpers.asset_path("defaults/" + ["product.png"].compact.join('_'))
     end
+  end
+
+
+  # Country code to Country full name
+  # country_select gem saves first two letters of names -> CA, RU, etc
+  def country_full_name
+    @country_full_name || country_name = ISO3166::Country[country]
+    country_name.translations[I18n.locale.to_s] || country_name.name
+  end
+
+  def country_name
+    country = self.country
+    ISO3166::Country[country]
   end
 
 end

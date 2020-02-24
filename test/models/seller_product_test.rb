@@ -21,6 +21,7 @@
 #  updated_at              :datetime         not null
 #  product_id              :bigint
 #  seller_id               :bigint
+#  deleted_at              :datetime
 #
 
 require 'test_helper'

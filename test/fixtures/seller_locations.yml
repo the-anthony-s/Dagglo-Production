@@ -12,10 +12,11 @@
 #  longitude  :float
 #  latitude   :float
 #  phone      :string
-#  pause      :boolean          default(FALSE)
+#  pause      :boolean          default("false")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  seller_id  :bigint
+#  deleted_at :datetime
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

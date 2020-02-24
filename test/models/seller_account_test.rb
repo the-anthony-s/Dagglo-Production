@@ -4,12 +4,12 @@
 #
 #  id                 :bigint           not null, primary key
 #  role               :integer
-#  owner              :boolean          default(FALSE)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  user_id            :bigint
 #  seller_id          :bigint
 #  seller_location_id :bigint
+#  deleted_at         :datetime
 #
 
 require 'test_helper'

@@ -11,6 +11,7 @@
 #  num_of_locations    :integer
 #  num_of_sub_accounts :integer
 #  analytics           :string
+#  pause               :boolean          default("false")
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #

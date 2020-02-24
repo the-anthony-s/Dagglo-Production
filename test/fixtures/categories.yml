@@ -8,8 +8,8 @@
 #  type_of_products   :text
 #  conditions_allowed :text
 #  approval_required  :text
-#  cover_date         :text
-#  pause              :boolean          default(FALSE)
+#  cover_data         :text
+#  pause              :boolean          default("false")
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  slug               :string

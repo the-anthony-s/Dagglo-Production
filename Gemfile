@@ -47,6 +47,13 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 
 
+## Admin Dashboard
+gem 'activeadmin'
+gem 'activeadmin_quill_editor'
+gem 'chosen-rails'
+
+
+
 ## Analytics
 # Log users activity, info: https://github.com/ankane/ahoy, jquery is a MUST!!!
 gem 'ahoy_matey'

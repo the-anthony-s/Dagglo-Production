@@ -19,9 +19,9 @@ class Announcement < ApplicationRecord
 
 
   # Scopes
-  scope :users, -> { where(hide: false, audience: 0) }
-  scope :sellers, -> { where(hide: false, audience: 1) }
-  scope :buyers, -> { where(hide: false, audience: 2) }
+  scope :users, -> { where(hide: :false, audience: 0) }
+  scope :sellers, -> { where(hide: :false, audience: 1) }
+  scope :buyers, -> { where(hide: :false, audience: 2) }
 
 
   # Audience
