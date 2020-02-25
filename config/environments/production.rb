@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Google Analytics
-  GA.tracker = "UA-116052505-1"
+  GA.tracker = "159050306"
 
   # Default Mailer url
   config.action_mailer.default_url_options = { :host => 'dagglo.com' }
