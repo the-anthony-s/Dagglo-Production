@@ -1,3 +1,30 @@
+// Product Show Page
+.product-header
+    width: 100%
+    display: flex
+    flex-direction: column
+    margin-right: auto
+    margin-left: auto
+    +tablet
+        flex-direction: row
+
+    &-name
+        flex: 1 1 auto
+        min-width: 0
+    
+    &-actions
+        display: flex
+        align-items: center
+        flex-direction: row
+        white-space: nowrap
+        list-style: none
+        & > li
+            display: inline-block
+        & > li + li
+            margin-left: var(--gap)
+
+    
+    
 // Product Card
 .product-card
     display: block

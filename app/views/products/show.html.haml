@@ -1,2 +1,16 @@
-%h1 #{@product.name}
--# %p #{@product.image_data_was}
+%section(id="product#{@product.id}" class="section")
+    
+    %div(class="section-body")
+        %div(class="content-page")
+            %div(class="product-header")
+                %div(class="product-header-name")
+                    %h1(class="text text-xxl text-bold") #{@product.name}
+                %ul(class="product-header-actions")
+                    %li 
+                        = link_to "", class: "link link-secondary" do
+                            %span #{icon "far", "flag"}
+                            %span Report
+                    %li
+                        = link_to "", class: "button" do
+                            %span #{icon "far", "heart"}
+                            %span Like
