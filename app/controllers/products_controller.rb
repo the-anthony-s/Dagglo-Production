@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
 
   def show
-      puts "\n\n\n\n\n #{@product.name} \n\n\n\n\n\n"
+      @offers = @product.seller_products.all
   end
 
 

@@ -20,6 +20,7 @@
 
 %section.section
   .content
-    - @sellers = Seller.all.is_public
-    - @sellers.each do |seller|
-      %p #{seller.name}
+    - @products.each do |product|
+      %p #{product.name}
+    != pagy_nav(@pagy)
+  -# = raw render partial: 'pagy/nav', locals: {pagy: @pagy}

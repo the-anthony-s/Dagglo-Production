@@ -84,6 +84,8 @@ gem "money"
 gem 'receipts'
 # Hide deleted records but keep them in the database
 gem "paranoia", "~> 2.2"
+# Pagination
+gem 'pagy', '~> 3.5'
 
 
 ## Errors

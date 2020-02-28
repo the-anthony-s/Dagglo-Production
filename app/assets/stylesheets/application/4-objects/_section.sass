@@ -2,8 +2,8 @@
     display: block
     position: relative
     width: 100%
-    padding-top: var(--gap-m)
-    padding-bottom: var(--gap-m)
+    padding-top: var(--gap-r-m)
+    padding-bottom: var(--gap-r-m)
     overflow: hidden
 
     &-gray
@@ -19,6 +19,35 @@
 
     // +tablet
     //     min-height: 85vh
+
+
+
+// Section Top -> Inline header with actions
+.section-top
+    width: 100%
+    display: flex
+    flex-direction: column
+    margin-bottom: var(--gap)
+    +tablet
+        flex-direction: row
+        align-items: center
+        // justify-content: space-between
+
+    &-title
+        flex: 1 1 auto
+        max-width: 100%
+    &-actions
+        flex: 1 1 100%
+        white-space: nowrap
+        display: flex
+        flex-direction: row
+        align-items: center
+        margin-top: var(--gap)
+        +tablet
+            margin-top: 0
+            margin-left: var(--gap)
+            flex: 0 0 auto
+
 
 
 
@@ -66,6 +95,14 @@
         display: block
 
 
+// Pagination block
+.section-pagination
+    margin-top: var(--gap-r-m)
+
+
+
+
+// Section page
 .section-page-body
     width: 100%
     display: block

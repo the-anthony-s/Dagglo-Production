@@ -7,7 +7,10 @@
     %div(class="content")
       %div(class="header-container")
         %div(class="header-title")
-          %h1(class="text text-xxxl") #{current_user.hello}, #{current_user.first_name}
+          %h1(class="text text-xxxl") 
+            #{current_user.hello}, 
+            %br/
+            #{current_user.first_name}
           -# %p(class="text text-s text-secondary") Timezone: #{Time.now}
         %div(class="header-actions")
           %div(class="header-actions-item")
