@@ -26,6 +26,8 @@ class Product < ActiveRecord::Base
 
   include ImageUploader::Attachment(:image)
 
+  extend Pagy::Search
+
   acts_as_paranoid
 
   # Custom IDs for URLs
@@ -74,6 +76,12 @@ class Product < ActiveRecord::Base
   end
 
 
+  def pagy_get_items(collection, pagy)
+    collection.offset(pagy.offset).limit(pagy.items)
+  end
+
+
+
 
   # Product statuses
   enum status: {
@@ -92,11 +100,11 @@ class Product < ActiveRecord::Base
   # Get product first photo
   def photo(height = nil, width = nil)
     if product_photos.present?
-      photo = product_photos.last
+      photo = product_photos.first
       if height != nil && width != nil
         photo.image.derivation_url(:thumbnail, height, width).to_s
       else
-        image.url
+        photo.image_url
       end
     else
       ActionController::Base.helpers.asset_path("defaults/" + ["product.png"].compact.join('_'))

@@ -1,2 +1,57 @@
-%h1 #{@product.name}
-%p #{@product.photo(300, 300)}
+%section(id="product#{@product.id}" class="section")
+    
+    %div(class="section-body")
+        %div(class="content-product")
+            %div(class="product-header")
+                %div(class="product-header-name")
+                    %h1(class="text text-xxl text-bold") #{@product.name}
+                %ul(class="product-header-actions")
+                    %li 
+                        = link_to "", class: "link link-secondary" do
+                            %span #{icon "far", "flag"}
+                            %span Report
+                    %li
+                        = link_to "", class: "button" do
+                            %span #{icon "far", "heart"}
+                            %span Like
+
+    
+    %div(class="section-body")
+        %div(class="product-main")
+            %div(class="product-photos")
+                = image_tag @product.photo, loading: "lazy", class: "product-photo"
+            %div(class="product-desc")
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, in quam! Ad, modi. Voluptatem quae molestias iste corporis unde perferendis id autem, ipsam facere, minus ipsum voluptatum laboriosam animi veniam?
+
+
+%section(class="section")
+    %div(class="content-product")
+        %div(class="section-top")
+            %div(class="section-top-title")
+                %h1(class="text text-xl text-bold") Offers
+        %div(class="section-body")
+            - if @offers.present?
+                %div(class="product-offers")
+                    - @offers.each do |offer|
+                        %div(class="product-offer")
+                            %div(class="product-offer-left")
+                                %div(class="product-offer-icon")
+                                    = image_tag offer.seller.logo(150, 150), loading: "lazy"
+                                %div(class="product-offer-about")
+                                    %h1(class="text text-m text-medium") #{offer.seller.name}
+                                    %p(class="text text-xs text-secondary")
+                                        %span(class="text-primary text-medium") $22.32
+                                        minimum order
+                                    %p(class="text text-xs text-secondary")
+                                        Case of 
+                                        %span(class="text-primary text-medium") 100
+                            %div(class="product-offer-right")
+                                %div(class="product-offer-price") #{number_to_currency(offer.unit_price)}
+
+
+
+%section(class="section")
+    %div(class="content-product")
+        %div(class="section-top")
+            %div(class="section-top-title")
+                %h1(class="text text-xl text-bold") Similar products

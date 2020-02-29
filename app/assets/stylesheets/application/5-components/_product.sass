@@ -1,3 +1,111 @@
+// Product Show Page
+.product-header
+    width: 100%
+    display: flex
+    flex-direction: column
+    margin-right: auto
+    margin-left: auto
+    +tablet
+        flex-direction: row
+
+    &-name
+        flex: 1 1 auto
+        min-width: 0
+    
+    &-actions
+        display: flex
+        align-items: center
+        flex-direction: row
+        white-space: nowrap
+        list-style: none
+        margin-top: var(--gap)
+        +tablet
+            margin-top: 0
+            margin-left: var(--gap)
+        & > li
+            display: inline-block
+        & > li + li
+            margin-left: var(--gap)
+
+
+.product-main
+    display: flex
+    flex-direction: column
+    width: 100%
+    max-width: $content-width-product
+    margin: 0 auto
+    +desktop-sm
+        flex-direction: row
+
+
+.product-photos // carousel container
+    flex: 1 1 100%
+    max-width: 100%
+    padding: 0
+    +tablet
+        padding: 0 var(--gap-r)
+    +desktop-sm
+        flex: 0 0 auto
+        width: 50%
+        padding: 0
+        padding-left: var(--gap-r)
+
+
+.product-photo // carousel photo item
+    height: 100%
+    width: 100%
+
+
+.product-desc
+    flex: 1 1 100%
+    margin-top: var(--gap-r)
+    padding: 0 var(--gap-r)
+    +desktop-sm
+        margin-top: 0
+
+
+.product-offers // Offers container
+    width: 100%
+    position: relative
+    display: block
+
+
+.product-offer // Offer item
+    width: 100%
+    display: flex
+    flex-direction: column
+    +tablet
+        flex-direction: row
+
+    &-left
+        flex: 1 1 100%
+        display: flex
+        align-items: flex-start
+
+    &-right
+        flex: 1 1 100%
+        margin-top: var(--gap)
+        +tablet
+            margin-top: 0
+            margin-left: var(--gap)
+
+
+.product-offer-icon
+    flex: 0 0 auto
+    margin-right: var(--gap)
+    & > img
+        height: 42px
+        width: 42px
+        object-fit: cover
+        border: 0
+        border-radius: 100%
+
+
+.product-offer-about
+    flex: 1 1 auto
+
+    
+    
 // Product Card
 .product-card
     display: block

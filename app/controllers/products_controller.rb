@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
 
   def show
+    @offers = @product.seller_products.all
   end
 
 

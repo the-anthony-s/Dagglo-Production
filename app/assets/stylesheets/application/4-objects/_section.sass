@@ -2,8 +2,8 @@
     display: block
     position: relative
     width: 100%
-    padding-top: var(--gap-m)
-    padding-bottom: var(--gap-m)
+    padding-top: var(--gap-r-m)
+    padding-bottom: var(--gap-r-m)
     overflow: hidden
 
     &-gray
@@ -35,9 +35,11 @@
         flex: 1 1 auto
     &-actions
         flex: 1 1 100%
+        margin-top: var(--gap)
         +tablet
             flex: 0 0 auto
-
+            margin-top: 0
+            margin-left: var(--gap)
 
 
 // Header
