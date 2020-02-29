@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # Redirect user after each setting update
     def after_update_path_for(resource)
-      flash[:notice] =  "Account succesfully updated."
+      flash[:notice] =  "Account succesfully updated"
       edit_user_registration_path
     end
 

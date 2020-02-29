@@ -14,7 +14,8 @@
       
       - unless controller.controller_name == "pages" && controller.action_name == "home"
         %div(class="navbar-center")
-          = form_tag search_path, method: :get, class: "navbar-search", role: "search" do
+          -# enforce_utf8: true -> For coversion, don't touch unless you know what to do
+          = form_tag search_path, method: :get, class: "navbar-search", role: "search", enforce_utf8: true do
             %div(class="navbar-search-input")
               = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-search-control', type: "search", id: "globalSearch", autocomplete: "off", tabindex: "1"
             = button_tag(type: "submit", class: "navbar-search-button", value: "search", name: nil) do

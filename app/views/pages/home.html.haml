@@ -12,15 +12,7 @@
     %div(class="home-search-wrapper")
       %div(class="home-search-header")
         %h1.text.text-xxxl Dagglo
-      = form_tag search_path, method: :get, class: "home-search", role: "search" do
+      = form_tag search_path, method: :get, class: "home-search", role: "search", enforce_utf8: true do
         %div(class="home-search-input")
           = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'home-search-control', type: "search", id: "globalSearch", autocomplete: "off"
         %div(class="home-search-icon") #{icon "far", "search"}
-
-
-%section.section
-  .content
-    - @products.each do |product|
-      %p #{product.name}
-    != pagy_nav(@pagy)
-  -# = raw render partial: 'pagy/nav', locals: {pagy: @pagy}

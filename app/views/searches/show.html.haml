@@ -13,14 +13,16 @@
     - if @products.present?
       %div(class="section-top")
         %div(class="section-top-title")
-          %h1(class="text text-xl") 
-            Explore Products
+          %h1(class="text text-xl text-medium") Explore #{params[:query]}
+          - if @products.suggestions.any?
+            %p(class="text text-l text-secondary space-top-m") 
+              Did you mean:
+              %a(href="/search?utf8=✓&query=#{@products.suggestions.first}" class="link") #{@products.suggestions.first}
       %div(class="section-body")
         %div(class="grid-products")
           - @products.each_with_index do |product, index|
             %div(class="col-products")
               = render partial: "products/elements/product", :locals => {:product => product, :index => index}
-
       %div(class="section-pagination")
         != pagy_nav(@pagy)
     
