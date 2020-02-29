@@ -28,6 +28,9 @@ import "packs/forms/main";
 import "packs/mobile/hamburger";
 import "packs/alerts/alert";
 
+// Tracking
+// import ahoy from "ahoy.js";
+
 
 
 // Uppy File Uploader for Shrine gem

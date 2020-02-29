@@ -1,18 +1,19 @@
 .pagy-nav.pagination
-    text-align: center
     width: 100%
-    position: relative
-
-    & .page
+    text-align: center
+    .page
+        display: inline-block
+        position: relative
         color: $color-font-secondary
         font-size: var(--size-typo-m)
-        line-height: var(--line-height-typo-m)
         font-weight: 400
+        line-height: var(--line-height-typo-m)
         vertical-align: baseline
         appearance: none
         outline: none
         padding: 6px 6px
-        display: inline-block
-        
         &.active
-            font-weight: 600
+            font-weight: 600    
+        & > a:hover,
+        & > a:focus,
+            opacity: .5

@@ -3,13 +3,13 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_product, only: [:show]
   before_action :set_seller, except: [:show, :index]
-  before_action :convert_search, only: [:show, :show_product]
+  before_action :convert_search, only: :show
 
   layout :seller_dashboard_layout, except: [:show, :index]
 
 
   def show
-      @offers = @product.seller_products.all
+    @offers = @product.seller_products.all
   end
 
 
@@ -53,6 +53,12 @@ class ProductsController < ApplicationController
 
   private
 
+    def convert_search
+      return if request.referer.blank?
+      referer = CGI::parse(request.referer)['query'][0]
+      query_to_convert = Searchjoy::Search.where(normalized_query: referer).last
+      query_to_convert.convert(@product) unless query_to_convert.nil?
+    end
 
     def product_params
       params.require(:product).permit!
@@ -62,11 +68,9 @@ class ProductsController < ApplicationController
       @product = Product.friendly.find(params[:id])
     end
 
-
     def set_seller
       @seller = current_user.s_account
     end
-
 
     def seller_dashboard_layout
       unless user_signed_in? && @seller
@@ -74,14 +78,6 @@ class ProductsController < ApplicationController
       else
         "seller"
       end
-    end
-
-
-    def convert_search
-      return if request.referer.blank?
-      referer = CGI::parse(request.referer)['query'][0]
-      query_to_convert = Searchjoy::Search.where(normalized_query: referer).last
-      query_to_convert.convert(@product) unless query_to_convert.nil?
     end
 
 end

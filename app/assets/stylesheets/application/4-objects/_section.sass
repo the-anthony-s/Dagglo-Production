@@ -22,33 +22,24 @@
 
 
 
-// Section Top -> Inline header with actions
+// Default Section Header
 .section-top
-    width: 100%
     display: flex
     flex-direction: column
-    margin-bottom: var(--gap)
+    margin-bottom: var(--gap-r-m)
+    width: 100%
     +tablet
-        flex-direction: row
         align-items: center
-        // justify-content: space-between
-
+        flex-direction: row
     &-title
         flex: 1 1 auto
-        max-width: 100%
     &-actions
         flex: 1 1 100%
-        white-space: nowrap
-        display: flex
-        flex-direction: row
-        align-items: center
         margin-top: var(--gap)
         +tablet
+            flex: 0 0 auto
             margin-top: 0
             margin-left: var(--gap)
-            flex: 0 0 auto
-
-
 
 
 // Header
@@ -95,14 +86,16 @@
         display: block
 
 
+
 // Pagination block
 .section-pagination
+    display: block
+    position: relative
     margin-top: var(--gap-r-m)
 
 
 
-
-// Section page
+// Section Page Elements
 .section-page-body
     width: 100%
     display: block

@@ -1,5 +1,8 @@
 ActiveAdmin.register Product do
 
+  menu priority: 4
+  
+
   permit_params :name, :barcode, :about, :country, :min_price, :num_of_sellers, :manufacturer_warranty, :status, :category_id, :owner_user_id, :owner_seller_id, image: []
 
 
@@ -33,7 +36,7 @@ ActiveAdmin.register Product do
   show title: :name do
     panel "Connected Inventory" do
       table_for(product.seller_products.includes(:seller)) do
-        column("ID", sortable: :id) { |p| link_to "#{p.id}", admin_seller_inventory_item_path(p) }
+        column("ID", sortable: :id) { |p| link_to "#{p.id}", admin_seller_seller_product_path(p) }
         column("Seller") { |p| link_to "#{p.seller.name}", admin_seller_path(p.seller) }
         column("Unit price") { |p| number_to_currency p.unit_price }
         column("Created at") { |p| p.created_at }
