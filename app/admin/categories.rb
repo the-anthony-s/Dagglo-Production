@@ -1,6 +1,9 @@
 ActiveAdmin.register Category do
 
 
+  menu priority: 5
+
+
   permit_params :name, :ancestry, :type_of_products, :conditions_allowed, :approval_required, :cover, :pause
 
 

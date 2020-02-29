@@ -55,6 +55,7 @@ class User < ApplicationRecord
   # Database refereces
   has_one :seller_account
   has_one :seller, through: :seller_account
+  has_one :first_visit, ->(u) { order(:started_at).where("started_at < ?", u.created_at) }, class_name: 'Ahoy::Visit'
 
 
 

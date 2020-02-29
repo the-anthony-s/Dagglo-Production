@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
 
+  def home
+    @products = Product.all
+  end
+
   def promo
     @categories = Category.all.limit(25)
   end

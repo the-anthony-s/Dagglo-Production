@@ -21,7 +21,10 @@
 #  deleted_at            :datetime
 #
 
-class Product < ApplicationRecord
+class Product < ActiveRecord::Base
+  extend Pagy::Search
+
+  include ImageUploader::Attachment(:image)
 
   acts_as_paranoid
 
@@ -42,8 +45,6 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :product_photos, allow_destroy: true
 
-  include ImageUploader::Attachment(:image)
-
 
 
   # Mandatory fields
@@ -52,7 +53,7 @@ class Product < ApplicationRecord
 
 
   # Search configurations
-  searchkick callbacks: :async, conversions: [:conversions], match: :text_middle, searchable: [:name, :barcode, :category], suggest: [:name, :barcode, :category]
+  searchkick conversions: [:conversions], callbacks: :async, match: :text_middle, searchable: [:name, :barcode, :category], suggest: [:name, :barcode, :category]
   scope :search_import, -> { includes(:category) }
 
   def search_data
@@ -61,9 +62,9 @@ class Product < ApplicationRecord
       barcode: barcode,
       category: category.name,
       # sellers: sellers.map(&:name),
-      conversions: map_conversions
-      # conversions: searches.group(:query).uniq.count(:user_id)
+      conversions: map_conversions,
     }
+    # attributes.merge( conversions: map_conversions)
   end
 
   # https://github.com/ankane/searchkick#keep-getting-better

@@ -109,7 +109,8 @@ Rails.application.routes.draw do
   # Search
   mount Searchjoy::Engine, at: "searchjoy"
 
-  resource :search, path: "search", only: [:show], controller: :search
+  # resource :search, path: "search", only: [:show]
+  get '/search', to: 'searches#show'
 
 
 
@@ -128,8 +129,8 @@ Rails.application.routes.draw do
 
 
   # Root Path
-  # root to: "pages#home"
-  root to: "pages#promo"
+  root to: "pages#home"
+  # root to: "pages#promo"
 
   match "*path" => redirect("/"), via: [:get, :post] # if 404 -> go to homepage
 

@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
 
   # Shrine configuration
   def upload_server

@@ -378,18 +378,18 @@
 #         tofu = Category.create(name: "Tofu", parent: tofu_soy_and_vegetarian_products, pause: false)
         
 
-# Food, Beverages & Tobacco > Tobacco Products
-# Food, Beverages & Tobacco > Tobacco Products > Chewing Tobacco
-# Food, Beverages & Tobacco > Tobacco Products > Cigarettes
-# Food, Beverages & Tobacco > Tobacco Products > Cigars
-# Food, Beverages & Tobacco > Tobacco Products > Loose Tobacco
-# Food, Beverages & Tobacco > Tobacco Products > Smoking Pipes
-# Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes
-# Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes > Electronic Cigarettes
-# Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes > Vaporizers
+# # Food, Beverages & Tobacco > Tobacco Products
+# # Food, Beverages & Tobacco > Tobacco Products > Chewing Tobacco
+# # Food, Beverages & Tobacco > Tobacco Products > Cigarettes
+# # Food, Beverages & Tobacco > Tobacco Products > Cigars
+# # Food, Beverages & Tobacco > Tobacco Products > Loose Tobacco
+# # Food, Beverages & Tobacco > Tobacco Products > Smoking Pipes
+# # Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes
+# # Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes > Electronic Cigarettes
+# # Food, Beverages & Tobacco > Tobacco Products > Vaporizers & Electronic Cigarettes > Vaporizers
 
 
-# (1..353).each do |category|
+# (1..354).each do |category|
 #     10.times do
 #         Product.create(
 #             name: Faker::Food.vegetables,
@@ -400,4 +400,4 @@
 #     end
 # end
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

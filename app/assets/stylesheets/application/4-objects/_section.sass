@@ -22,6 +22,24 @@
 
 
 
+// Default Section Header
+.section-top
+    display: flex
+    flex-direction: column
+    margin-bottom: var(--gap-r-m)
+    width: 100%
+    +tablet
+        align-items: center
+        flex-direction: row
+    &-title
+        flex: 1 1 auto
+    &-actions
+        flex: 1 1 100%
+        +tablet
+            flex: 0 0 auto
+
+
+
 // Header
 .section-header
     width: 100%
@@ -66,6 +84,16 @@
         display: block
 
 
+
+// Pagination block
+.section-pagination
+    display: block
+    position: relative
+    margin-top: var(--gap-r-m)
+
+
+
+// Section Page Elements
 .section-page-body
     width: 100%
     display: block
