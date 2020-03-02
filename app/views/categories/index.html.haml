@@ -52,13 +52,51 @@
 								%p(class="text text-s text-bold") #{category.approval_required.html_safe}
 
 
+
+%section(class="section section-page")
+	%div(class="content-page")
+		%div(class="section-header section-header-center")
+			%div(class="section-header-title")
+				%h1(class="text text-xl text-bold") Am I ready to sell?
+		%div(class="section-body")
+			%div(class="grid-1-2")
+				%div(class="col")
+					%div(class="category-step")
+						%div(class="category-step-count") 1
+						%div(class="category-step-title")
+							%h1(class="text text-m text-bold") I have a product ready to sell
+						%div(class="category-step-content")
+							%p(class="text text-s") First things first: decide what you’re going to sell and have inventory on hand.
+				%div(class="col")
+					%div(class="category-step")
+						%div(class="category-step-count") 2
+						%div(class="category-step-title")
+							%h1(class="text text-m text-bold") I have IDs for all of my products
+						%div(class="category-step-content")
+							%p(class="text text-s") You’ll need a GTIN (Global Trade Item Number) for each product you sell, such as a UPC, EAN, or GCID. These typically appear as a barcode.
+				%div(class="col")
+					%div(class="category-step")
+						%div(class="category-step-count") 3
+						%div(class="category-step-title")
+							%h1(class="text text-m text-bold") I have a plan for fulfilling orders
+						%div(class="category-step-content")
+							%p(class="text text-s") You can ship your own orders, or use Dagglo Freight and let us handle shipping, customer service, and returns.
+				%div(class="col")
+					%div(class="category-step")
+						%div(class="category-step-count") 3
+						%div(class="category-step-title")
+							%h1(class="text text-m text-bold") I’ve selected a selling plan
+						%div(class="category-step-content")
+							%p(class="text text-s") We offer two selling plans: Basic (USD $199) and Advanced (USD $299). Sign up before April 1st, 2020 and get access for free - forever.
+
+
 - time = Time.current
 - time.in_time_zone("EST")
 %section(class="section section-page")
 	%div(class="content-page")
 		%div(class="section-header section-header-center")
 			%div(class="section-header-title")
-				%h1(class="text text-xl text-bold") Get your Early Access Today
+				%h1(class="text text-xl text-bold") Get Your Early Access Today
 			%div(class="section-header-caption")
 				%p(class="text text-l") Put your products in front of Canadian businesses.
 			%div(class="section-header-actions")
@@ -88,5 +126,5 @@
 						- else
 							%div(class="testimonial-actions-item")
 								%p(class="text text-s text-secondary text-medium") Office closed
-							%div(class="testimonial-actions-item")
-								= mail_to "help@dagglo.com", "help@dagglo.com", class: "link"
+						%div(class="testimonial-actions-item")
+							= mail_to "help@dagglo.com", "help@dagglo.com", class: "link"
