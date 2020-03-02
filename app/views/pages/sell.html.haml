@@ -91,17 +91,54 @@
 
 
 
-- if @categories.present?
+- if @seller_plans.present?
     %section(class="section section-page")
         %div(class="content-page")
             %div(class="section-header section-header-center")
-                %h1(class="text text-xl text-bold") Categories
+                %h1(class="text text-xl text-bold") No surprises, just fair and honest pricing
             %div(class="section-body")
-                %div(class="grid-1-3")
-                    - @categories.roots.each do |root|
-                        - root.children.each_with_index do |category, index|
-                            %div(class="col")
-                                = render partial: "categories/elements/card", :locals => {category: category, index: index}
+                %div(class="grid-1-2")
+                    - @seller_plans.each do |plan|
+                        %div(class="col")
+                            %div(class="pricing")
+                                %div(class="pricing-title")
+                                    %h1(class="text text-eyebrow") #{plan.name}
+                                %div(class="pricing-price")
+                                    %div(class="pricing-price-currency") USD
+                                    %div(class="pricing-price-amount") #{formatted_amount plan.amount}
+                                    %div(class="pricing-price-interval") / #{plan.interval}
+                                %div(class="pricing-desc")
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body")
+                                            %p(class="text text-s") #{plan.num_of_products} product showcases
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body")
+                                            %p(class="text text-s") #{plan.num_of_locations} supported locations
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body")
+                                            %p(class="text text-s") #{plan.num_of_locations} sub-accounts
+                                    %div(class="pricing-desc-item")
+                                        %div(class="pricing-desc-icon") #{icon "fal", "check"}
+                                        %div(class="pricing-desc-body")
+                                            %p(class="text text-s") #{plan.analytics} analytics
+
+
+
+-# - if @categories.present?
+-#     %section(class="section section-page")
+-#         %div(class="content-page")
+-#             %div(class="section-header section-header-center")
+-#                 %h1(class="text text-xl text-bold") Available categories
+-#             %div(class="section-body")
+-#                 %div(class="grid-1-3")
+-#                     - @categories.roots.each do |root|
+-#                         - root.children.order(name: :asc).each_with_index do |category, index|
+-#                             %div(class="col")
+-#                                 = render partial: "categories/elements/card", :locals => {category: category, index: index}
+
 
 
 
