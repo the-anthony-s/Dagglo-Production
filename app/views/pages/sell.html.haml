@@ -91,6 +91,20 @@
 
 
 
+- if @categories.present?
+    %section(class="section section-page")
+        %div(class="content-page")
+            %div(class="section-header section-header-center")
+                %h1(class="text text-xl text-bold") Categories
+            %div(class="section-body")
+                %div(class="grid-1-3")
+                    - @categories.roots.each do |root|
+                        - root.children.each_with_index do |category, index|
+                            %div(class="col")
+                                = render partial: "categories/elements/card", :locals => {category: category, index: index}
+
+
+
 - if @seller_plans.present?
     %section(class="section section-page")
         %div(class="content-page")
@@ -151,8 +165,9 @@
                 %h1(class="text text-xl text-bold") Talk to us
             %div(class="section-header-caption")
                 %p(class="text text-l") We like strangers.
-            %div(class="section-header-action")
-                = link_to "Get In Touch", new_contact_path, class: "button button-primary-outline"
+            %div(class="section-header-actions")
+                %div(class="section-header-actions-item")
+                    = link_to "Get In Touch", new_contact_path, class: "button button-primary-outline"
         %div(class="section-body")
             %div(class="testimonial")
                 %div(class="testimonial-container")

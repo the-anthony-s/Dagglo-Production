@@ -44,7 +44,7 @@ ActiveAdmin.register Category do
       f.input :type_of_products, label: "Type of products", as: :quill_editor
       f.input :conditions_allowed, label: "Condition", as: :quill_editor
       f.input :approval_required, label: "Need approvel?", as: :quill_editor
-      f.input :ancestry, :label => "Ancestry category", :as => :select, :collection => Category.all.map{|c| ["#{c.name}", c.id]}
+      # f.input :ancestry, :label => "Ancestry category", :as => :select, :collection => Category.all.map{|c| ["#{c.name}", c.id]}
       f.input :cover, as: :file, input_html: { multiple: false }, label: "Cover image"
       f.input :pause, label: "Pause category"
     end

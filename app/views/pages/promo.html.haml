@@ -52,7 +52,7 @@
         %div.section-header.section-header-center
             %h1.text.text-xl.text-bold Amazing Opportunities for your business
         %div.section-body
-            %div.grid-1-2
+            %div.grid-1-3
                 %div.col
                     %div.account
                         %div.account-container
@@ -81,3 +81,17 @@
                                 -#     = link_to "Sign Up Now", new_carrier_path, class: "button button-wide button-primary"
                                 %div.account-actions-item
                                     = link_to "Learn more", new_carrier_path, class: "link"
+                %div.col
+                    %div.account
+                        %div.account-container
+                            %div.account-icon
+                                = icon "far", "rocket"
+                            %div.account-name
+                                %h1.text.text-l.text-medium Start Selling
+                            %div.account-caption
+                                %p.text.text-s.text-secondary Learn more about covered product categories and requirements for wholesalers in Canada.
+                            %div.account-actions
+                                -# %div.account-actions-item
+                                -#     = link_to "Get Early Access", new_seller_path, class: "button button-wide button-primary"
+                                %div.account-actions-item
+                                    = link_to "Learn more", categories_path, class: "link"

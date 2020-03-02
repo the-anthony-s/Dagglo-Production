@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def home
+    # @pagy, @products = pagy(Product.all, items: 20)
   end
 
   def promo

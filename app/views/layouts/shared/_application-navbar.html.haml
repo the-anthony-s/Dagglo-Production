@@ -25,8 +25,8 @@
       %div(class="navbar-right")
         %div(class="navbar-desktop")
           %ul(class="navbar-links")
-            -# %li 
-            -#   = link_to "Catalog", categories_path, class: "navbar-link"
+            %li 
+              = link_to "Catalog", categories_path, class: "navbar-link"
             %li 
               = link_to "Sell on Dagglo", sell_path, class: "navbar-link"
             %li 
@@ -86,10 +86,10 @@
             = link_to new_carrier_path, class: "navbar-collapse-link" do
               %span(class="navbar-collapse-link-icon") #{icon "far", "shipping-fast"}
               %span(class="navbar-collapse-link-content") Sign up to be a carrier
-          -# %li
-          -#   = link_to categories_path, class: "navbar-collapse-link" do
-          -#     %span(class="navbar-collapse-link-icon") #{icon "far", "archive"}
-          -#     %span(class="navbar-collapse-link-content") Catalog
+          %li
+            = link_to categories_path, class: "navbar-collapse-link" do
+              %span(class="navbar-collapse-link-icon") #{icon "far", "archive"}
+              %span(class="navbar-collapse-link-content") Catalog
           %li
             = link_to new_contact_path, class: "navbar-collapse-link" do
               %span(class="navbar-collapse-link-icon") #{icon "far", "mailbox"}

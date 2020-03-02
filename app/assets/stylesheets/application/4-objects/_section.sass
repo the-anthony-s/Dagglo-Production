@@ -2,8 +2,8 @@
     display: block
     position: relative
     width: 100%
-    padding-top: var(--gap-r-m)
-    padding-bottom: var(--gap-r-m)
+    padding-top: var(--gap-m)
+    padding-bottom: var(--gap-m)
     overflow: hidden
 
     &-gray
@@ -61,8 +61,14 @@
 .section-header-caption
     margin-top: var(--gap-s)
 
-.section-header-action
+.section-header-actions
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
     margin-top: var(--gap)
+    &-item + &-item
+        margin-top: var(--gap)
     
 
 
