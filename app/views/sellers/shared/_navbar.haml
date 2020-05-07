@@ -60,3 +60,36 @@
                                 %div(class="navbar-burger-container")
                                     %div(class="navbar-burger-container-bar navbar-burger-container-barTop")
                                     %div(class="navbar-burger-container-bar navbar-burger-container-barBtm")
+
+
+        
+        %div(class="navbar-collapse")
+            %div(class="navbar-collapse-block")
+                %ul(class="navbar-collapse-links")
+                    %li
+                        = link_to home_seller_path, class: "navbar-collapse-link" do
+                            %span(class="navbar-collapse-link-content") Home
+                    %li
+                        = link_to seller_products_path, class: "navbar-collapse-link" do
+                            %span(class="navbar-collapse-link-content") Inventory
+                    %li
+                        = link_to settings_seller_path, class: "navbar-collapse-link" do
+                            %span(class="navbar-collapse-link-content") Settings
+                    %li
+                        = mail_to "help@dagglo.com", class: "navbar-collapse-link" do
+                            %span(class="navbar-collapse-link-content") Contact Us
+
+            - if user_signed_in?
+                %div(class="navbar-collapse-block")
+                    = link_to edit_user_registration_path, class: "navbar-collapse-profile" do
+                        %div(class="navbar-collapse-profile-avatar")
+                            = image_tag current_user.avatar(100, 100), loading: "lazy"
+                        %div(class="navbar-collapse-profile-name")
+                            %p(class="text text-s text-medium text-primary-light") #{current_user.full_name}
+
+            %div(class="navbar-collapse-block")
+                %ul(class="navbar-collapse-links")
+                    %li
+                        = link_to "To dagglo.com", root_path, class: "navbar-collapse-link"
+                    %li
+                        = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-collapse-link"
