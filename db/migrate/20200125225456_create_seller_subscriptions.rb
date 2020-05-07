@@ -2,6 +2,7 @@ class CreateSellerSubscriptions < ActiveRecord::Migration[6.0]
   def change
     create_table :seller_subscriptions do |t|
       t.belongs_to :seller, null: false, foreign_key: true
+
       t.string :stripe_id
       t.string :stripe_plan
       t.string :status

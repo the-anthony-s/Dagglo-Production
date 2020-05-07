@@ -1,0 +1,50 @@
+%div(class="page-block")
+    %div(class="content")
+        %div(class="page-header")
+            %div(class="page-header-title")
+                %p(class="text text-eyebrow") Favorite products
+        %div(class="page-body")
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus earum odio ipsa autem expedita qui reprehenderit assumenda asperiores ullam sunt est consequuntur modi ipsum, facilis, provident minima pariatur similique tempora!
+        -# %div(class="card")
+        -#     %div(class="card-header")
+        -#         %div(class="card-header-title")
+        -#             %p(class="text text-s text-medium") Top Products
+        -#     %div(class="card-body")
+        -#         %ul(class="card-list")
+        -#             - @seller_products.each do |inventory|
+        -#                 %li
+        -#                     = link_to inventory_path(inventory), class: "card-list-container" do
+        -#                         %div(class="card-list-photo")
+        -#                             = image_tag inventory.product.photo(200, 200), 'data-src': inventory.product.photo(200, 200), loading: "lazy"
+        -#                         %div(class="card-list-main")
+                                    
+        -#                         %div(class="card-list-secondary")
+        -#                             secondary
+
+
+
+
+-# %div(class="page-block")
+-#     %div(class="content-card")
+-#         %div(class="page-header")
+-#             %div(class="page-header-title")
+-#                 %p(class="text text-m text-medium") Products
+-#             %div(class="page-header-actions")
+-#                 %div(class="page-header-actions-item")
+-#                     = link_to "View all", products_seller_path, class: "link"
+-#         %div(class="page-body")
+-#             - if @seller_products.present?
+-#                 %ul(class="list")
+-#                     - @seller_products.each do |inventory|
+-#                         %li
+-#                             = link_to inventory_path(inventory), class: "list-container" do
+-#                                 %div(class="list-picture")
+-#                                     = image_tag inventory.product.photo(200, 200), 'data-src': inventory.product.photo(200, 200), loading: "lazy"
+-#                                 %div(class="list-main")
+-#                                     %p(class="text text-m text-medium") #{inventory.product.name}
+-#                                 %div(class="list-secondary")
+-#                                     rating
+-#             - else
+-#                 %div(class="banner")
+-#                     %div(class="banner-container")
+-#                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere voluptatum, officia iste velit saepe accusamus in reprehenderit neque, cum alias necessitatibus nihil inventore facilis amet, aspernatur illo debitis excepturi porro!

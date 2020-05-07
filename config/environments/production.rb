@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Google Analytics
-  GA.tracker = "UA-159050306-1"
+  GA.tracker = Rails.application.credentials.google[:analytics_tracker]
 
   # Default Mailer url
   config.action_mailer.default_url_options = { :host => 'dagglo.com' }
@@ -39,7 +39,7 @@ Rails.application.configure do
   config.assets.css_compressor = :sass
 
   # Compress JS using a preprocessor.
-  # config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false

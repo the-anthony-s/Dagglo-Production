@@ -1,16 +1,45 @@
 = content_for :title, "Activities"
 
 
-%div(class="container")
+%div(class="page")
 
-  %div(class="header")
-    %div(class="content")
-      %div(class="header-container")
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") Activity
-
-  %section(class="section")
-    %div(class="content")
-      %div(class="body")
-        %ul(class="activities")
+  %div(class="page-top")
+    %div(class="content-tight")
+      %div(class="page-top-container")
+        %div(class="page-top-title")
+          %h1(class="text text-xl text-medium") #{yield(:title)}
+      
+  
+  %div(class="page-block")
+    %div(class="content-tight")
+      %div(class="page-body")
+        %ul(class="activity-list")
           = render_activities(@activities)
+
+  
+  %div(class="page-pagy")
+    != pagy_nav(@pagy)
+
+
+
+
+
+
+
+
+-# %div(class="container")
+
+-#   %div(class="header")
+-#     %div(class="content")
+-#       %div(class="header-container")
+-#         %div(class="header-title")
+-#           %h1(class="text text-xxl text-medium") Activity
+
+-#   %section(class="section")
+-#     %div(class="content")
+-#       %div(class="section-body")
+-#         %div(class="body")
+-#           %ul(class="activities")
+-#             = render_activities(@activities)
+-#       %div(class="section-pagination")
+-#         != pagy_nav(@pagy)

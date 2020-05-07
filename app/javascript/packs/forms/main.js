@@ -9,25 +9,16 @@ document.addEventListener("turbolinks:load", function () {
   });
 
 
-  // Drag and Drop field
-  var $fileInput = $('.form-droparea, .d-form-droparea');
-  var $droparea = $('.form-file-control, .d-form-file-control');
-
-  $fileInput.on('dragenter focus click', function () {
-    $droparea.addClass('is-active');
+  // Phone field
+  $("input[name='form[phone]']").on('keydown', function () {
+    $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/g, '($1) $2-$3', 10));
   });
 
-  $fileInput.on('dragleave blur drop', function () {
-    $droparea.removeClass('is-active');
-  });
 
-  $fileInput.on('change', function () {
-    var filesCount = $(this)[0].files.length;
-    var $textContainer = $(this).prev('.js-set-number');
-    if (filesCount === 1) {
-      $textContainer.text($(this).val().split('\\').pop());
-    } else {
-      $textContainer.text(filesCount + ' files selected');
-    }
+  // Remove spaces from input
+  $('#noSpacesField').bind('input', function () {
+    $(this).val(function (_, v) {
+      return v.replace(/\s+/g, '');
+    });
   });
 });

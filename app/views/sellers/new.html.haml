@@ -4,14 +4,28 @@
   %div(class="content")
     %div(class="auth-content")
       %div(class="auth-header text-center")
-        %h1(class="text text-xl text-medium") Apply to Sell
-        %p(class="text text-s space-top-xs") Sign up before April 1st and get access for free - forever.
+        %h1(class="text text-l text-medium") Sell on Dagglo Today.
+        %p(class="text text-s space-top-xs") Grow your wholesale orders by up to 200% when you partner with us.
       %div(class="auth-body")
-        = form_for(Seller.new, html: {class: "form"}) do |f|
+        = form_for(@seller, html: {class: "form"}) do |f|
           %div(class="form-row")
-            %div(class="form-label")
-              = f.label :name, "Legal business name"
             %div(class="form-input")
-              = f.text_field :name, class: "form-control", autocomplete: "off", placeholder: "My Business Ltd"
+              = f.text_field :name, class: "form-control", autocomplete: "off", placeholder: "Legal business name"
             %div(class="form-submit form-submit-center")
-              = button_tag "Get Early Access", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Redirecting..."}
+              = button_tag "Continue", class: "button button-primary button-wide", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i>"}
+      %div(class="auth-footer text-center")
+        %p(class="text text-xs") By clicking Continue, I represent I have read, understand, and agree to the Postmates #{link_to "Privacy Policy", privacy_path, target: :_blank, class: "link"} and #{link_to "Terms of Service", terms_path, target: :_blank, class: "link"}. This site is protected by reCAPTCHA and the #{link_to "Google Privacy Policy", "https://policies.google.com/privacy", target: :_blank, class: "link"} and #{link_to "Terms of Service", "https://policies.google.com/terms", target: :_blank, class: "link"} apply.
+      
+      
+      
+      -# - @restore = Seller.only_deleted.where(owner_id: current_user).last
+      -# - if @restore.present?
+      -#   %div(class="auth-footer")
+      -#     %div(class="seller-restore")
+      -#       %div(class="seller-restore-container")
+      -#         %div(class="seller-restore-picture")
+      -#           = image_tag @restore.logo(150, 150), loading: "lazy"
+      -#         %div(class="seller-restore-name")
+      -#           %h1(class="text text-m text-medium") #{@restore.name}
+      -#           %p(class="text text-xs text-secondary") Deleted: #{@restore.deleted_at.to_date.to_s(:long)}. Click to restore your account.
+          

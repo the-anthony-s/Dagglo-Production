@@ -1,0 +1,70 @@
+:root {
+  // font family
+  --font-primary: Clarkson, "Helvetica Neue", -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI,
+    Roboto, Helvetica Neue, sans-serif;
+
+  // body font size
+  --text-base-size: 1em;
+  
+  // type scale
+  --text-scale-ratio: 1.1;
+  // --text-xs: calc((1em / var(--text-scale-ratio)) / var(--text-scale-ratio));
+  // --text-sm: calc(var(--text-xs) * var(--text-scale-ratio) * var(--text-scale-ratio));
+  // --text-md: calc(var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio));
+  // --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+  // --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+  // --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+  // --text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+  // --text-xxxxl: calc(var(--text-xxxl) * var(--text-scale-ratio) * var(--text-scale-ratio));
+
+  --text-xs: 0.8em;
+  --text-sm: 0.95em;
+  --text-md: 1.0425em;
+  --text-lg: 1.25em;
+  --text-xl: 1.65em;
+  --text-xxl: 2.25em;
+  --text-xxxl: 2em;
+  --text-xxxxl: 3em;
+
+  // line-height
+  --body-line-height: 1.4;
+  --heading-line-height: 1.2;
+
+  // capital letters - used in combo with the lhCrop mixin
+  --font-primary-capital-letter: 1;
+}
+
+@supports(--css: variables) {
+  :root {
+    @include bp(md) {
+      // --text-scale-ratio: 1.15;
+      --text-lg: 1.35em;
+      --text-xl: 1.95em;
+      --text-xxl: 3.35em;
+      --text-xxxl: 3.75em;
+      --text-xxxxl: 4.15em;
+    }
+
+    @include bp(lg) {
+      --text-xl: 2.15em;
+      --text-xxl: 3.35em;
+      --text-xxxxl: 5.2em;
+    }
+
+    @include bp(xl) {
+      --text-xxxl: 3.25em;
+    }
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+}
+
+// font family
+.font-primary { font-family: var(--font-primary);}

@@ -16,7 +16,7 @@
               = f.password_field :password, placeholder: "#{@minimum_password_length}+ characters", class: "form-control", autocomplete: "new-password"
           
           %div(class="form-submit form-submit-center")
-            = button_tag "Continue", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin' style='margin-right: 6px;'></i> Changing.."}
+            = button_tag "Continue", class: "button button-action button-primary button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}
           %div(class="form-actions")
             %ul(class="auth-list")
               = render partial: "users/shared/links"

@@ -1,0 +1,10 @@
+%div(class="search-card")
+    %meta{:content => "#{search.query}", :itemprop => "name"}/
+    %meta{:content => "#{index}", :itemprop => "position"}/
+    %meta{:content => "/search?utf8=✓&query=#{search.query}", :itemprop => "url"}/
+    = link_to "/search?utf8=✓&query=#{search.query}", class: "search-card-container" do
+        %div(class="search-card-icon")
+            = icon "far", "search"
+        %div(class="search-card-info")
+            %h1(class="text text-m text-medium") #{search.query}
+            %p(class="text text-xs text-secondary") #{pluralize(search.results_count, "result")}

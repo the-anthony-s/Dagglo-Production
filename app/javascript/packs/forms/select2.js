@@ -5,4 +5,5 @@ import 'select2'
 document.addEventListener("turbolinks:load", function () {
   $('.js-states').select2();
   $('.js-categories').select2();
+  $('.js-locations')
 });

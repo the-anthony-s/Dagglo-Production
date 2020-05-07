@@ -6,7 +6,7 @@ class Sellers::SellerPricingController < ApplicationController
 
 
   def show
-    @seller_plans = SellerPlan.all
+    @seller_plans = SellerPlan.is_active.all
   end
 
 

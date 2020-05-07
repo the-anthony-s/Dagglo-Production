@@ -1,0 +1,7 @@
+- if target.errors.any?
+    %div(class="form-row")
+        %div(id="error_explanation" class="form-error")
+            %h2(class="text text-xxxl text-medium") #{pluralize(target.errors.count, "error")}
+            %ul
+                - target.errors.full_messages.each do |message|
+                    %li= message

@@ -1,9 +1,8 @@
 class SellersController < ApplicationController
-
   before_action :authenticate_user!, except: [:show]
   before_action :set_seller, except: [:show, :new, :create]
-
   layout :seller_dashboard_layout, except: [:show, :new]
+
 
   def new
     safely {
@@ -18,11 +17,11 @@ class SellersController < ApplicationController
 
   def create
     safely {
-      @seller = Seller.new(seller_params)
-      @seller.seller_accounts.new(user: current_user, role: 0)
-
+      @seller = current_user.build_seller(seller_params)
       if @seller.save
-        redirect_to dashboard_seller_path, notice: "#{@seller.name} created"
+        # @seller.update_attributes(owner_id: current_user.id)
+        @seller.seller_accounts.where(user_id: current_user.id, seller_id: @seller.id, role: :owner).first_or_create
+        redirect_to home_seller_path, notice: "#{@seller.name} created"
       else
         render :new, notice: "An error occurred during registration, try again or contact support"
       end
@@ -34,12 +33,9 @@ class SellersController < ApplicationController
     safely {
       if current_user.s_account.present? && current_user.seller.present?
         @seller = current_user.seller
-
-        # if @seller.subscription
-        #   @seller.subscription.cancel
-        # end
-
-        @seller.destroy
+        
+        @seller.subscription.cancel unless !@seller.subscription
+        @seller.really_destroy! # paranoia gem
         redirect_to new_seller_path, notice: "Seller subscription canceled. #{@seller.name} deleted."
       else
         redirect_to root_path, notice: "#{current_user.first_name}, only the owner can delete seller account"
@@ -77,39 +73,32 @@ class SellersController < ApplicationController
 
   def show
     @seller = Seller.friendly.find(params[:id])
+    @seller_products = @seller.seller_products.includes([:product]).all
+    impressionist(@seller, "web")
   end
 
 
-  def dashboard
-    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(recipient_type: "Seller", recipient_id: @seller).order(created_at: :desc).limit(3)
-    @announcements = Announcement.sellers.all.order(created_at: :desc).limit(3)
-  end
-
-
-  def products
-    @seller_products = @seller.seller_products.includes(:product).all.order(created_at: :desc)
-    # @inventory = @seller.inventory_items.includes(:product).all
+  def home
+    @seller_products = @seller.seller_products.includes(:product).order(created_at: :desc).all
+    # @team = @seller.seller_accounts.includes(:user).where.not(user_id: current_user).all
+    # @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(recipient_type: "Seller", recipient_id: @seller).last(3)
+    # @announcements = Announcement.sellers.all.order(created_at: :desc).limit(3)
   end
 
 
   def account
-    @seller_subscription = @seller.subscription
-    @seller_accounts = SellerAccount.all.where(seller_id: @seller.id)
+    @subscription = @seller.subscription
+    @seller_accounts = SellerAccount.where(seller_id: @seller.id).includes(:user).all
   end
 
 
   def activities
-    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(recipient_type: "Seller", recipient_id: @seller).order(created_at: :desc)
+    @pagy, @activities = pagy(PublicActivity::Activity.all.includes([:trackable, :owner]).where(recipient_type: "Seller", recipient_id: @seller).order(created_at: :desc), items: 20)
   end
 
 
   def announcements
     @announcements = Announcement.sellers.all.order(created_at: :desc)
-  end
-
-
-  def locations
-    @seller_locations = @seller.seller_locations.all
   end
 
 
@@ -130,8 +119,9 @@ class SellersController < ApplicationController
       params.require(:seller).permit!
     end
 
+
     def seller_dashboard_layout
-      unless user_signed_in? && @seller
+      unless user_signed_in? && current_user.s_account
         redirect_to root_path, notice: "Page not found"
       else
         "seller"

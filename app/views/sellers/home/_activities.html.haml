@@ -1,0 +1,12 @@
+- if @activities.present?
+  %div(class="page-block")
+    %div(class="content")
+      %div(class="page-header")
+        %div(class="page-header-title")
+          %h1(class="text text-m text-medium") Recent activity
+        %div(class="page-header-actions")
+          %div(class="page-header-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+      
+      %div(class="page-body")
+        %ul(class="activities")
+          = render_activities(@activities)

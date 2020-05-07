@@ -1,30 +1,57 @@
 = content_for :title, "#{@seller_location.name}"
 
-%div(class="container")
 
-  %div(class="header")
+%div(class="page")
+  
+  %div(class="page-top page-top-separator")
     %div(class="content")
-      %div(class="header-container")
-        %div(class="header-picture")
-          = image_tag @seller_location.map_photo, loading: "lazy"
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") #{@seller_location.name}
-          %p(class="text text-s text-secondary") #{@seller_location.address}
-        %div(class="header-actions")
-          %div(class="header-actions-item")
-            = link_to edit_location_path(@seller_location), class: "button-circle" do
-              %div(class="button-circle-icon") #{icon "fal", "cog"}
-              %div(class="button-circle-name") Edit
+      %div(class="page-top-container")
+        %div(class="page-top-product")
+          = image_tag static_map(@seller_location, 120, 120, 13), 'data-src': static_map(@seller_location, 120, 120, 13), loading: "lazy", class: "lazy"
+        %div(class="page-top-main")
+          %div(class="page-top-main-title")
+            %h1(class="text text-xl text-medium") #{@seller_location.name}
+        %div(class="page-top-actions")
+          %div(class="page-profile-actions-item") 
+            = link_to edit_seller_location_path(@seller_location), class: "button-circle button-circle-action" do
+              %span(class="button-circle-icon") #{icon "fal", "cog"}
+              %span(class="button-circle-name") Edit
 
 
-  %section(class="section")
-    %div(class="content")
-      %div(class="header-section")
-        %div(class="header-section-title")
-          %h1(class="text text-m text-medium") Recent activity
-        %div(class="header-section-actions")
-          %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+  - if @members.present?
+    %div(class="page-block")
+      %div(class="content")
+        %div(class="page-header")
+          %div(class="page-header-title")
+            %p(class="text text-s text-secondary") Team
+          %div(class="page-header-actions")
+            %div(class="page-header-actions-item")
+              = link_to new_account_path, class: "link" do
+                %span #{icon "far", "plus"}
+                %span Add new
+        %div(class="page-body")
+          %ul(class="list")
+            - @members.each do |member|
+              %li
+                = link_to seller_account_path(member), class: "list-container" do
+                  %div(class="list-picture")
+                    = image_tag member.user.avatar(200, 200), 'data-src': member.user.avatar(200, 200), loading: "lazy", class: "lazy"
+                  %div(class="list-main")
+                    %p(class="text text-m text-medium") #{member.user.full_name}
+                    %p(class="text text-s text-secondary") #{member.role.capitalize}
 
-      %div(class="body")
-        %ul(class="activities")
-          = render_activities(@activities)
+
+  -# - if @activities.present?
+  -#   %div(class="page-block")
+  -#     %div(class="content-tight")
+  -#       %div(class="page-header")
+  -#         %div(class="page-header-title")
+  -#           %p(class="text text-s text-secondary") Activity
+  -#         %div(class="page-header-actions")
+  -#           %div(class="page-header-actions-item")
+  -#             = link_to activities_seller_path, class: "link" do
+  -#               %span #{icon "far", "list"}
+  -#               %span View all
+  -#       %div(class="page-body")
+  -#         %ul(class="activity-list")
+  -#           = render_activities(@activities)

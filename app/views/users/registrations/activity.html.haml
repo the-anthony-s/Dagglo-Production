@@ -1,0 +1,36 @@
+= render partial: "users/registrations/elements/links"
+
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-block")
+            %div(class="section-top")
+                %div(class="section-top-title")
+                    %h1(class="text text-l text-medium") Web Sessions
+                    %p(class="text text-s text-secondary") Last 10 visits
+
+            %div(class="section-body")
+                %table(class="account-sessions")
+                    %tr
+                        %th Signed In
+                        %th Browser
+                        %th IP Address
+                        %th Near
+                    - @sessions.each do |s|
+                        %tr
+                            %td{"data-th" => "Signed In"} #{time_ago_in_words(s.started_at).capitalize} ago
+                            %td{"data-th" => "Browser"} #{s.browser} (#{s.os})
+                            %td{"data-th" => "IP Address"} #{s.ip}
+                            %td{"data-th" => "Near"} #{s.country}, #{s.city}
+
+
+        %div(class="section-block")
+            %div(class="section-top")
+                %div(class="section-top-title")
+                    %h1(class="text text-l text-medium") Close Account
+            %div(class="section-body")
+                = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form", method: :put }) do |f|
+                    %div(class="form-row")
+                        %p(class="text text-s text-secondary") Close your Dagglo account - this cannot be undone.
+                    %div(class="form-submit")
+                        = button_to "Close account", registration_path(resource_name), data: { confirm: "Are you sure? This cannot be undone!" }, method: :delete, class: "button button-delete"

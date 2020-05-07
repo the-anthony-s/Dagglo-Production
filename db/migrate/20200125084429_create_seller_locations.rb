@@ -2,7 +2,8 @@ class CreateSellerLocations < ActiveRecord::Migration[6.0]
   def change
     create_table :seller_locations do |t|
       t.string :name
-      t.string :street
+      t.string :address_1
+      t.string :address_2
       t.string :city
       t.string :zip
       t.string :state

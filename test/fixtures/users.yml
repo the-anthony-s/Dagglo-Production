@@ -13,9 +13,9 @@
 #  phone_number           :string
 #  time_zone              :string
 #  image_data             :string
-#  private                :boolean          default("false")
-#  status                 :integer          default("0")
-#  sign_in_count          :integer          default("0"), not null
+#  private                :boolean          default(FALSE)
+#  status                 :integer          default(0)
+#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
@@ -24,7 +24,7 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  failed_attempts        :integer          default("0"), not null
+#  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
 #  created_at             :datetime         not null
@@ -36,7 +36,7 @@
 #  invitation_limit       :integer
 #  invited_by_type        :string
 #  invited_by_id          :bigint
-#  invitations_count      :integer          default("0")
+#  invitations_count      :integer          default(0)
 #  deleted_at             :datetime
 #
 

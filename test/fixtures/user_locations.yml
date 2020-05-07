@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: user_locations
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  street     :string
+#  city       :string
+#  zip        :string
+#  state      :string
+#  country    :string
+#  longitude  :float
+#  latitude   :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
+#  deleted_at :datetime
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

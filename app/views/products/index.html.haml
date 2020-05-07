@@ -1,0 +1,30 @@
+= content_for :title, "Select a product category"
+
+%div(class="page")
+
+    %div(class="page-top")
+        %div(class="content-tight")
+            %div(class="page-top-container")
+                %div(class="page-top-icon")
+                    = icon "fal", "ballot-check"
+                %div(class="page-top-main")
+                    %div(class="page-profile-main-title")
+                        %h1(class="text text-xl text-medium") #{yield(:title)}
+
+
+    -# = form_for new_product_path, method: :get, html: {class: "form"} do
+    = form_for(:products, :url => new_product_path, :method=> "GET", html: {class: "form"}) do
+        %div(class="page-body")
+            %div(class="content-tight")
+                %div(class="form-container")
+                    %div(class="form-header")
+                        %div(class="form-header-title")
+                            %p(class="text text-m text-medium") Select a category
+                        %div(class="form-header-caption")
+                            %p(class="text text-s text-secondary") Enter product's barcode in the field below. If your product exists, we will merge your inventory to it.
+                    %div(class="form-row")
+                        %div(class="form-row-input")
+                            = hidden_field_tag :barcode, request.params[:barcode]
+                            = select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name), {class: "js-categories form-control", id: "selectCategory"}
+                %div(class="form-submit")
+                    = submit_tag "Continue", name: nil, class: "button button-primary button-action button-responsive"

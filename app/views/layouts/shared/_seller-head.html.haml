@@ -19,17 +19,18 @@
 
 %meta{:content => "noindex", :name => "robots"}/
 
-%title #{content_for?(:title) ? "#{yield(:title)} at #{current_user.s_account.name}" : "#{current_user.s_account.name}"}
+%title #{content_for?(:title) ? "#{yield(:title)} | #{current_user.s_account.name}" : "#{current_user.s_account.name}"}
 = csrf_meta_tags
 = csp_meta_tag
 
+-# FontAwesome package
+%script{:crossorigin => "anonymous", :integrity => "sha384-NZ61boOcl3WY4W94TxWmzNrE/dZbP7g9IY8FECz/RXQXC1XKSv357JckOVRE8GM8", :src => "https://kit.fontawesome.com/ca37ffc099.js"}
 %script(src="https://js.stripe.com/v3/")
+-# %script{:async => "", "data-turbolinks-eval" => "false", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:maps_api_key]}&libraries=places&callback=initMap"}
 = tag.meta name: "stripe-key", content: Rails.application.credentials.stripe[:public_key]
 = stylesheet_link_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'
 = stylesheet_pack_tag 'seller', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_pack_tag 'seller', 'data-turbolinks-track': 'reload'
 
--# FontAwesome package
-%script{:crossorigin => "anonymous", :integrity => "sha384-NZ61boOcl3WY4W94TxWmzNrE/dZbP7g9IY8FECz/RXQXC1XKSv357JckOVRE8GM8", :src => "https://kit.fontawesome.com/ca37ffc099.js"}
 -# Google Analytics -> Only production
 = analytics_init if GoogleAnalytics.valid_tracker? && Rails.env.production?

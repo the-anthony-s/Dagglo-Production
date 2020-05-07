@@ -1,33 +1,18 @@
 .banner
-    width: 100%
+    border: 0
+    border-radius: $border-radius
+    overflow: hidden
+    background: $gray-lighter
     position: relative
     display: block
 
-.banner-container
-    display: flex
-    flex-direction: column
-    width: 100%
 
-    +tablet
-        flex-direction: row
-        align-items: flex-start
+.banner-header
+    padding: var(--gap) var(--gap) 0
 
-.banner-main
-    flex: 1 1 100%
-    max-width: 100%
-    text-align: left
 
-.banner-action
-    flex: 1 1 100%
-    margin-top: var(--gap)
+.banner-body
+    padding: var(--gap-s) var(--gap)
 
-    +tablet
-        flex: 0 0 auto
-        margin-top: 0
-        margin-left: var(--gap)
-
-.banner-title
-    width: 100%
-
-.banner-caption
-    margin-top: var(--gap-s)
+.banner-footer
+    padding: 0 var(--gap) var(--gap)

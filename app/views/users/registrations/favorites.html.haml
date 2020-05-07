@@ -1,0 +1,14 @@
+= content_for :title, "Favorites"
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-block")
+            %div(class="section-top")
+                %div(class="section-top-title")
+                    %h1(class="text text-l text-medium") My favorites
+                    %p(class="text text-s text-secondary") Last 10 visits
+
+            %div(class="section-body")
+                - @product_likes.each do |like|
+                    %p 
+                        = link_to like.product.name, show_product_path(like.product)

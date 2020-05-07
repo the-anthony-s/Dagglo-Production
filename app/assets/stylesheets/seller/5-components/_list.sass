@@ -1,114 +1,58 @@
 .list
+    width: 100%
     display: block
-
-.list-item
-    display: block
-
-// .list-item + .list-item
-//     border-top: 1px solid $color-border
+    position: relative
 
 .list-container
-    display: flex !important
-    flex-direction: row !important
-    justify-content: space-between !important
-    padding-top: var(--gap-s) !important
-    padding-bottom: var(--gap-s) !important
-
-    &-center
-        align-items: flex-start !important
-
-        +tablet
-            align-items: center !important
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: var(--gap-s) 0
+    position: relative
+    overflow: hidden
+    border: 0
+    border-radius: $border-radius
 
 a.list-container
-    transition: all 0.15s ease
-    border: 0
-    border-radius: $border-radius
-    overflow: hidden
-
-a.list-container:hover,
-a.list-container:focus,
-a.list-container:active
-    background: $gray-light
-    padding-right: var(--gap-xs)
-    padding-left: var(--gap-xs)
-
-button.list-container-expand
-    background: $white
-    padding: 0
-    font-size: var(--size-typo-m)
-    line-height: var(--line-height-typo-m)
-    appearance: button
-    box-shadow: none
-    transition: all 0.15s ease
-    border: 0
-    border-radius: $border-radius
-    overflow: hidden
-    cursor: pointer
-    width: 100%
-
-button.list-container-expand:hover
-    background: $gray-light
-    padding-right: var(--gap-xs)
-    padding-left: var(--gap-xs)
-
-button.list-container-expand.is-active
-    background: $gray-light
-    padding-right: var(--gap-xs)
-    padding-left: var(--gap-xs)
-    border-bottom-left-radius: 0
-    border-bottom-right-radius: 0
-
+    transition: $transition-default
+    &:hover
+        box-shadow: $shadow-card
+        padding: var(--gap-s) var(--gap-xs)
 
 .list-picture
     flex: 0 0 auto
+    border: 0
+    border-radius: $border-radius
+    overflow: hidden
     margin-right: var(--gap-s)
-
-    &-rounded
-        border-radius: 50%
-        overflow: hidden
-
+    &-circle
+        border-radius: 100%
     & > img
-        height: var(--circle)
-        width: var(--circle)
-        position: relative
+        height: 44px
+        width: 44px
         display: block
-        border: 0
-        border-radius: $border-radius
         object-fit: cover
+        +tablet
+            height: 54px
+            width: 54px
 
 .list-icon
-    margin-right: var(--gap-s)
-    color: $color-font-secondary
-    font-size: var(--size-typo-l)
-
-.list-date
     flex: 0 0 auto
     margin-right: var(--gap-s)
+    color: $color-secondary
+    font-size: var(--size-typo-xl)
+    line-height: var(--line-height-typo-xl)
+    min-width: 22px
+    text-align: center
 
 .list-main
     flex: 1 1 100%
     max-width: 100%
-    text-align: left
 
-.list-actions
-    display: flex
-    flex-direction: row
-    align-items: center
-    margin-left: var(--gap-s)
-
-    &-item
-        flex: 0 0 auto
-
-    &-item + &-item
-        margin-left: var(--gap-s)
+.list-secondary
+    flex: 0 0 auto
+    margin-left: var(--gap)
 
 
-// List Expand
-.list-expand-content
-    display: none
-    overflow: hidden
-    background: $gray-lighter
-    padding: var(--gap-s) var(--gap-xs)
-    border-top: none
-    box-shadow: rgba(17, 51, 83, 0.02) 0px 4px 12px 0px
+
+// Products

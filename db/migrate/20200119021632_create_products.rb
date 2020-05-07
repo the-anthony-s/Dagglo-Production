@@ -1,16 +1,14 @@
 class CreateProducts < ActiveRecord::Migration[6.0]
   def change
+    enable_extension 'hstore'
+    
     create_table :products do |t|
       t.string :name
+      t.text :description
+      t.hstore :variations
+      t.string :country_code
       t.string :barcode
-      t.text :about
-      t.string :country
-      t.money :min_price
-      t.integer :num_offers
-      t.boolean :manufacturer_warranty
       t.integer :status, default: 0
-      t.text :image_data
-
       t.timestamps
     end
 

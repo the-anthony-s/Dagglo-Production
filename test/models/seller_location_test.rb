@@ -12,7 +12,7 @@
 #  longitude  :float
 #  latitude   :float
 #  phone      :string
-#  pause      :boolean          default("false")
+#  pause      :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  seller_id  :bigint

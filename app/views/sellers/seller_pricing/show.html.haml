@@ -1,24 +1,57 @@
--# - @seller_plan.each do |sp|
--#   %p #{sp.name}
+= content_for :title, "Pick your Subscription"
 
 
-= content_for :title, "Pick a plan for your seller account"
+%div(class="page")
+	
+	%div(class="page-top")
+		%div(class="content-tight")
+			%div(class="page-top-container")
+				%div(class="page-top-icon")
+					= icon "far", "redo-alt"
+				%div(class="page-top-main")
+					%div(class="page-top-main-title")
+						%h1(class="text text-xl text-medium") #{yield(:title)}
 
-%div(class="container")
 
-  %div(class="header")
-    %div(class="content")
-      %div(class="header-container")
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") Pick a plan for your store
-  
-  %section(class="section")
-    %div(class="content")
-      %div(class="body")
-        %div(class="grid-1-2")
-          - @seller_plans.each do |plan|
-            %div(class="col")
-              .text-center
-                %h1(class="text text-m space-bot-s") #{plan.name}
-                %p(class="text text-xxxl text-medium space-bot-xxl") #{formatted_amount plan.amount}
-                = link_to "Subscribe", new_seller_subscription_path(plan_id: plan.id), class: "button button-action"
+	%div(class="page-body")
+		%div(class="content-tight")
+			- @seller_plans.each do |plan|
+				%div(class="page-block")
+					%div(class="pricing")
+						%div(class="pricing-header")
+							%h1(class="text text-eyebrow text-medium") #{plan.name}
+						%div(class="pricing-body")
+							%div(class="text-center")
+								%p(class="text text-m") Unlimited complimentary access for joining Dagglo beta. Thank you for being the best. We value you and your business.
+							%div(class="pricing-body-price")
+								%span(class="pricing-body-price-currency") USD
+								%span(class="pricing-body-price-amount") #{formatted_amount plan.amount}
+								%span(class="pricing-body-price-interval") / #{plan.interval}
+						%ul(class="pricing-features")
+							%li
+								%span(class="pricing-features-icon") #{icon "far", "store"}
+								%span(class="pricing-features-main") Everything you need to manage your wholesale business
+							%li
+								%span(class="pricing-features-icon") #{icon "far", "forward"}
+								%span(class="pricing-features-main") Get hundreds of feature updates each year
+							%li
+								%span(class="pricing-features-icon") #{icon "far", "search-dollar"}
+								%span(class="pricing-features-main") No setup fees or monthly fees
+						%div(class="pricing-action")
+							= link_to new_seller_subscription_path(plan_id: plan.id), class: "pricing-link" do
+								%span Subscribe
+								%span #{icon "far", "arrow-right"}
+
+
+
+
+
+
+
+-# %div(class="grid-1-2")
+-#   - @seller_plans.each do |plan|
+-#     %div(class="col")
+-#       .text-center
+-#         %h1(class="text text-m space-bot-s") #{plan.name}
+-#         %p(class="text text-xxxl text-medium space-bot-xxl") #{formatted_amount plan.amount}
+-#         = link_to "Subscribe", new_seller_subscription_path(plan_id: plan.id), class: "button button-action"

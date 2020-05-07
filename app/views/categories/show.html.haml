@@ -1,14 +1,104 @@
-%header.header
-    .content-page
-        .header-container
-            .header-main
-                %h1.text.text-xxxl #{@category.name}
+- if @category.root?
+    %header(id="category#{@category.id}" class="category-hero")
+        %div(class="category-hero-background")
+            = image_tag @category.background(1500, 700), loading: "lazy"
+        %div(class="category-hero-container")
+            %div(class="content")
+                %div(class="category-hero-header")
+                    %div(class="category-hero-header-eyebrow")
+                        %p(class="text text-eyebrow text-primary-light") Dagglo Marketplace
+                    %div(class="category-hero-header-title")
+                        %h1(class="text text-xxxl text-bold text-primary-light") #{@category.name}
 
 
-%section.section
-    .content-page
-        .section-block
-            .grid-1-3
-                - @category.children.is_active.each_with_index do |category, index|
-                    .col
-                        = render partial: "categories/elements/card", :locals => {:category => category, :index => index}
+
+%section(class="section")
+
+    - if (!request.params[:page].present? || request.params[:page] == "1") && @popular_products.present? && @new_products.present?
+        %div(class="section-block")
+            %div(class="content")
+                %div(class="section-top section-top-separator")
+                    %div(class="section-top-title")
+                        %p(class="text text-l text-bold") Popular this week
+                %div(class="section-body")
+                    %div(class="grid-products")
+                        = render partial: "products/elements/product", collection: @popular_products, cache: true
+    
+        %div(class="section-block")
+            %div(class="content")
+                %div(class="section-top section-top-separator")
+                    %div(class="section-top-title")
+                        %p(class="text text-l text-bold") New products
+                %div(class="section-body")
+                    %div(class="grid-products")
+                        = render partial: "products/elements/product", collection: @new_products, cache: true
+            
+
+
+    - if @category.children.is_active.present?
+        - if (!request.params[:page].present? || request.params[:page] == "1")
+            %div(class="section-block")
+                %div(class="content")
+                    %div(class="section-top section-top-separator")
+                        %div(class="section-top-title")
+                            %p(class="text text-l text-bold") Explore #{@category.name}
+                    %div(class="section-body")
+                        %div(class="glider-contain")
+                            %div(class="glider glider-categories")
+                                = render partial: "categories/elements/category", collection: @category.children.popular.is_active, cache: true
+                            %button(class="glider-prev")
+                                = icon "far", "chevron-left"
+                            %button(class="glider-next")
+                                = icon "far", "chevron-right"
+
+
+        - @children.each do |category|
+            - if category.children.present?
+                %div(class="section-block")
+                    %div(class="content")
+                        %div(class="section-top section-top-separator")
+                            %div(class="section-top-title")
+                                %p(class="text text-l text-bold") Explore #{category.name}
+                        %div(class="section-body")
+                            %div(class="grid-explore")
+                                - category.children.is_active.popular.select(:name, :image_data, :slug).take(4).each_with_index do |category_child, index|
+                                    %div(class="col")
+                                        = render partial: "categories/elements/explore", locals: {category: category_child, index: index}
+
+            
+            %div(class="section-block")
+                %div(class="content")
+                    %div(class="section-top section-top-separator")
+                        = link_to category, class: "section-top-title" do
+                            %p(class="text text-l text-bold") Popular #{category.name}
+                    %div(class="section-body") 
+                        %div(class="grid-products")
+                            = render partial: "products/elements/product", collection: category.products.is_active.popular.take(5), cache: true
+                    %div(class="section-actions")
+                        %div(class="section-actions-item")
+                            = link_to category, class: "button button-responsive button-gray" do
+                                %span #{category.name} products
+                                %span #{icon "far", "chevron-right"}
+        
+        %div(class="section-pagination")
+            != pagy_nav(@pagy)
+
+            
+
+
+
+
+-# %header.header
+-#     .content-page
+-#         .header-container
+-#             .header-main
+-#                 %h1.text.text-xxxl #{@category.name}
+
+
+-# %section.section
+-#     .content-page
+-#         .section-block
+-#             .grid-1-3
+-#                 - @category.children.is_active.each_with_index do |category, index|
+-#                     .col
+-#                         = render partial: "categories/elements/card", :locals => {:category => category, :index => index}

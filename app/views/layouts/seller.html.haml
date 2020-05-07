@@ -2,18 +2,34 @@
 %html
   %head
     = render partial: "layouts/shared/seller-head"
-  %body(id="pageContainer")
+  %body(id="pageContainer" data-theme="light")
+    %main(id="seller#{@seller.id}" class="dashboard")
 
-    -# = render partial: "layouts/shared/navbar"
+      %div(class="dashboard-top")
+        = render partial: "sellers/shared/navbar"
+      %div(class="dashboard-body")
+        %div(class="dashboard-container")
+          = yield
+      %div(class="dashboard-bottom")
+        = render partial: "sellers/shared/footer"
 
-    %main(id="main" class="dashboard")
-      %div(class="dashboard-left")
-        = render partial: "sellers/shared/sidebar"
 
-      %div(class="dashboard-center")
-        = yield
+      -# %div(class="dashboard-left")
+      -#   = render partial: "sellers/shared/sidebar"
+
+      -# %div(class="dashboard-center")
+      -#   %div(class="container")
+      -#     -# = render partial: "sellers/shared/navbar"
+      -#     = yield 
+
+      -# %div(class="dashboard-right")
+
 
     %div(tabindex="-1")
       %div(class="alert-container")
         - flash.each do |name, msg|
-          %div(class="alert alert-#{name}") #{content_tag(:p, msg, class: "text text-m text-primary-light")}
+          %div(class="alert")
+            %div(class="alert-header")
+              = content_tag(:p, name, class: "text text-eyebrow text-secondary-light")
+            %div(class="alert-message")
+              = content_tag(:p, msg, class: "text text-s text-primary-light")

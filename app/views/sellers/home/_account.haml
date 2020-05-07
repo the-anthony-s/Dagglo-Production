@@ -1,0 +1,70 @@
+- unless current_user.confirmed_at.present?
+    %div(class="page-block")
+        %div(class="content")
+            %div(class="card")
+                %div(class="card-header")
+                    %div(class="card-header-title")
+                        %p(class="text text-m text-medium") Keep your account secure by verifying your email address
+                %div(class="card-body")
+                    %p(class="text text-s") If you get locked out of your account, Dagglo can email you instructions to reset your password. To verify your email address, follow these steps:
+                %div(class="card-body")
+                    %ul(class="card-list")
+                        %li(class="card-list-container")
+                            %div(class="card-list-icon")
+                                = icon "fal", "envelope"
+                            %div(class="card-list-main")
+                                %p(class="text text-s")
+                                    Send a verification email to
+                                    %span(class="text-medium") #{current_user.email}
+                                %p(class="text text-s text-secondary") This confirms that Dagglo can reach you.
+                        %li(class="card-list-container")
+                            %div(class="card-list-icon")
+                                = icon "fal", "mouse-pointer"
+                            %div(class="card-list-main")
+                                %p(class="text text-s") Follow the link in the verification email
+                                %p(class="text text-s text-secondary") This confirms that you can access your email account.
+                %div(class="card-footer")
+                    %div(class="card-footer-actions")
+                        %div(class="card-footer-actions-item")
+                            = link_to('Resend confirmation', user_confirmation_path(user: {:email => current_user.email}), :method => :post, class: "button button-action")
+                        %div(class="card-footer-actions-item") 
+                            = link_to edit_user_registration_path, class: "link", target: :_blank do
+                                %span #{icon "fal", "external-link"}
+                                %span Settings
+
+- unless @seller.subscribed?
+    %div(class="page-block")
+        %div(class="content")
+            %div(class="card")
+                %div(class="card-message")
+                    %div(class="card-message-icon")
+                        = icon "fal", "home"
+                    %div(class="card-message-title")
+                        %p(class="text text-l text-medium") 
+                            %span(class="text-success") FREE
+                            Subscription
+                    %div(class="card-message-message")
+                        %p(class="text text-s text-secondary") #{current_user.first_name}, as promised, 100% free unlimited access subscription - forever. Click the button below and subscribe now. 
+                        %p(class="text text-s text-secondary space-top-xs") Thank you for joining Dagglo ❤️
+                    %div(class="card-message-actions")
+                        = link_to "Subscribe Now", seller_pricing_path, class: "button button-action"
+
+
+- unless @seller.business_number.present?
+    %div(class="page-block")
+        %div(class="content")
+            
+            %div(class="card")
+                %div(class="card-header")   
+                    %div(class="card-header-title")
+                        %p(class="text text-m text-medium") Business number
+                    %div(class="card-header-picture")
+                        = image_tag @seller.logo(200, 200), loading: "lazy"
+                        %span(class="card-header-picture-icon")
+                            = icon "fal", "check"
+                %div(class="card-body")
+                    %p(class="text text-s") 76% of e-commerce users look for seller's verification label. Verification signs and company information encourage them to buy from you.
+                %div(class="card-footer")
+                    %div(class="card-footer-actions")
+                        %div(class="card-footer-actions-item")
+                            = link_to "Add Business Number", settings_general_seller_path, class: "link"

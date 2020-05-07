@@ -1,40 +1,60 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_product, only: [:show, :avg_price]
+  before_action :set_seller, except: [:show]
+  # before_action :convert_search, only: [:show]
 
-  before_action :authenticate_user!, except: [:show, :index]
-  before_action :set_product, only: [:show]
-  before_action :set_seller, except: [:show, :index]
-  before_action :convert_search, only: :show
-
-  layout :seller_dashboard_layout, except: [:show, :index]
+  layout :seller_dashboard_layout, except: [:show]
 
 
   def show
-    @offers = @product.seller_products.all
+    @pricing = Pricing.where(product_id: @product.id, created_at: 6.months.ago..Time.now.end_of_month).group_by_month(:created_at).average(:unit_price_cents)
+    @pricing_avg = Pricing.where(product_id: @product.id, created_at: Time.now.beginning_of_month..Time.now.end_of_month).average(:unit_price_cents)
+    @pricing_min = Pricing.where(product_id: @product.id, created_at: Time.now.beginning_of_month..Time.now.end_of_month).minimum(:unit_price_cents)
+    @pricing_max = Pricing.where(product_id: @product.id, created_at: Time.now.beginning_of_month..Time.now.end_of_month).maximum(:unit_price_cents)
+    @best = SellerProduct.order(unit_price_cents: :asc).where(product_id: @product.id).includes([:seller]).first
+    @recommended = @product.similar(
+      fields: ["name", "seller"],
+      # track: {user_id: user_signed_in? ? current_user.id : nil, source: "web similar items to #{@product.name}"}
+      # where: {status: :active, category_id: @product.category.id}
+    ).take(8)
+    
+    # impressionist(@product, "web")
+  end
+
+
+  def avg_price
+    render json: Pricing.where(product_id: @product.id).group_by_month(:created_at).average(:unit_price_cents).chart_json
   end
 
 
   def new
-    @product = Product.new
+    @product = Product.new(category_id: params[:category_id ], barcode: params[:barcode])
   end
 
 
   def create
     safely {
       @product = Product.new(product_params)
+      gtin = Barkick::GTIN.new("#{@product.barcode}")
       if @product.valid?
-        # Validate Product Barcode with already existed barcodes
-        if Product.where(barcode: @product.barcode).present?
-          product = Product.where(barcode: @product.barcode).last
-          seller_product = SellerProduct.create(seller_id: @seller.id, product_id: product.id)
-          redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} already exists on Dagglo. We merged existed product with your account."
+        # Validate barcode
+        if gtin.valid?
+          # Check if similar product present
+          if ProductBarcode.where(gtin14: gtin.gtin14, ean13: gtin.ean13, upc: gtin.upc).last.present?
+            seller_product = @seller.seller_products.where(product_id: product.id, seller_id: @seller.id).first_or_create
+            redirect_to edit_seller_product_path(seller_product.id), :flash => { 'Product exists' => "We found #{@product.name} in our database. Your listing will be merged." }
+          else
+            @product.save
+            seller_product = SellerProduct.where(product_id: @product.id, seller_id: @seller.id).first_or_create
+            redirect_to edit_seller_product_path(seller_product.id), :flash => { 'New Product' => "#{@product.name} created. We need more information about your offer."}
+          end # Product.where()...
         else
-          @product.save
-          seller_product = SellerProduct.create(seller_id: @seller.id, product_id: @product.id)
-          redirect_to edit_inventory_path(seller_product.id), notice: "#{@product.name} created"
-        end
+          render :new, :flash => { 'Barcode error' => "#{@product.barcode} is not a valide barcode. Please, try again."}
+        end # gtin.valid?
       else
         render :new, notice: "An error occurred during registration, try again or contact support"
-      end
+      end # @product.valid?
     }
   end
 
@@ -50,6 +70,10 @@ class ProductsController < ApplicationController
   end
 
 
+  def index
+    @categories = Category.is_active.all
+  end  
+
 
   private
 
@@ -60,17 +84,21 @@ class ProductsController < ApplicationController
       query_to_convert.convert(@product) unless query_to_convert.nil?
     end
 
+
+    def set_product
+      @product = Product.friendly.includes(:category).find(params[:id])
+    end
+
+
     def product_params
       params.require(:product).permit!
     end
 
-    def set_product
-      @product = Product.friendly.find(params[:id])
-    end
 
     def set_seller
       @seller = current_user.s_account
     end
+
 
     def seller_dashboard_layout
       unless user_signed_in? && @seller

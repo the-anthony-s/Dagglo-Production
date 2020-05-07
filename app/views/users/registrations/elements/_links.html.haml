@@ -1,0 +1,14 @@
+%nav(class="account-navbar")
+    %div(class="content-page")
+        %div(class="account-navbar-container")
+            %ul(class="account-navbar-links")
+                %li
+                    = active_link_to "My Profile", edit_user_registration_path, class: "account-navbar-link", active: :exclusive
+                %li
+                    = active_link_to "Preferences", edit_user_preferences_path, class: "account-navbar-link", active: :exclusive
+                %li
+                    = active_link_to "Security", edit_user_security_path, class: "account-navbar-link", active: :exclusive
+                %li
+                    = active_link_to "Account Activity", edit_user_activity_path, class: "account-navbar-link", active: :exclusive
+                %li
+                    = active_link_to "Shipping addresses", user_locations_path, class: "account-navbar-link", active: :inclusive

@@ -11,17 +11,19 @@
 *:focus
     outline: 0
 
-html,
-body
-    min-height: 100vh
+// html,
+// body
+//     min-height: 100vh
 
 html
     -moz-osx-font-smoothing: auto
+    text-size-adjust: 100%
+    text-rendering: optimizeLegibility
 
 body
     color: $color-font-primary
     font-family: var(--font)
-    font-size: 1em
+    font-size: var(--size-typo-default)
     font-weight: normal
     font-smooth: always
     background: $white
@@ -30,6 +32,7 @@ body
     margin: 0 auto
     display: block
     position: relative
+    background: var(--color-bg)
     // overscroll-behavior-y: none
 
     &.no-scroll
@@ -92,6 +95,7 @@ a
     text-decoration: none
     text-transform: none
     cursor: pointer
+    display: inline-block
 
     &:hover,
     &:focus

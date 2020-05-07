@@ -1,73 +1,132 @@
 = content_for :title, "Billing"
 
-%div(class="container")
 
-  = form_for @seller, :html => {class: "form"} do |f|
+%div(class="page")
 
-    %div(class="header")
-      %div(class="content")
-        %div(class="header-container")
-          %div(class="header-title")
-            %h1(class="text text-xxl text-medium") Billing
+  %div(class="page-top")
+    %div(class="content")
+      %div(class="page-top-title")
+        %h1(class="text text-xl text-medium") #{yield(:title)}
+
+  
+  %div(class="page-body")
+    %div(class="content")
+      %div(class="page-block")
+        %div(class="page-annotated")
+          %div(class="page-annotated-annotation")
+            %p(class="text text-m text-medium") Billing information:
+            %p(class="text text-s text-secondary") Your bills are paid using your active payment method.
+          %div(class="page-annotated-content")
+            - if @seller.card_last4?
+              %div(class="creditcard")
+                %div(class="creditcard-container")
+                  %div(class="creditcard-icon")
+                    = icon "fab", "#{@seller.credit_card_icon}"
+                  %div(class="creditcard-number")
+                    %span **** **** **** #{@seller.card_last4}
+                  %div(class="creditcard-footer")
+                    %div(class="creditcard-footer-name")
+                      %span #{@seller.owner.full_name}
+                    %div(class="creditcard-footer-date")
+                      %span #{@seller.card_exp_month} / #{@seller.card_exp_year}
+            - else
+              %div(class="banner")
+                = link_to seller_pricing_path, class: "banner-container" do
+                  %div(class="banner-title")
+                    %p(class="text text-m text-medium") You don't have any bills
+                  %div(class="banner-actions")
+                    %div(class="banner-actions-item")
+                      = button_to "Subscribe", seller_pricing_path, class: "button button-primary button-action"
+
+
+      %div(class="page-block")
+        %div(class="page-annotated")
+          %div(class="page-annotated-annotation")
+            %p(class="text text-m text-medium") Finance overview:
+            %p(class="text text-s text-secondary") An overview of your billing and payouts.
+          %div(class="page-annotated-content")
+            - if @seller.seller_charges.present?
+              %ul(class="list")
+                - @seller.seller_charge_path.each do |charge|
+                  %li
+                    = link_to seller_charge_path(charge, format: :pdf), class: "list-container", target: :_blank do
+                      %div(class="list-icon")
+                        = icon "fas", "receipt"
+                      %div(class="list-main")
+                        %p(class="text text-s text-secondary") 
+                          %span(class="text-medium text-primary") #{charge.card_brand} 
+                          ending in
+                          %span(class="text-medium text-primary")..#{charge.card_last4}
+                        %p(class="text text-xs text-secondary") #{charge.created_at.to_date.to_s(:long)}
+                      %div(class="list-secondary")
+                        %p(class="text text-s text-medium text-alert") #{formatted_amount charge.amount}
+            - else
+              %div(class="banner")
+                %div(class="banner-container")
+                  %div(class="banner-title")
+                    %p(class="text text-s text-secondary") You don't have any bills
+
+
+-#   = form_for @seller, :html => {class: "form"} do |f|
 
     
-    %section(class="section")
-      %div(class="content")
-        %div(class="section-annotated")
-          %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium space-bot-xs") Billing information:
-            %p(class="text text-s text-secondary") Your bills are paid using your active payment method.
-          %div(class="section-annotated-content")
-            %div(class="body")
-              - if @seller.card_last4?
-                %div(class="credit-card")
-                  %div(class="credit-card-container")
-                    %div(class="credit-card-number") 
-                      %h1(class="text text-l text-medium text-primary-light") **** **** **** #{@seller.card_last4}
-                    %div(class="credit-card-date") 
-                      %p(class="text text-s text-primary-light") #{@seller.card_exp_month} / #{@seller.card_exp_year}
-                    %div(class="credit-card-footer")
-                      %div(class="credit-card-footer-item")
-                        %p(class="text text-s text-primary-light") #{@seller.owner.full_name}
-                      %div(class="credit-card-footer-item") 
-                        %p(class="text text-xxl text-primary-light") #{icon "fab", "#{@seller.credit_card_icon}"}
+-#     %section(class="section")
+-#       %div(class="content")
+-#         %div(class="section-annotated")
+-#           %div(class="section-annotated-annotation")
+-#             %p(class="text text-m text-medium space-bot-xs") Billing information:
+-#             %p(class="text text-s text-secondary") Your bills are paid using your active payment method.
+-#           %div(class="section-annotated-content")
+-#             %div(class="body")
+-#               - if @seller.card_last4?
+-#                 %div(class="credit-card")
+-#                   %div(class="credit-card-container")
+-#                     %div(class="credit-card-number") 
+-#                       %h1(class="text text-l text-medium text-primary-light") **** **** **** #{@seller.card_last4}
+-#                     %div(class="credit-card-date") 
+-#                       %p(class="text text-s text-primary-light") #{@seller.card_exp_month} / #{@seller.card_exp_year}
+-#                     %div(class="credit-card-footer")
+-#                       %div(class="credit-card-footer-item")
+-#                         %p(class="text text-eyebrow text-primary-light") #{@seller.owner.full_name}
+-#                       %div(class="credit-card-footer-item") 
+-#                         %p(class="text text-xxl text-primary-light") #{icon "fab", "#{@seller.credit_card_icon}"}
                 
-                %div(class="credit-card-caption")
-                  %p(class="text text-s") #{link_to "Update Credit Card", edit_seller_card_path, class: "link"}
+-#                 %div(class="credit-card-caption")
+-#                   %p(class="text text-s") #{link_to "Update Credit Card", edit_seller_card_path, class: "link"}
               
               
-              - else
+-#               - else
 
-                %div(class="credit-card")
-                  = link_to edit_seller_card_path, class: "credit-card-new" do
-                    %div(class="credit-card-add")
-                      = icon "fal", "plus"
-                    %div(class="credit-card-message")
-                      %p(class="text text-m text-secondary") Add a credit card and use it to pay your bills
+-#                 %div(class="credit-card")
+-#                   = link_to edit_seller_card_path, class: "credit-card-new" do
+-#                     %div(class="credit-card-add")
+-#                       = icon "fal", "plus"
+-#                     %div(class="credit-card-message")
+-#                       %p(class="text text-m text-secondary") Add a credit card and use it to pay your bills
 
 
 
-    - if @seller.seller_charges.present?
-      %section(class="section")
-        %div(class="content")
-          %div(class="section-annotated")
-            %div(class="section-annotated-annotation")
-              %p(class="text text-m text-medium space-bot-xs") Finance overview:
-              %p(class="text text-s text-secondary") An overview of your billing and payouts.
-            %div(class="section-annotated-content")
-              %div(class="body")
-                %ul(class="list")
-                  - @seller.seller_charges.order(created_at: :desc).take(5).each do |charge|
-                    %li(class="list-item")
-                      = link_to seller_charge_path(charge, format: :pdf), class: "list-container list-container-center", target: :_blank do
-                        %div(class="list-icon")
-                          = icon "fal", "file-invoice-dollar"
-                        %div(class="list-main")
-                          %p(class="text text-s text-secondary") 
-                            %span(class="text-medium text-primary") #{charge.card_brand} 
-                            ending in
-                            %span(class="text-medium text-primary")..#{charge.card_last4}
-                          %p(class="text text-xs text-secondary") #{charge.created_at.to_date.to_s(:long)}
-                        %div(class="list-actions")
-                          %div(class="list-actions-item") 
-                            %p(class="text text-s text-secondary") #{formatted_amount charge.amount}
+-#     - if @seller.seller_charges.present?
+-#       %section(class="section")
+-#         %div(class="content")
+-#           %div(class="section-annotated")
+-#             %div(class="section-annotated-annotation")
+-#               %p(class="text text-m text-medium space-bot-xs") Finance overview:
+-#               %p(class="text text-s text-secondary") An overview of your billing and payouts.
+-#             %div(class="section-annotated-content")
+-#               %div(class="body")
+-#                 %ul(class="list")
+-#                   - @seller.seller_charges.order(created_at: :desc).take(5).each do |charge|
+-#                     %li(class="list-item")
+-#                       = link_to seller_charge_path(charge, format: :pdf), class: "list-container list-container-center", target: :_blank do
+-#                         %div(class="list-icon")
+-#                           = icon "fal", "file-invoice-dollar"
+-#                         %div(class="list-main")
+                          -# %p(class="text text-s text-secondary") 
+                          -#   %span(class="text-medium text-primary") #{charge.card_brand} 
+                          -#   ending in
+                          -#   %span(class="text-medium text-primary")..#{charge.card_last4}
+                          -# %p(class="text text-xs text-secondary") #{charge.created_at.to_date.to_s(:long)}
+-#                         %div(class="list-actions")
+-#                           %div(class="list-actions-item") 
+-#                             %p(class="text text-s text-secondary") #{formatted_amount charge.amount}

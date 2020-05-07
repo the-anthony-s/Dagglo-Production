@@ -1,11 +1,15 @@
 ---
 en:
   buttons:
-    user_registration: Sign Up
-    user_session: Log In
+    user_registration: Sign up
+    user_session: Log in
     user_destroy_session: Logout
 
   errors:
     messages:
       not_saved: Not saved
   hello: Hi
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA was incorrect, please try again.'
+      recaptcha_unreachable: 'reCAPTCHA verification server error, please try again.'

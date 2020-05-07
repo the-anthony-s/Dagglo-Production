@@ -2,19 +2,16 @@
     width: 100%
     position: relative
     display: block
-    border-top: 2px solid $color-border
+    background: var(--color-black-light)
 
 .footer-container
     width: 100%
     max-width: $content-width-primary
     margin: 0 auto
-    padding: var(--gap) var(--gap-r)
+    padding: var(--gap-m) var(--gap-r)
 
 .footer-block
     text-align: center
-
-    +tablet
-        text-align: left
 
     & + &
         margin-top: var(--gap)
@@ -29,15 +26,15 @@
     margin: calc(var(--gap-xs) * (-1))
 
     +tablet
-        align-items: left
-        text-align: left
-        justify-content: flex-start
+        // align-items: left
+        // text-align: left
+        // justify-content: flex-start
 
     &-item
         padding: var(--gap-xs)
 
 .footer-link
-    color: $color-font-secondary
+    color: $color-font-secondary-light
     font-size: var(--size-typo-s)
     font-weight: 400
     line-height: var(--line-height-typo-s)
@@ -47,5 +44,4 @@
     display: block
 
     &:hover, &:focus, &:active
-        color: $color-font-primary
-        text-decoration: underline
+        color: $color-font-primary-light

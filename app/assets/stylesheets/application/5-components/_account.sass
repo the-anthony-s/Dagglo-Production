@@ -1,38 +1,168 @@
-.account
+// Account navigation
+.account-navbar
+    border-top: 1px solid $color-border
+    border-bottom: 1px solid $color-border
+    background: $gray-light
+    width: 100%
+    position: relative
+
+.account-navbar-container
+    height: var(--navbar-height)
+    width: 100%
+    position: relative
+
+.account-navbar-links
+    display: flex
+    flex-direction: row
+    height: 100%
+    width: 100%
+    overflow-x: auto
+    scrollbar-width: none
+    &::-webkit-scrollbar
+        opacity: 0
+        height: 0
+        display: none
+        scrollbar-width: none
+        visibility: hidden
+    & > li
+        flex: 0 0 auto
+
+.account-navbar-link
+    height: 100%
+    display: flex
+    align-items: center
+    padding: var(--gap-xs) var(--gap-s)
+    color: $color-font-secondary
+    font-weight: 500
+    font-size: var(--size-typo-s)
+    line-height: var(--line-height-typo-s)
+    appearance: none
+    &:hover
+        color: $color-font-primary
+    &.active
+        color: $color-secondary-hover
+
+
+
+// Account profile image
+.account-photo
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    width: 100%
+    +tablet
+        align-items: center
+        justify-content: flex-start
+
+.account-photo-preview
+    display: flex
+    flex-direction: column
+    flex: 1 1 100%
+    max-width: 100%
+    +tablet
+        align-items: center
+        flex-direction: row
+
+.account-photo-image
+    flex: 0 0 auto
     position: relative
     display: block
+    & > img
+        height: 64px
+        width: 64px
+        border: 0
+        border-radius: 100%
+        object-fit: cover
 
-
-.account-container
-    display: block
-    border: 2px solid $color-border
-    border-radius: $border-radius
-    padding: var(--gap-r)
-    text-align: center
-
-a.account-container:hover,
-a.account-container:focus
-    border-color: $color-border-dark
-
-
-.account-icon
-    color: $color-font-primary
-    font-size: var(--size-typo-xxxl)
-    line-height: var(--line-height-typo-xxxl)
-    display: block
-    margin-bottom: var(--gap-s)
-
-
-.account-name
-    width: 100%
-
-
-.account-caption
-    margin-top: var(--gap-xs)
-
-
-.account-actions
-    display: block
+.account-photo-desc
+    flex: 1 1 100%
+    max-width: 100%
     margin-top: var(--gap)
-    &-item + &-item
-        margin-top: var(--gap-xs)
+    +tablet
+        margin-top: 0
+        margin-left: var(--gap-s)
+
+.account-photo-action
+    flex: 0 0 auto
+    margin-left: var(--gap)
+
+
+// Account addresses
+.account-addresses
+    width: 100%
+    position: relative
+    display: block
+    & > li
+        width: 100%
+        display: block
+    & > li + li
+        margin-top: var(--gap)
+
+.account-address
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    padding: var(--gap)
+    display: flex
+    flex-direction: column
+    +tablet
+        flex-direction: row
+
+.account-address-main
+    flex: 1 1 100%
+
+.account-address-secondary
+    flex: 1 1 100%
+    margin-top: var(--gap)
+    +tablet
+        flex: 0 0 auto
+        margin-top: 0
+        margin-left: var(--gap)
+
+
+// Account Sessions Table
+.account-sessions
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    overflow: hidden
+    width: 100%
+    & tr
+        border-top: 1px solid $color-border
+        border-bottom: 1px solid $color-border
+    & th
+        display: none
+        color: $color-font-secondary
+        font-weight: 500
+        line-height: var(--line-height-typo-s)
+        font-size: var(--size-typo-s)
+    & td
+        color: $color-font-primary
+        font-size: var(--size-typo-xs)
+        font-weight: 400
+        line-height: var(--line-height-typo-xs)
+        vertical-align: baseline
+        display: block
+        padding: var(--gap-xxs) 0
+        &:first-child
+            padding-top: var(--gap-s)
+        &:last-child
+            padding-bottom: var(--gap-s)
+        &::before
+            content: attr(data-th)": "
+            color: $color-font-secondary
+            font-weight: 500
+            line-height: var(--line-height-typo-s)
+            font-size: var(--size-typo-s)
+            width: 30%
+            display: inline-block
+            +tablet
+                display: none
+
+    & th, td
+        text-align: left
+        +tablet
+            display: table-cell
+            padding: var(--gap-s)
+            &:first-child
+                padding-left: 0
+            &:last-child
+                padding-right: 0

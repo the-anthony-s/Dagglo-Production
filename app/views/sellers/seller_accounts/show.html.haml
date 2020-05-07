@@ -1,39 +1,92 @@
 = content_for :title, "#{@seller_account.user.full_name}"
 
-%div(class="container")
 
-  %div(class="header")
-    %div(class="content")
-      %div(class="header-container")
-        %div(class="header-picture")
-          = image_tag @seller_account.user.avatar(300, 300) || asset_path("defaults/avatar.png"), loading: "lazy"
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") #{@seller_account.user.full_name}
-          - if @seller_account.role?
-            %p(class="text text-m text-secondary") #{@seller_account.role.capitalize}
-        - if current_user.s_owner && current_user.seller_account.id != @seller_account.id
-          %div(class="header-actions")
-            %div(class="header-actions-item")
-              = form_for :seller_account, url: accounts_path(@seller_account) do |f|
-                = link_to account_path(@seller_account), class: "button-circle button-circle-delete", method: :delete do
-                  %div(class="button-circle-icon") #{icon "fal", "trash"}
-                  %div(class="button-circle-name") Delete
-          -# %div(class="header-actions-item")
-          -#   = link_to users_seller_path, class: "button-circle" do
-          -#     %div(class="button-circle-icon") #{icon "fal", "users"}
-          -#     %div(class="button-circle-name") Users
+%div(class="page")
+
+  %div(class="page-profile")
+    %div(class="content-tight")
+      %div(class="page-profile-container")
+        %div(class="page-profile-picture")
+          = image_tag @seller_account.user.avatar(120, 120), 'data-src': @seller_account.user.avatar(120, 120), loading: "lazy", class: "lazy"
+        %div(class="page-profile-header")
+          %div(class="page-profile-header-title")
+            %h1(class="text text-l text-medium") #{yield(:title)}
+            %p(class="text text-s text-secondary") #{@seller_account.role.capitalize}
+        %div(class="page-profile-actions")
+          -# %div(class="page-profile-actions-item") 
+          -#   = link_to "", class: "button-circle" do
+          -#     %span(class="button-circle-icon") #{icon "fal", "users"}
+          -#     %span(class="button-circle-name") Team
+          - if current_user.seller.present?
+            %div(class="page-profile-actions-item") 
+              = link_to edit_seller_account_path(@seller_account), class: "button-circle button-circle-action" do
+                %span(class="button-circle-icon") #{icon "fal", "cog"}
+                %span(class="button-circle-name") Edit
+
+
+  - if @seller_location.present?
+    %div(class="page-block")
+      %div(class="content-tight")
+        %div(class="page-header")
+          %div(class="page-header-title")
+            %p(class="text text-s text-secondary") Location
+          %div(class="page-header-actions")
+            %div(class="page-header-actions-item")
+              = link_to location_path(@seller_location), class: "link" do
+                %span #{icon "far", "globe-americas"}
+                %span View
+        %div(class="page-body")
+          %div(class="card")
+            %div(class="card-top")
+              %div(class="card-top-title")
+                %p(class="text text-m text-medium") #{@seller_location.name}
+            %div(class="card-map")
+              = image_tag static_map(@seller_location, 612, 200, 15)
+            %div(class="card-container")
+              %ul(class="card-features")
+                - if @seller_location.address.present?
+                  %li
+                    %span(class="card-features-icon")
+                      = icon "fal", "location-circle"
+                    %span(class="card-features-main")
+                      %p(class="text text-s") #{@seller_location.address}
+                - if @seller_location.phone.present?
+                  %li
+                    %span(class="card-features-icon")
+                      = icon "fal", "phone-alt"
+                    %span(class="card-features-main")
+                      %p(class="text text-s") #{@seller_location.phone}
+
+
+  -# - if @activities.present?
+  -#   %div(class="page-block")
+  -#     %div(class="content-tight")
+  -#       %div(class="page-header")
+  -#         %div(class="page-header-title")
+  -#           %p(class="text text-s text-secondary") Activity
+  -#         %div(class="page-header-actions")
+  -#           %div(class="page-header-actions-item")
+  -#             = link_to activities_seller_path, class: "link" do
+  -#               %span #{icon "far", "list"}
+  -#               %span View all
+  -#       %div(class="page-body")
+  -#         %ul(class="activities")
+  -#           = render_activities(@activities)
 
 
 
-  - if @activities.present?
-    %section(class="section")
-      %div(class="content")
-        %div(class="header-section")
-          %div(class="header-section-title")
-            %h1(class="text text-m text-medium") Recent activity
-          %div(class="header-section-actions")
-            %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
 
-        %div(class="body")
-          %ul(class="activities")
-            = render_activities(@activities)
+
+
+  -#   - if @activities.present?
+  -#     %section(class="section")
+  -#       %div(class="content")
+  -#         %div(class="header-section")
+  -#           %div(class="header-section-title")
+  -#             %h1(class="text text-m text-medium") Recent activity
+  -#           %div(class="header-section-actions")
+  -#             %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
+
+  -#         %div(class="body")
+  -#           %ul(class="activities")
+  -#             = render_activities(@activities)

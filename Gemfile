@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -46,6 +46,8 @@ gem 'ancestry'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 # Meta Tags -> SEO
 gem 'meta-tags'
+# Chatbot
+gem "intercom-rails"
 
 
 
@@ -61,6 +63,8 @@ gem 'chosen-rails'
 gem 'ahoy_matey'
 # Public Activity tracking
 gem 'public_activity'
+# Track User Views
+gem 'impressionist'
 
 
 
@@ -70,8 +74,8 @@ gem 'font-awesome-sass', '~> 5.9.0'
 # Authentication solution
 gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
-# Captcha or spam filter. Read more: https://github.com/markets/invisible_captcha
-gem 'invisible_captcha'
+# reCAPTCHA Google
+gem "recaptcha"
 # Forms
 gem 'simple_form'
 gem "selectize-rails"
@@ -79,13 +83,16 @@ gem 'country_select', require: 'country_select_without_sort_alphabetical'
 # Geolocation
 gem 'geocoder'
 # Money formatting
-gem "money"
+gem 'money-rails', '~> 1.12'
 # PDF Receipts templete
 gem 'receipts'
 # Hide deleted records but keep them in the database
 gem "paranoia", "~> 2.2"
 # Pagination
 gem 'pagy', '~> 3.5'
+# Charts
+gem 'chartkick'
+gem 'groupdate'
 
 
 ## Errors
@@ -103,6 +110,8 @@ gem 'sucker_punch'
 gem 'oj'
 # Stores
 gem 'redis-rails'
+# MiniProfile -> Track performance
+gem 'rack-mini-profiler', require: false
 
 
 
@@ -118,6 +127,8 @@ gem 'stripe_event'
 gem 'searchkick'
 # Search analytics
 gem 'searchjoy'
+# Barcode validation
+gem 'barkick'
 
 
 
@@ -159,6 +170,8 @@ group :development do
   gem 'brakeman'
   # Add a comment summarizing the current schema to the top or bottom
   gem 'annotate'
+  # N+1 queries
+  gem 'bullet'
 end
 
 
@@ -168,6 +181,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  # Performance tests
+  gem 'rails-perftest'
+  gem 'ruby-prof'
+  gem 'test-unit'
 end
 
 

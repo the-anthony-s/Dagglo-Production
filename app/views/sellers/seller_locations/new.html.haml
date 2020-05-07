@@ -1,75 +1,85 @@
-= content_for :title, "New location"
+= content_for :title, "New Location"
 
-%div(class="container")
+%div(class="page")
 
-  = form_for :seller_location, url: locations_path(@seller_location), method: :post, :html => { class: "form", :multipart => true } do |f|
+	%div(class="page-top")
+		%div(class="content-tight")
+			%div(class="page-top-container")
+				%div(class="page-top-icon")
+					= icon "far", "map-marker-plus"
+				%div(class="page-top-main")
+					%div(class="page-top-main-title")
+						%h1(class="text text-xl text-medium") #{yield(:title)}
 
-    %div(class="header")
-      %div(class="content")
-        %div(class="header-container")
-          %div(class="header-title")
-            %h1(class="text text-xxl text-medium") New location
 
-    %section(class="section")
-      %div(class="content")
-        %div(class="section-annotated")
-          %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium space-bot-xs") Location:
-            %p(class="text text-s text-secondary space-bot-xs") Give this location a short name to make it easy to identify. You’ll see this name in areas like orders and products.
-          %div(class="section-annotated-content")
-            %div(class="form-row")
-              %div(class="form-label")
-                = f.label :name, "Location name"
-              %div(class="form-input")
-                = f.text_field :name, class: "form-control", required: true, autocomplete: "off"
+	%div(class="page-block")
+		= form_for @seller_location, html: {class: "form", multipart: true} do |f|
+			%div(class="content-tight")
+				= render "sellers/shared/errors", target: @seller_location
+				%div(class="form-container")
+					%div(class="form-header")
+						%div(class="form-header-title")
+							%p(class="text text-m text-medium") Location:
+						%div(class="form-header-caption")
+							%p(class="text text-s text-secondary") Give this location a short name to make it easy to identify. This information will be visible for you and your team only.
+					%div(class="form-row")
+						%div(class="form-row-label")
+							= f.label :name, "Location name"
+						%div(class="form-row-input")
+							= f.text_field :name, class: "form-control", required: false, autocomplete: "off", placeholder: "#{@seller.name} HQ"
+				
+				%div(class="form-container")
+					%div(class="form-header")
+						%div(class="form-header-title")
+							%p(class="text text-m text-medium") Address:
+					%div(class="form-row")
+						%div(class="form-row-label")
+							= f.label :address_1, "Address 1"
+						%div(class="form-row-input")
+							= f.text_field :address_1, required: false, autocomplete: "off", class: "form-control"
+					%div(class="form-row")
+						%div(class="form-row-label")
+							= f.label :address_2, "Address 2 (Optional)"
+						%div(class="form-row-input")
+							= f.text_field :address_2, required: false, autocomplete: "off", class: "form-control"
+					%div(class="form-row")
+						%div(class="form-grid")
+							%div(class="form-col")
+								%div(class="form-row-label")
+									= f.label :city, "City"
+								%div(class="form-row-input")
+									= f.text_field :city, required: false, autocomplete: "off", class: "form-control"
+							%div(class="form-col")
+								%div(class="form-row")
+									%div(class="form-row-label")
+										= f.label :zip, "ZIP / Postal code"
+									%div(class="form-row-input")
+										= f.text_field :zip, required: false, autocomplete: "off", class: "form-control"
+					%div(class="form-row")
+						%div(class="form-grid")
+							%div(class="form-col")
+								%div(class="form-row-label")
+									= f.label :state, "State"
+								%div(class="form-row-input")
+									= f.text_field :state, required: false, autocomplete: "off", class: "form-control"
+							%div(class="form-col")
+								%div(class="form-row")
+									%div(class="form-row-label")
+										= f.label :country, "Country"
+									%div(class="form-row-input")
+										= f.country_select("country", {:include_blank => "Choose country"}, {class: "js-states form-control", id: "selectCountry"}, required: false, autofocus: false)
 
-    %section(class="section")
-      %div(class="content")
-        %div(class="section-annotated")
-          %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium space-bot-xs") Address:
-            %p(class="text text-s text-secondary") Location address will help you get more customers.
-          %div(class="section-annotated-content")
-            %div(class="form-row")
-              %div(class="form-label")
-                = f.label :street, "Street"
-              %div(class="form-input")
-                = f.text_field :street, required: false, autocomplete: "off", class: "form-control"
+				-# %div(class="form-container")
+				-# 	%div(class="form-header")
+				-# 		%div(class="form-header-title")
+				-# 			%p(class="text text-m text-medium") Contact information:
+				-# 		%div(class="form-header-caption") 
+				-# 			%p(class="text text-s text-secondary") This information optional. It will be visible for your team and logistic companies.
+				-# 	%div(class="form-row")
+				-# 		%div(class="form-row-label")
+				-# 			= f.label :phone, "Phone number"
+				-# 		%div(class="form-row-input")
+				-# 			= f.text_field :phone, required: false, autocomplete: "off", class: "form-control"
 
-            %div(class="form-row")
-              %div(class="form-grid")
-                %div(class="form-col")
-                  %div(class="form-label")
-                    = f.label :city, "City"
-                  %div(class="form-input")
-                    = f.text_field :city, required: false, autocomplete: "off", class: "form-control"
-                %div(class="form-col")
-                  %div(class="form-label")
-                    = f.label :zip, "ZIP / Postal code"
-                  %div(class="form-input")
-                    = f.text_field :zip, required: false, autocomplete: "off", class: "form-control"
-
-            %div(class="form-row")
-              %div(class="form-grid")
-                %div(class="form-col")
-                  %div(class="form-label")
-                    = f.label :state, "State"
-                  %div(class="form-input")
-                    = f.text_field :state, required: false, autocomplete: "off", class: "form-control"
-                %div(class="form-col")
-                  %div(class="form-label")
-                    = f.label :country, "City"
-                  %div(class="form-input")
-                    = f.country_select("country", {:include_blank => "Choose country"}, {class: "js-states form-control", id: "selectCountry"}, required: true, autofocus: false)
-
-            %div(class="form-row")
-              %div(class="form-label")
-                = f.label :phone, "Phone number"
-              %div(class="form-input")
-                = f.text_field :phone, required: false, autocomplete: "off", class: "form-control"
-
-    %div(class="actions")
-      %div(class="content")
-        %div(class="actions-container")
-          %div(class="actions-item")
-            = button_tag "Save location", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Saving..."}
+				%div(class="form-submit")
+					= button_tag "Save location", class: "button button-primary button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}

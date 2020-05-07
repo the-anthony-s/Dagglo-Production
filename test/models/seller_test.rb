@@ -5,16 +5,16 @@
 #  id                      :bigint           not null, primary key
 #  name                    :string
 #  business_number         :string
-#  about                   :text
+#  description             :text
 #  country                 :string
 #  founding_date           :date
-#  status                  :integer          default("0")
-#  private                 :boolean          default("false")
+#  status                  :integer          default("pending")
+#  private                 :boolean          default(FALSE)
 #  image_data              :text
 #  cover_data              :text
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  slug                    :string
+#  owner_id                :bigint
 #  onboarding_completed_at :datetime
 #  stripe_id               :string
 #  card_brand              :string
@@ -22,6 +22,8 @@
 #  card_exp_month          :string
 #  card_exp_year           :string
 #  deleted_at              :datetime
+#  views                   :integer
+#  slug                    :string
 #
 
 require 'test_helper'

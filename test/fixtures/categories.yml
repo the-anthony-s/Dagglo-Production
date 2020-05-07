@@ -9,9 +9,10 @@
 #  conditions_allowed :text
 #  approval_required  :text
 #  cover_data         :text
-#  pause              :boolean          default("false")
+#  pause              :boolean          default(FALSE)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  views              :integer
 #  slug               :string
 #
 

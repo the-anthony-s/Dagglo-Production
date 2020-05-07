@@ -1,0 +1,74 @@
+.seller-page
+    margin-bottom: var(--gap-m)
+    +desktop-sm
+        margin-top: var(--gap-m)
+    
+    
+.seller-top
+    width: 100%
+    max-width: $content-width-primary
+    margin: 0 auto
+    +desktop-sm
+        display: flex
+        justify-content: space-between
+        align-items: flex-start
+    
+
+.seller-top-cover
+    position: relative
+    overflow: hidden
+    max-height: 420px
+    +desktop-sm
+        order: 2
+        flex-grow: 1
+        display: flex
+        max-width: 720px
+        margin: 0 var(--gap-r)
+        max-height: 100%
+    & > img
+        object-fit: cover
+        height: 100%
+        width: 100%
+        display: block
+        +desktop-sm
+            border: 0
+            border-radius: $border-radius
+
+
+.seller-top-profile
+    width: 100%
+    position: relative
+    display: block
+    padding: 0 var(--gap-r)
+    margin-top: var(--gap)
+    +desktop-sm
+        margin-top: 0
+        order: 1
+        min-width: 300px
+        max-width: 600px
+        
+.seller-top-logo
+    margin-bottom: var(--gap)
+    & > img
+        border: 0
+        border-radius: 100%
+        height: 84px
+        width: 84px
+        object-fit: cover
+
+.seller-top-caption
+    margin-top: var(--gap-xxs)
+
+.seller-top-actions
+    margin-top: var(--gap)
+    display: flex
+    align-items: center
+    flex-direction: row
+    &-item + &-item
+        margin-left: var(--gap-s)
+
+
+
+.seller-content
+    padding-top: var(--gap-m)
+    padding-bottom: var(--gap-m)

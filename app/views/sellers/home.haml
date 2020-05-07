@@ -1,0 +1,104 @@
+= content_for :title, "#{current_user.hello}, #{current_user.first_name}"
+
+
+%div(class="page")
+
+    - if @seller.onboarding_completed_at.present?
+        %div(class="page-top page-top-separator")
+            %div(class="content")
+                %div(class="page-top-container")
+                    %div(class="page-top-main")
+                        %div(class="page-top-main-title")
+                            %h1(class="text text-xl text-medium") #{yield(:title)}
+                        %div(class="page-top-main-caption")
+                            %p(class="text text-m") Here's what's happening with your store today.
+                    %div(class="page-top-stats")
+                        %div(class="page-top-stats-item")
+                            %p(class="text text-eyebrow text-medium text-secondary") Total Sales:
+                            %p(class="text text-m text-medium") $0.00
+                        %div(class="page-top-stats-item")
+                            %p(class="text text-eyebrow text-medium text-secondary") Total Orders:
+                            %p(class="text text-m text-medium") 0
+    - else
+        = render partial: "sellers/home/onboarding"
+
+    = render partial: "sellers/home/orders"
+
+
+
+
+
+
+
+
+-# %div(class="page")
+
+-#     %div(class="page-top page-top-separator")
+-#         %div(class="content")
+-#             %div(class="page-top-container")
+-#                 %div(class="page-top-main")
+-#                     %div(class="page-top-main-title")
+-#                         %h1(class="text text-xl text-medium") #{yield(:title)}
+-#                     %div(class="page-top-main-caption")
+-#                         %p(class="text text-m") Here's what's happening with your store today.
+-#                 %div(class="page-top-stats")
+-#                     %div(class="page-top-stats-item")
+-#                         %p(class="text text-eyebrow text-medium text-secondary space-bot-xxs") Total Sales:
+-#                         %p(class="text text-m text-bold") $0.00
+-#                     %div(class="page-top-stats-item")
+-#                         %p(class="text text-eyebrow text-medium text-secondary space-bot-xxs") Total Orders:
+-#                         %p(class="text text-m text-bold") 0
+
+    
+-#     %div(class="page-block")
+-#         %div(class="content")
+-#             %div(class="page-header")
+-#                 %div(class="page-header-title")
+-#                     %p(class="text text-eyebrow text-medium") Pending Orders
+-#             %div(class="page-block")
+-#                 %ul(class="orders")
+-#                     %li
+-#                         %div(class="order")
+-#                             %div(class="order-container")
+-#                                 %div(class="order-icon")
+-#                                     %div(class="order-icon-main")
+-#                                         = image_tag asset_path('defaults/image.png')
+-#                                     %div(class="order-icon-secondary")
+-#                                         = image_tag asset_path('defaults/image.png')
+-#                                 %div(class="order-body")
+-#                                     %p(class="text text-s") Diet Pepsi (No Aspartame) in 16.9 Oz Bottles
+-#                                     %p(class="text text-s") Order Amount: $1800.30
+-#                                 %div(class="order-actions")
+-#                                     %div(class="order-actions-item")
+-#                                         = link_to "View", "", class: "button"
+                    
+-#                     %li
+-#                         %div(class="order")
+-#                             %div(class="order-container")
+-#                                 %div(class="order-icon")
+-#                                     %div(class="order-icon-main")
+-#                                         = image_tag asset_path('defaults/image.png')
+-#                                     %div(class="order-icon-secondary")
+-#                                         = image_tag asset_path('defaults/image.png')
+-#                                 %div(class="order-body")
+-#                                     %p(class="text text-s") Diet Pepsi (No Aspartame) in 16.9 Oz Bottles
+-#                                     %p(class="text text-s") Order Amount: $1800.30
+-#                                 %div(class="order-actions")
+-#                                     %div(class="order-actions-item")
+-#                                         = link_to "View", "", class: "button"
+
+
+    -# = render partial: "sellers/home/onboarding"
+    -# = render partial: "sellers/home/summary"
+    -# = render partial: "sellers/home/orders"
+
+
+
+
+-#     = render partial: "sellers/home/sales"
+-#     = render partial: "sellers/home/orders"
+-#     = render partial: "sellers/home/summary"
+-#     = render partial: "sellers/home/products"
+-#     = render partial: "sellers/home/activities"
+-#     = render partial: "sellers/home/announcements"
+    

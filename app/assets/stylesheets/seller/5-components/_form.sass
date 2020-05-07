@@ -1,0 +1,345 @@
+.form
+    display: block
+    width: 100%
+    position: relative
+
+
+.form-container
+    width: 100%
+    display: block
+    & + &
+        border-top: 1px solid var(--color-border)
+        padding-top: var(--space-md)
+        margin-top: var(--space-md)
+
+
+.form-submit
+    width: 100%
+    text-align: center
+    margin-top: var(--space-xxxl)
+
+
+.form-header
+    margin-bottom: var(--space-md)
+    &-caption
+        margin-top: var(--space-xs)
+
+
+.form-row
+    width: 100%
+    position: relative
+    & + &
+        margin-top: var(--space-card)
+
+
+
+// Form inputs
+.form-row-label
+    width: 100%
+    display: block
+    margin-bottom: var(--space-xs)
+    color: var(--color-contrast-high)
+    font-size: var(--text-xs)
+    line-height: var(--body-line-height)
+    font-weight: 400
+
+.form-row-input
+    width: 100%
+    position: relative
+
+.form-row-caption
+    width: 100%
+    position: relative
+    margin-top: var(--space-xs)
+
+
+// Grid
+.form-grid
+    display: grid
+    grid-row-gap: var(--space-sm)
+    grid-column-gap: var(--space-sm)
+    grid-template-columns: repeat(1, 1fr)
+    +mobile
+        grid-template-columns: repeat(2, 1fr)
+
+.form-col
+    grid-column-end: span 1
+
+
+// Controls / Input styles
+.form-control
+    display: block
+    color: var(--color-contrast-higher)
+    font-size: var(--text-sm)
+    font-weight: 400
+    font-family: var(--font)
+    line-height: var(--body-line-height)
+    letter-spacing: .015em
+    padding: var(--space-sm) var(--space-md)
+    appearance: none
+    border: 1px solid var(--color-border)
+    border-radius: var(--radius-border)
+    background: var(--color-contrast-lower)
+    width: 100%
+    position: relative
+    z-index: 1
+    &:focus
+        background: var(--color-bg)
+        border-color: var(--color-border)
+    &::placeholder
+        color: var(--color-contrast-high)
+    &-textarea
+        min-height: 140px
+
+
+.form-control-action
+    text-align: center
+    padding: var(--space-md) var(--space-md)
+    font-size: var(--text-md)
+    font-weight: 600
+
+.form-control-barcode
+    text-transform: uppercase
+
+
+.form-control-money
+    padding: 12px var(--space-sm) 12px calc(var(--space-md) * 2)
+    &-currency
+        color: var(--color-contrast-high)
+        font-size: var(--text-sm)
+        font-weight: 400
+        position: absolute
+        top: 0
+        left: 0
+        bottom: 0
+        display: flex
+        align-items: center
+        padding: 0 var(--space-sm)
+        z-index: 1
+
+
+.form-row-input-select
+    display: flex
+    width: 100%
+    flex-direction: column
+    +mobile
+        flex-direction: row
+        align-items: center
+        justify-content: center
+    & > select + select
+        margin-top: var(--space-xs)
+        +mobile
+            margin-top: 0
+            margin-left: var(--space-xs)
+
+
+// Errors block
+#error_explanation
+    border: 1px solid var(--color-error)
+    border-radius: var(--radius-border)
+    background: var(--color-error)
+    padding: var(--space-sm)
+    & > h2
+        color: var(--color-white)
+        font-size: var(--text-md)
+        font-weight: 700
+        vertical-align: baseline
+        margin-bottom: var(--space-xs)
+    & > ul
+        display: block
+        width: 100%
+    & > ul > li
+        color: var(--color-white)
+        font-size: var(--text-sm)
+        font-weight: 400
+        width: 100%
+        position: relative
+    & > ul > li + li
+        margin-top: var(--space-sm)
+
+
+
+// Select2 overwrite
+.select2-container
+    width: 100% !important
+
+.select2-container--default .select2-selection--single
+    border: 1px solid var(--color-border) !important
+    border-radius: var(--radius-border) !important
+    padding: var(--space-sm) var(--space-sm) !important
+    background: var(--color-contrast-lower) !important
+    width: 100% !important
+    position: relative !important
+    z-index: 1 !important
+    height: 100% !important
+    background: var(--color-contrast-lower) !important
+    &::placeholder
+        color: var(--color-contrast-low) !important
+
+.select2-selection__arrow
+    height: 100% !important
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b
+    border-color: var(--color-border) transparent transparent transparent !important
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple, 
+    border-color: var(--color-border) !important
+    border-bottom-right-radius: 0 !important
+    border-bottom-left-radius: 0 !important
+    box-shadow: 0 !important
+
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single, .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple, 
+    border-color: var(--color-border) !important
+    border-top-right-radius: 0 !important
+    border-top-left-radius: 0 !important
+    box-shadow: 0 !important
+
+.select2-selection__rendered
+    color: var(--color-contrast-higher) !important
+    font-size: var(--text-sm) !important
+    font-weight: 400 !important
+    line-height: var(--body-line-height) !important
+    padding: 0 !important
+
+.select2-dropdown
+    background-color: var(--color-contrast-lower) !important
+    border: 1px solid var(--color-border) !important
+    border-radius: var(--radius-border) !important
+    border-top: none !important
+    border-top-left-radius: 0 !important
+    border-top-right-radius: 0 !important
+
+.select2-container--open .select2-dropdown--above
+    border-color: var(--color-border) !important
+    box-shadow: 0 !important
+    overflow: hidden !important
+    border-top: 1px solid var(--color-border) !important
+    border-bottom: none !important
+    border-top-left-radius: var(--radius-border) !important
+    border-top-right-radius: var(--radius-border) !important
+    border-bottom-left-radius: 0 !important
+    border-bottom-right-radius: 0 !important
+
+.select2-container--open .select2-dropdown--below
+    border-color: var(--color-contrast-low) !important
+    box-shadow: 0 !important
+    overflow: hidden !important
+
+.select2-search--dropdown
+    border-bottom: 1px solid var(--color-border) !important
+    padding: var(--space-xs) !important
+
+.select2-container--default .select2-search--dropdown .select2-search__field
+    border: 1px solid var(--color-border) !important
+    border-radius: var(--radius-border) !important
+    color: var(--color-contrast-higher) !important
+    font-size: var(--text-sm) !important
+    font-weight: 400 !important
+    line-height: var(--body-line-height) !important
+    background: var(--color-contrast-lower) !important
+    padding: var(--space-xxs) var(--space-xxs) !important
+
+.select2-results__option
+    color: var(--color-contrast-higher) !important
+    font-size: var(--text-sm) !important
+    line-height: var(--body-line-height) !important
+    font-weight: 400 !important
+    letter-spacing: .02em !important
+    padding: var(--space-xs) var(--space-xs) !important
+
+.select2-container--default .select2-results__option[aria-selected=true]
+    background: var(--color-contrast-low) !important
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]
+    color: var(--color-white) !important
+    background: var(--color-primary) !important
+
+
+
+// Uppy trumps
+.uppy-Dashboard-inner
+    background-color: var(--color-contrast-lower) !important
+    border: 1px solid var(--color-border) !important
+    border-radius: var(--radius-border) !important
+
+.uppy-size--md .uppy-DashboardAddFiles
+        border: 1px dashed var(--color-border) !important
+        font-size: var(--text-md) !important
+
+.uppy-Dashboard-dropFilesTitle
+    color: var(--color-contrast-higher) !important
+
+.uppy-Dashboard-browse
+    color: var(--color-accent) !important
+    &:hover
+        border-color: var(--color-accent) !important
+
+.uppy-DashboardItem-previewInnerWrap
+    border-radius: var(--radius-border) !important
+    box-shadow: none !important
+
+.uppy-DashboardContent-back
+    color: var(--color-accent) !important
+    &:hover
+        color: var(--color-accent-dark) !important
+
+// .uppy-DashboardTabs
+//     background-color: var(--color-contrast-low) !important
+
+.uppy-Dashboard:not(.uppy-size--md) .uppy-DashboardItem
+    border-color: var(--color-border) !important
+
+.uppy-DashboardItem-name
+    color: var(--color-contrast-higher) !important
+
+.uppy-DashboardItem-status
+    color: var(--color-contrast-high) !important
+
+.uppy-DashboardContent-bar
+    background-color: var(--color-contrast-lower) !important
+    border-color: var(--color-border) !important
+
+.uppy-DashboardContent-title
+    color: var(--color-contrast-higher) !important
+
+.uppy-DashboardContent-addMore
+    color: var(--color-accent) !important
+    &:hover
+        color: var(--color-accent-dark) !important
+
+.uppy-StatusBar
+    color: var(--color-contrast-higher) !important
+    background-color: var(--color-contrast-lower) !important
+    &::before
+        background-color: var(--color-contrast-low) !important
+
+.uppy-StatusBar-progress
+    background-color: var(--color-success) !important
+
+.uppy-StatusBar-content
+    color: var(--color-contrast-higher) !important
+
+.uppy-StatusBar.is-complete .uppy-StatusBar-statusIndicator
+    color: var(--color-success) !important
+
+.uppy-FileInput-btn
+    color: var(--color-contrast-higher) !important
+    font-size: var(--text-sm) !important
+    font-weight: 500 !important
+    letter-spacing: .01em !important
+    padding: var(--space-xs) var(--space-sm) !important
+    border-color: var(--color-border) !important
+    border-radius: var(--radius-border) !important
+    &:hover
+        color: var(--color-contrast-lower) !important
+        background: var(--color-contrast-higher) !important
+        border-color: var(--color-border-dark) !important
+
+.uppy-size--md .uppy-DashboardItem-previewInnerWrap
+    box-shadow: none !important
+
+.uppy-DashboardItem-preview img.uppy-DashboardItem-previewImg
+    border-radius: var(--radius-border) !important
+
+.uppy-Root .uppy-FileInput-container
+    color: var(--color-contrast-higher) !important

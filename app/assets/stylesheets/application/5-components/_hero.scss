@@ -1,0 +1,42 @@
+.hero {
+    display: block;
+    position: relative;
+}
+
+.hero-no-navbar {
+    margin-top: calc(var(--navbar-height) * (-1));
+    padding-top: var(--navbar-height);
+}
+
+.hero-container {
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-md);
+}
+
+
+.hero__heading {
+    display: block;
+    width: 100%;
+    position: relative;
+
+    &-eyebrow {
+        margin-bottom: var(--space-sm);
+        width: 100%;
+    }
+
+    &-title {
+        width: 100%;
+    }
+
+    &-caption {
+        margin-top: var(--space-sm);
+    }
+
+    &-action {
+        margin-top: var(--space-xl);
+    }
+
+    &-footer {
+        margin-top: var(--space-md);
+    }
+}

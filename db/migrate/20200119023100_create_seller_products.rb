@@ -1,23 +1,27 @@
 class CreateSellerProducts < ActiveRecord::Migration[6.0]
   def change
     create_table :seller_products do |t|
-      t.money :unit_price
-      t.money :min_order_price
-      t.string :sku, limit: 10
+      t.string :sku
       t.string :harmonized_system_code
-      t.string :country_code_of_origin
-      t.string :province_code_of_origin
-      t.string :barcode
       t.string :packaging
       t.text :packaging_details
-      t.string :shelf_life
       t.string :supply_ability
       t.string :weight
-      t.string :status
+      t.integer :units_per_case
       t.boolean :pause
 
       t.timestamps
     end
+
+    add_monetize :seller_products, :unit_price, currency: { present: true }
+    add_monetize :seller_products, :order_price, currency: { present: true }
+    add_monetize :seller_products, :retail_price, currency: { present: true }
+    add_monetize :seller_products, :sale_price, currency: { present: true }
+    add_column :seller_products, :sale_start, :datetime, default: nil
+    add_column :seller_products, :sale_end, :datetime, default: nil
+    
+    add_column :seller_products, :handling_time, :integer, default: nil
+    add_column :seller_products, :max_order_quantity, :integer, default: nil
 
     add_reference :seller_products, :product, index: true
     add_reference :seller_products, :seller, index: true

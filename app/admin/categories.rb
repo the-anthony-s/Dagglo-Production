@@ -33,6 +33,14 @@ ActiveAdmin.register Category do
       end
     end
 
+    panel "Product Variations" do
+      table_for(category.fields) do
+        column("Name", sortable: :name) { |v| link_to "#{v.name}", admin_product_variation_path(v) }
+        column("Field") { |v| "#{v.field_type}" }
+        column("Required") { |v| "#{v.required}" }
+      end
+    end
+
     active_admin_comments
   end
 

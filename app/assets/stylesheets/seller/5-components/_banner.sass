@@ -1,19 +1,72 @@
 .banner
+    width: 100%
     position: relative
+    overflow: hidden
+    display: block
+    border: 0
+    border-radius: var(--radius-border)
+    // background: $gray-lighter
+
+.banner-container
     display: block
     text-align: center
-    width: 100%
-    padding-top: var(--gap-s)
-    padding-bottom: var(--gap-s)
+    max-width: 724px
+    margin: 0 auto
+    padding: var(--space-content) var(--space-content)
 
 .banner-icon
-    color: $color-font-secondary
-    font-size: var(--size-typo-xxxxl)
-    line-height: var(--line-height-typo-xxxxl)
-    font-weight: 400
-    display: block
-    position: relative
-    margin-bottom: var(--gap-s)
+    border: 0
+    border-radius: 100%
+    height: 74px
+    width: 74px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    color: var(--color-contrast-higher)
+    font-size: var(--text-xl)
+    line-height: var(--heading-line-height)
+    background: var(--color-contrast-medium)
+    margin: 0 auto var(--space-md)
+
+.banner-title
+    width: 100%
 
 .banner-message
-    margin-bottom: var(--gap-s)
+    margin-top: var(--space-md)
+    width: 100%
+
+.banner-actions
+    margin-top: var(--space-xxl)
+    display: block
+    width: 100%
+    +tablet
+        display: flex
+        align-items: center
+        justify-content: center
+    &-item
+        flex: 1 1 100%
+        +tablet
+            flex: 0 0 auto
+    &-item + &-item
+        margin-top: var(--space-card)
+        +tablet
+            margin-top: 0
+            margin-left: var(--space-card)
+
+.banner-footer
+    margin-top: var(--space-xxxxl)
+    &-header
+        margin-bottom: var(--space-md)
+        text-align: left
+
+.banner-info
+    text-align: left
+    &-icon
+        color: var(--color-contrast-higher)
+        font-size: var(--text-lg)
+        line-height: var(--body-line-height)
+        display: inline-block
+        margin-bottom: var(--space-sm)
+    &-title
+        margin-bottom: var(--space-xs)

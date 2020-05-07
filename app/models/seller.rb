@@ -5,16 +5,16 @@
 #  id                      :bigint           not null, primary key
 #  name                    :string
 #  business_number         :string
-#  about                   :text
+#  description             :text
 #  country                 :string
 #  founding_date           :date
-#  status                  :integer          default("0")
-#  private                 :boolean          default("false")
+#  status                  :integer          default("pending")
+#  private                 :boolean          default(FALSE)
 #  image_data              :text
 #  cover_data              :text
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  slug                    :string
+#  owner_id                :bigint
 #  onboarding_completed_at :datetime
 #  stripe_id               :string
 #  card_brand              :string
@@ -22,18 +22,25 @@
 #  card_exp_month          :string
 #  card_exp_year           :string
 #  deleted_at              :datetime
+#  views                   :integer
+#  slug                    :string
 #
 
 class Seller < ApplicationRecord
 
+  acts_as_paranoid
+  
+
   # Onboarding steps
   include SellerOnboarding
 
+  # Track Views
+  is_impressionable counter_cache: true, column_name: :views
 
 
-  include PublicActivity::Model
-  tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
-          recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
+  # include PublicActivity::Model
+  # tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil },
+  #         recipient: Proc.new { |controller, model| controller.user_seller_account ? controller.user_seller_account : nil }
 
 
 
@@ -42,10 +49,11 @@ class Seller < ApplicationRecord
   friendly_id :name, use: :slugged, :use => :history
 
 
-
-
+  # Relationships
+  belongs_to :owner, class_name: "User"
+  
   has_many :seller_accounts, dependent: :delete_all
-  has_many :users, through: :seller_accounts
+  # has_many :users, through: :seller_accounts
   has_many :seller_products, dependent: :delete_all
   has_many :seller_locations, dependent: :delete_all
   has_many :seller_subscriptions, dependent: :delete_all

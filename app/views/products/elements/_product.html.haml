@@ -1,9 +1,0 @@
-%div(class="product-card")
-    %meta{:content => "#{product.name}", :itemprop => "name"}/
-    %meta{:content => "#{index}", :itemprop => "position"}/
-    %meta{:content => "#{show_product_url(product)}", :itemprop => "url"}/
-    = link_to show_product_path(product), class: "product-card-link" do
-        %div(class="product-card-photo")
-            = image_tag product.photo(300, 300), loading: "lazy"
-        %div(class="product-card-info")
-            %h1(class="text text-m text-medium") #{product.name}

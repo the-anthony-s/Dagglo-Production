@@ -1,118 +1,402 @@
-// Product Show Page
-.product-header
+.product-page
     width: 100%
-    display: flex
-    flex-direction: column
-    margin-right: auto
-    margin-left: auto
-    +tablet
-        flex-direction: row
+    position: relative
+    display: block
+    padding-bottom: var(--gap-m)
 
-    &-name
-        flex: 1 1 auto
-        min-width: 0
+
+
+// Sub-navbar -> Category name
+.product-top
+    width: 100%
+    border-top: 1px solid $color-border
+    border-bottom: 1px solid $color-border
     
-    &-actions
-        display: flex
-        align-items: center
-        flex-direction: row
-        white-space: nowrap
-        list-style: none
-        margin-top: var(--gap)
-        +tablet
-            margin-top: 0
-            margin-left: var(--gap)
-        & > li
-            display: inline-block
-        & > li + li
-            margin-left: var(--gap)
-
-
-.product-main
-    display: flex
-    flex-direction: column
+.product-top-container
+    min-height: var(--navbar-height)
+    padding-top: var(--gap-xs)
+    padding-bottom: var(--gap-xs)
     width: 100%
-    max-width: $content-width-product
-    margin: 0 auto
-    +desktop-sm
-        flex-direction: row
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
 
-
-.product-photos // carousel container
+.product-top-main
     flex: 1 1 100%
     max-width: 100%
-    padding: 0
-    +tablet
-        padding: 0 var(--gap-r)
-    +desktop-sm
-        flex: 0 0 auto
-        width: 50%
-        padding: 0
-        padding-left: var(--gap-r)
+
+.product-top-secondary
+    flex: 0 0 auto
+    margin-left: var(--gap)
 
 
-.product-photo // carousel photo item
-    height: 100%
-    width: 100%
 
-
-.product-desc
-    flex: 1 1 100%
-    margin-top: var(--gap-r)
-    padding: 0 var(--gap-r)
-    +desktop-sm
-        margin-top: 0
-
-
-.product-offers // Offers container
+// Product name + Actions (Favourite, Share)
+.product-header
+    margin-top: var(--gap)
     width: 100%
     position: relative
     display: block
 
-
-.product-offer // Offer item
+.product-header-container
+    display: block
     width: 100%
-    display: flex
-    flex-direction: column
     +tablet
-        flex-direction: row
-
-    &-left
-        flex: 1 1 100%
         display: flex
+        flex-direction: row
+        align-items: center
+
+.product-header-main
+    display: block
+    +tablet
+        flex: 1 1 100%
+        max-width: 100%
+
+.product-header-secondary
+    display: flex
+    flex-direction: row
+    align-items: center
+    margin-top: var(--gap)
+    +tablet
+        flex: 0 0 auto
+        margin-top: 0
+        margin-left: var(--gap)
+
+.product-header-action
+    flex: 0 0 auto
+    display: block
+    & + &
+        margin-left: var(--gap)
+
+
+
+// Product photos + desc + best seller
+.product-showcase
+    display: block
+    width: 100%
+    max-width: 100%
+
+.product-showcase-container
+    width: 100%
+    display: grid
+    grid-row-gap: var(--gap-r)
+    grid-column-gap: var(--gap-r)
+    grid-template-columns: repeat(1, 1fr)
+    +tablet
+        max-width: $content-width-product
+        margin: 0 auto
+        grid-template-columns: repeat(2, 1fr)
+    
+.product-showcase-gallery
+    grid-column-end: span 1
+    & > img
+        width: 100%
+        position: relative
+        display: block
+        object-fit: cover
+
+.product-showcase-intro
+    width: 100%
+    grid-column-end: span 1
+    +tablet
+        padding: 0 0
+
+
+
+// Product Gallery 
+.product-gallery
+    width: 100%
+    height: 100%
+    display: block
+    position: relative
+    &::before
+        content: ''
+        padding-bottom: 100%
+        display: block
+    &-carousel
+        position: absolute !important
+        top: 0 !important
+        right: 0 !important
+        left: 0 !important
+        bottom: 0 !important
+        width: 100% !important
+        height: 100% !important
+        background: $gray-lighter
+    &-default > img
+        position: absolute !important
+        top: 0 !important
+        right: 0 !important
+        left: 0 !important
+        bottom: 0 !important
+        width: 100% !important
+        height: 100% !important
+        background: $gray-lighter
+
+.glider-gallery
+    height: 100%
+    & .glider-track
+        height: 100%
+        
+.glider-gallery-item
+    height: 100%
+    width: 100%
+    position: relative
+    display: block
+    & > img
+        height: 100%
+        width: 100%
+        object-fit: contain
+        display: block
+        text-align: center
+
+
+
+// Option card
+.product-option
+    border: 1px solid $color-border
+    border-radius: $border-radius
+    overflow: hidden
+    display: block
+    width: 100%
+    position: relative
+
+.product-option-header
+    display: flex
+    flex-direction: row
+    align-items: center
+    width: 100%
+    justify-content: space-between
+    padding: var(--gap) var(--gap) 0
+    &-title
+        flex: 1 1 100%
+    &-action
+        flex: 0 0 auto
+        margin-left: var(--gap)
+
+.product-option-body
+    padding: var(--gap) var(--gap)
+
+.product-option-seller
+    display: flex
+    flex-direction: row
+    align-items: center
+    width: 100%
+    &-logo
+        flex: 0 0 auto
+        margin-right: var(--gap-s)
+        & > img
+            height: 44px
+            width: 44px
+            display: block
+            object-fit: cover
+            border: 0
+            border-radius: 100%
+    &-name
+        flex: 1 1 100%
+
+.product-option-actions
+    display: grid
+    grid-column-gap: var(--gap-xs)
+    grid-row-gap: var(--gap)
+    grid-template-columns: repeat(2, 1fr)
+    align-items: center
+    width: 100%
+    padding: 0 var(--gap) var(--gap)
+    &-item
+        width: 100%
+        display: block
+        grid-column-end: span 1
+
+
+
+
+
+
+// Product offers
+.product-offers
+    display: block
+    width: 100%
+    position: relative
+    & > li + li
+        margin-top: var(--gap)
+
+.product-offer
+    box-shadow: 0 0 0 1px $color-border
+    border-radius: $border-radius
+    border: 0
+    display: grid
+    grid-column-gap: var(--gap)
+    grid-row-gap: var(--gap)
+    grid-template-columns: repeat(2, 1fr)
+    padding: var(--gap)
+    +tablet
+        padding: 0
+        box-shadow: none
+
+.product-offer-left
+    grid-column-end: span 1
+    display: grid
+    grid-column-gap: var(--gap)
+    grid-row-gap: var(--gap-s)
+    grid-template-columns: repeat(1, 1fr)
+    +desktop
+        grid-template-columns: repeat(2, 1fr)
         align-items: flex-start
 
-    &-right
-        flex: 1 1 100%
-        margin-top: var(--gap)
+.product-offer-right
+    grid-column-end: span 1
+    display: grid
+    grid-column-gap: var(--gap)
+    grid-row-gap: var(--gap-s)
+    +tablet
+        grid-template-columns: repeat(2, 1fr)
+        align-items: flex-start
+
+.product-offer-seller
+    grid-column-end: span 1
+    display: flex
+    flex-direction: column
+    max-width: 100%
+    +tablet
+        flex-direction: row
+        align-items: center
+    &-logo
+        flex: 0 0 auto
+        overflow: hidden
+        margin-bottom: var(--gap-xs)
         +tablet
-            margin-top: 0
-            margin-left: var(--gap)
+            margin-bottom: 0
+            margin-right: var(--gap-s)
+        & > img
+            border: 0
+            border-radius: 100%
+            object-fit: cover
+            height: 32px
+            width: 32px
+            display: block
+            +tablet
+                height: 52px
+                width: 52px
+
+.product-offer-details
+    display: none
+    grid-column-end: span 1
+    +tablet
+        display: block
+
+.product-offer-pricing
+    grid-column-end: span 1
+    display: grid
+    grid-column-gap: var(--gap)
+    grid-row-gap: var(--gap)
+    grid-template-columns: repeat(1, 1fr)
+    +desktop
+        grid-template-columns: repeat(2, 1fr)
+    &-unit, &-order
+        grid-column-end: span 1
+
+.product-offer-action
+    grid-column-end: span 1
+    display: none
+    +tablet
+        display: block
 
 
-.product-offer-icon
-    flex: 0 0 auto
-    margin-right: var(--gap)
-    & > img
-        height: 42px
-        width: 42px
-        object-fit: cover
+// Product Inforamtion stats
+.product-info
+    width: 100%
+    position: relative
+    display: block
+    & > li
+        display: flex
+        justify-content: space-between
+        flex-direction: row
+        margin: 0
+        background: $white
+        position: relative
+        // width: 100%
         border: 0
-        border-radius: 100%
+        border-radius: $border-radius
+        overflow: hidden
+        padding: var(--gap-xs) var(--gap-s)
+        margin: 0 calc(var(--gap-s) * (-1))
+        &:hover
+            background: $gray-lighter
+    &-name
+        // width: 48%
+        flex: 1 1 100%
+        max-width: 100%
+        position: relative
+        background: inherit
+        & > span
+            position: relative
+            padding-right: var(--gap-s)
+            background: inherit
+            z-index: 1
+        &::after
+            content: ""
+            position: absolute
+            left: 0
+            right: 0
+            margin-top: 20px
+            height: 1px
+            border-bottom: 1px dashed $color-border
+            z-index: 0
+    &-value
+        flex: 1 0 auto
+        max-width: 50%
+        // width: 52%
+        position: relative
+        padding-left: var(--gap-s)
 
 
-.product-offer-about
-    flex: 1 1 auto
 
-    
-    
-// Product Card
+// Avg.price + graph
+.product-pricing
+    display: grid
+    grid-template-columns: repeat(1, 1fr)
+    grid-row-gap: var(--gap-r)
+    grid-column-gap: var(--gap-r)
+    +desktop-sm
+        grid-template-columns: repeat(8, 1fr)
+
+
+.product-pricing-money
+    grid-column-end: span 1
+    +desktop-sm
+        grid-column-end: span 2
+
+.product-pricing-money-title
+    margin-bottom: var(--gap-s)
+
+.product-pricing-money-range
+    width: 100%
+    margin-top: var(--gap-xs)
+
+.product-pricing-money-info
+    margin-top: var(--gap-s)
+
+
+.product-pricing-graph
+    grid-column-end: span 1
+    +desktop-sm
+        grid-column-end: span 6
+
+.product-pricing-graph-title
+    margin-bottom: var(--gap-s)
+
+
+
+// Rendered partial -> Product Card
 .product-card
     display: block
     width: 100%
 
+
 .product-card-link
     display: block
+
 
 .product-card-photo
     position: relative
@@ -120,12 +404,10 @@
     border-radius: $border-radius
     overflow: hidden
     background: transparent
-
     &::before
         content: ''
         padding-bottom: 100%
         display: block
-
     & > img
         margin: 0 auto
         position: absolute
@@ -134,8 +416,11 @@
         left: 0
         bottom: 0
         height: 100%
-        // width: 100%
+        width: 100%
+        object-fit: contain
+        background: $gray-lighter
+
 
 .product-card-info
     margin-top: var(--gap-s)
-    text-align: center
+    text-align: left

@@ -1,0 +1,329 @@
+= content_for :title, "Partner"
+
+%header(class="hero partner-hero hero-no-navbar")
+    %div(class="partner-hero__container")
+        %div(class="partner-hero__grid")
+            %div(class="partner-hero__grid-item")
+                %div(class="hero__heading")
+                    %div(class="hero__heading-eyebrow")
+                        %p(class="text text-eyebrow") Partners
+                    %div(class="hero__heading-title")
+                        %h1(class="text text-xxl text-bold") 
+                            Grow your wholesale orders by up to
+                            %span(class="hero__heading-highlight") 200%
+                    %div(class="hero__heading-caption")
+                        %p(class="text text-l text-secondary") Sell direct to consumers and businesses on the e-commerce platform built for scale.
+                        -# %p(class="text text-l") We are taking wholesale in a new direction. With advanced technology, transparency, and more opportunities, both buyers and sellers win.
+                    %div(class="hero__heading-action")
+                        = link_to "Get Free Early Access", new_seller_path, class: "button button-big button-primary"
+                    -# %div(class="hero__heading-footer")
+                    -#     %p(class="text text-xs text-secondary-light") Due to the impact of COVID-19, Shopify is offering an extended 90-day free trial. By entering your email, you agree to receive marketing emails from Shopify.
+            
+            %div(class="partner-hero__grid-image")
+                = image_tag asset_path('/assets/hero/partner-header.jpg'), 'data-src': asset_path('/assets/hero/partner-header.jpg'), loading: "lazy", class: "lazy"
+
+        %div(class="partner-hero__features")
+            %div(class="partner-hero__features-item")
+                %div(class="partner-hero__feature")
+                    %div(class="partner-hero__feature-icon")
+                        = icon "fas", "users"
+                    %div(class="partner-hero__feature-heading")
+                        %p(class="text text-m text-medium") Single Workspace
+                    %div(class="partner-hero__feature-content")
+                        %p(class="text text-s") Run your business from anywhere with one dashboard, available on desktop or mobile.
+            %div(class="partner-hero__features-item")
+                %div(class="partner-hero__feature")
+                    %div(class="partner-hero__feature-icon")
+                        = icon "fas", "chart-bar"
+                    %div(class="partner-hero__feature-heading")
+                        %p(class="text text-m text-medium") Analytics
+                    %div(class="partner-hero__feature-content")
+                        %p(class="text text-s") See real-time and recent activity, gain insight into your visitors, and analyze your business performance.
+            %div(class="partner-hero__features-item")
+                %div(class="partner-hero__feature")
+                    %div(class="partner-hero__feature-icon")
+                        = icon "fas", "megaphone"
+                    %div(class="partner-hero__feature-heading")
+                        %p(class="text text-m text-medium") Marketing
+                    %div(class="partner-hero__feature-content")
+                        %p(class="text text-s") One platform to find and sell to the right shoppers, wherever they are.
+
+
+
+%section(class="section section-page")
+    -# %div(class="section-page-block")
+    -#     %div(class="content-page")
+    -#         %div(class="section-header section-header-center section-header-tight")
+    -#             %div(class="section-header-title")
+    -#                 %p(class="text text-xl text-bold") Why Dagglo?
+    -#             %div(class="section-header-caption")
+    -#                 %p(class="text text-l") We help wholesale businesses like yours reach new customers online and grow to become favorites.
+
+
+    %div(class="section-page-block")
+        %div(class="content-page")
+            %div(class="feature-grid")
+                %div(class="feature-content")
+                    %div(class="feature-content-title")
+                        %h1(class="text text-xl") Connect with new local customers.
+                    %div(class="feature-content-caption")
+                        %p(class="text text-s text-secondary space-top-s") Grow your sales and become a favorite by getting in front of more businesses at the exact moment they’re ready to buy. They come to us, we introduce them to you.
+                %div(class="feature-image")
+                    = image_tag asset_path('/assets/hero/partner.jpg'), 'data-src': asset_path('/assets/hero/partner.jpg'), loading: "lazy", class: "lazy img-1"
+
+
+    %div(class="section-page-block")
+        %div(class="content-page")
+            %div(class="feature-grid feature-grid-reverse")
+                %div(class="feature-content")
+                    %div(class="feature-content-title")
+                        %h1(class="text text-xl") Boost your digital presence.
+                    %div(class="feature-content-caption")
+                        %p(class="text text-s text-secondary space-top-s") Today’s B2B buyer wants the option to order online. Give your B2B customers the independence they need. Let your digital storefront make the first impression. We offer the tools you need to create the look you want.
+                %div(class="feature-image")
+                    = image_tag asset_path('/assets/hero/partner-2.jpg'), 'data-src': asset_path('/assets/hero/partner-2.jpg'), loading: "lazy", class: "lazy img-2"
+
+
+    %div(class="section-page-block")
+        %div(class="content-page")
+            %div(class="feature-grid")
+                %div(class="feature-content")
+                    %div(class="feature-content-title")
+                        %h1(class="text text-xl") Innovative features catered to your business.
+                    %div(class="feature-content-caption")
+                        %p(class="text text-s text-secondary") An exclusive wholesale solution for high-volume ordering. Your B2B customers need self-service commerce to streamline their ordering process.
+                %div(class="feature-image")
+                    = image_tag asset_path('/assets/hero/partner-3.jpg'), 'data-src': asset_path('/assets/hero/partner-3.jpg'), loading: "lazy", class: "lazy img-3"
+
+
+%section(class="section section-page section-gray")
+    %div(class="content")
+        %div(class="section-header section-header-tight section-header-center")
+            %div(class="section-header-title")
+                %h1(class="text text-xl") Browse pricing plans
+            %div(class="section-header-caption")
+                %p(class="text text-m text-secondary") Get competitive, pre-negotiated rates with all Shopify plans.
+        %div(class="section-body")
+            %div(class="partner-plans")
+                - @seller_plans.each do |plan|
+                    %div(class="partner-plans__item")
+                        %div(class="partner-plans__plan")
+                            %div(class="partner-plans__plan-name")
+                                %p(class="text text-eyebrow") #{plan.name}
+                            %div(class="partner-plans__plan-caption")
+                                %p(class="text text-s text-secondary") Advanced features for scaling your business
+                            %div(class="partner-plans__plan-price")
+                                %span(class="partner-plans__plan-price-currency text text-sm text-secondary") USD
+                                %span(class="partner-plans__plan-price-amount text text-xxl text-bold") #{formatted_amount plan.amount}
+                                %span(class="partner-plans__plan-price-interval text text-sm text-secondary") / #{plan.interval}
+                            %ul(class="partner-plans__feature")
+                                %li(class="partner-plans__feature-container")
+                                    %span(class="partner-plans__feature-left text text-xs text-secondary") Fraud analysis
+                                    %span(class="partner-plans__feature-right text text-xs text-success") #{icon "far", "check"}
+                                %li(class="partner-plans__feature-container")
+                                    %span(class="partner-plans__feature-left text-secondary text-xs") Online credit card rates
+                                    %span(class="partner-plans__feature-right text text-xs text-primary") 2.9% + 30¢
+                                %li(class="partner-plans__feature-container")
+                                    %span(class="partner-plans__feature-left text text-xs text-secondary") Product showcases
+                                    %span(class="partner-plans__feature-right text text-xs text-primary") #{plan.num_of_products || "∞"}
+
+
+%section(class="section section-page")
+    %div(class="content")
+        %div(class="section-header section-header-tight section-header-center")
+            %div(class="section-header-title")
+                %h1(class="text text-xl") Start selling with Dagglo today
+            %div(class="section-header-caption")
+                %p(class="text text-m text-secondary") Try Dagglo Early Access for free, and explore all the tools and services you need to start, run, and grow your business.
+        %div(class="section-body")
+            %div(class="text-center")
+                = link_to "Get Early Access", new_seller_path, class: "button button-big button-primary"
+
+
+
+
+            
+-#             %div(class="page-section-block")
+-#                 %div(class="section-body")
+-#                     %div(class="page-feature page-feature-second")
+-#                         %div(class="page-feature-header")
+-#                             %div(class="page-feature-header-main")
+-#                                 %h1(class="text text-xxl text-bold") Boost your digital presence.
+-#                                 %p(class="text text-l text-secondary space-top-s") Let your digital storefront make the first impression. From crisp photos to organized menus, we offer the tools you need to create the look you want.
+-#                         %div(class="page-feature-image")
+-#                             = image_tag asset_path('/assets/hero/partner-2.jpg'), 'data-src': asset_path('/assets/hero/partner-2.jpg'), loading: "lazy", class: "lazy"
+
+-#             %div(class="page-section-block")
+-#                 %div(class="section-body")
+-#                     %div(class="page-feature page-feature-first")
+-#                         %div(class="page-feature-image")
+-#                             = image_tag asset_path('/assets/hero/partner-4.jpg'), 'data-src': asset_path('/assets/hero/partner-4.jpg'), loading: "lazy", class: "lazy"
+-#                         %div(class="page-feature-header")
+-#                             %div(class="page-feature-header-main")
+-#                                 %h1(class="text text-xxl text-bold") Innovative features catered to your business.
+-#                                 %p(class="text text-l text-secondary space-top-s") We consistently stay ahead of the curve creating new ways to bring business to you—like seamless POS integrations, live event ordering, and promotions that get you seen first by customers who are ready to make a purchase.
+
+
+-#     %section(class="page-section section-gray")
+-#         %div(class="page-content")
+-#             %div(class="page-header page-header-center page-header-tight")
+-#                 %div(class="page-header-title")
+-#                     %p(class="text text-eyebrow text-secondary") Limited time offer
+-#                 %div(class="page-header-caption")
+-#                     %h1(class="text text-xxxl text-bold") Get Early Access today and add your products at no cost.
+-#             %div(class="page-section-actions page-section-actions-center")
+-#                 %div(class="section-actions-item")
+-#                     = link_to "Get Started", new_seller_path, class: "button button-action button-big button-secondary"
+-#                 %div(class="section-actions-item")
+-#                     = link_to "Learn more about categories", categories_path, class: "link"
+
+
+
+
+
+-# = content_for :title, "Wholesalers"
+
+-# %header(class="hero")
+-#     %div(class="content-page")
+-#         %div(class="hero-container")
+-#             %div(class="hero-header")
+-#                 %div(class="hero-header-title")
+-#                     %h1(class="text text-xxl text-bold") Start locally, scale globally
+-#                 %div(class="hero-header-caption")
+-#                     %p(class="text text-l") Dagglo for Wholesalers is a business account platform for wholesale management, designed to save you time and money.
+-#                 %div(class="hero-header-actions")
+-#                     %div(class="hero-header-actions-item")
+-#                         - if user_signed_in? && current_user.s_account.present?
+-#                             = link_to "#{current_user.s_account.name}", home_seller_path, class: "button button-primary"
+-#                         - else
+-#                             = link_to "Get Early Access Now", new_seller_path, class: "button button-primary"
+-#                     %div(class="hero-header-actions-item")
+-#                         = link_to "Learn more about Categories", categories_path, class: "link"
+-#                     %div(class="hero-header-actions-item")
+-#                         %p(class="text text-s text-secondary") Sign up before April 1st and get access for free - forever.
+
+-#             %div(class="hero-wallpaper")
+-#                 = image_tag asset_path('hero/sell-hero.jpg'), loading: "lazy"
+
+
+
+-# %section(class="section page-section")
+-#     %div(class="content-page")
+-#         %div(class="section-header section-header-center")
+-#             %h1(class="text text-xl text-bold space-bot-m") Sales. Analytics. Shipping. Made simple.
+-#             %p(class="text text-l") Become a part of Dagglo
+-#         %div(class="section-body")
+-#             %div(class="grid-1-3")
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "tasks"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Order managment
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") A streamlined way to process orders.
+
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "chart-bar"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Analytics
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") Real time data of your product sell-through.
+
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "usd-circle"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Net 60 (soon)
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") Increase sales by offering Net 60 to your leads and accounts.
+
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "globe-americas"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Customers
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") Contact your future customers directly with built-in chat functionality.
+
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "users"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Collaborations & Locations
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") Manage your team and locations on one dashboard.
+
+-#                 %div(class="col")
+-#                     %div(class="testimonial")
+-#                         %div(class="testimonial-container")
+-#                             %div(class="testimonial-icon")
+-#                                 = icon "fal", "megaphone"
+-#                             %div(class="testimonial-header")
+-#                                 %h1(class="text text-m text-medium") Marketing
+-#                             %div(class="testimonial-caption")
+-#                                 %p(class="text text-s") Increase your online presence and sell everywhere.
+
+
+
+-# - if @seller_plans.present?
+-#     %section(class="section page-section")
+-#         %div(class="content-page")
+-#             %div(class="section-header section-header-center")
+-#                 %h1(class="text text-xl text-bold") No surprises, just fair and honest pricing
+-#             %div(class="section-body")
+-#                 %div(class="grid-1-2")
+-#                     - @seller_plans.each do |plan|
+-#                         %div(class="col")
+-#                             %div(class="pricing")
+-#                                 %div(class="pricing-title")
+-#                                     %h1(class="text text-eyebrow") #{plan.name}
+-#                                 %div(class="pricing-price")
+-#                                     %div(class="pricing-price-currency") USD
+-#                                     %div(class="pricing-price-amount") #{formatted_amount plan.amount}
+-#                                     %div(class="pricing-price-interval") / #{plan.interval}
+-#                                 %div(class="pricing-desc")
+-#                                     %div(class="pricing-desc-item")
+-#                                         %div(class="pricing-desc-icon") #{icon "fal", "check"}
+-#                                         %div(class="pricing-desc-body")
+-#                                             %p(class="text text-s") #{plan.num_of_products} product showcases
+-#                                     %div(class="pricing-desc-item")
+-#                                         %div(class="pricing-desc-icon") #{icon "fal", "check"}
+-#                                         %div(class="pricing-desc-body")
+-#                                             %p(class="text text-s") #{plan.num_of_locations} supported locations
+-#                                     %div(class="pricing-desc-item")
+-#                                         %div(class="pricing-desc-icon") #{icon "fal", "check"}
+-#                                         %div(class="pricing-desc-body")
+-#                                             %p(class="text text-s") #{plan.num_of_locations} sub-accounts
+-#                                     %div(class="pricing-desc-item")
+-#                                         %div(class="pricing-desc-icon") #{icon "fal", "check"}
+-#                                         %div(class="pricing-desc-body")
+-#                                             %p(class="text text-s") #{plan.analytics} analytics
+
+
+
+-# -# - if @categories.present?
+-# -#     %section(class="section page-section")
+-# -#         %div(class="content-page")
+-# -#             %div(class="section-header section-header-center")
+-# -#                 %h1(class="text text-xl text-bold") Available categories
+-# -#             %div(class="section-body")
+-# -#                 %div(class="grid-1-3")
+-# -#                     - @categories.roots.each do |root|
+-# -#                         - root.children.order(name: :asc).each_with_index do |category, index|
+-# -#                             %div(class="col")
+-# -#                                 = render partial: "categories/elements/card", :locals => {category: category, index: index}
+
+
+
+

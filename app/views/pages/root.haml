@@ -1,0 +1,132 @@
+-# = content_tag :li do
+-#   = link_to 'English', locale: :en
+-# - end unless current_page?(locale: :en)
+
+-# = content_tag :li do
+-#   = link_to 'Русский', locale: :ru
+-# - end unless current_page?(locale: :ru)
+
+
+%section(class="section")
+
+	%div(class="section-block")
+		%div(class="content")
+			%div(class="section-header section-header-separator")
+				%div(class="section-header-title")
+					%p(class="text text-l text-medium") Featured
+			%div(class="section-body")
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate repellendus, exercitationem delectus suscipit consectetur molestias quia reiciendis consequatur numquam quod, distinctio nostrum dignissimos adipisci unde architecto officia eius vel deleniti!
+	
+
+	%div(class="section-block")
+		%div(class="content")
+			%div(class="section-header section-header-separator")
+				%div(class="section-header-title")
+					%p(class="text text-l text-medium") Deals
+			%div(class="section-body")
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit perspiciatis voluptatem dicta debitis animi nisi at sapiente fugit. Tenetur officia magnam pariatur quibusdam? Maxime a minima harum fugiat dignissimos qui.
+
+
+	%div(class="section-block")
+		%div(class="content")
+			%div(class="section-top section-top-separator")
+				%div(class="section-top-title")
+					%p(class="text text-l text-medium") 
+						%span #{icon "fas", "star"}
+						%span Popular
+				%div(class="section-top-actions")
+					= link_to "", class: "link link-secondary" do
+						%span View all
+						%span #{icon "fal", "angle-right"}
+			%div(class="section-block")
+				%div(class="grid-products")
+					= render partial: "products/elements/product", collection: @popular_products, cache: true
+
+
+	%div(class="section-block")
+		%div(class="content")
+			%div(class="section-top section-top-separator")
+				%div(class="section-top-title")
+					%p(class="text text-l text-medium") New On Dagglo
+				%div(class="section-top-actions")
+					= link_to "", class: "link link-secondary" do
+						%span View all
+						%span #{icon "fal", "angle-right"}
+			%div(class="section-block")
+				%div(class="grid-products")
+					= render partial: "products/elements/product", collection: @new_products, cache: true
+
+	
+	- @categories.each do |root|
+		- root.children.is_active.popular.take(5).each do |category, products|
+			%div(class="section-block")
+				%div(class="content")
+					%div(class="section-top section-top-separator")
+						%div(class="section-top-title")
+							%p(class="text text-l text-medium") Favorites in #{category.name}
+					%div(class="section-body")
+						%div(class="grid-products")
+							= render partial: "products/elements/product", collection: category.products.is_active.popular.take(5)
+					%div(class="section-actions")
+						%div(class="section-actions-item")
+							= link_to category_path(category), class: "button button-responsive button-gray" do
+								%span View #{category.name}
+								%span #{icon "fal", "arrow-right"}
+
+
+
+	
+
+
+
+
+
+-# %section(class="section")
+
+-# 	%div(class="section-block")
+-# 		%div(class="content")
+-# 			%div(class="section-top")
+-# 				%div(class="section-top-title")
+-# 					%p(class="text text-xl text-medium") Explore Dagglo
+-# 			%div(class="section-body")
+-# 				%div(class="grid-categories")
+-# 					= render partial: "categories/elements/category", collection: @categories, cache: true
+
+-# 	- if @products.present?
+-# 		%div(class="section-block")
+-# 			%div(class="content")
+-# 				%div(class="section-top")
+-# 					%div(class="section-top-title")
+-# 						%p(class="text text-xl text-medium") Popular right now
+-# 				%div(class="section-body")
+-# 					%div(class="grid-products")
+-# 						= render partial: 'products/elements/product', collection: @products, cache: true
+-# 						-# - @products.each_with_index do |product, index|
+-# 						-# 	%div(class="col")
+-# 						-# 		= render partial: "products/elements/product", locals: {product: product, index: index}
+
+
+-# 	- @categories.each do |category|
+-# 		%div(class="section-block")
+-# 			%div(class="content")
+-# 				%div(class="section-top")
+-# 					%div(class="section-top-title")
+-# 						%p(class="text text-xl text-medium") Exolore #{category.name}
+-# 				%div(class="section-body")
+-# 					%div(class="grid-explore")
+-# 						- category.children.popular.is_active.take(4).each_with_index do |category_child, index|
+-# 							%div(class="col")
+-# 								= render partial: "categories/elements/explore", locals: {category: category_child, index: index}
+-# 		%div(class="section-block")
+-# 			%div(class="content")
+-# 				%div(class="section-top")
+-# 					= link_to category, class: "section-top-title" do
+-# 						%h1(class="text text-xl text-medium") Popular #{category.name}
+-# 				%div(class="section-body")
+-# 					%div(class="grid-products")
+-# 						= render partial: 'products/elements/product', collection: category.products.is_active.popular.take(6), cache: true
+-# 				%div(class="section-action")
+-# 					%div(class="section-action-item")
+-# 						= link_to category, class: "button button-responsive" do
+-# 							%span Show #{category.name} products
+-# 							%span #{icon "far", "chevron-right"}

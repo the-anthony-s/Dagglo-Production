@@ -1,0 +1,26 @@
+= render partial: "users/registrations/elements/links"
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-top")
+            %div(class="section-top-title")
+                %h1(class="text text-l text-medium") Shipping Addresses
+            %div(class="section-top-actions")
+                %div(class="section-top-actions-item") #{link_to "Add New Address", new_user_location_path, class: "button button-secondary button-small"}
+        %div(class="section-body")
+            %ul(class="account-addresses")
+                - if @user_locations.present?
+                    - @user_locations.each do |location|
+                        %li
+                            %div(class="account-address")
+                                %div(class="account-address-main")
+                                    %div(class="account-address-name space-bot-xs")
+                                        %span(class="text text-m text-medium") #{location.name}
+                                    %div(class="account-address-street")
+                                        %span(class="text text-s") #{location.address_1}
+                                    %div(class="account-address-countr") #{location.city}, #{location.country}, #{location.state}, #{location.zip}
+                                %div(class="account-address-secondary")
+                                    = link_to "Edit", edit_user_location_path(location), class: "link"
+                - else
+                    %li(class="text-center")
+                        %h1(class="text text-s text-secondary space-bot-xl") You haven't added any shipping addresses yet.

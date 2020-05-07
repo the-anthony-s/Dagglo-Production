@@ -1,29 +1,82 @@
-= content_for :title, @seller_product.product.name
+= content_for :title, "#{@seller_product.product.name}"
 
 
-%div(class="container")
-
-  %div(class="header")
+%div(class="page")
+  
+  %div(class="page-top page-top-separator")
     %div(class="content")
-      %div(class="header-container")
-        %div(class="header-picture")
-          = image_tag @seller_product.product.photo(300, 300), loading: "lazy"
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") #{@seller_product.product.name}
-        %div(class="header-actions")
-          %div(class="header-actions-item")
-            = link_to edit_inventory_path(@seller_product), class: "button-circle button-circle-action" do
-              %div(class="button-circle-icon") #{icon "fal", "pen"}
-              %div(class="button-circle-name") Edit
+      %div(class="page-top-container")
+        %div(class="page-top-product")
+          = image_tag @seller_product.product.photo(200, 200), 'data-src': @seller_product.product.photo(200, 200), loading: "lazy", class: "lazy"
+        %div(class="page-top-main")
+          %div(class="page-top-main-title")
+            %h1(class="text text-xl text-medium") #{@seller_product.product.name}
+        -# %div(class="page-top-actions")
+        -#   - if @seller_product.product.get_status == "active"
+        -#     %div(class="page-top-actions-item") 
+        -#       = link_to show_product_path(@seller_product.product), class: "button-circle button-circle", target: :_blank do
+        -#         %span(class="button-circle-icon") #{icon "fal", "external-link"}
+        -#         %span(class="button-circle-name") Online
+        -#   %div(class="page-top-actions-item") 
+        -#     = link_to edit_seller_product_path(@seller_product), class: "button-circle button-circle-action" do
+        -#       %span(class="button-circle-icon") #{icon "fal", "cog"}
+        -#       %span(class="button-circle-name") Edit
 
-  %section(class="section")
-    %div(class="content")
-      %div(class="header-section")
-        %div(class="header-section-title")
-          %h1(class="text text-m text-medium") Recent activity
-        %div(class="header-section-actions")
-          %div(class="header-section-actions-item") #{link_to "View all", activities_seller_path, class: "link"}
-      
-      %div(class="body")
-        %ul(class="activities")
-          = render_activities(@activities)
+
+
+  -# %div(class="page-block")
+  -#   %div(class="content")
+  -#     %div(class="page-header")
+  -#       %div(class="page-header-title")
+  -#         %p(class="text text-eyebrow text-medium text-secondary") Summary
+  -#     %div(class="page-body")
+  -#       %div(class="grid-2-2")
+  -#         %div(class="col")
+  -#           %div(class="card")
+  -#             %div(class="card-header")
+  -#               %div(class="card-header-title")
+  -#                 %p(class="text text-medium text-eyebrow") Total Sales
+  -#             %div(class="card-body")
+  -#               %h1(class="text text-xl text-bold") #{formatted_amount 0}
+  -#             %div(class="card-footer")
+  -#               %p(class="text text-xs text-secondary") Updated: #{Time.now.to_date.to_s(:long)}
+  -#         %div(class="col")
+  -#           %div(class="card")
+  -#             %div(class="card-header")
+  -#               %div(class="card-header-title")
+  -#                 %p(class="text text-medium text-eyebrow") Total Orders
+  -#             %div(class="card-body")
+  -#               %h1(class="text text-xl text-bold") 0
+  -#             %div(class="card-footer")
+  -#               %p(class="text text-xs text-secondary") Updated: #{Time.now.to_date.to_s(:long)}
+
+
+  -# %div(class="page-block")
+  -#   %div(class="content")
+  -#     %div(class="page-header")
+  -#       %div(class="page-header-title")
+  -#         %p(class="text text-eyebrow text-medium text-secondary") Average Pricing
+  -#     %div(class="page-body")
+  -#       = column_chart Pricing.where(product_id: @seller_product.product.id, created_at: 6.months.ago..Time.now.end_of_month).group_by_month(:created_at).average(:unit_price_cents), defer: true, prefix: "$", messages: {empty: "No data"}, dataset: {borderWidth: 2}, download: true, download: {filename: "#{@seller_product.product.name}_avg_price"}, xmin: "#{6.months.ago}", xmax: "#{Time.now.end_of_month}", width: "100% !important", round: 2, curve: false
+
+
+
+  = render partial: "sellers/home/orders"
+          
+
+
+
+  -# %div(class="page-block")
+  -#   %div(class="content-tight")
+  -#     %div(class="page-header")
+  -#       %div(class="page-header-title")
+  -#         %p(class="text text-eyebrow text-secondary") Activity
+  -#       %div(class="page-header-actions")
+  -#         %div(class="page-header-actions-item")
+  -#           = link_to activities_seller_path, class: "link" do
+  -#             %span #{icon "far", "list"}
+  -#             %span View all
+
+  -#     %div(class="page-body")
+  -#       %ul(class="activity-list")
+  -#         = render_activities(@activities)

@@ -1,0 +1,24 @@
+!!!
+%html
+    %head
+        = render partial: "layouts/shared/application-head"
+    %body(id="pageContainer" class="page" data-theme="light")
+
+        %div(class="page-top")
+            = render partial: "layouts/shared/application-navbar"
+
+        %div(class="page-center")
+            %main(id="main" class="layout")
+                = yield
+
+        %div(class="page-bottom")
+            = render partial: "layouts/shared/application-footer"
+
+        %div(tabindex="-1")
+            %div(class="alert-container")
+                - flash.each do |name, msg|
+                    %div(class="alert")
+                        %div(class="alert-header")
+                            = content_tag(:p, name, class: "text text-eyebrow text-secondary-light")
+                        %div(class="alert-message")
+                            = content_tag(:p, msg, class: "text text-m text-primary-light")

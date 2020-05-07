@@ -1,74 +1,122 @@
 = content_for :title, "Confirm #{@seller_plan.name} plan"
 
-%div(class="container")
+
+%div(class="page")
+
+  %div(class="page-top")
+    %div(class="content-tight")
+      %div(class="page-top-container")
+        %div(class="page-top-icon")
+          = icon "fal", "clipboard-check"
+        %div(class="page-top-main")
+          %div(class="page-top-main-title")
+            %h1(class="text text-l text-medium") #{yield(:title)}
+          %div(class="page-top-main-caption")
+            %p(class="text text-m text-success text-bold") USD #{formatted_amount @seller_plan.amount} / #{@seller_plan.interval}
 
 
 
-  %div(class="header")
-    %div(class="content")
-      %div(class="header-container")
-        %div(class="header-title")
-          %h1(class="text text-xxl text-medium") Confirm #{@seller_plan.name} plan
+
+  %div(class="page-body")
+    %div(class="content-tight")
+      %div(class="page-header")
+        %div(class="page-header-title") 
+          %p(class="text text-m text-medium") Credit Card Information:
+      %div(class="page-block")
+        - if !@seller.card_last4?
+          = form_with url: seller_subscription_path, local: true, id: "payment-form", class: ("form form-none" if @seller.card_last4?) do |f|
+            %div(class="form-container")
+              %div(class="form-row")
+                %div(class="form-row-label")
+                  %label(for="card-element") Credit or debit card
+                %div(class="form-row-input")
+                  %div(id="card-element" class="form-control")
+                  %div(id="card-errors" role="alert")
+              %div(class="form-row")
+                %div(class="form-row-label")
+                  %label(for="name_on_card") Name on Card
+                %div(class="form-row-input")
+                  = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
+                  = f.hidden_field :plan_id, value: @seller_plan.id
+              
+            %div(class="form-container")
+              %p(class="text text-s") By subscribing, you and your company (#{@seller.name}) agree to our #{link_to "Terms of Service", terms_path, target: :_blank, class: "link"} and have read and understood the #{link_to "Privacy Policy", privacy_path, target: :_blank, class: "link"} of Dagglo.
+              %p(class="text text-s space-top-xs") 
+                We use #{link_to "Stripe", "https://stripe.com/", class: "link", target: :_blank} to process all our payments. We ask you to read their #{link_to "policy", "https://stripe.com/en-ca/privacy", target: :_blank, class: "link"} as well.
+            
+            %div(class="form-submit")
+              = button_tag "Pay #{formatted_amount @seller_plan.amount} / #{@seller_plan.interval}", class: "button button-big button-primary button-wide", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}
 
 
-  - if @seller.card_last4?
-    = form_with url: seller_subscription_path, local: true, id: "existing-card" do |f|
-      %section(class="section")
-        %div(class="content")
-          %div(class="section-annotated")
-            %div(class="section-annotated-annotation")
-              %p(class="text text-m text-medium space-bot-xxs") Use existing Credit Card:
-              %p(class="text text-s text-secondary") Only the owner of seller account (#{@seller.owner.full_name}) can create, update, or cancel the subscription.
-            %div(class="section-annotated-content")
+-# = content_for :title, "Confirm #{@seller_plan.name} plan"
 
-              %div(class="body")
-                %div(class="credit-card")
-                  %div(class="credit-card-container")
-                    %div(class="credit-card-number") 
-                      %h1(class="text text-l text-medium text-primary-light") **** **** **** #{@seller.card_last4}
-                    %div(class="credit-card-date") 
-                      %p(class="text text-s text-primary-light") #{@seller.card_exp_month} / #{@seller.card_exp_year}
-                    %div(class="credit-card-footer")
-                      %div(class="credit-card-footer-item")
-                        %p(class="text text-s text-primary-light") #{@seller.owner.full_name}
-                      %div(class="credit-card-footer-item") 
-                        %p(class="text text-xxl text-primary-light") #{icon "fab", "#{@seller.credit_card_icon}"}
+-# %div(class="container")
+
+
+
+-#   %div(class="header")
+-#     %div(class="content")
+-#       %div(class="header-container")
+-#         %div(class="header-title")
+-#           %h1(class="text text-xxl text-medium") Confirm #{@seller_plan.name} plan
+
+
+-#   - if @seller.card_last4?
+-#     = form_with url: seller_subscription_path, local: true, id: "existing-card" do |f|
+-#       %section(class="section")
+-#         %div(class="content")
+-#           %div(class="section-annotated")
+-#             %div(class="section-annotated-annotation")
+-#               %p(class="text text-m text-medium space-bot-xxs") Use existing Credit Card:
+-#             %div(class="section-annotated-content")
+
+-#               %div(class="body")
+-#                 %div(class="credit-card")
+-#                   %div(class="credit-card-container")
+-#                     %div(class="credit-card-number") 
+-#                       %h1(class="text text-l text-medium text-primary-light") **** **** **** #{@seller.card_last4}
+-#                     %div(class="credit-card-date") 
+-#                       %p(class="text text-s text-primary-light") #{@seller.card_exp_month} / #{@seller.card_exp_year}
+-#                     %div(class="credit-card-footer")
+-#                       %div(class="credit-card-footer-item")
+-#                         %p(class="text text-s text-primary-light") #{@seller.owner.full_name}
+-#                       %div(class="credit-card-footer-item") 
+-#                         %p(class="text text-xxl text-primary-light") #{icon "fab", "#{@seller.credit_card_icon}"}
                 
-                %div(class="credit-card-caption")
-                  %p(class="text text-s") #{link_to "Use a new card", "#", id: "use-new-card", class: "link"}
+-#                 %div(class="credit-card-caption")
+-#                   %p(class="text text-s") #{link_to "Use a new card", "#", id: "use-new-card", class: "link"}
       
-      %div(class="actions")
-        %div(class="content")
-          %div(class="actions-container")
-            %div(class="actions-item")
-              = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}
+-#       %div(class="actions")
+-#         %div(class="content")
+-#           %div(class="actions-container")
+-#             %div(class="actions-item")
+-#               = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}
 
 
-  = form_with url: seller_subscription_path, local: true, id: "payment-form", class: ("form form-none" if @seller.card_last4?) do |f|    
-    %section(class="section")
-      %div(class="content")
-        %div(class="section-annotated")
-          %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium space-bot-xxs") Credit Card information:
-            %p(class="text text-s text-secondary") Only the owner of seller account (#{@seller.owner.full_name}) can create, update, or cancel the subscription.
-          %div(class="section-annotated-content")
+-#   = form_with url: seller_subscription_path, local: true, id: "payment-form", class: ("form form-none" if @seller.card_last4?) do |f|    
+-#     %section(class="section")
+-#       %div(class="content")
+-#         %div(class="section-annotated")
+-#           %div(class="section-annotated-annotation")
+-#             %p(class="text text-m text-medium space-bot-xxs") Credit Card information:
+-#           %div(class="section-annotated-content")
             
-            %div(class="form-row")
-              %div(class="form-label")
-                %label(for="card-element") Credit or debit card
-              %div(class="form-input")
-                %div(id="card-element" class="form-control")
-                %div(id="card-errors" role="alert")
+-#             %div(class="form-row")
+-#               %div(class="form-label")
+-#                 %label(for="card-element") Credit or debit card
+-#               %div(class="form-input")
+-#                 %div(id="card-element" class="form-control")
+-#                 %div(id="card-errors" role="alert")
             
-            %div(class="form-row")
-              %div(class="form-label")
-                %label(for="name_on_card") Name on Card
-              %div(class="form-input")
-                = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
-                = f.hidden_field :plan_id, value: @seller_plan.id
+-#             %div(class="form-row")
+-#               %div(class="form-label")
+-#                 %label(for="name_on_card") Name on Card
+-#               %div(class="form-input")
+-#                 = f.text_field :name_on_card, id: "name_on_card", placeholder: "#{current_user.full_name}", class: "form-control"
+-#                 = f.hidden_field :plan_id, value: @seller_plan.id
 
-    %div(class="actions")
-      %div(class="content")
-        %div(class="actions-container")
-          %div(class="actions-item")
-            = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}
+-#     %div(class="actions")
+-#       %div(class="content")
+-#         %div(class="actions-container")
+-#           %div(class="actions-item")
+-#             = button_tag "Subscribe", class: "button button-action button-reponsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Processing..."}

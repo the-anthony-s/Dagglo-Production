@@ -1,0 +1,15 @@
+= render partial: "users/registrations/elements/links"
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-top")
+            %div(class="section-top-title")
+                %h1(class="text text-l text-medium") New shipping address
+            %div(class="section-top-actions")
+                %div(class="section-top-actions-item")
+                    = link_to user_locations_path, class: "button button-small" do
+                        %span #{icon "far", "chevron-left"}
+                        %span Back
+
+        %div(class="section-block")
+            = render partial: "users/user_locations/form"

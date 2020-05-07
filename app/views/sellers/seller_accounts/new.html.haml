@@ -1,34 +1,73 @@
 = content_for :title, "Add new staff"
 
+%div(class="page")
 
-%div(class="container")
-
-  = form_for :seller_account, url: accounts_path(@seller_account), method: :post, :html => { class: "form" } do |f|
-
-    %div(class="header")
-      %div(class="content")
-        %div(class="header-container")
-          %div(class="header-title")
-            %h1(class="text text-xxl text-medium") Add new staff
-
-
-    %section(class="section")
-      %div(class="content")
-        %div(class="section-annotated")
-          %div(class="section-annotated-annotation")
-            %p(class="text text-m text-medium space-bot-xs") Add staff:
-            %p(class="text text-s text-secondary space-bot-xs") Enter email to send an invitation to #{@seller.name}
-          %div(class="section-annotated-content")
-            %div(class="form-row")
-              %div(class="form-label")
-                = f.label :email, "Email"
-              %div(class="form-input")
-                = f.text_field :email, class: "form-control", required: true, autocomplete: "email"
-                = f.hidden_field :role, value: "manager"
+    %div(class="page-profile")
+        %div(class="content-tight")
+            %div(class="page-profile-container")
+                %div(class="page-profile-icon")
+                    = icon "fal", "user-plus"
+                %div(class="page-profile-header")
+                    %div(class="page-profile-header-title")
+                        %h1(class="text text-l text-medium") Add new staff
 
 
-    %div(class="actions")
-      %div(class="content")
-        %div(class="actions-container")
-          %div(class="actions-item")
-            = button_tag "Send invitation", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Saving..."}
+    = form_for :seller_account, url: accounts_path(@seller_account), method: :post, :html => { class: "form" } do |f|
+        %div(class="page-body")
+            %div(class="content-tight")
+                %div(class="form-container")
+                    %div(class="form-header")
+                        %div(class="form-header-title")
+                            %p(class="text text-m text-medium") Add staff:
+                        %div(class="form-header-caption")
+                            %p(class="text text-s text-secondary") Enter user's email and we will send an invitation to #{@seller.name}.
+                            %p(class="text text-s text-secondary") Please note, the user can not have more than 1 (one) seller account.
+                    %div(class="form-row")
+                        %div(class="form-row-input")
+                            = f.text_field :email, class: "form-control form-control-action", required: true, autocomplete: "off", placeholder: "john.doe@email.com"
+                            = f.hidden_field :role, value: "manager"
+                    %div(class="form-row")
+                        %div(class="form-row-input")
+                            = f.select :seller_location_id, @seller.seller_locations.all.pluck(:name, :id), {:include_blank => "#{@seller.name} locations"}, {class: "js-locations form-control form-control-action", id: "selectSellerLocation"}
+                %div(class="form-submit")
+                    = button_tag "Send invitation", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}
+
+
+
+
+
+
+-# = content_for :title, "Add new staff"
+
+
+-# %div(class="container")
+
+-#   = form_for :seller_account, url: accounts_path(@seller_account), method: :post, :html => { class: "form" } do |f|
+
+-#     %div(class="header")
+-#       %div(class="content")
+-#         %div(class="header-container")
+-#           %div(class="header-title")
+-#             %h1(class="text text-xxl text-medium") Add new staff
+
+
+-#     %section(class="section")
+-#       %div(class="content")
+-#         %div(class="section-annotated")
+-#           %div(class="section-annotated-annotation")
+-#             %p(class="text text-m text-medium space-bot-xs") Add staff:
+-#             %p(class="text text-s text-secondary space-bot-xs") Enter email to send an invitation to #{@seller.name}
+-#           %div(class="section-annotated-content")
+-#             %div(class="form-row")
+-#               %div(class="form-label")
+-#                 = f.label :email, "Email"
+-#               %div(class="form-input")
+-#                 = f.text_field :email, class: "form-control", required: true, autocomplete: "email"
+-#                 = f.hidden_field :role, value: "manager"
+
+
+-#     %div(class="actions")
+-#       %div(class="content")
+-#         %div(class="actions-container")
+-#           %div(class="actions-item")
+-#             = button_tag "Send invitation", class: "button button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i> Saving..."}

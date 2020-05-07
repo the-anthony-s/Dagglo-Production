@@ -2,23 +2,35 @@
     display: block
     position: relative
     width: 100%
-    padding-top: var(--gap-m)
-    padding-bottom: var(--gap-m)
-    overflow: hidden
+    padding-top: var(--space-md)
+    padding-bottom: var(--space-md)
 
     &-gray
-        background: $gray-lighter
+        background: var(--color-contrast-lower)
 
 
 .section-page
-    padding-top: var(--gap-r-m)
-    padding-bottom: var(--gap-r-m)
+    padding-top: var(--gap-r-l)
+    padding-bottom: var(--gap-r-l)
     display: flex
     flex-direction: column
     justify-content: center
 
-    // +tablet
-    //     min-height: 85vh
+.section-page-block + .section-page-block
+    margin-top: var(--gap-r-l)
+
+
+
+// Section Block
+.section-block
+    display: block
+    position: relative
+    & + &
+        margin-top: var(--gap-r-l)
+    &-gray
+        background: $gray-lighter
+        padding-top: var(--gap-l)
+        padding-bottom: var(--gap-l)
 
 
 
@@ -26,19 +38,30 @@
 .section-top
     display: flex
     flex-direction: column
-    margin-bottom: var(--gap-r-m)
+    margin-bottom: var(--gap-m)
     width: 100%
     +tablet
         align-items: center
         flex-direction: row
-    &-title
+    
+    &-separator
+        border-bottom: 1px solid $color-border
+        padding-bottom: var(--gap-s)
+    
+    & &-title
         flex: 1 1 auto
-    &-actions
+    
+    & &-actions
         flex: 1 1 100%
+        display: flex
+        flex-direction: row
+        align-items: center
         margin-top: var(--gap)
         +tablet
             flex: 0 0 auto
             margin-top: 0
+            margin-left: var(--gap)
+        &-item + &-item
             margin-left: var(--gap)
 
 
@@ -47,10 +70,12 @@
     width: 100%
     position: relative
     display: block
-    margin-bottom: var(--gap-r-m)
+    margin-bottom: var(--gap-m)
 
 .section-header-center
     text-align: center
+
+.section-header-tight
     max-width: 712px
     margin-right: auto
     margin-left: auto
@@ -69,7 +94,11 @@
     margin-top: var(--gap)
     &-item + &-item
         margin-top: var(--gap)
-    
+
+
+.section-header-separator
+    border-bottom: 1px solid $color-border
+    padding-bottom: var(--gap-s)
 
 
 
@@ -93,30 +122,35 @@
 
 
 
+// Bottomg Action
+.section-actions
+    width: 100%
+    margin-top: var(--gap-r-m)
+    display: flex
+    flex-direction: column
+    +tablet
+        flex-direction: row
+        align-items: center
+    
+    &-center
+        align-items: center
+        +tablet
+            justify-content: center
+
+    &-item
+        flex: 1 1 100%
+        +tablet
+            flex: 0 0 auto
+
+    &-item + &-item
+        margin-top: var(--gap)
+        +tablet
+            margin-top: 0
+            margin-left: var(--gap)
+
+
 // Pagination block
 .section-pagination
     display: block
     position: relative
     margin-top: var(--gap-r-m)
-
-
-
-// Section Page Elements
-.section-page-body
-    width: 100%
-    display: block
-    position: relative
-
-    & + &
-        margin-top: var(--gap-r-m)
-
-
-.section-page-body-separator
-    border-top: 1px solid $color-border
-    padding-top: var(--gap-r-m)
-
-
-
-// Separators
-.section-page-separator + .section-page-separator
-    border-top: 1px solid $color-border

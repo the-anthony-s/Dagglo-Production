@@ -1,141 +1,233 @@
 .card
-    position: relative
-    display: block
-    box-shadow: rgba(0, 0, 0, 0.04) 0px 0px 4px 0px, rgba(0, 0, 0, 0.08) 0px 8px 16px 0px
-    // border: 1px solid $color-border
-    border-radius: $border-radius
+    box-shadow: $shadow-card
+    border: 1px solid var(--color-border)
+    border-radius: var(--radius-border)
+    background: var(--color-bg)
     overflow: hidden
+    &-gray
+        background: var(--color-contrast-lower)
 
-.card-header
+.card-responsive
+    border-radius: 0 !important
+    border-right: 0 !important
+    border-left: 0 !important
+    border-top: 1px solid var(--color-border) !important
+    border-bottom: 1px solid var(--color-border) !important
+    +tablet
+        border-radius: var(--radius-border) !important
+        border: 1px solid var(--color-border) !important
+
+
+.card-container
+    padding: var(--space-card) var(--space-card)
+
+
+// Card top -> Separate container
+.card-top
+    padding: var(--space-card)
+    position: relative
     display: flex
     flex-direction: row
     align-items: center
-    padding: var(--gap-s) var(--gap-s) 0
-
     &-icon
-        color: $color-font-secondary
-        font-size: var(--size-typo-m)
-        line-height: var(--line-height-typo-m)
-        font-weight: 500
         flex: 0 0 auto
-        min-width: 24px
-        text-align: center
-        margin-right: var(--gap-s)
-
-    &-main
+        margin-right: var(--space-card)
+    &-title
         flex: 1 1 100%
         max-width: 100%
-        text-align: left
-        display: block
-
     &-actions
         display: flex
         flex-direction: row
         align-items: center
+        &-item
+            flex: 0 0 auto
+        & > &-item + &-item
+            margin-left: var(--space-card)
+
+
+// Tight card heading, combine with .card-body
+.card-header
+    padding: var(--space-card) var(--space-card) 0
+    display: flex
+    flex-direction: row
+    // align-items: center
+    justify-content: space-between
+    width: 100%
+
+.card-header-icon
+    flex: 0 0 auto
+    margin-right: var(--space-xs)
+
+.card-header-title
+    flex: 1 1 100%
+    max-width: 100%
+
+.card-header-actions
+    display: flex
+    flex-direction: row
+    align-items: center
+    margin-left: var(--space-card)
+    &-item
         flex: 0 0 auto
-        margin-left: var(--gap-s)
+    & > &-item + &-item
+        margin-left: var(--space-card)
 
-        &-item + &-item
-            margin-left: var(--gap-s)
+.card-header-picture
+    flex: 0 0 auto
+    margin-left: var(--space-card)
+    position: relative
+    & > img
+        height: 44px
+        width: 44px
+        object-fit: cover
+        border: 0
+        border-radius: 100%
+        display: block
+        +tablet
+            height: 54px
+            width: 54px
+        +desktop
+            height: 64px
+            width: 64px
+    &-icon
+        position: absolute
+        bottom: 0
+        right: 0
+        color: $color-font-primary-light
+        font-size: var(--text-sm)
+        background: var(--color-contrast-medium)
+        height: 20px
+        width: 20px
+        text-align: center
+        border: 0
+        border-radius: 100%
+        box-shadow: 0 0 0 1px var(--color-white)
 
-    &-profile
-        flex: 0 0 auto
-        margin-left: var(--gap-s)
 
-        &-photo
-            position: relative
-            display: block
 
-            & > img
-                height: var(--icon)
-                width: var(--icon)
-                display: block
-                border: 0
-                border-radius: 50%
-
+// Body, usually combined with .card-header
 .card-body
-    padding: var(--gap-s)
+    padding: var(--space-card) var(--space-card) var(--space-card)
+    display: block
+    & + &
+        padding-top: 0
+    &-separator
+        padding-top: var(--space-card) !important
+        border-top: 1px solid var(--color-border)
+
+
+// Card footer + actions
+.card-footer
     display: block
     position: relative
+    padding: 0 var(--space-card) var(--space-card)
 
-.card-footer
-    padding: 0 var(--gap-s) var(--gap-s)
-
-    &-actions
-        display: flex
+.card-footer-actions
+    display: flex
+    flex-direction: column
+    +tablet
         flex-direction: row
         align-items: center
-    &-action + &-action
-        margin-left: var(--gap-s)
+    &-item
+        flex: 1 1 100%
+        +tablet
+            flex: 0 0 auto
+    & > &-item + &-item
+        margin-top: var(--space-card)
+        +tablet
+            margin-top: 0
+            margin-left: var(--space-card)
 
 
 // Card List
 .card-list
-    display: block
     width: 100%
+    display: block
     position: relative
-    border-top: 1px solid $color-border
-    border-bottom: 1px solid $color-border
-    // padding-top: var(--gap-s)
-    // padding-bottom: var(--gap-s)
-    margin-bottom: var(--gap-s)
-
-    &-item + &-item
-        border-top: 1px solid $color-border
+    & > li + li
+        margin-top: var(--space-card)
 
 .card-list-container
-    padding: var(--gap-xs) var(--gap-s)
     display: flex
     flex-direction: row
     align-items: flex-start
-
-    +tablet
+    &-center
         align-items: center
 
 .card-list-icon
-    border: 0
-    border-radius: $border-radius
-    color: $color-font-secondary
-    font-size: var(--size-typo-l)
-    background: $gray
-    padding: var(--gap-xs)
-    margin-right: var(--gap-s)
     flex: 0 0 auto
-    height: 40px
-    width: 40px
+    margin-right: var(--space-card)
+    height: 44px
+    width: 44px
+    background: var(--color-contrast-lower)
+    border-radius: var(--radius-border)
+    border: 0
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
+    color: var(--color-contrast-high)
+    font-size: var(--text-lg)
 
 
-
-// Card Stack
-.card-stack
+// Links
+.card-links
+    width: 100%
     display: block
+    position: relative
+    & > li + li
+        border-top: 1px solid var(--color-border)
+
+.card-links-container
+    display: flex
+    flex-direction: row
+    align-items: flex-start
+    padding: var(--space-card)
+    &-center
+        align-items: center
+    &:hover, &:focus, &:active
+        background: var(--color-contrast-lower)
+
+.card-links-icon
+    flex: 0 0 auto
+    margin-right: var(--space-card)
+    height: 44px
+    width: 44px
+    background: var(--color-contrast-lower)
+    border-radius: var(--radius-border)
+    border: 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    color: var(--color-contrast-high)
+    font-size: var(--text-lg)
+
+
+// Locations
+.card-location
+    display: flex
+    flex-direction: row
+    align-items: center
     width: 100%
     position: relative
+    padding: var(--space-card) var(--space-card)
 
-    &-item + &-item
-        margin-top: var(--gap)
-
-
-// Card Grid
-.card-grid
-    display: grid
-    grid-row-gap: var(--gap)
-    grid-column-end: var(--gap)
-    grid-template-columns: repeat(1, 1fr)
-
-    +tablet
-        grid-template-columns: repeat(3, 1fr)
-
-.card-col
-    grid-column-end: span 1
-
-    & + &
-        border-top: 1px solid $color-border
-
+.card-location-map
+    flex: 0 0 auto
+    margin-right: var(--space-card)
+    overflow: hidden
+    & > img
+        height: 64px
+        width: 64px
+        border: 0
+        border-radius: 100%
+        display: block
         +tablet
-            border-top: 0
-            border-left: 1px solid $color-border
+            height: 84px
+            width: 84px
+
+.card-location-body
+    flex: 1 1 100%
+    position: relative
+    display: block

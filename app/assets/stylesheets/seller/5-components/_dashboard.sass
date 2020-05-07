@@ -1,67 +1,32 @@
-// Variables
-$dashboard-left-width: 256px
-$dashboard-right-width: 256px
-
 .dashboard
-    position: relative
+    min-height: 100vh
     display: flex
     flex-direction: column
-    margin: 0
-    padding: 0
+    flex-shrink: 0
+    flex-grow: 1
     width: 100%
-    min-height: 100vh
-    background: $white
-
-    +desktop-sm
-        flex-direction: row
-
-.dashboard-left
+    max-width: 100%
     position: relative
-    // position: sticky
-    // top: 0
-    // left: 0
-    // right: 0
-    flex: 1 1 100%
-    margin: 0
-    padding: 0
-    background: $white
-    z-index: 10
+    z-index: 1
 
-    +desktop-sm
-        flex: 0 0 auto
-        position: fixed
-        top: 0
-        left: 0
-        right: 0
-        height: 100vh
-        width: $dashboard-left-width
-        overflow-y: auto
-        background: $gray-lighter
 
-.dashboard-center
-    position: relative
-    min-height: 100vh
-    flex: 1 1 100%
-    flex-direction: column
-    margin: 0
+.dashboard-top
+    width: 100%
+    display: block
+    flex-grow: 0
+
+    
+.dashboard-body
+    display: block
     padding-top: var(--navbar-height)
+    flex-grow: 1
 
-    +desktop-sm
-        padding-top: 0
-        padding-left: $dashboard-left-width
 
-        // padding-right: $dashboard-right-width
-
-.dashboard-right
+.dashboard-container
+    display: block
     position: relative
-    flex: 1 1 100%
+    z-index: 1
 
-    +desktop-sm
-        flex: 0 0 auto
-        position: fixed
-        height: 100vh
-        width: $dashboard-right-width
-        overflow-y: auto
-        background: $gray-lighter
-        top: 0
-        right: 0
+
+.dashboard-bottom
+    flex-grow: 0

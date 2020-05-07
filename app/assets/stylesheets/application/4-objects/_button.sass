@@ -1,0 +1,144 @@
+.button
+    color: var(--color-contrast-lower)
+    font-size: var(--text-sm)
+    font-weight: 500
+    letter-spacing: .03em
+    text-decoration: none
+    text-transform: none
+    padding: var(--space-sm) var(--space-sm)
+    line-height: var(--body-line-height)
+    text-align: center
+    width: auto
+    min-width: 140px
+    border: 1px solid var(--color-black-light)
+    border-radius: var(--radius-border)
+    background: var(--color-black-light)
+    user-select: none
+    appearance: none
+    cursor: pointer
+    white-space: nowrap
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-text-size-adjust: none
+    touch-action: manipulation
+    outline: none
+    display: inline-block
+
+    &:hover
+        color: var(--color-contrast-lower)
+        background: var(--color-black-lighter)
+        border-color: var(--color-black-lighter)
+
+    & > span + span
+        margin-left: 6px
+
+
+.button:disabled,
+.button[disabled]
+    opacity: .5
+    cursor: not-allowed
+
+
+
+.button-outline
+    color: var(--color-black-light)
+    background: transparent
+    border-color: var(--color-black-light)
+
+
+.button-primary
+    color: var(--color-white)
+    background: var(--color-primary)
+    border-color: var(--color-primary)
+    &:hover
+        color: var(--color-white)
+        background: var(--color-primary-dark)
+        border-color: var(--color-primary-dark)
+
+    
+.button-accent
+    color: var(--color-white)
+    background: var(--color-accent)
+    border-color: var(--color-accent)
+    &:hover
+        color: var(--color-white)
+        background: var(--color-accent-dark)
+        border-color: var(--color-accent-dark)
+
+
+.button-accent-outline
+    color: var(--color-accent)
+    border-color: var(--color-accent)
+    background: transparent
+    &:hover
+        color: var(--color-white)
+        background: var(--color-accent-dark)
+        border-color: var(--color-accent-dark)
+
+.button-contrast
+    color: var(--color-contrast-higher)
+    border-color: var(--color-contrast-lower)
+    background: var(--color-contrast-lower)
+    &:hover
+        color: var(--color-contrast-higher)
+        border-color: var(--color-contrast-low)
+        background: var(--color-contrast-low)
+
+.button-contrast-outline
+    color: var(--color-contrast-higher)
+    border-color: var(--color-contrast-higher)
+    background: transparent
+    &:hover
+        color: var(--color-contrast-lower)
+        border-color: var(--color-contrast-higher)
+        background: var(--color-contrast-higher)
+
+.button-white
+    color: var(--color-contrast-higher)
+    background: var(--color-contrast-lower)
+    border-color: var(--color-contrast-lower)
+    &:hover, &:focus, &:active
+        color: var(--color-contrast-higher)
+        background: var(--color-contrast-low)
+        border-color: var(--color-contrast-low)
+
+
+
+
+// Modifications
+.button-action
+    border-radius: 24px
+
+
+.button-product
+    background: transparent
+    border-color: transparent
+    min-width: auto
+    &-name
+        display: none
+        +tablet
+            display: inline-block
+    &-heart
+        color: $red !important
+    // &:hover
+    //     background: transparent
+    //     border-color: transparent
+
+
+
+// Styles
+.button-responsive
+    width: 100%
+    +mobile
+        width: auto
+
+.button-wide
+    width: 100%
+
+.button-big
+    font-size: var(--text-md)
+    line-height: var(--body-line-height)
+    padding: var(--space-md) var(--space-xxl)
+
+.button-small
+    min-width: auto
+    padding: var(--gap-xs) var(--gap-s)

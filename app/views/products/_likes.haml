@@ -1,0 +1,9 @@
+- if user_signed_in? && current_user.product_likes?(product)
+    = link_to product_like_path(product), method: :delete, remote: true, class: "link link-icon link-icon-favourite" do
+        = icon "fas", "star"
+- elsif !user_signed_in?
+    = link_to new_user_registration_path, class: "link link-icon link-icon-favourite" do
+        = icon "far", "star"
+- else
+    = link_to product_like_path(product), method: :post, remote: true, class: "link link-icon link-icon-favourite" do
+        = icon "far", "star"

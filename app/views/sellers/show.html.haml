@@ -1,1 +1,29 @@
-= @seller.name
+%section(class="seller-page")
+    %div(class="section-block")
+        %div(class="seller-top")
+            %div(class="seller-top-cover")
+                = image_tag @seller.background(600, 600), loading: "lazy"
+            %div(class="seller-top-profile")
+                %div(class="seller-top-logo")
+                    = image_tag @seller.logo(200, 200), 'data-src': @seller.logo(200, 200), class: "lazy", loadoing: "lazy"
+                %div(class="seller-top-name")
+                    %h1(class="text text-l text-bold") #{@seller.name}
+                %div(class="seller-top-caption")
+                    %p(class="text text-xxl text-bold") Making wholesale better
+                %div(class="seller-top-actions")
+                    %div(class="seller-top-actions-item")
+                        = link_to "", class: "button" do
+                            %span #{icon "fal", "heart"}
+                            %span Like
+                    %div(class="seller-top-actions-item")
+                        item
+
+    %div(class="section-block")
+        %div(class="content")
+            %div(class="section-top")
+                %div(class="section-top-title")
+                    %p(class="text text-l text-bold") Catalog
+            %div(class="section-body")
+                %div(class="grid-products")
+                    - @seller_products.each do |product|
+                        = render partial: "products/elements/product", cache: true, locals: {product: product.product}

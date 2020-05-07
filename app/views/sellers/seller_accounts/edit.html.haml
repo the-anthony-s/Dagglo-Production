@@ -1,7 +1,37 @@
-.section
-  .content
-    -# = form_for [@seller, SellerAccount.new] do |f|
-    -# = form_for SellerAcc do |f|
-    = form_for :seller_account, url: accounts_path(@seller_account), method: :patch do |f|
-      = f.text_field :email, required: true, placeholder: "Email"
-      = f.submit
+= content_for :title, "Edit"
+
+%div(class="page")
+
+  %div(class="page-profile")
+    %div(class="content-tight")
+      %div(class="page-profile-container")
+        %div(class="page-profile-picture")
+          = image_tag @seller_account.user.avatar(120, 120), 'data-src': @seller_account.user.avatar(120, 120), loading: "lazy", class: "lazy"
+        %div(class="page-profile-header")
+          %div(class="page-profile-header-title")
+            %h1(class="text text-l text-medium") #{yield(:title)}
+            %p(class="text text-s text-secondary") #{@seller_account.user.full_name}
+        %div(class="page-profile-actions")
+          %div(class="page-profile-actions-item") 
+            = link_to account_path(@seller_account), method: :delete, class: "button-circle button-circle-destroy" do
+              %span(class="button-circle-icon") #{icon "fal", "trash"}
+              %span(class="button-circle-name") Delete
+          %div(class="page-profile-actions-item") 
+            = link_to account_path(@seller_account), class: "button-circle button-circle-action" do
+              %span(class="button-circle-icon") #{icon "fal", "eye"}
+              %span(class="button-circle-name") View
+
+    
+  = form_for :seller_account, url: account_path(@seller_account), method: :patch, :html => { class: "form", :multipart => true } do |f|
+    %div(class="page-block")
+      %div(class="content-tight")
+        = render "sellers/shared/errors", target: @seller_account
+        %div(class="form-container")
+          %div(class="form-row")
+            %div(class="form-row-label")
+              = f.label :seller_location_id, "Location"
+            %div(class="form-row-input")
+              = f.select :seller_location_id, @seller.seller_locations.all.pluck(:name, :id), {:include_blank => "#{@seller.name} locations"}, {class: "js-locations form-control", id: "selectSellerLocation"}
+        
+        %div(class="form-submit")
+          = button_tag "Update member", class: "button button-save button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}

@@ -1,5 +1,5 @@
 .text
-    color: $color-font-primary
+    color: var(--color-contrast-higher)
     font-weight: 400
     font-size: var(--size-typo-default)
     vertical-align: baseline
@@ -8,42 +8,41 @@
 
 // Text sizes
 .text-eyebrow
-    font-size: var(--size-typo-default)
-    font-weight: 500
+    font-size: var(--text-xs)
     letter-spacing: 0.04375em
     text-transform: uppercase
 
 .text-xs
-    font-size: var(--size-typo-xs)
-    line-height: var(--line-height-typo-xs)
+    font-size: var(--text-xs)
+    line-height: var(--body-line-height)
 
 .text-s
-    font-size: var(--size-typo-s)
-    line-height: var(--line-height-typo-s)
+    font-size: var(--text-sm)
+    line-height: var(--body-line-height)
 
 .text-m
-    font-size: var(--size-typo-m)
-    line-height: var(--line-height-typo-m)
+    font-size: var(--text-md)
+    line-height: var(--body-line-height)
 
 .text-l
-    font-size: var(--size-typo-l)
-    line-height: var(--line-height-typo-l)
+    font-size: var(--text-lg)
+    line-height: var(--heading-line-height)
 
 .text-xl
-    font-size: var(--size-typo-xl)
-    line-height: var(--line-height-typo-xl)
+    font-size: var(--text-xl)
+    line-height: var(--heading-line-height)
 
 .text-xxl
-    font-size: var(--size-typo-xxl)
-    line-height: var(--line-height-typo-xxl)
+    font-size: var(--text-xxl)
+    line-height: var(--heading-line-height)
 
 .text-xxxl
-    font-size: var(--size-typo-xxxl)
-    line-height: var(--line-height-typo-xxxl)
+    font-size: var(--text-xxxl)
+    line-height: var(--heading-line-height)
 
 .text-xxxxl
-    font-size: var(--size-typo-xxxxl)
-    line-height: var(--line-height-typo-xxxxl)
+    font-size: var(--text-xxxxl)
+    line-height: var(--heading-line-height)
 
 
 // Styles
@@ -56,19 +55,34 @@
 .text-bold
   font-weight: 700
 
+.text-uppercase
+    text-transform: uppercase
+
+.text-hidden
+    display: none
+
 
 // Colors
 .text-primary
-    color: $color-font-primary
+    color: var(--color-contrast-higher)
 
 .text-secondary
-    color: $color-font-secondary
+    color: var(--color-contrast-high)
 
 .text-primary-light
-    color: $color-font-primary-light
+    color: var(--color-white)
 
 .text-secondary-light
-    color: $color-font-secondary-light
+    color: var(--color-white-high)
+
+.text-success
+    color: var(--color-success)
+
+.text-error
+    color: var(--color-error)
+
+.text-warning
+    color: var(--color-warning)
 
 
 // Align
@@ -80,3 +94,8 @@
 
 .text-right
     text-align: right
+
+
+// Block
+.text-block + .text-block
+    margin-top: var(--space-xs)

@@ -1,130 +1,210 @@
 = content_for :title, "Categories"
 
-%header(class="hero hero-gray")
+%header(id="categoriesAbout" class="hero hero-no-navbar")
 	%div(class="hero-container")
 		%div(class="content-page")
-			%div(class="hero-header")
+			%div(class="hero-header hero-header-center")
 				%div(class="hero-header-title")
-					%h1(class="text text-xxxl text-medium") Start Selling Online
+					%h1(class="text text-xxl text-bold") Wholesale Online
 				%div(class="hero-header-caption")
-					%p(class="text text-l") Sign up before April 1st, 2020 and get access for free - FOREVER
+					%p(class="text text-l text-secondary") Get Early Access today and add your products at no cost.
 				%div(class="hero-header-actions")
-					- if user_signed_in? && current_user.s_account.present?
-						%div(class="hero-header-actions-item")
-							= link_to "#{current_user.s_account.name}", dashboard_seller_path, class: "button button-primary", target: :_blank
-					- else
-						%div(class="hero-header-actions-item")
-							= link_to "Sign Up to Sell", new_seller_path, class: "button button-primary"
-					-# %div(class="hero-header-actions-item")
-					-# 	= link_to "Am I ready to sell?", "", class: "link"
-
+					%div(class="hero-header-actions-item")
+						= link_to "Get Started", new_seller_path, class: "button button-action button-primary"
+					%div(class="hero-header-actions-item")
+						= link_to "Contact us", new_contact_path, class: "link"
 
 
 %section(class="section section-page")
+	%div(class="section-page-block")
+		%div(class="content-page")
+			%div(class="section-header section-header-separator")
+				%div(class="section-header-title")
+					%h2(class="text text-xl text-bold") Categories
+			%div(class="section-body")
+				%ul(class="category-grid")
+					- @categories.roots.each do |category|
+						%li
+							%div(class="category-about")
+								%div(class="category-about-icon")
+									= image_tag category.background(200, 200), 'data-src': category.background(200, 200), loading: "lazy", class: "lazy"
+								%div(class="category-about-name")
+									%h1(class="text text-xl text-medium") #{category.name}
+								%div(class="category-about-products")
+									%p(class="text text-eyebrow text-secondary space-bot-xxs") Types of products:
+									%p(class="text text-s")
+										- category.children.each do |child|
+											%span #{child.name}
+								- if category.conditions_allowed.present?
+									%div(class="category-about-condition")
+										%p(class="text text-xs text-secondary") Conditions Allowed
+										%p(class="text text-s text-bold") #{category.conditions_allowed.html_safe}
+								- if category.approval_required.present?
+									%div(class="category-about-approval")
+										%p(class="text text-xs text-secondary") Conditions Allowed
+										%p(class="text text-s text-bold") #{category.approval_required.html_safe}
+
+
+	%div(class="section-page-block")
+		%div(class="content-page")
+			%div(class="section-header section-header-separator")
+				%div(class="section-header-title")
+					%h2(class="text text-xl text-bold") Am I ready to sell?
+			%div(class="section-body")
+				%div(class="grid-1-2")
+					%div(class="col")
+						%div(class="category-step")
+							%div(class="category-step-count") 1
+							%div(class="category-step-title")
+								%h1(class="text text-m text-bold") I have a product ready to sell
+							%div(class="category-step-content")
+								%p(class="text text-s") First things first: decide what you’re going to sell and have inventory on hand.
+					%div(class="col")
+						%div(class="category-step")
+							%div(class="category-step-count") 2
+							%div(class="category-step-title")
+								%h1(class="text text-m text-bold") I have IDs for all of my products
+							%div(class="category-step-content")
+								%p(class="text text-s") You’ll need a GTIN (Global Trade Item Number) for each product you sell, such as a UPC, EAN, or GCID. These typically appear as a barcode.
+					%div(class="col")
+						%div(class="category-step")
+							%div(class="category-step-count") 3
+							%div(class="category-step-title")
+								%h1(class="text text-m text-bold") I have a plan for fulfilling orders
+							%div(class="category-step-content")
+								%p(class="text text-s") You can ship your own orders, or use Dagglo Freight and let us handle shipping, customer service, and returns.
+					%div(class="col")
+						%div(class="category-step")
+							%div(class="category-step-count") 4
+							%div(class="category-step-title")
+								%h1(class="text text-m text-bold") I’ve selected a selling plan
+							%div(class="category-step-content")
+								%p(class="text text-s") We offer Unlimited Early Access Plan at $0 USD per month if you sign up now.
+								
+
+%section(class="section section-page section-gray")
 	%div(class="content-page")
 		%div(class="section-header section-header-center")
 			%div(class="section-header-title")
-				%h1(class="text text-xl text-bold") What can I sell?
+				%p(class="text text-eyebrow text-secondary") Limited time offer
 			%div(class="section-header-caption")
-				%p(class="text text-m") Find your products in the table below to learn whether they are in open categories or in categories requiring approval. Review any category-specific requirements or guidelines and be sure you can meet those specifications. 	
+				%h1(class="text text-xxxl text-bold") Get Early Access today and add your products at no cost.
+		%div(class="section-actions section-actions-center")
+			%div(class="section-actions-item")
+				= link_to "Get Started", new_seller_path, class: "button button-action button-big button-secondary"
+			%div(class="section-actions-item")
+				= link_to "Learn more about categories", categories_path, class: "link"
+
+
+
+
+
+
+-# %section(class="section section-page")
+-# 	%div(class="content-page")
+-# 		%div(class="section-header section-header-center")
+-# 			%div(class="section-header-title")
+-# 				%h1(class="text text-xl text-bold") What can I sell?
+-# 			%div(class="section-header-caption")
+-# 				%p(class="text text-m") Find your products in the table below to learn whether they are in open categories or in categories requiring approval. Review any category-specific requirements or guidelines and be sure you can meet those specifications. 	
 		
-		%div(class="section-body")
-			- @categories = Category.roots.is_active.all
-			%ul(class="category-grid")
-				- @categories.each do |category|
-					%li
-						%div(class="category-about")
-							%div(class="category-about-icon")
-								= image_tag category.background(200, 200), loading: "lazy"
-							%div(class="category-about-name")
-								%h1(class="text text-xl text-medium") #{category.name}
-							%div(class="category-about-products")
-								%p(class="text text-xs text-secondary") Types of products:
-								%p(class="text text-s")
-									- category.children.each do |child|
-										%span #{child.name}
-							%div(class="category-about-condition")
-								%p(class="text text-xs text-secondary") Conditions Allowed
-								%p(class="text text-s text-bold") #{category.conditions_allowed.html_safe}
+-# 		%div(class="section-body")
+-# 			- @categories = Category.roots.is_active.all
+-# 			%ul(class="category-grid")
+-# 				- @categories.each do |category|
+-# 					%li
+-# 						%div(class="category-about")
+-# 							%div(class="category-about-icon")
+-# 								= image_tag category.background(200, 200), loading: "lazy"
+-# 							%div(class="category-about-name")
+-# 								%h1(class="text text-xl text-medium") #{category.name}
+-# 							%div(class="category-about-products")
+-# 								%p(class="text text-xs text-secondary") Types of products:
+-# 								%p(class="text text-s")
+-# 									- category.children.each do |child|
+-# 										%span #{child.name}
+-# 							%div(class="category-about-condition")
+-# 								%p(class="text text-xs text-secondary") Conditions Allowed
+-# 								%p(class="text text-s text-bold") #{category.conditions_allowed.html_safe?}
 							
-							%div(class="category-about-approval")
-								%p(class="text text-xs text-secondary") Conditions Allowed
-								%p(class="text text-s text-bold") #{category.approval_required.html_safe}
+-# 							%div(class="category-about-approval")
+-# 								%p(class="text text-xs text-secondary") Conditions Allowed
+-# 								%p(class="text text-s text-bold") #{category.approval_required.html_safe?}
 
 
 
-%section(class="section section-page")
-	%div(class="content-page")
-		%div(class="section-header section-header-center")
-			%div(class="section-header-title")
-				%h1(class="text text-xl text-bold") Am I ready to sell?
-		%div(class="section-body")
-			%div(class="grid-1-2")
-				%div(class="col")
-					%div(class="category-step")
-						%div(class="category-step-count") 1
-						%div(class="category-step-title")
-							%h1(class="text text-m text-bold") I have a product ready to sell
-						%div(class="category-step-content")
-							%p(class="text text-s") First things first: decide what you’re going to sell and have inventory on hand.
-				%div(class="col")
-					%div(class="category-step")
-						%div(class="category-step-count") 2
-						%div(class="category-step-title")
-							%h1(class="text text-m text-bold") I have IDs for all of my products
-						%div(class="category-step-content")
-							%p(class="text text-s") You’ll need a GTIN (Global Trade Item Number) for each product you sell, such as a UPC, EAN, or GCID. These typically appear as a barcode.
-				%div(class="col")
-					%div(class="category-step")
-						%div(class="category-step-count") 3
-						%div(class="category-step-title")
-							%h1(class="text text-m text-bold") I have a plan for fulfilling orders
-						%div(class="category-step-content")
-							%p(class="text text-s") You can ship your own orders, or use Dagglo Freight and let us handle shipping, customer service, and returns.
-				%div(class="col")
-					%div(class="category-step")
-						%div(class="category-step-count") 3
-						%div(class="category-step-title")
-							%h1(class="text text-m text-bold") I’ve selected a selling plan
-						%div(class="category-step-content")
-							%p(class="text text-s") We offer two selling plans: Basic (USD $199) and Advanced (USD $299). Sign up before April 1st, 2020 and get access for free - forever.
+-# %section(class="section section-page")
+-# 	%div(class="content-page")
+-# 		%div(class="section-header section-header-center")
+-# 			%div(class="section-header-title")
+-# 				%h1(class="text text-xl text-bold") Am I ready to sell?
+-# 		%div(class="section-body")
+-# 			%div(class="grid-1-2")
+-# 				%div(class="col")
+-# 					%div(class="category-step")
+-# 						%div(class="category-step-count") 1
+-# 						%div(class="category-step-title")
+-# 							%h1(class="text text-m text-bold") I have a product ready to sell
+-# 						%div(class="category-step-content")
+-# 							%p(class="text text-s") First things first: decide what you’re going to sell and have inventory on hand.
+-# 				%div(class="col")
+-# 					%div(class="category-step")
+-# 						%div(class="category-step-count") 2
+-# 						%div(class="category-step-title")
+-# 							%h1(class="text text-m text-bold") I have IDs for all of my products
+-# 						%div(class="category-step-content")
+-# 							%p(class="text text-s") You’ll need a GTIN (Global Trade Item Number) for each product you sell, such as a UPC, EAN, or GCID. These typically appear as a barcode.
+-# 				%div(class="col")
+-# 					%div(class="category-step")
+-# 						%div(class="category-step-count") 3
+-# 						%div(class="category-step-title")
+-# 							%h1(class="text text-m text-bold") I have a plan for fulfilling orders
+-# 						%div(class="category-step-content")
+-# 							%p(class="text text-s") You can ship your own orders, or use Dagglo Freight and let us handle shipping, customer service, and returns.
+-# 				%div(class="col")
+-# 					%div(class="category-step")
+-# 						%div(class="category-step-count") 4
+-# 						%div(class="category-step-title")
+-# 							%h1(class="text text-m text-bold") I’ve selected a selling plan
+-# 						%div(class="category-step-content")
+-# 							%p(class="text text-s") We offer two selling plans: Basic (USD $199) and Advanced (USD $299). Sign up before April 1st, 2020 and get access for free - forever.
 
 
-- time = Time.current
-- time.in_time_zone("EST")
-%section(class="section section-page")
-	%div(class="content-page")
-		%div(class="section-header section-header-center")
-			%div(class="section-header-title")
-				%h1(class="text text-xl text-bold") Get Your Early Access Today
-			%div(class="section-header-caption")
-				%p(class="text text-l") Put your products in front of Canadian businesses.
-			%div(class="section-header-actions")
-				%div(class="section-header-actions-item")
-					= link_to "Get In Touch", new_contact_path, class: "button button-primary-outline"
-				%div(class="section-header-actions-item")
-					= link_to "Learn more about Wholesalers", sell_path, class: "link"
-		%div(class="section-body")
-			%div(class="testimonial")
-				%div(class="testimonial-container")
-					%div(class="testimonial-icon")
-						= icon "fal", "globe-americas"
-					%div(class="testimonial-header")
-						%h1(class="text text-xl text-bold") Toronto
-						%div(class="clock")
-							%div(class="clock-timer")
-								%span(class="clock-timer-hour") #{time.strftime("%I")}
-								%span(class="clock-timer-column") :
-								%span(class="clock-timer-minutes") #{time.strftime("%M")}
-								%span(class="clock-timer-meridian") #{time.strftime("%p")}
-					%div(class="testimonial-body")
-						%p(class="text text-s") Monday-Friday 9:00 a.m. to 6:00 p.m.
-					%div(class="testimonial-actions")
-						- if (time.in_time_zone("EST").hour >= 9 && time.in_time_zone("EST").hour <= 18) && time.on_weekday?
-							%div(class="testimonial-actions-item")
-								%p(class="text text-m") +1 (289) 259 - 3488
-						- else
-							%div(class="testimonial-actions-item")
-								%p(class="text text-s text-secondary text-medium") Office closed
-						%div(class="testimonial-actions-item")
-							= mail_to "help@dagglo.com", "help@dagglo.com", class: "link"
+-# - time = Time.current
+-# - time.in_time_zone("EST")
+-# %section(class="section section-page")
+-# 	%div(class="content-page")
+-# 		%div(class="section-header section-header-center")
+-# 			%div(class="section-header-title")
+-# 				%h1(class="text text-xl text-bold") Get Your Early Access Today
+-# 			%div(class="section-header-caption")
+-# 				%p(class="text text-l") Put your products in front of Canadian businesses.
+-# 			%div(class="section-header-actions")
+-# 				%div(class="section-header-actions-item")
+-# 					= link_to "Get In Touch", new_contact_path, class: "button button-primary-outline"
+-# 				%div(class="section-header-actions-item")
+-# 					= link_to "Learn more about Wholesalers", partner_path, class: "link"
+-# 		%div(class="section-body")
+-# 			%div(class="testimonial")
+-# 				%div(class="testimonial-container")
+-# 					%div(class="testimonial-icon")
+-# 						= icon "fal", "globe-americas"
+-# 					%div(class="testimonial-header")
+-# 						%h1(class="text text-xl text-bold") Toronto
+-# 						%div(class="clock")
+-# 							%div(class="clock-timer")
+-# 								%span(class="clock-timer-hour") #{time.strftime("%I")}
+-# 								%span(class="clock-timer-column") :
+-# 								%span(class="clock-timer-minutes") #{time.strftime("%M")}
+-# 								%span(class="clock-timer-meridian") #{time.strftime("%p")}
+-# 					%div(class="testimonial-body")
+-# 						%p(class="text text-s") Monday-Friday 9:00 a.m. to 6:00 p.m.
+-# 					%div(class="testimonial-actions")
+-# 						- if (time.in_time_zone("EST").hour >= 9 && time.in_time_zone("EST").hour <= 18) && time.on_weekday?
+-# 							%div(class="testimonial-actions-item")
+-# 								%p(class="text text-m") +1 (289) 259 - 3488
+-# 						- else
+-# 							%div(class="testimonial-actions-item")
+-# 								%p(class="text text-s text-secondary text-medium") Office closed
+-# 						%div(class="testimonial-actions-item")
+-# 							= mail_to "help@dagglo.com", "help@dagglo.com", class: "link"

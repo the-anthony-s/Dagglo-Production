@@ -7,10 +7,13 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "ahoy.js": "^0.3.4",
+    "chart.js": "^2.9.3",
+    "chartkick": "^3.2.0",
     "jquery": "^3.4.1",
     "jstz": "^2.1.1",
     "randomstring": "^1.1.5",
     "select2": "^4.0.12",
+    "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0",
     "uppy": "^1.8.0"
   },

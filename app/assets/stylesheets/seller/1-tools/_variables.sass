@@ -1,21 +1,25 @@
 // Content width
-$content-width-primary: calc(980px + var(--gap))
-$content-width-wide: calc(1180px + var(--gap))
+$content-width-tight: calc(612px + (var(--gap) * 2))
+$content-width-primary: calc(1080px + (var(--gap) * 2))
+$content-width-wide: calc(1480px + (var(--gap) * 2))
 
-$border-radius: 3px
+$border-radius: 4px
+
+$transition-default: all .1s ease
 
 // CSS variables
 \:root
-    --font: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif
+    --font: Clarkson, "Helvetica Neue", Helvetica, Arial, sans-serif
     --size-typo-default: 0.875em
     --size-typo-xs: 0.75em
-    --size-typo-s: 0.875em
-    --size-typo-m: 1em
+    --size-typo-s: 0.95em
+    --size-typo-m: 1.0425em
     --size-typo-l: 1.25em
-    --size-typo-xl: 1.5em
-    --size-typo-xxl: 1.75em
-    --size-typo-xxxl: 2.25em
-    --size-typo-xxxxl: 3.75em
+    --size-typo-xl: 1.65em
+    --size-typo-xxl: 2.25em
+    --size-typo-xxxl: 2em
+    --size-typo-xxxxl: 3em
+
     --line-height-typo-xs: 1.5
     --line-height-typo-s: 1.5
     --line-height-typo-m: 1.4
@@ -24,20 +28,23 @@ $border-radius: 3px
     --line-height-typo-xxl: 1.3
     --line-height-typo-xxxl: 1.2
     --line-height-typo-xxxxl: 1.2222222222
+
     --navbar-height: 54px
-    --icon: 44px
-    --icon-s: 20px
-    --icon-m: 44px
-    --icon-l: 82px
-    --circle: 3.5rem
 
     +tablet
-        --navbar-height: 64px
-        --icon: 64px
-        --icon-s: 22px
-        --icon-m: 54px
-        --icon-l: 102px
+        --size-typo-l: 1.35em
+        --size-typo-xl: 1.95em
+        --size-typo-xxl: 3.35em
+        --size-typo-xxxl: 2.75em
+        --size-typo-xxxxl: 3.75em
 
+    +desktop-sm
+        --size-typo-xl: 2.15em
+        --size-typo-xxl: 3.35em
+        --size-typo-xxxxl: 5.2em
+
+        --navbar-height: 64px
 
     +desktop
-        --icon-l: 122px
+        --size-typo-xxxl: 3.25em
+        // --size-typo-xxxxl: 5.45em

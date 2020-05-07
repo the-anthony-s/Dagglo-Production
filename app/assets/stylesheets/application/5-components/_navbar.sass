@@ -20,7 +20,11 @@
     width: 100%
     height: 100%
     overflow-y: auto
-
+    // background: rgba($black, .8)
+    backdrop-filter: saturate(180%) blur(20px)
+    background-color: rgba(29,29,31,0.9)
+    transition: background-color 0.1s cubic-bezier(0.28, 0.11, 0.32, 1)
+    transition-property: background-color, backdrop-filter, -webkit-backdrop-filter
 
 .navbar-container
     display: flex
@@ -30,8 +34,8 @@
     max-width: $content-width-primary
     height: var(--navbar-height)
     width: 100%
-    padding-right: var(--gap-r)
-    padding-left: var(--gap-r)
+    padding-right: var(--space-content)
+    padding-left: var(--space-content)
     margin-right: auto
     margin-left: auto
     z-index: 3
@@ -46,11 +50,20 @@
 
 
 .navbar-center
+    height: 100%
+    display: flex
+    flex-direction: column
+    // align-items: center
+    justify-content: center
     flex: 1 1 100%
     width: 100%
 
 
 .navbar-right
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
     flex: 0 0 auto
     width: auto
     margin-left: var(--gap-s)
@@ -70,38 +83,40 @@
 
 .navbar-root
     display: flex
+    flex-direction: row
+    align-items: center
     align-items: flex-end
     &-logo
         height: 32px
         width: 32px
-        fill: $color-secondary
+        fill: var(--color-primary)
     &-beta
-        color: $color-font-secondary
+        color: var(--color-contrast-high)
         font-weight: 600
-        font-size: var(--size-typo-xs)
-        line-height: var(--line-height-typo-xs)
-        display: none
-        margin-left: var(--gap-xs)
-        +tablet
-            display: block
+        font-size: var(--space-sm)
+        line-height: var(--body-line-height)
+        display: block
+        margin-left: var(--space-xs)
     &:hover
         &-logo
-            fill: $color-font-secondary
+            fill: var(--color-primary-dark)
 
 
 .navbar-search
+    height: calc(var(--navbar-height) - 10px)
     width: 100%
     display: flex
     flex-direction: row
     align-items: center
     position: relative
-    border: 1px solid $color-border
+    border: 0
     border-radius: $border-radius
-    box-shadow: 0 2px 3px rgba($black, .06)
+    box-shadow: 0
     overflow: hidden
-    background: $white
-    +desktop-sm
+    background: $gray-lighter
+    +tablet
         max-width: 584px
+        height: calc(var(--navbar-height) - 18px)
     &.is-focused
         position: absolute
         top: 0
@@ -109,20 +124,20 @@
         left: 0
         bottom: 0
         width: 100%
-        z-index: 100
+        height: var(--navbar-height)
+        z-index: 101
         border-radius: 0
-        border: 0
         border-bottom: 1px solid $color-border-dark
+        // background: $gray-lighter
         +desktop-sm
+            height: calc(var(--navbar-height) - 18px)
             position: relative
-            border: 1px solid $color-border-dark
+            border: 0
             border-radius: $border-radius
-            box-shadow: 0 2px 3px rgba($black, .08)
 
 .navbar-search-input
     flex: 1 1 100%
     max-width: 100%
-    position: relative
 
 .navbar-search-control
     color: $color-font-primary
@@ -131,34 +146,35 @@
     line-height: var(--line-height-typo-s)
     letter-spacing: 0.018em
     width: 100%
+    height: 100%
     appearance: none
     box-shadow: none
     border: 0
     border-radius: 0
-    padding: var(--gap-xs) 0px var(--gap-xs) var(--gap-s)
+    padding: var(--gap-xs) var(--gap-s) var(--gap-xs) 0
     position: relative
     display: block
-    &:focus
-        border-color: $color-border-dark
+    background: transparent
+    &::placeholder
+        color: $color-font-secondary
 
 
-.navbar-search-button
+.navbar-search-icon
     color: $color-font-secondary
     font-size: var(--size-typo-m)
     line-height: var(--line-height-typo-m)
-    display: block
+    font-weight: 500
+    display: flex
+    align-items: center
+    justify-content: center
     height: 100%
     flex: 0 0 auto
     width: auto
-    cursor: pointer
     border: 0
     border-radius: 0
     box-shadow: none
     background: transparent
     padding: var(--gap-xs) var(--gap-s)
-    &:focus, &:hover, &:active
-        color: $color-font-primary-light
-        background: $color-secondary
 
 
 .navbar-links
@@ -166,23 +182,47 @@
     flex-direction: row
     align-items: center
     li + li
-        margin-left: var(--gap)
+        margin-left: var(--gap-xs)
 
 
 .navbar-link
-    color: $color-font-primary
-    font-size: var(--size-typo-s)
+    color: var(--color-contrast-high)
+    font-size: var(--text-sm)
     font-weight: 500
-    line-height: var(--line-height-typo-s)
+    line-height: var(--body-line-height)
     appearance: none
-    border: 0
-    border-radius: 0
     vertical-align: baseline
-    display: block
+    text-transform: none
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 0 var(--space-sm)
+    border-radius: 24px
+    height: calc(var(--navbar-height) - 20px)
+    background: transparent
     & > span + span
         margin-left: var(--gap-xxs)
     &:hover
-        color: $color-font-secondary
+        color: var(--color-contrast-higher)
+        // background: $gray-lighter
+
+.navbar-link-icon
+    color: $color-font-secondary
+    font-size: var(--size-typo-l)
+    font-weight: 500
+    line-height: var(--line-height-typo-l)
+    height: calc(var(--navbar-height) - 20px)
+    width: calc(var(--navbar-height) - 20px)
+    border: 0
+    border-radius: 24px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    text-align: center
+    &:hover, &:focus, &:active
+        color: $color-font-primary
+        background: $gray-lighter
 
 
 .navbar-profile
@@ -201,21 +241,17 @@
         border: 0
         overflow: hidden
         & > img
-            height: 42px
-            width: 42px
+            height: calc(var(--navbar-height) - 26px)
+            width: calc(var(--navbar-height) - 26px)
             object-fit: cover
             display: block
 
 
-.navbar-dropdown-item
-    position: relative
-
-
 .navbar-dropdown
-    min-width: 182px
+    min-width: 208px
     border: 0
     border-radius: $border-radius
-    box-shadow: 0 0 0 1px $color-border, 0 8px 16px rgba(27, 39, 51, 0.08)
+    box-shadow: 0 0 0 1px $color-border-light, 0 8px 16px rgba(27, 39, 51, 0.08)
     position: absolute
     visibility: hidden
     opacity: 0
@@ -229,6 +265,10 @@
     right: 0
 
 
+.navbar-dropdown-item
+    position: relative
+
+
 .navbar-dropdown-item.is-open > .navbar-dropdown
     visibility: visible
     opacity: 1
@@ -236,8 +276,9 @@
 
 
 .navbar-dropdown-list
-    padding-top: var(--gap-xs)
-    padding-bottom: var(--gap-xs)
+    width: 100%
+    position: relative
+    display: block
     &-item-separator
         border-top: 1px solid $color-border
         border-bottom: 1px solid $color-border
@@ -245,20 +286,29 @@
         width: 100%
         position: relative
         display: block
+    &-profile
+        padding: var(--gap-s) var(--gap-s)
 
 
 .navbar-dropdown-link
     color: $color-font-primary
     font-size: var(--size-typo-s)
     font-weight: 400
-    letter-spacing: .03em
+    letter-spacing: .045em
     line-height: var(--line-height-typo-s)
     vertical-align: baseline
     display: block
     padding: var(--gap-xs) var(--gap-s)
     background: transparent
     &:hover
-        background: $gray-light
+        color: $color-font-primary
+        background: $gray-lighter
+    &-logout
+        color: $red
+        &:hover
+            color: $red-dark
+    & > span + span
+        margin-left: var(--gap-xs)
 
 
 
@@ -278,7 +328,7 @@ $btn-delay: .05s
         height: 8px
         position: relative
         display: block
-        margin: -8px auto 0
+        margin: -6px auto 0
         top: 50%
         transform: rotate(0deg)
         transition: $btn-transition
@@ -315,7 +365,7 @@ $btn-delay: .05s
             transform: translateY(4px) rotate(45deg)
         &Btm
             transform: translateY(2px) rotate(-45deg)
-    
+
 
 // Mobile collapse menu
 .navbar-collapse
@@ -323,6 +373,7 @@ $btn-delay: .05s
     top: 0
     right: 0
     left: 0
+    height: auto
     padding-top: var(--navbar-height)
     padding-bottom: var(--gap-r)
     pointer-events: none
@@ -335,7 +386,6 @@ $btn-delay: .05s
         opacity: 1
         pointer-events: all
         transform: translateY(0)
-        bottom: 0
 
 
 .navbar-collapse-block
@@ -347,7 +397,7 @@ $btn-delay: .05s
 
 .navbar-collapse-link
     color: $color-font-primary
-    font-weight: 600
+    font-weight: 500
     font-size: var(--size-typo-m)
     line-height: var(--line-height-typo-m)
     padding: var(--gap-s) var(--gap-r)
@@ -365,7 +415,7 @@ $btn-delay: .05s
 
     &:hover, &:focus
         color: $color-font-primary
-        background: $gray-light
+        background: $gray-lighter
 
 
 .navbar-collapse-profile

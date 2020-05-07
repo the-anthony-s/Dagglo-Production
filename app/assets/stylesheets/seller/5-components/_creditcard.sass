@@ -1,0 +1,81 @@
+.creditcard
+    position: relative
+    display: block
+    background: #1e1c1e
+    border: 0
+    border-radius: 12px
+    background-image: linear-gradient(to bottom right, #555456, #1e1c1e)
+    &::before
+        content: ''
+        padding-bottom: 60%
+        display: block
+        +tablet
+            padding-bottom: 56%
+
+
+.creditcard-container
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    height: 100%
+    width: 100%
+    padding: var(--gap)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+
+.creditcard-icon
+    flex: 0 0 auto
+    margin-bottom: var(--gap)
+    & > svg
+        color: $color-font-primary-light
+        font-size: var(--size-typo-xxl)
+
+
+.creditcard-number
+    flex: 0 0 auto
+    display: block
+    text-align: center
+    & > span
+        color: $color-font-primary-light
+        font-size: var(--size-typo-l) 
+        font-weight: 400
+        vertical-align: baseline
+        line-height: var(--line-height-typo-l)
+        +tablet
+            font-size: var(--size-typo-xxl)
+            line-height: var(--line-height-typo-xxl)
+
+    
+.creditcard-footer
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+
+    &-name
+        flex: 0 0 auto
+        margin-right: var(--gap)
+        color: $color-font-secondary-light
+        font-size: var(--size-typo-s) 
+        font-weight: 400
+        vertical-align: baseline
+        line-height: var(--line-height-typo-s)
+        +tablet
+            font-size: var(--size-typo-l)
+            line-height: var(--line-height-typo-l)
+
+    &-date
+        flex: 0 0 auto
+        margin-left: var(--gap)
+        color: $color-font-secondary-light
+        font-size: var(--size-typo-s) 
+        font-weight: 400
+        vertical-align: baseline
+        line-height: var(--line-height-typo-s)
+        +tablet
+            font-size: var(--size-typo-l)
+            line-height: var(--line-height-typo-l)

@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
+  include SearchFallback
   include PublicActivity::StoreController
   include Pagy::Backend
 
   protect_from_forgery with: :exception
 
-  after_action :track_action
+  # after_action :track_action
 
   before_action :store_user_location!, if: :storable_location?
   before_action :set_time_zone
@@ -18,8 +19,8 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && current_user.time_zone.present?
       Time.zone = current_user.time_zone
     else
-      # Get browser time zone if current user's time_zone value = nil
-      Time.zone = cookies[:timezone]
+      # Time.zone = cookies[:timezone]
+      browser_time_zone
     end
   end
 

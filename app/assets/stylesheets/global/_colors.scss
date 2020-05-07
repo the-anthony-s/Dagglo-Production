@@ -1,0 +1,241 @@
+:root, [data-theme="light"] {
+  // Main
+  --color-primary-darker: #014c3f;
+  --color-primary-dark: #00805f;
+  --color-primary: #009873;
+  --color-primary-light: #c2f0d1;
+  --color-primary-lighter: #f0fcfa;
+
+  --color-accent-darker: ;
+  --color-accent-dark: #164ee4;
+  --color-accent: #1552f0;
+  --color-accent-light: #235cef;
+  --color-accent-lighter: #2a61ef;
+
+  --color-black: #000000;
+  --color-black-light: #15141b;
+  --color-black-lighter: #2f3139;
+  --color-white: #ffffff;
+  --color-white-high: #f7f7f7;
+  --color-white-higher: #f9f9f9;
+
+  --color-yellow-darker: #d1a001;
+  --color-yellow-dark: #ffc505;
+  --color-yellow: #ffd238;
+  --color-yellow-light: #ffdc6b;
+  --color-yellow-lighter: #fcf7ed;
+
+  --color-green-darker: #014c3f;
+  --color-green-dark: #00805f;
+  --color-green: #009873;
+  --color-green-light: #c2f0d1;
+  --color-green-lighter: #f0fcfa;
+
+
+  // Feedback
+  --color-warning-darker: #d1a001;
+  --color-warning-dark: #ffc505;
+  --color-warning: #ffd238;
+  --color-warning-light: #ffdc6b;
+  --color-warning-lighter: #fcf7ed;
+
+  --color-success-darker: #014c3f;
+  --color-success-dark: #00805f;
+  --color-success: #009873;
+  --color-success-light: #c2f0d1;
+  --color-success-lighter: #f0fcfa;
+
+  --color-error-darker: #751b00;
+  --color-error-dark: #a82700;
+  --color-error: #db3300;
+  --color-error-light: #ff470e;
+  --color-error-lighter: #ff6d42;
+
+  // Contrast
+  --color-bg: #ffffff;
+  --color-contrast-lower: #f9f9f9;
+  --color-contrast-low: #f7f7f7;
+  --color-contrast-medium: #e8e8e8;
+  --color-contrast-high: #42474c;
+  --color-contrast-higher: #000000;
+
+  // Elements
+  --color-border: rgba(217,219,224,0.5);
+  --color-border-dark: rgba(45,49,56,0.15);
+}
+
+body, [data-theme="light"] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+// Dark Theme ❤️
+@supports(--css: variables) {
+  [data-theme="dark"] {
+    --color-primary-darker: #00654d;
+    --color-primary-dark: #009873;
+    --color-primary: #2fc997;
+    --color-primary-light: #56d7ae;
+    --color-primary-lighter: #7fe1c2;
+
+    --color-accent-darker: #00458a;
+    --color-accent-dark: #015dbd;
+    --color-accent: #0078f0;
+    --color-accent-light: #1c82e8;
+    --color-accent-lighter: #1d86ef;
+
+    --color-black: #0d0f11;
+    --color-black-light: #23292f;
+    --color-black-lighter: #3b424a;
+    --color-white: #ffffff;
+    --color-white-dark: ;
+    --color-white-darker: ;
+
+    // Feedback
+    --color-warning-darker: ;
+    --color-warning-dark: ;
+    --color-warning: ;
+    --color-warning-light: ;
+    --color-warning-lighter: ;
+
+    --color-success-darker: ;
+    --color-success-dark: ;
+    --color-success: ;
+    --color-success-light: ;
+    --color-success-lighter: ;
+
+    --color-error-darker: ;
+    --color-error-dark: ;
+    --color-error: ;
+    --color-error-light: ;
+    --color-error-lighter: ;
+
+    // Contrast
+    --color-bg: #030f15;
+    --color-contrast-lower: #07141b;
+    --color-contrast-low: #2b3137;
+    --color-contrast-medium: #353638;
+    --color-contrast-high: #8F95A3;
+    --color-contrast-higher: #ffffff;
+
+    // Elements
+    --color-border: rgba(255, 255, 255,0.1);
+    --color-border-dark: rgba(255, 255, 255,0.15);
+
+    // Font
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+
+
+
+
+// :root, [data-theme="light"] {
+//   // main
+//   @include defineColorHSL(--color-primary-darker, 165, 100%, 20%);
+//   @include defineColorHSL(--color-primary-dark, 165, 100%, 30%);
+//   @include defineColorHSL(--color-primary, 165, 100%, 40%);
+//   @include defineColorHSL(--color-primary-light, 165, 100%, 50%);
+//   @include defineColorHSL(--color-primary-lighter, 165, 100%, 60%);
+
+//   @include defineColorHSL(--color-accent-darker, 223, 88%, 31%);
+//   @include defineColorHSL(--color-accent-dark, 223, 88%, 41%);
+//   @include defineColorHSL(--color-accent, 223, 88%, 51%);
+//   @include defineColorHSL(--color-accent-light, 223, 88%, 55%);
+//   @include defineColorHSL(--color-accent-lighter, 223, 88%, 58%);
+
+//   @include defineColorHSL(--color-black, 0, 0%, 0%);
+//   @include defineColorHSL(--color-black-light, 0, 0%, 10%);
+//   @include defineColorHSL(--color-black-lighter, 0, 0%, 20%);
+//   @include defineColorHSL(--color-white, 0, 0%, 100%);
+//   @include defineColorHSL(--color-white-dark, 0, 0%, 97%);
+//   @include defineColorHSL(--color-white-darker, 0, 0%, 94%);
+
+//   // feedback
+//   @include defineColorHSL(--color-warning-darker, 50, 99%, 38%);
+//   @include defineColorHSL(--color-warning-dark, 50, 99%, 48%);
+//   @include defineColorHSL(--color-warning, 50, 99%, 58%);
+//   @include defineColorHSL(--color-warning-light, 50, 99%, 68%);
+//   @include defineColorHSL(--color-warning-lighter, 50, 99%, 78%);
+
+//   @include defineColorHSL(--color-success-darker, 152, 64%, 39%);
+//   @include defineColorHSL(--color-success-dark, 152, 64%, 49%);
+//   @include defineColorHSL(--color-success, 152, 64%, 59%);
+//   @include defineColorHSL(--color-success-light, 152, 64%, 69%);
+//   @include defineColorHSL(--color-success-lighter, 152, 64%, 79%);
+
+//   @include defineColorHSL(--color-error-darker, 14, 100%, 23%);
+//   @include defineColorHSL(--color-error-dark, 14, 100%, 33%);
+//   @include defineColorHSL(--color-error, 14, 100%, 43%);
+//   @include defineColorHSL(--color-error-light, 14, 100%, 53%);
+//   @include defineColorHSL(--color-error-lighter, 14, 100%, 63%);
+
+//   // color contrasts
+//   @include defineColorHSL(--color-bg, 0, 0%, 100%);
+//   @include defineColorHSL(--color-contrast-lower, 240, 9%, 96%);
+//   @include defineColorHSL(--color-contrast-low, 210, 5%, 91%);
+//   @include defineColorHSL(--color-contrast-medium, 215, 6%, 40%);
+//   @include defineColorHSL(--color-contrast-high, 216, 13%, 23%);
+//   @include defineColorHSL(--color-contrast-higher, 211, 68%, 6%);
+// }
+
+// body, [data-theme="default"] {
+//   // font rendering
+//   -webkit-font-smoothing: auto;
+//   -moz-osx-font-smoothing: auto;
+// }
+
+// @supports(--css: variables) {
+//   [data-theme="dark"] {
+//     // main
+//     @include defineColorHSL(--color-primary-darker, 152, 64%, 39%);
+//     @include defineColorHSL(--color-primary-dark, 152, 64%, 49%);
+//     @include defineColorHSL(--color-primary, 152, 64%, 59%);
+//     @include defineColorHSL(--color-primary-light, 152, 64%, 69%);
+//     @include defineColorHSL(--color-primary-lighter, 152, 64%, 79%);
+
+//     @include defineColorHSL(--color-accent-darker, 222, 97%, 35%);
+//     @include defineColorHSL(--color-accent-dark, 222, 97%, 45%);
+//     @include defineColorHSL(--color-accent, 222, 97%, 55%);
+//     @include defineColorHSL(--color-accent-light, 222, 97%, 58%);
+//     @include defineColorHSL(--color-accent-lighter, 222, 97%, 60%);
+
+//     @include defineColorHSL(--color-black, 0, 0%, 0%);
+//     @include defineColorHSL(--color-black-light, 0, 0%, 10%);
+//     @include defineColorHSL(--color-black-lighter, 0, 0%, 20%);
+//     @include defineColorHSL(--color-white, 0, 0%, 100%);
+//     @include defineColorHSL(--color-white-dark, 0, 0%, 96%);
+//     @include defineColorHSL(--color-white-darker, 0, 0%, 94%);
+
+//     // feedback
+//     @include defineColorHSL(--color-warning-darker, 50, 99%, 38%);
+//     @include defineColorHSL(--color-warning-dark, 50, 99%, 48%);
+//     @include defineColorHSL(--color-warning, 50, 99%, 58%);
+//     @include defineColorHSL(--color-warning-light, 50, 99%, 68%);
+//     @include defineColorHSL(--color-warning-lighter, 50, 99%, 78%);
+
+//     @include defineColorHSL(--color-success-darker, 152, 64%, 39%);
+//     @include defineColorHSL(--color-success-dark, 152, 64%, 49%);
+//     @include defineColorHSL(--color-success, 152, 64%, 59%);
+//     @include defineColorHSL(--color-success-light, 152, 64%, 69%);
+//     @include defineColorHSL(--color-success-lighter, 152, 64%, 79%);
+
+//     @include defineColorHSL(--color-error-darker, 349, 75%, 31%);
+//     @include defineColorHSL(--color-error-dark, 349, 75%, 41%);
+//     @include defineColorHSL(--color-error, 349, 75%, 51%);
+//     @include defineColorHSL(--color-error-light, 349, 75%, 61%);
+//     @include defineColorHSL(--color-error-lighter, 349, 75%, 71%);
+
+//     // color contrasts
+//     @include defineColorHSL(--color-bg, 300, 3%, 6%);
+//     @include defineColorHSL(--color-contrast-lower, 0, 0%, 10%);
+//     @include defineColorHSL(--color-contrast-low, 0, 0%, 20%);
+//     @include defineColorHSL(--color-contrast-medium, 0, 0%, 54%);
+//     @include defineColorHSL(--color-contrast-high, 0, 0%, 88%);
+//     @include defineColorHSL(--color-contrast-higher, 0, 0%, 100%);
+//   }
+// }

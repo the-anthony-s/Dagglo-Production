@@ -1,0 +1,15 @@
+%footer(class="footer")
+    %div(class="content")
+        %div(class="footer-container")
+            %div(class="footer-left")
+                %ul(class="footer-links")
+                    %li
+                        = link_to "Home", home_seller_path, class: "footer-link"
+                    %li
+                        = link_to "Terms", terms_path, target: :_blank, class: "footer-link"
+                    %li
+                        = link_to "Privacy", privacy_path, target: :_blank, class: "footer-link"
+                    %li
+                        = mail_to "help@dagglo.com", "Need help?", class: "footer-link"
+            %div(class="footer-right")
+                %p(class="text text-xs text-secondary") © #{Time.now.year} Dagglo

@@ -1,8 +1,8 @@
 .alert-container
     position: fixed
-    right: 0
-    left: 0
-    bottom: var(--gap-xs)
+    right: var(--gap)
+    left: var(--gap)
+    bottom: var(--gap)
     z-index: 500
     display: flex
     flex-direction: column
@@ -10,25 +10,40 @@
     justify-content: center
     pointer-events: none
     // background: black
+    +desktop-sm
+        justify-content: flex-end
+        align-items: flex-end
 
 .alert
+    display: block
+    width: 100%
     max-width: 364px
     color: $color-font-primary-light
     font-size: var(--size-typo-s)
-    background-color: $black
+    backdrop-filter: saturate(180%) blur(20px)
+    background-color: rgba(29,29,31,0.9)
+    transition: background-color 0.5s cubic-bezier(0.28, 0.11, 0.32, 1)
+    transition-property: background-color, backdrop-filter, -webkit-backdrop-filter
     border-radius: 0
-    box-shadow: 0 7px 14px 0 rgba(60,66,87, 0.12), 0 3px 6px 0 rgba($black, 0.12)
-    transition: all 0.1s
     pointer-events: all
     cursor: pointer
     padding: var(--gap-s) var(--gap-s)
-    margin: 0 var(--gap-xs)
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .05)
 
     +tablet
+        margin: 0 var(--gap-xs)
         border-radius: $border-radius
-
-    &:hover, &:focus, &:active
-        background: rgba($black, .9)
 
 .alert + .alert
     margin-top: var(--gap-xs)
+    +tablet
+        margin-top: var(--gap-s)
+
+.alert-header
+    margin-bottom: var(--gap-xs)
+    width: 100%
+    text-align: left
+
+.alert-body
+    width: 100%
+    text-align: left

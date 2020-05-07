@@ -1,0 +1,126 @@
+// Main settings page    
+.settings-grid
+    display: grid
+    grid-row-gap: var(--space-card)
+    grid-column-gap: var(--space-card)
+    grid-template-columns: repeat(1, 1fr)
+    +tablet
+        grid-template-columns: repeat(2, 1fr)
+    +desktop
+        grid-template-columns: repeat(3, 1fr)
+
+.settings-col
+    grid-column-end: span 1
+
+
+.settings
+    display: flex
+    flex-direction: row
+    align-items: center
+    height: 100%
+    padding: var(--space-md)
+    margin: calc(var(--space-sm) * (-1))
+    +tablet
+        align-items: flex-start
+    &-icon
+        flex: 0 0 auto
+        margin-right: var(--space-sm)
+        background: var(--color-contrast-low)
+        height: 44px
+        width: 44px
+        color: var(--color-contrast-high)
+        font-size: var(--text-lg)
+        font-weight: 500
+        line-height: var(--body-line-height)
+        border: 0
+        border-radius: var(--radius-border)
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        text-align: center
+    &-main
+        flex: 1 1 100%
+        display: block
+        &-title
+            display: block
+        &-caption
+            display: block
+            margin-top: var(--space-xxs)
+
+
+.settings:hover
+    background: var(--color-contrast-low)
+
+.settings:hover > .settings-icon
+    background: var(--color-contrast-medium)
+
+
+
+// General
+.settings-profile
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+
+.settings-profile-default
+    border: 0
+    border-radius: var(--radius-border)
+    position: relative
+    display: block
+    height: 120px
+    width: 100%
+    +tablet
+        height: 180px
+
+.settings-profile-cover
+    position: relative
+    display: block
+    +tablet
+        height: 180px
+    & > img
+        border: 0
+        border-radius: var(--radius-border)
+        background: var(--color-contrast-lower)
+        object-fit: cover
+        height: 120px
+        width: 100%
+        +tablet
+            height: 180px
+
+
+.settings-profile-main
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 0 var(--gap-r)
+
+.settings-profile-logo
+    border: 0
+    border-radius: 100%
+    overflow: hidden
+    box-shadow: $shadow-card
+    background: $white
+    margin-top: -42px
+    display: inline-block
+    height: 84px
+    width: 84px
+    +tablet
+        height: 104px
+        width: 104px
+        margin-top: -52px
+    & > img
+        height: 84px
+        width: 84px
+        display: block
+        object-fit: cover
+        background: $white
+        +tablet
+            height: 104px
+            width: 104px
+
+.settings-profile-name
+    text-align: center
+    margin-top: var(--gap-s)

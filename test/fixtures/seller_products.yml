@@ -3,13 +3,14 @@
 # Table name: seller_products
 #
 #  id                      :bigint           not null, primary key
-#  unit_price              :money
-#  min_order_price         :money
-#  sku                     :string(10)
+#  unit_cents              :integer          default(0), not null
+#  unit_currency           :string           default("USD"), not null
+#  order_cents             :integer          default(0), not null
+#  order_currency          :string           default("USD"), not null
+#  sku                     :string
 #  harmonized_system_code  :string
 #  country_code_of_origin  :string
 #  province_code_of_origin :string
-#  barcode                 :string
 #  packaging               :string
 #  packaging_details       :text
 #  shelf_life              :string

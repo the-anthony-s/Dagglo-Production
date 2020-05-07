@@ -1,0 +1,23 @@
+.pagy-nav.pagination
+    width: 100%
+    text-align: center
+    .page
+        width: auto
+        display: inline-block
+        position: relative
+        border: 0
+        border-radius: $border-radius
+        color: $color-font-secondary
+        font-size: var(--size-typo-m)
+        font-weight: 400
+        line-height: var(--line-height-typo-m)
+        vertical-align: baseline
+        appearance: none
+        outline: none
+        padding: 6px var(--gap-xs)
+        &.active
+            font-weight: 600
+            background: $gray
+        & > a:hover,
+        & > a:focus,
+            opacity: .5

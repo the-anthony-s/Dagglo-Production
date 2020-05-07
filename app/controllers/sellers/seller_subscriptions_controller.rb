@@ -8,6 +8,9 @@ class Sellers::SellerSubscriptionsController < ApplicationController
 
 
   def new
+    if !current_user.seller.present?
+      redirect_to home_seller_path, alert: "#{current_user.first_name}, only the owner of this seller account can manage subscriptions. Please, contact us or #{@seller.owner.full_name} if you have problems with subscription."
+    end
   end
 
 
@@ -15,7 +18,7 @@ class Sellers::SellerSubscriptionsController < ApplicationController
     @seller.update_seller_card(params[:payment_method_id]) if params[:payment_method_id].present?
     @seller.subscribe(@seller_plan.stripe_id)
 
-    redirect_to dashboard_seller_path, notice: "#{current_user.first_name}, thank you for subscribing"
+    redirect_to home_seller_path, notice: "#{current_user.first_name}, thank you for subscribing"
   rescue PaymentIncomplete => e
     redirect_to seller_payment_path(e.payment_intent.id)
   end
@@ -23,7 +26,7 @@ class Sellers::SellerSubscriptionsController < ApplicationController
 
   def edit
     @seller_subscription = @seller.subscription
-    @seller_plans = SellerPlan.all
+    @seller_plans = SellerPlan.is_active.all
   end
 
 

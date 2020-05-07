@@ -1,0 +1,19 @@
+= render partial: "users/registrations/elements/links"
+
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form", method: :put }) do |f|
+            -# Profile picture
+            %div(class="section-block")
+                %div(class="section-top")
+                    %div(class="section-top-title")
+                        %h1(class="text text-l text-medium") Preferences
+                %div(class="section-body")
+                    %div(class="form-row")
+                        %div(class="form-label")
+                            = f.label :time_zone, "Time zone"
+                        %div(class="form-input")
+                            = f.time_zone_select :time_zone, nil, {include_blank: browser_time_zone.name, default: browser_time_zone.name}, { class: "form-control" }
+                    %div(class="form-submit")
+                        = button_tag "Save", class: "button button-go", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}

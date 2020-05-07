@@ -13,9 +13,9 @@
 #  phone_number           :string
 #  time_zone              :string
 #  image_data             :string
-#  private                :boolean          default("false")
-#  status                 :integer          default("0")
-#  sign_in_count          :integer          default("0"), not null
+#  private                :boolean          default(FALSE)
+#  status                 :integer          default(0)
+#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
@@ -24,7 +24,7 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  failed_attempts        :integer          default("0"), not null
+#  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
 #  created_at             :datetime         not null
@@ -36,7 +36,7 @@
 #  invitation_limit       :integer
 #  invited_by_type        :string
 #  invited_by_id          :bigint
-#  invitations_count      :integer          default("0")
+#  invitations_count      :integer          default(0)
 #  deleted_at             :datetime
 #
 
@@ -53,9 +53,16 @@ class User < ApplicationRecord
 
 
   # Database refereces
+  has_one :seller, dependent: :delete, foreign_key: :owner_id
   has_one :seller_account
-  has_one :seller, through: :seller_account
-  has_one :first_visit, ->(u) { order(:started_at).where("started_at < ?", u.created_at) }, class_name: 'Ahoy::Visit'
+  # has_one :seller, through: :seller_account
+  has_one :first_visit, -> (u) { order(:started_at).where("started_at < ?", u.created_at) }, class_name: 'Ahoy::Visit'
+  has_one :last_visit, -> (u) { order(:started_at).where("user_id < ?", u.id).last }, class_name: 'Ahoy::Visit' # suggest products based on location
+
+  has_many :user_locations, dependent: :delete_all
+  has_many :product_likes, dependent: :delete_all
+  # create last_visit to make better recommedations
+  # create all_visits to show users actions and logs
 
 
 
@@ -94,11 +101,12 @@ class User < ApplicationRecord
     end
   end
 
-  def s_owner
-    if seller_account.present?
-      seller_account.role == "owner"
-    end
+
+  # Product likes
+  def product_likes?(product)
+    product.product_likes.where(user_id: id).any?
   end
+
 
 
   # User Greetings

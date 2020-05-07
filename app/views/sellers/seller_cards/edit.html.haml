@@ -7,9 +7,12 @@
     %div(class="header")
       %div(class="content")
         %div(class="header-container")
+          %div(class="header-icon")
+            %span(class="text text-xxxl text-secondary")
+              = icon "fab", "#{@seller.credit_card_icon}"
           %div(class="header-title")
             - if @seller.card_last4?
-              %h1(class="text text-xxl text-medium") #{@seller.card_brand} ending in #{@seller.card_last4}
+              %h1(class="text text-xxl text-medium") **** **** #{@seller.card_last4}
               %p(class="text text-s text-secondary") Expires #{@seller.card_exp_month} / #{@seller.card_exp_year}
             - else
               %h1(class="text text-xxl text-medium") Update Credit Card

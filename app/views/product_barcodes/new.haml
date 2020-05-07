@@ -1,0 +1,28 @@
+= content_for :title, "Find Products"
+
+%div(class="page")
+
+    %div(class="page-top")
+        %div(class="content-tight")
+            %div(class="page-top-container")
+                %div(class="page-top-icon")
+                    = icon "fal", "barcode-read"
+                %div(class="page-top-main")
+                    %div(class="page-top-main-title")
+                        %h1(class="text text-xl text-medium") #{yield(:title)}
+
+
+    = form_for @barcode, html: {class: "form"} do |f|
+        %div(class="page-body")
+            %div(class="content-tight")
+                %div(class="form-container")
+                    %div(class="form-header")
+                        %div(class="form-header-title")
+                            %p(class="text text-m text-medium") Barcode:
+                        %div(class="form-header-caption")
+                            %p(class="text text-s text-secondary") To list your products you require a unique identifier for your product such as UPC, EAN, or GCID. You can find the barcode or GTIN (UPC/EAN/JAN/ISBN) on the packaging of your item.
+                    %div(class="form-row")
+                        %div(class="form-row-input")
+                            = f.text_field :barcode, placeholder: "UPC, EAN, GTIN or ISBN", class: "form-control form-control-barcode form-control-action", id: "noSpaceField", autocomplete: "off"
+                %div(class="form-submit")
+                    = button_tag "Search", class: "button button-primary button-action button-responsive", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}

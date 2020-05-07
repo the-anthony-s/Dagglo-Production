@@ -1,0 +1,35 @@
+.card
+    display: block
+    border: 1px solid $color-border
+    box-shadow: $shadow-card
+    border-radius: $border-radius
+    overflow: hidden
+
+.card-header
+    padding: var(--gap-s) var(--gap-s) 0
+
+.card-body
+    padding: var(--gap-s)
+
+
+
+// Card Options
+.card-options
+    display: block
+    width: 100%
+    position: relative
+    & > li + li
+        margin-top: var(--gap-xs)
+
+.card-options-container
+    display: flex
+    flex-direction: row
+    align-items: center
+
+.card-options-icon
+    color: $color-font-secondary
+    font-size: var(--size-typo-xs)
+    line-height: var(--line-height-typo-xs)
+    vertical-align: baseline
+    display: block
+    margin-right: var(--gap-xs)

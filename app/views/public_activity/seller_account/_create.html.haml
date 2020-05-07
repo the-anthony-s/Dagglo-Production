@@ -1,31 +1,56 @@
-%li(class="activities-item")
-  %div(class="activity")
+- if activity.trackable
+  %li(class="activity")
+    %div(class="activity-container")
+      %div(class="activity-icon")
+        %div(class="activity-icon-main")
+          = image_tag activity.trackable.user.avatar(200, 200), 'data-src': activity.trackable.user.avatar(200, 200), class: "lazy", loading: "lazy"
+        %div(class="activity-icon-action activity-icon-action-create")
+          = icon "far", "plus"
+      %div(class="activity-body")
+        %div(class="activity-body-desc")
+          %p(class="text text-s") 
+            = link_to activity.owner.full_name, activity.owner.s_account.present? ? account_path(activity.owner.seller_account) : settings_account_seller_path, class: "link"
+            invited
+            = link_to activity.trackable.user.full_name || activity.trackable.user.email, activity.trackable.user.s_account.present? ? account_path(activity.trackable) : settings_account_seller_path, class: "link"
+        %div(class="activity-body-time")
+          %p(class="text text-xs text-secondary")
+            = time_ago_in_words(activity.created_at).capitalize
+            ago
 
-    - if activity.trackable
 
-      %div(class="activity-container")
 
-        %div(class="activity-icon")
-          %div(class="activity-icon-recipient")
-            = image_tag activity.trackable.user.avatar(300, 300) || asset_path("defaults/avatar.png"), loading: "lazy"
-          %div(class="activity-icon-action activity-icon-action-create")
-            = icon "fal", "user-plus"
 
-        %div(class="activity-main")
-          %div(class="activity-message")
-            %p(class="text text-s") #{link_to activity.trackable.user.full_name || activity.trackable.user.email, account_path(activity.trackable), class: "link"} invited by #{link_to activity.owner.full_name, account_path(activity.owner.seller_account), class: "link"}
-          %div(class="activity-time")
-            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+-# %li(class="activities-item")
+-#   %div(class="activity")
 
-    - else
+-#     - if activity.trackable
 
-      %div(class="activity-container")
-        %div(class="activity-icon")
-          %div(class="activity-icon-lost")
-            = icon "far", "ghost"
+-#       %div(class="activity-container")
 
-        %div(class="activity-main")
-          %div(class="activity-message")
-            %p(class="text text-s") Activity is not available
-          %div(class="activity-time")
-            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+-#         %div(class="activity-icon")
+-#           %div(class="activity-icon-recipient")
+-#             = image_tag activity.trackable.user.avatar(300, 300) || asset_path("defaults/avatar.png"), loading: "lazy"
+-#           %div(class="activity-icon-action activity-icon-action-create")
+-#             = icon "fal", "user-plus"
+
+-#         %div(class="activity-main")
+-#           %div(class="activity-message")
+-#             %p(class="text text-s") 
+-#               = link_to activity.trackable.user.full_name || activity.trackable.user.email, account_path(activity.trackable), class: "link" 
+-#               invited by 
+-#               = link_to activity.owner.full_name, activity.owner.s_account.present? ? account_path(activity.owner.s_account) : settings_account_seller_path, class: "link"
+-#           %div(class="activity-time")
+-#             %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+
+-#     - else
+
+-#       %div(class="activity-container")
+-#         %div(class="activity-icon")
+-#           %div(class="activity-icon-lost")
+-#             = icon "far", "ghost"
+
+-#         %div(class="activity-main")
+-#           %div(class="activity-message")
+-#             %p(class="text text-s") Activity is not available
+-#           %div(class="activity-time")
+-#             %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago

@@ -6,7 +6,7 @@ class CreateCategories < ActiveRecord::Migration[6.0]
       t.text :type_of_products
       t.text :conditions_allowed
       t.text :approval_required
-      t.text :cover_data
+      t.text :image_data
       t.boolean :pause, default: false
 
       t.timestamps

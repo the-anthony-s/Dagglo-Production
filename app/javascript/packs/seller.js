@@ -16,6 +16,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
+require("chartkick")
+require("chart.js")
 
 
 // Analytics
@@ -24,13 +26,14 @@ require("jquery")
 
 import "packs/time/timezone";
 import "packs/mobile/hamburger";
+import "packs/navbar/dropdown";
 import "packs/links/disabled";
 import "packs/links/expand";
 import "packs/forms/main";
 import "packs/forms/select2";
-import "packs/charts/bars";
 import "packs/payments/stripe-subscription";
 import "packs/alerts/alert";
+import "packs/images/lazyload";
 
 
 

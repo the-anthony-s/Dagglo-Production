@@ -25,7 +25,7 @@ ActiveAdmin.register Product do
     selectable_column
     column("ID", :sortable => :id) { |product| "##{product.id}" }
     column("Title", :name) { |product| link_to "#{product.name}", admin_product_path(product) }
-    column("Barcode", :barcode) { |product| "#{product.barcode}" }
+    # column("Barcode", :barcode) { |product| "#{product.barcode}" }
     # column("Sellers", :num_of_sellers) { |product| "#{product.num_of_sellers}" }
     column("Status", :status) { |product| status_tag(product.status) }
     actions

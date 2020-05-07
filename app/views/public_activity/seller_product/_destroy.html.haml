@@ -1,31 +1,60 @@
-%li(class="activities-item")
-  %div(class="activity")
-    
-    - if activity.trackable
-      
-      %div(class="activity-container")
-        
-        %div(class="activity-icon")
-          %div(class="activity-icon-recipient")
-            = image_tag activity.trackable.product.photo(300, 300), loading: "lazy"
-          %div(class="activity-icon-action activity-icon-action-destroy")
-            = icon "fal", "trash-alt"
-        
-        %div(class="activity-main")
-          %div(class="activity-message")
-            %p(class="text text-s") #{link_to activity.trackable.product.name, inventory_path(activity.trackable_id), class: "link"} removed by #{link_to activity.owner.full_name, account_path(activity.owner.seller_account), class: "link"}
-          %div(class="activity-time")
-            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+- if activity.trackable
+  %li(class="activity")
+    %div(class="activity-container")
+      %div(class="activity-icon")
+        %div(class="activity-icon-main")
+          = image_tag activity.trackable.product.photo(200, 200), 'data-src': activity.trackable.product.photo(200, 200), class: "lazy", loading: "lazy"
+        %div(class="activity-icon-action activity-icon-action-destroy")
+          = icon "far", "trash"
+      %div(class="activity-body")
+        %div(class="activity-body-desc")
+          %p(class="text text-s") 
+            = link_to activity.owner.full_name, activity.owner.seller_account.present? ? account_path(activity.owner.seller_account) : settings_account_seller_path, class: "link"
+            removed product
+            = link_to activity.trackable.product.name, inventory_path(activity.trackable_id), class: "link" 
+        %div(class="activity-body-time")
+          %p(class="text text-xs text-secondary")
+            = time_ago_in_words(activity.created_at).capitalize
+            ago
 
-    - else
+
+
+
+
+
+
+
+-# %li(class="activities-item")
+-#   %div(class="activity")
+    
+-#     - if activity.trackable
       
-      %div(class="activity-container")
-        %div(class="activity-icon")
-          %div(class="activity-icon-lost")
-            = icon "far", "ghost"
+-#       %div(class="activity-container")
         
-        %div(class="activity-main")
-          %div(class="activity-message")
-            %p(class="text text-s") Activity is not available
-          %div(class="activity-time")
-            %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+-#         %div(class="activity-icon")
+-#           %div(class="activity-icon-recipient")
+-#             = image_tag activity.trackable.product.photo(300, 300), loading: "lazy"
+-#           %div(class="activity-icon-action activity-icon-action-destroy")
+-#             = icon "fal", "trash-alt"
+        
+-#         %div(class="activity-main")
+-#           %div(class="activity-message")
+-#             %p(class="text text-s") 
+-#               = link_to activity.trackable.product.name, inventory_path(activity.trackable_id), class: "link"
+-#               removed by 
+-#               = link_to activity.owner.full_name, activity.owner.seller_account.present? ? account_path(activity.owner.seller_account) : settings_account_seller_path, class: "link"
+-#           %div(class="activity-time")
+-#             %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago
+
+-#     - else
+      
+-#       %div(class="activity-container")
+-#         %div(class="activity-icon")
+-#           %div(class="activity-icon-lost")
+-#             = icon "far", "ghost"
+        
+-#         %div(class="activity-main")
+-#           %div(class="activity-message")
+-#             %p(class="text text-s") Activity is not available
+-#           %div(class="activity-time")
+-#             %p(class="text text-xs text-secondary") #{time_ago_in_words(activity.created_at).capitalize} ago

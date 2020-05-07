@@ -1,7 +1,4 @@
 class ContactsController < ApplicationController
-  invisible_captcha only: [:create], honeypot: [:email, :message], on_spam: :on_spam
-
-
   def new
     @contact = Contact.new
   end

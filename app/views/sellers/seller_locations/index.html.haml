@@ -1,0 +1,78 @@
+= content_for :title, "Locations"
+
+%div(class="page")
+
+    %div(class="page-top")
+        %div(class="content")
+            %div(class="page-top-container")
+                %div(class="page-top-main")
+                    %div(class="page-top-main-title")
+                        %h1(class="text text-xl text-medium") #{yield(:title)}
+                %div(class="page-top-actions")
+                    %div(class="page-top-actions-item")
+                        = link_to new_seller_location_path, class: "button button-contrast" do
+                            %span Add location
+
+
+
+    %div(class="page-body")
+        %div(class="content")
+            %div(class="page-annotated")
+                %div(class="page-annotated-annotation")
+                    %p(class="text-block text text-m text-medium") Locations
+                    %p(class="text-block text text-s text-secondary") Manage the places you stock inventory, fulfill orders, and sell products.
+                %div(class="page-annotated-content")
+                    - if @locations.present?
+                        %div(class="card")
+                            %ul(class="card-links")
+                                - @locations.each do |location|
+                                    %li
+                                        = link_to edit_seller_location_path(location), class: "card-links-container" do
+                                            %div(class="card-links-icon")
+                                                = icon "fal", "map-marker-alt"
+                                            %div(class="card-links-main")
+                                                %p(class="text-block text text-m") #{location.name}
+                                                %p(class="text-block text text-s text-secondary") #{location.address}
+                    - else
+                        %div(class="card")
+                            %div(class="card-body")
+                                %div(class="text-center")
+                                    %p(class="text text-m text-secondary") No Locations
+                                
+                    
+
+
+
+
+-#         %div(class="page-body")
+-#             %div(class="content")
+-#                 %div(class="grid-locations")
+-#                     - @locations.each do |location|
+-#                         %div(class="col")
+-#                             %div(class="card")
+-#                                 = link_to location, class: "card-location" do
+-#                                     %div(class="card-location-map")
+-#                                         = image_tag static_map(location, 100, 100, 13)
+-#                                     %div(class="card-location-body")
+-#                                         %div(class="card-location-name")
+-#                                             %p(class="text text-s text-medium") #{location.name}
+-#                                         %div(class="card-location-address")
+-#                                             %p(class="text text-s text-secondary") #{location.address}
+
+
+-#     - else
+-#         %div(class="page-block") 
+-#             %div(class="banner")
+-#                 %div(class="banner-container")
+-#                     %div(class="banner-icon")
+-#                         = icon "fas", "map-marker-question"
+-#                     %div(class="banner-title")
+-#                         %h1(class="text text-l text-medium") Add Business Address
+-#                     %div(class="banner-message")
+-#                         %p(class="text text-m text-secondary") Manage your locations online. Track orders, add team members, get analytic insides. Move your business online.
+-#                     %div(class="banner-actions")
+-#                         %div(class="banner-actions-item")
+-#                             = link_to new_seller_location_path, class: "button button-primary button-big" do
+-#                                 %span #{icon "far", "plus"}
+-#                                 %span Add New Location
+    

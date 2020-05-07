@@ -1,0 +1,110 @@
+// Product Table -> seller_products -> index
+.ProductTable
+    width: 100%
+    border-collapse: separate
+    caption-side: top
+    padding: 0
+    background: var(--color-bg)
+    border-spacing: 0
+    border: 0
+    border-bottom: 1px solid var(--color-border)
+    overflow: hidden
+    box-shadow: $shadow-card
+    +tablet
+        border: 1px solid var(--color-border)
+        border-radius: var(--radius-border)
+
+
+.ProductTable-head
+    border-width: initial
+    border-style: none
+    border-color: initial
+    border-image: initial
+
+
+.ProductTable-row
+    user-select: none
+    cursor: pointer !important
+    background: var(--color-bg)
+    border-bottom: 1px solid var(--color-border)
+    &-link
+        cursor: pointer !important
+        &:hover, &:focus
+            background: var(--color-contrast-lower)
+
+
+.ProductTable-th
+    text-align: left
+    &-photo
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md)
+    &-name
+        cursor: pointer
+        text-align: left
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-price
+        cursor: pointer
+        text-align: left
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-order
+        cursor: pointer
+        text-align: left
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-action
+        cursor: pointer
+        text-align: left
+        padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-sm)
+
+
+.ProductTable-td
+    cursor: default
+    position: relative
+    border-top: 1px solid var(--color-border)
+    &-photo
+        width: 100px
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md)
+    &-name
+        min-width: 140px
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-price
+        width: 132px
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-order
+        width: 132px
+        padding: var(--space-sm) var(--space-sm) var(--space-sm) 0px
+    &-action
+        width: 132px
+        padding: var(--space-sm) var(--space-md) var(--space-sm) var(--space-sm)
+
+
+.ProductTable-th-price,
+.ProductTable-th-order,
+.ProductTable-td-price,
+.ProductTable-td-order,
+    display: none
+    +desktop-sm
+        display: table-cell
+
+.ProductTable-th-action,
+.ProductTable-td-action
+    display: none
+    +tablet
+        display: table-cell
+
+
+.ProductTable-photo-container
+    position: relative
+    display: block
+    background: var(--color-contrast-lower)
+    &::before
+        content: ""
+        padding-bottom: 100%
+        display: block
+    & > img
+        object-fit: contain
+        height: 100%
+        width: 100%
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0

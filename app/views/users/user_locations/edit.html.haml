@@ -1,0 +1,19 @@
+= render partial: "users/registrations/elements/links"
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        %div(class="section-top")
+            %div(class="section-top-title")
+                %h1(class="text text-l text-medium") Edit #{@user_location.name}
+            %div(class="section-top-actions")
+                %div(class="section-top-actions-item")
+                    = link_to @user_location, method: :delete, class: "button button-small button-delete" do
+                        %span #{icon "far", "trash"}
+                        %span Delete
+                %div(class="section-top-actions-item")
+                    = link_to user_locations_path, class: "button button-small" do
+                        %span #{icon "far", "chevron-left"}
+                        %span Back
+
+        %div(class="section-block")
+            = render partial: "users/user_locations/form"

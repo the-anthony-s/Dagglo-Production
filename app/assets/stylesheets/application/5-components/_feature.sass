@@ -1,0 +1,100 @@
+.feature
+    border: 0
+    border-radius: $border-radius
+    background: $gray-lighter
+    position: relative
+    &::after
+        content: ''
+        display: block
+        padding-bottom: 100%
+
+.feature-container
+    padding: var(--gap)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    text-align: center
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    height: 100%
+    width: 100%
+
+.feature-icon
+    display: block
+    margin-bottom: var(--gap-s)
+    & > svg
+        fill: $color-font-primary
+        font-size: var(--size-typo-xl)
+
+
+
+// Grid
+.feature-grid
+    position: relative
+    display: flex
+    flex-direction: column-reverse
+    align-items: center
+    +tablet
+        justify-content: space-around
+        flex-direction: row
+
+.feature-grid-reverse
+    +tablet
+        flex-direction: row-reverse
+
+.feature-content
+    text-align: center
+    width: 100%
+    padding-top: var(--gap-m)
+    +tablet
+        padding-top: 0
+        flex-grow: 1
+        width: 50%
+        text-align: left
+    &-caption
+        margin-top: var(--space-sm)
+
+.feature-image
+    // overflow: hidden
+    position: relative
+    display: block
+    width: 100%
+    +tablet
+        flex-grow: 1
+        width: 50%
+    &::before
+        content: ''
+        // padding-bottom: 67.75%
+        padding-bottom: 112%
+        height: auto
+        display: block
+    & > img
+        position: absolute
+        top: 0
+        right: 0
+        left: 0
+        bottom: 0
+        height: 100%
+        width: 100%
+        object-fit: cover
+        display: block
+        border-radius: var(--radius-border)
+    & > .img-1
+        box-shadow: 20px -20px 0 #4f6496
+    & > .img-2
+        box-shadow: -20px -20px 0 #4b927a
+    & > .img-3
+        box-shadow: 20px -20px 0 #bf9979
+
+.feature-grid .feature-content
+    +tablet
+        padding-right: var(--gap-r-l)
+
+.feature-grid-reverse .feature-content
+    +tablet
+        padding-right: 0 !important
+        padding-left: var(--gap-r-l) !important

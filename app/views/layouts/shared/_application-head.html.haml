@@ -11,6 +11,9 @@
 %meta{:content => "/mstile-144x144.png", :name => "msapplication-TileImage"}/
 %meta{:content => "#ffffff", :name => "theme-color"}/
 
+- if controller.controller_name == "sellers" && controller.action_name == "show" && @seller.pause
+    %meta{:content => "noindex", :name => "robots"}/ 
+
 
 / Primary Meta Tags
 %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/

@@ -12,7 +12,7 @@ class CreateSellerPlans < ActiveRecord::Migration[6.0]
       t.integer :num_of_sub_accounts
       t.string :analytics
 
-      t.boolean :pause, default: "false"
+      t.boolean :pause, default: "true"
 
       t.timestamps
     end

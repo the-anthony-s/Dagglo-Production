@@ -4,70 +4,82 @@
     %div(class="navbar-container")
       %div(class="navbar-left")
         = link_to root_path, class: "navbar-root" do
-          %span(class="navbar-root-logo")
+          %div(class="navbar-root-logo")
             %svg{:preserveaspectratio => "xMidYMid meet", :version => "1.0", :viewbox => "0 0 200.000000 200.000000", :xmlns => "http://www.w3.org/2000/svg"}
               %g{:stroke => "none", :transform => "translate(0.000000,200.000000) scale(0.100000,-0.100000)"}
                 %path{:d => "M697 1890 c-206 -52 -337 -272 -281 -472 6 -20 23 -23 56 -8 22 10\n23 16 23 108 0 87 3 102 27 143 82 140 251 194 391 126 59 -30 133 -103 143\n-144 4 -13 10 -23 14 -23 22 0 70 24 70 35 0 22 -77 129 -115 158 -88 69 -228\n102 -328 77z"}
                 %path{:d => "M855 1399 c-352 -121 -648 -228 -657 -236 -38 -34 -35 -42 236 -633\n102 -223 194 -411 203 -418 12 -9 33 -12 63 -8 41 5 1001 331 1053 357 40 21\n67 52 67 78 0 25 -92 408 -130 541 -11 36 -35 130 -55 210 -62 252 -82 310\n-111 320 -14 6 -26 10 -27 10 -1 -1 -290 -100 -642 -221z"}
-          %span(class="navbar-root-beta") beta
-      
-      
-      - unless controller.controller_name == "pages" && controller.action_name == "home"
-        %div(class="navbar-center")
-          -# enforce_utf8: true -> For coversion, don't touch unless you know what to do
-          = form_tag search_path, method: :get, class: "navbar-search", role: "search", enforce_utf8: true do
-            %div(class="navbar-search-input")
-              = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-search-control', type: "search", id: "globalSearch", autocomplete: "off", tabindex: "1"
-            = button_tag(type: "submit", class: "navbar-search-button", value: "search", name: nil) do
-              = icon "far", "search"
-      
-      
+          %div(class="navbar-root-beta") beta
+
+
+      -# - unless controller.controller_name == "pages" && controller.action_name == "home"
+      -# %div(class="navbar-center")
+      -#   -# enforce_utf8: true -> For coversion, don't touch unless you know what to do
+      -#   = form_tag search_path, method: :get, class: "navbar-search", role: "search", enforce_utf8: true do
+      -#     %div(class="navbar-search-icon") #{icon "far", "search"}
+      -#     %div(class="navbar-search-input")
+      -#       = text_field_tag :query, params[:query], placeholder: 'Search Dagglo', class: 'navbar-search-control', type: "search", id: "globalSearch", autocomplete: "off", tabindex: "1"
+
+
       %div(class="navbar-right")
         %div(class="navbar-desktop")
           %ul(class="navbar-links")
-            %li 
-              = link_to "Catalog", categories_path, class: "navbar-link"
-            %li 
-              = link_to "Sell on Dagglo", sell_path, class: "navbar-link"
-            %li 
-              = link_to "Carriers", new_carrier_path, class: "navbar-link"
-            %li 
-              = link_to "Contacts", new_contact_path, class: "navbar-link"
+            -# %li
+            -#   = link_to "Catalog", categories_path, class: "navbar-link"
+            %li
+              = link_to "Sell on Dagglo", partner_path, class: "navbar-link"
+            %li
+              = mail_to "help@dagglo.com", "Contacts", class: "navbar-link"
 
             - if user_signed_in?
+              -# %li
+              -#   = link_to "", class: "navbar-link-icon" do
+              -#     = icon "fal", "bell"
+              -# %li
+              -#   = link_to "", class: "navbar-link-icon" do
+              -#     = icon "fal", "shopping-bag"
               %li(class="navbar-dropdown-item")
                 = button_tag class: "navbar-profile navbar-dropdown-trigger" do
                   %div(class="navbar-profile-picture")
                     = image_tag current_user.avatar(100, 100), loading: "lazy"
                 %div(class="navbar-dropdown")
                   %div(class="navbar-dropdown-list")
-                    -# %li(class="navbar-dropdown-list-item")
-                    -#   = link_to "Orders", "", class: "navbar-dropdown-link"
-                    -# %li(class="navbar-dropdown-list-item")
-                    -#   = link_to "Favorites", "", class: "navbar-dropdown-link"
+                    %div(class="navbar-dropdown-list-item")
+                      %div(class="navbar-dropdown-list-profile")
+                        %p(class="text text-s text-medium") #{current_user.full_name}
+                        %p(class="text text-xs text-secondary") #{current_user.email}
                     %div(class="navbar-dropdown-list-item")
                       = link_to "Account", edit_user_registration_path, class: "navbar-dropdown-link"
+                    -# %div(class="navbar-dropdown-list-item")
+                    -#   = link_to "Favorites", favorite_user_path, class: "navbar-dropdown-link"
+                    %div(class="navbar-dropdown-list-item")
+                      = link_to "Orders & Reviews", "", class: "navbar-dropdown-link"
                     - if current_user.s_account
                       %div(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
-                        = link_to "Seller dashboard", dashboard_seller_path, class: "navbar-dropdown-link"
+                        = link_to home_seller_path, target: :_blank, class: "navbar-dropdown-link" do
+                          %span #{icon "far", "external-link-alt"}
+                          %span Seller dashboard
                     - else
                       %div(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
                         = link_to "Sign up to sell", new_seller_path, class: "navbar-dropdown-link"
                     %div(class="navbar-dropdown-list-item")
-                      = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link"
+                      = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link navbar-dropdown-link-logout"
             - else
-              %li 
-                = link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"
-              %li 
-                = link_to t('buttons.user_registration'), new_user_registration_path, class: "button button-primary"
+              %li
+                = link_to t('buttons.user_session'), new_user_session_path, class: "button button-contrast-outline button-action button-small"
+              %li
+                = link_to t('buttons.user_registration'), new_user_registration_path, class: "button button-action button-primary button-small"
+        
         %div(class="navbar-mobile")
           %ul(class="navbar-links")
+            - if !user_signed_in?
+              %li
+                = link_to t('buttons.user_session'), new_user_session_path, class: "navbar-link"
             %li
               %div(id="navbarBurger" class="navbar-burger")
                 %div(class="navbar-burger-container")
                   %div(class="navbar-burger-container-bar navbar-burger-container-barTop")
                   %div(class="navbar-burger-container-bar navbar-burger-container-barBtm")
-                -# %div(class="navbar-burger-name") Menu
 
 
 
@@ -76,25 +88,14 @@
         %ul(class="navbar-collapse-links")
           %li
             = link_to root_path, class: "navbar-collapse-link" do
-              %span(class="navbar-collapse-link-icon") #{icon "far", "home"}
               %span(class="navbar-collapse-link-content") Home
           %li
-            = link_to sell_path, class: "navbar-collapse-link" do
-              %span(class="navbar-collapse-link-icon") #{icon "far", "boxes-alt"}
+            = link_to partner_path, class: "navbar-collapse-link" do
               %span(class="navbar-collapse-link-content") Sell on Dagglo
           %li
-            = link_to new_carrier_path, class: "navbar-collapse-link" do
-              %span(class="navbar-collapse-link-icon") #{icon "far", "shipping-fast"}
-              %span(class="navbar-collapse-link-content") Sign up to be a carrier
-          %li
-            = link_to categories_path, class: "navbar-collapse-link" do
-              %span(class="navbar-collapse-link-icon") #{icon "far", "archive"}
-              %span(class="navbar-collapse-link-content") Catalog
-          %li
-            = link_to new_contact_path, class: "navbar-collapse-link" do
-              %span(class="navbar-collapse-link-icon") #{icon "far", "mailbox"}
+            = mail_to "help@dagglo.com", class: "navbar-collapse-link" do
               %span(class="navbar-collapse-link-content") Contact us
-      
+
       - if user_signed_in?
         %div(class="navbar-collapse-block")
           = link_to edit_user_registration_path, class: "navbar-collapse-profile" do
@@ -102,14 +103,14 @@
               = image_tag current_user.avatar(100, 100), loading: "lazy"
             %div(class="navbar-collapse-profile-name")
               %p(class="text text-s text-medium") #{current_user.full_name}
-        
+
         %div(class="navbar-collapse-block")
           %ul(class="navbar-collapse-links")
             - if current_user.s_account.present?
               %li
-                = link_to dashboard_seller_path, class: "navbar-collapse-link", target: :_blank do
+                = link_to home_seller_path, class: "navbar-collapse-link" do
                   %span(class="navbar-collapse-link-icon")
-                    = icon "far", "external-link"
+                    = icon "far", "store"
                   %span(class="navbar-collapse-link-content")
                     %p(class="text text-s text-bold") #{current_user.s_account.name}
                     %p(class="text text-s text-secondary") Seller account dashboard

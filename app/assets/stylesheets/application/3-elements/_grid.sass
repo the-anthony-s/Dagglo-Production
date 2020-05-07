@@ -2,15 +2,16 @@
     grid-column-end: span 1
 
 
+
 // 1 column mobile, 2 tablet
 .grid-1-2
     display: grid
     grid-row-gap: var(--gap-r)
     grid-column-gap: var(--gap-r)
     grid-template-columns: repeat(1, 1fr)
-
     +tablet
         grid-template-columns: repeat(2, 1fr)
+
 
 
 // 1 column mobile, 3 tablet
@@ -19,12 +20,11 @@
     grid-row-gap: var(--gap-r)
     grid-column-gap: var(--gap-r)
     grid-template-columns: repeat(1, 1fr)
-
     +tablet
         grid-template-columns: repeat(2, 1fr)
-
     +desktop-sm
         grid-template-columns: repeat(3, 1fr)
+
 
 
 // 2 columns mobile, 3 tablet
@@ -33,9 +33,9 @@
     grid-row-gap: var(--gap-r)
     grid-column-gap: var(--gap-r)
     grid-template-columns: repeat(2, 1fr)
-
     +desktop-sm
         grid-template-columns: repeat(3, 1fr)
+
 
 
 // 1 column mobile, 3 tablet, 4 desktop
@@ -44,10 +44,8 @@
     grid-row-gap: var(--gap-r)
     grid-column-gap: var(--gap-r)
     grid-template-columns: repeat(1, 1fr)
-
     +tablet
-        grid-template-columns: repeat(3, 1fr)
-
+        grid-template-columns: repeat(2, 1fr)
     +desktop
         grid-template-columns: repeat(4, 1fr)
 
@@ -59,10 +57,8 @@
     grid-row-gap: var(--gap-r)
     grid-column-gap: var(--gap-r)
     grid-template-columns: repeat(2, 1fr)
-
     +tablet
         grid-template-columns: repeat(3, 1fr)
-
     +desktop
         grid-template-columns: repeat(4, 1fr)
 
@@ -71,18 +67,59 @@
 // Products grid
 .grid-products
     display: grid
-    grid-row-gap: var(--gap)
-    grid-column-gap: var(--gap)
+    grid-row-gap: var(--gap-r-m)
+    grid-column-gap: var(--gap-s)
     grid-template-columns: repeat(2, 1fr)
-
     +tablet
         grid-template-columns: repeat(3, 1fr)
-
-    +desktop-sm
-        grid-template-columns: repeat(4, 1fr)
-
     +desktop
         grid-template-columns: repeat(5, 1fr)
 
-.col-products
-    grid-column-end: span 1
+.grid-products-tight
+    display: grid
+    grid-row-gap: var(--gap-r-m)
+    grid-column-gap: var(--gap-s)
+    grid-template-columns: repeat(2, 1fr)
+    +tablet
+        grid-template-columns: repeat(3, 1fr)
+    +desktop
+        grid-template-columns: repeat(4, 1fr)
+
+
+
+// Categories Explore
+.grid-categories
+    display: grid
+    grid-row-gap: var(--gap)
+    grid-column-gap: var(--gap-s)
+    grid-template-columns: repeat(1, 1fr)
+    +mobile
+        grid-template-columns: repeat(2, 1fr)
+    +tablet
+        grid-template-columns: repeat(4, 1fr)
+    +desktop-sm
+        grid-template-columns: repeat(6, 1fr)
+    +desktop
+        grid-template-columns: repeat(8, 1fr)
+
+
+
+// Categories Explore
+.grid-explore
+    display: grid
+    grid-row-gap: var(--gap)
+    grid-column-gap: var(--gap-s)
+    grid-template-columns: repeat(2, 1fr)
+    +desktop-sm
+        grid-template-columns: repeat(4, 1fr)
+
+
+
+// Search requests
+.grid-searches
+    display: grid
+    grid-row-gap: var(--gap)
+    grid-column-gap: var(--gap-s)
+    grid-template-columns: repeat(2, 1fr)
+    +tablet
+        grid-template-columns: repeat(4, 1fr)

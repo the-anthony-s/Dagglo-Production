@@ -1,0 +1,46 @@
+= form_for @user_location, html: {class: "form"} do |f|
+
+    = render "shared/errors", target: @user_location
+
+
+    %div(class="form-row")
+        %div(class="form-label")
+            = f.label :name, "Name"
+        %div(class="form-input")
+            = f.text_field :name, placeholder: nil, class: "form-control"
+    %div(class="form-row")
+        %div(class="form-label")
+            = f.label :address_1, "Address 1"
+        %div(class="form-input")
+            = f.text_field :address_1, placeholder: "Address Line 1", class: "form-control"
+    %div(class="form-row")
+        %div(class="form-label")
+            = f.label :address_2, "Address 2 (optional)"
+        %div(class="form-input")
+            = f.text_field :address_2, placeholder: "Address Line 1", class: "form-control"
+    %div(class="form-row")
+        %div(class="form-grid")
+            %div(class="form-col")
+                %div(class="form-label")
+                    = f.label :country, "Country"
+                %div(class="form-input")
+                    = f.country_select("country", {:include_blank => "Choose country"}, {class: "js-states form-control", id: "selectCountry"}, required: true, autofocus: false)
+            %div(class="form-col")
+                %div(class="form-label")
+                    = f.label :city, "City"
+                %div(class="form-input")
+                    = f.text_field :city, placeholder: "City", class: "form-control"
+    %div(class="form-row")
+        %div(class="form-grid")
+            %div(class="form-col")
+                %div(class="form-label")
+                    = f.label :state, "State / Province"
+                %div(class="form-input")
+                    = f.text_field :state, required: false, placeholder: "State / Province", autocomplete: "off", class: "form-control"
+            %div(class="form-col")
+                %div(class="form-label")
+                    = f.label :zip, "ZIP / Postal code"
+                %div(class="form-input")
+                    = f.text_field :zip, placeholder: "ZIP / Postal code", class: "form-control"
+    %div(class="form-submit")
+        = button_tag "Save", class: "button button-go", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}

@@ -1,0 +1,73 @@
+.activity-list
+    width: 100%
+    position: relative
+    display: block
+
+.activity
+    position: relative
+    display: flex
+    flex-direction: row
+    & + &
+        margin-top: var(--gap-s)
+
+.activity-container
+    display: flex
+    flex-direction: row
+    align-items: center
+    width: 100%
+    position: relative
+
+.activity-icon
+    flex: 0 0 auto
+    margin-right: var(--gap)
+    position: relative
+    &-main
+        position: relative
+        & > img
+            height: 44px
+            width: 44px
+            border: 0
+            border-radius: 100%
+            display: block
+            object-fit: cover
+            +tablet
+                height: 54px
+                width: 54px
+    &-action
+        position: absolute
+        bottom: 0
+        right: 0
+        border: 0
+        border-radius: 100%
+        box-shadow: 0 0 0 1px $white
+        color: $color-font-primary-light
+        font-size: var(--size-typo-xs)
+        font-weight: 400
+        line-height: var(--line-height-typo-xs)
+        height: 22px
+        width: 22px
+        background: $color-secondary
+        text-align: center
+        display: flex
+        align-items: center
+        justify-content: center
+        &-create
+            background: $blue
+        &-update
+            background: $green
+        &-destroy
+            background: $red
+
+.activity-body
+    flex: 1 1 100%
+    display: block
+    +tablet
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+    &-time
+        margin-top: var(--gap-xxs)
+        +tablet
+            margin-top: 0
+            margin-left: var(--gap)

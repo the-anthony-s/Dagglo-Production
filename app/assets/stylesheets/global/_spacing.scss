@@ -1,0 +1,35 @@
+:root {
+  --space-xxxs: 2px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-xxxl: 42px;
+  --space-xxxxl: 62px;
+
+  --space-content: 5%;
+  --space-card: 16px;
+}
+
+@supports(--css: variables) {
+  :root {
+    @include bp(xs) {
+      	// --space-unit: 1em;
+    }
+
+    @include bp(sm) {
+      --space-md: 24px;
+      --space-xl: 48px;
+      --space-xxl: 64px;
+      --space-xxxl: 84px;
+      --space-xxxxl: 124px;
+    }
+
+    @include bp(md) {
+      --space-card: 24px;
+    }
+  }
+}

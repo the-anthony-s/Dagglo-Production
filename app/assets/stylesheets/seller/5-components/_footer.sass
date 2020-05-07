@@ -1,0 +1,61 @@
+.footer
+    margin-top: var(--space-xxxl)
+    border-top: 1px solid var(--color-border)
+    position: relative
+    display: block
+
+
+.footer-container
+    width: 100%
+    display: block
+    padding-top: var(--space-md)
+    padding-bottom: var(--space-md)
+    +tablet
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+
+
+.footer-left
+    text-align: center
+    +tablet
+        flex: 1 1 100%
+        text-align: left
+
+
+.footer-right
+    text-align: center
+    +tablet
+        flex: 0 0 auto
+        margin-left: var(--space-md)
+        text-align: right
+
+
+.footer-links
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: center
+    +tablet
+        justify-content: flex-start
+        & > li + li
+            margin-left: var(--space-sm)
+    & > li
+        padding: var(--space-xs) var(--space-xs)
+        +tablet
+            padding: 0
+
+
+.footer-link
+    color: var(--color-accent)
+    font-size: var(--text-sm)
+    appearance: none
+    outline: none
+    display: inline-block
+    text-transform: none
+    text-decoration: none
+    &:hover
+        color: var(--color-accent-dark)
+    &-bold
+        font-weight: 600

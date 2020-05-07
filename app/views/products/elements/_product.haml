@@ -1,0 +1,11 @@
+%div(class="col")
+    %div(class="product-card")
+        %meta{:content => "#{product.name}", :itemprop => "name"}/
+        -# %meta{:content => "#{product_counter}", :itemprop => "position"}/
+        %meta{:content => "#{show_product_url(product)}", :itemprop => "url"}/
+        = link_to show_product_path(product), class: "product-card-link" do
+            %div(class="product-card-photo")
+                = image_tag product.photo(300, 300), 'data-src': product.photo(300, 300), loading: "lazy", class: "lazy"
+            %div(class="product-card-info")
+                %h1(class="text text-s text-bold") #{product.name}
+                %p(class="text text-s text-medium text-special space-top-xxxs") $3.99

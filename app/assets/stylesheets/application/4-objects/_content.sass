@@ -1,13 +1,14 @@
 .content,
 .content-tight,
 .content-page,
-.content-product
+.content-page-wide,
+.content-product,
     width: 100%
-    max-width: $content-width-primary
+    max-width: var(--content-primary)
     margin-right: auto
     margin-left: auto
-    padding-right: var(--gap-r)
-    padding-left: var(--gap-r)
+    padding-right: var(--space-content)
+    padding-left: var(--space-content)
     position: relative
     display: block
     z-index: 1
@@ -17,6 +18,15 @@
 
 .content-page
     max-width: $content-width-page !important
+
+.content-page-wide
+    padding-right: 0
+    padding-left: 0
+    max-width: $content-width-page
+    +tablet
+        padding-right: var(--gap-r)
+        padding-left: var(--gap-r)
+
 
 .content-product
     max-width: $content-width-product !important

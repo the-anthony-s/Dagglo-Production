@@ -27,3 +27,7 @@
   - resource_class.omniauth_providers.each do |provider|
     %li(class="auth-list-item")
       = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "link"
+
+%li(class="auth-list-item")
+  -# %p(class="text text-xs space-top-xxl text-secondary") By joining, you agree to the #{link_to "Terms", terms_path, class: "link"} and #{link_to "Privacy Policy", privacy_path, class: "link"}. This site is protected by reCAPTCHA and the #{link_to "Google Privacy Policy", "https://policies.google.com/privacy", target: :_blank, class: "link"} and #{link_to "Terms of Service", "https://policies.google.com/terms", target: :_blank, class: "link"} apply.
+  %p(class="text text-xs space-top-xxl text-secondary") This site is protected by reCAPTCHA and the #{link_to "Google Privacy Policy", "https://policies.google.com/privacy", target: :_blank, class: "link"} and #{link_to "Terms of Service", "https://policies.google.com/terms", target: :_blank, class: "link"} apply.

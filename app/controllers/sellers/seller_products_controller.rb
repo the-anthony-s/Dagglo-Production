@@ -7,6 +7,11 @@ class Sellers::SellerProductsController < ApplicationController
   layout :seller_dashboard_layout
 
 
+  def index
+    @seller_products = @seller.seller_products.all
+  end
+
+
   def show
     @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(trackable_type: "SellerProduct", trackable_id: @seller_product, recipient_id: @seller_product.seller_id).limit(5).order(created_at: :desc)
   end
@@ -21,27 +26,25 @@ class Sellers::SellerProductsController < ApplicationController
     safely {
       @seller_product = SellerProduct.new(seller_product_params)
       if @seller_product.save
-        redirect_to @seller_product, notice: "#{@seller_product.product.name} updated"
+        redirect_to @seller_product, :flash => { "Inventory Created" => "#{@seller_product.product.name} updated" }
       else
-        render :new, notice: "Something went wrong during the registration. Please, try again or contact our support."
+        render :new, :flash => { "Product Error" => "Something went wrong during the registration. Please, try again or contact our support." }
       end
     }
   end
 
 
   def edit
+    @barcode = ProductBarcode.where(product_id: @seller_product.product.id).last
   end
 
 
   def update
     safely {
       if @seller_product.update(seller_product_params)
-        # @seller_product.product.update_attribute(:num_offers, SellerProduct.where(product_id: @seller_product.product.id).count)
-        # @seller_product.product.update_attribute(:min_amount, SellerProduct.where(product_id: @seller_product.product.id).minimum(:unit_price))
-
-        render :show, notice: "#{@seller_product.product.name} updated"
+        render :show, :flash => { "Product Update" => "#{@seller_product.product.name} updated" } 
       else
-        render :edit, notice: "Something went wrong during the update. Please, try again or contact our customer support."
+        render :edit, :flash => { "Product Update Error" => "Something went wrong during the update. Please, try again or contact our customer support."}
       end
     }
   end
@@ -52,8 +55,8 @@ class Sellers::SellerProductsController < ApplicationController
       # @seller_product.product.update_attribute(:num_offers, SellerProduct.where(product_id: @seller_product.product.id).count)
       # @seller_product.product.update_attribute(:min_amount, SellerProduct.where(product_id: @seller_product.product.id).minimum(:unit_price))
 
-      @seller_product.destroy
-      redirect_to products_seller_path, notice: "Product removed from your inventory"
+      @seller_product.really_destroy!
+      redirect_to seller_products_path, :flash => { "Product Deleted" => "#{@seller_product.product.name} removed from your inventory" }
     }
   end
 
@@ -67,7 +70,7 @@ class Sellers::SellerProductsController < ApplicationController
 
 
     def set_seller_product
-      @seller_product = SellerProduct.find(params[:id])
+      @seller_product = SellerProduct.includes(:product).find(params[:id])
     end
 
 

@@ -1,0 +1,180 @@
+.button
+    color: var(--color-contrast-lower)
+    font-size: var(--text-sm)
+    font-weight: 500
+    line-height: var(--body-line-height)
+    text-decoration: none
+    text-transform: none
+    text-align: center
+    padding: var(--space-xs) var(--space-sm)
+    border: 1px solid var(--color-black-light)
+    border-radius: var(--radius-border)
+    background: var(--color-black-light)
+    cursor: pointer
+    appearance: none
+    outline: none
+    user-select: none
+    white-space: none
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-text-size-adjust: none
+    touch-action: manipulation
+    display: inline-block
+    min-width: 120px
+    &:hover
+        color: var(--color-contrast-lower)
+        background: var(--color-black-lighter)
+        border-color: var(--color-black-lighter)
+    & > span + span
+        margin-left: var(--space-xs)
+
+
+.button-outline
+    color: var(--color-black-light)
+    background: transparent
+    border-color: var(--color-black-light)
+
+
+.button-primary
+    color: var(--color-white)
+    background: var(--color-primary)
+    border-color: var(--color-primary)
+    &:hover
+        color: var(--color-white)
+        background: var(--color-primary-dark)
+        border-color: var(--color-primary-dark)
+
+    
+.button-accent
+    color: var(--color-white)
+    background: var(--color-accent)
+    border-color: var(--color-accent)
+    &:hover
+        color: var(--color-white)
+        background: var(--color-accent-dark)
+        border-color: var(--color-accent-dark)
+
+
+.button-accent-outline
+    color: var(--color-accent)
+    border-color: var(--color-accent)
+    background: transparent
+    &:hover
+        color: var(--color-white)
+        background: var(--color-accent-dark)
+        border-color: var(--color-accent-dark)
+
+.button-contrast
+    color: var(--color-contrast-higher)
+    border-color: var(--color-contrast-lower)
+    background: var(--color-contrast-lower)
+    &:hover
+        color: var(--color-contrast-higher)
+        border-color: var(--color-contrast-low)
+        background: var(--color-contrast-low)
+
+
+.button-contrast-outline
+    color: var(--color-contrast-higher)
+    border-color: var(--color-contrast-lower)
+    background: transparent
+    &:hover
+        color: var(--color-contrast-higher)
+        border-color: var(--color-contrast-low)
+        background: var(--color-contrast-low)
+
+
+
+// Button modifications
+.button-wide
+    width: 100%
+
+
+.button-responsive
+    width: 100%
+    +mobile
+        width: auto
+
+
+.button-small
+    min-width: 0
+    padding: var(--space-xs) var(--space-sm) 
+
+
+.button-big
+    padding: var(--space-lg) var(--space-md)
+    min-width: 200px
+
+
+.button-action
+    border-radius: 24px
+
+
+
+
+// Circle buttons -> Cool and cute    
+.button-circle
+    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    &-icon
+        color: var(--color-contrast-medium)
+        font-size: var(--size-typo-l)
+        font-weight: 400
+        line-height: var(--line-height-typo-l)
+        height: 44px
+        width: 44px
+        background: $white
+        border: 1px solid $color-border
+        border-radius: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+        text-align: center
+        +tablet
+            height: 54px
+            width: 54px
+    &-name
+        margin-top: var(--space-xxs)
+        color: var(--color-contrast-medium)
+        font-size: var(--size-typo-xs)
+        font-weight: 500
+        line-height: var(--line-height-typo-xs)
+    &:hover > &-icon
+            color: $color-font-primary
+            border-color: $color-border-dark
+    &:hover > &-name
+            color: $color-font-primary
+
+
+.button-circle-action
+    .button-circle-icon
+        color: var(--color-white)
+        background: var(--color-primary)
+        border-color: var(--color-primary)
+    .button-circle-name
+        color: var(--color-contrast-high)
+    &:hover
+        .button-circle-icon
+            color: var(--color-contrast-high)
+            background: var(--color-primary-dark)
+            border-color: var(--color-primary-dark)
+        .button-circle-name
+            color: var(--color-primary-dark)
+
+
+.button-circle-destroy
+    .button-circle-icon
+        color: var(--color-white)
+        background: var(--color-error)
+        border-color: var(--color-error)
+    .button-circle-name
+        color: var(--color-contrast-high)
+    &:hover
+        .button-circle-icon
+            color: var(--color-white)
+            background: var(--color-error-dark)
+            border-color: var(--color-error-dark)
+        .button-circle-name
+            color: var(--color-error-dark)

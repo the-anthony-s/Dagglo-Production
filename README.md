@@ -1,24 +1,62 @@
-# README
+### NOW!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Requirments
+- navigation
+- filtring
+- sorting
+- tags
+- sales
+- delivery information
 
-* Ruby version
 
-* System dependencies
+## For sellers
+- add products
+- add shipping information: schedules
+- settings: general, account, billing, account
+- locations
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### To Do: Website
 
-* Deployment instructions
++ color palette -> black/grey/blue
++ user account
+- change seller dashboard
+- install paper_trail gem (later)
+- optimize images
+- think about home page on user_signed_in? || !user_signed_in?
+- SEO tags for products, categories, searches
+- increase performance
+- 404 page
+- form validations
 
-* ...
+#### Additional to Website
+- checkout TikTok homepage when !user_signed_in?
+
+
+### To Do: Marketing
+
+- cold calling
+- cold emails
+- logo for website: check MacPaw logo
+
+
+
+---
+
+### User's Settings (Check GoRails -> User's preferences)
+
+- edit seller/buyer account promo
+- onboarding process to user -> "Hey #{current_user}, ready to grow your business? [Add Payment Method]"
+
+
+---
+
+### Seller account
+
+- Early Access Plan by default
+- New Dashboard -> Minimalist, simple
+- New Product New page -> Check Likes Controller

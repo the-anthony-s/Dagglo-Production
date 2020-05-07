@@ -1,0 +1,38 @@
+= content_for :title, "Contacts"
+
+
+%header(class="hero")
+    %div(class="hero-block")
+        %div(class="content-page")
+            %div(class="hero-header hero-header-center")
+                %div(class="hero-header-title")
+                    %h1(class="text text-xxl text-bold") Contacts
+                %div(class="hero-header-caption")
+                    %p(class="text text-m") Humane customer support.. No answering machines or bots. Only communication with real people ready to run through a brick wall for you!
+
+%section(class="section")
+    %div(class="content-page")
+        %div(class="section-block")
+            %ul(class="contacts")
+                %li
+                    %div(class="contact")
+                        %div(class="contact-name")
+                            %p(class="text text-s") Call in Canada
+                            %p(class="text text-xs text-secondary") Monday-Friday 9:00 a.m. to 6:00 p.m.
+                        %div(class="contact-action")
+                            - if (time.hour >= 9 && time.hour <= 18) && time.on_weekday?
+                                %p(class="text text-s text-bold") +1 (289) 259 - 3488
+                            - else
+                                %p(class="text text-s text-secondary text-medium") Office closed
+
+                %li
+                    %div(class="contact")
+                        %div(class="contact-name") 
+                            %p(class="text text-s") Direct Email
+                            %p(class="text text-xs text-secondary") Available 24/7
+                        %div(class="contact-action")
+                            %p(class="text text-s text-bold") #{mail_to "help@dagglo.com", "Send Email", class: "link"}
+
+        %div(class="section-block")
+            %div(class="section-header section-header-center")
+                %h1(class="text text-xxl text-bold") Start selling today

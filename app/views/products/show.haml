@@ -1,0 +1,186 @@
+= content_for :title, "#{@product.name}"
+
+
+%div(id="#{@product.id}")
+    %header(class="product-top")
+        %div(class="content-page")
+            %div(class="product-top-container")
+                %div(class="product-top-main")
+                    = link_to category_path(@product.category) do
+                        %h2(class="text text-l") #{@product.category.name}
+
+
+
+    %section(class="product-header")
+        %div(class="content-page")
+            %div(class="product-header-container")
+                %div(class="product-header-main")
+                    %h1(class="text text-xl text-bold") #{@product.name}
+                %div(class="product-header-secondary")
+                    %div(class="product-header-action" id="product_#{@product.id}_likes")
+                        = render partial: "likes", locals: {product: @product}
+
+
+
+    %section(class="section")
+        %div(class="section-block")
+            %div(class="content-page")
+                %div(class="product-showcase")
+                    %div(class="product-showcase-container")
+                        %div(class="product-showcase-gallery")
+                            %div(class="product-gallery")
+                                - if @product.product_photos.present?
+                                    %div(class="product-gallery-carousel")
+                                        %div(class="glider-gallery")
+                                            - @product.product_photos.each do |photo|
+                                                %div(class="glider-gallery-item")
+                                                    = image_tag photo.image.derivation_url(:thumbnail, 400, 400).to_s, 'data-src': photo.image.derivation_url(:thumbnail, 400, 400).to_s, loading: "lazy", class: "lazy"
+                                        %button(class="glider-prev")
+                                            = icon "far", "chevron-left"
+                                        %button(class="glider-next")
+                                            = icon "far", "chevron-right"
+                                - else
+                                    %div(class="product-gallery-default")
+                                        = image_tag @product.photo(400, 400), 'data-src': @product.photo(400), loading: "lazy", class: "lazy"
+
+                        %div(class="product-showcase-intro")
+                            - if @best.present?
+                                %div(class="product-option")
+                                    %div(class="product-option-header")
+                                        %div(class="product-option-header-title")
+                                            %p(class="text text-eyebrow text-secondary") Best price
+                                        %div(class="product-option-header-action")
+                                            = link_to "", class: "link link-report" do
+                                                %span #{icon "fad", "flag-alt"}
+                                    %div(class="product-option-body")
+                                        = link_to show_seller_path(@best.seller), target: :_blank, class: "product-option-seller" do
+                                            %div(class="product-option-seller-logo")
+                                                = image_tag @best.seller.logo(100, 100), 'data-src': @best.seller.logo(100, 100), loading: "lazy", class: "lazy"
+                                            %div(class="product-option-seller-name")
+                                                %h3(class="text text-s text-medium") #{@best.seller.name}
+                                        %div(class="product-option-desc")
+                                            %div(class="product-option-desc-item")
+                                                %span #{icon "far", "truck"}
+                                                %span(class="text text-xs text-secondary") Delivery yeeeah
+                                            %div(class="product-option-desc-item")
+                                                %span #{icon "far", "truck"}
+                                                %span(class="text text-xs text-secondary") Minimum #{humanized_money_with_symbol @best.order_price_cents}
+                                    %div(class="product-option-actions")
+                                        %div(class="product-option-actions-item")
+                                            = link_to "Sample", "", class: "button button-wide button-sample button-small"
+                                        %div(class="product-option-actions-item")
+                                            = link_to "Add To Cart", "", class: "button button-wide button-buy button-small"
+
+
+
+        %div(class="section-block")
+            %div(class="content-page")
+                %div(class="section-top section-top-separator")
+                    %div(class="section-top-title")
+                        %h2(class="text text-eyebrow text-medium") All buying options
+                %div(class="section-body")
+                    %ul(class="product-offers")
+                        - @product.seller_products.includes([:seller]).each do |product|
+                            %li
+                                %div(class="product-offer")
+                                    %div(class="product-offer-left")
+                                        %div(class="product-offer-seller") 
+                                            %div(class="product-offer-seller-logo")
+                                                = image_tag product.seller.logo(200, 200), 'data-src': product.seller.logo(200, 200), loading: "lazy", class: "lazy"
+                                            %div(class="product-offer-seller-name")
+                                                %h3(class="text text-s text-medium") #{product.seller.name}
+                                        %div(class="product-offer-details")
+                                            %p(class="text text-s text-secondary") Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae saepe tenetur quas, unde laborum deserunt maxime error atque
+                                    %div(class="product-offer-right")
+                                        %div(class="product-offer-pricing")
+                                            %div(class="product-offer-pricing-unit")
+                                                %p(class="text text-xs text-secondary") Price:
+                                                %p(class="text text-m text-medium space-top-xxxs") #{humanized_money_with_symbol product.unit_price_cents}
+                                            %div(class="product-offer-pricing-order")
+                                                %p(class="text text-xs text-secondary") Minimum:
+                                                %p(class="text text-m text-medium space-top-xxxs") #{humanized_money_with_symbol product.order_price_cents}
+                                        %div(class="product-offer-action") action
+
+
+        %div(class="section-block")
+            %div(class="content-page")
+                %div(class="section-top section-top-separator")
+                    %div(class="section-top-title")
+                        %h2(class="text text-eyebrow text-medium") Pricing
+                %div(class="section-body")
+                    %div(class="product-pricing")
+                        %div(class="product-pricing-money")
+                            %div(class="product-pricing-money-title")
+                                %h2(class="text text-m text-medium") Average price
+                            %div(class="product-pricing-money-price")
+                                %h2(class="text text-xl text-bold") #{humanized_money_with_symbol @pricing_avg}
+                            %div(class="product-pricing-money-range")
+                                %p(class="text text-m text-secondary") 
+                                    %span #{humanized_money_with_symbol @pricing_min}
+                                    — 
+                                    %span #{humanized_money_with_symbol @pricing_max}
+                            %div(class="product-pricing-money-info")
+                                %p(class="text text-s text-secondary") Prices are not fixed and may vary with time.
+                        %div(class="product-pricing-graph")
+                            %div(class="product-pricing-graph-title")
+                                %h2(class="text text-m text-medium") Average price per 6 months
+                            %div(class="product-pricing-graph-chart")
+                                = column_chart @pricing, defer: true, prefix: "$", messages: {empty: "No data"}, dataset: {borderWidth: 2}, download: true, download: {filename: "#{@product.name}_avg_price"}, xmin: "#{6.months.ago}", xmax: "#{Time.now.end_of_month}", width: "100% !important", round: 2, curve: false
+
+
+
+        - if @product.description.present?
+            %div(class="section-block")
+                %div(class="content-page")
+                    %div(class="section-top section-top-separator")
+                        %div(class="section-top-title")
+                            %h2(class="text text-eyebrow text-medium") Description
+                    %div(class="section-body")
+                        = simple_format(@product.description, class: "text text-s text-block")
+
+
+
+        %div(class="section-block")
+            %div(class="content-page")
+                %div(class="section-top section-top-separator")
+                    %div(class="section-top-title")
+                        %h2(class="text text-eyebrow text-medium") Product information
+                %div(class="section-body")
+                    %ul(class="product-info")
+                        %li
+                            %span(class="product-info-name") 
+                                %span(class="text text-s text-secondary") Category
+                            %span(class="product-info-value") 
+                                %span(class="text text-s text-primary") #{@product.category.name}
+                        - if @product.variations.present?
+                            - @product.variations.each do |name, value|
+                                - if value.present?
+                                    %li
+                                        %span(class="product-info-name") 
+                                            %span(class="text text-s text-secondary") #{name.humanize}
+                                        %span(class="product-info-value") 
+                                            %span(class="text text-s text-primary") #{value}
+
+
+
+        - if @recommended.present?
+            %div(class="section-block")
+                %div(class="content-page")
+                    %div(class="section-top section-top-separator")
+                        %div(class="section-top-title")
+                            %h2(class="text text-eyebrow text-medium") Recommended
+                    %div(class="section-body")
+                        %div(class="grid-products-tight")
+                            = render partial: "products/elements/product", collection: @recommended
+
+                
+                
+        %div(class="section-block")
+            %div(class="content-page-wide")
+                %div(class="section-body")
+                    %div(class="banner")
+                        %div(class="banner-header")
+                            %div(class="banner-header-title")
+                                %p(class="text text-xs text-medium") Disclaimer
+                        %div(class="banner-body")
+                            %p(class="text text-xs text-secondary") While we work to ensure that product information is correct, on occasion manufacturers may alter their ingredient lists. Actual product packaging and materials may contain more and/or different information than that shown on our Web site. We recommend that you do not solely rely on the information presented and that you always read and follow labels, warnings, and directions before using or consuming a product. This product may not be right for you. For additional information about a product, please contact the manufacturer. Content on this site is for reference purposes and is not intended to substitute for advice given by a physician, pharmacist, or other licensed health-care professional. You should not use this information as self-diagnosis or for treating a health problem or disease. Contact your health-care provider immediately if you suspect that you have a medical problem. #{link_to "Dagglo.com", root_path, class: "link", target: :_blank} assumes no liability for inaccuracies or misstatements about products.

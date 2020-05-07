@@ -1,108 +1,69 @@
 .onboarding
-    background: $gray-lighter
-    border: 0
-    border-radius: 0
-
-    +desktop-sm
-        border-radius: $border-radius
-
-
-.onboarding-body
-    display: flex
-    flex-direction: column
+    width: 100%
     position: relative
+    background: var(--color-accent)
+
+
+.onboarding_container
+    max-width: $content-width-primary
     width: 100%
+    margin-right: auto
+    margin-left: auto
+    padding: var(--space-xxxxl) var(--space-content)
+    
 
-    +tablet
-        flex-direction: row
-
-
-// Left Side
-.onboarding-title
-    border-bottom: 1px solid $color-border
-    margin: 0 var(--gap)
-    padding: var(--gap) 0
-    display: flex
-    justify-content: space-between
-    flex-direction: column
-    text-align: center
-
-    +tablet
-        text-align: left
-        padding: 0 var(--gap)
-        margin: var(--gap) 0
-        min-width: 360px
-        max-width: 360px
-        border-bottom: 0
-        border-right: 1px solid $color-border
-
-    +desktop
-        min-width: 460px
-        max-width: 460px
-
-.onboarding-title-bottom
-    width: 100%
-    flex: 0 0 auto
-    margin-top: var(--gap)
-
-.onboarding-progress
-    &-title
-        margin-bottom: var(--gap-s)
-
-    &-bar-back
-        position: relative
-        width: 100%
-        background: $gray
-        display: block
-        border-radius: 24px
-        overflow: hidden
-
-    &-bar-front
-        width: 0%
-        height: 6px
-        background: $green
-        display: block
-        z-index: 1
-        transition: all .8s ease-out
-        border-radius: 24px
-
-    &-caption
-        margin-top: var(--gap-xxs)
-
-
-// Right Side
-.onboarding-panel
-    margin: 0 var(--gap)
-    padding: var(--gap) 0
-
-    +tablet
-        margin: var(--gap) 0
-        padding: 0 var(--gap)
-
-.onboarding-steps
+.onboarding_header
+    max-width: 648px
     width: 100%
     position: relative
     display: block
+    &_greeting
+        margin-bottom: var(--space-xs)
+    &_caption
+        margin-top: var(--space-xs)
 
-.onboarding-step
-    width: 100%
 
-.onboarding-container
-    display: flex
-    flex-direction: row
-    width: 100%
-    align-items: flex-start
-    padding: var(--gap-s) var(--gap-s)
-    border: 0
+.onboarding_steps
+    margin-top: var(--space-md)
+    display: grid
+    grid-column-gap: var(--space-sm)
+    grid-row-gap: var(--space-sm)
+    grid-template-columns: repeat(1, 1fr)
+    +tablet
+        grid-template-columns: repeat(3, 1fr)
+    & > .col
+        grid-column-end: span 1
+
+
+.onboarding_step
+    background: var(--color-accent-lighter)
     border-radius: $border-radius
-
-    &:hover
-        background: $gray
-
-.onboarding-icon
-    margin-right: var(--gap-s)
-
-.onboarding-main
-    width: 100%
-    position: relative
+    border: 0
+    height: 100%
+    padding: var(--gap-s)
     display: block
+    &:hover
+        background: var(--color-accent-light)
+    &_icon
+        font-size: var(--size-typo-xl)
+        margin-bottom: var(--gap-xxs)
+        & > svg .fa-secondary
+            fill: $white !important
+        & > svg .fa-primary
+            fill: $white !important
+            opacity: 0
+    &_caption
+        margin-top: var(--gap-xs)
+
+
+svg.onboarding_step_completed
+    .fa-secondary
+        fill: $green !important
+        opacity: 1 !important
+    .fa-primary
+        fill: $white !important
+        opacity: 1 !important
+
+
+.onboarding_footer
+    margin-top: var(--gap)

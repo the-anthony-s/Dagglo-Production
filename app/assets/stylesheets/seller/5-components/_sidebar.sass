@@ -25,53 +25,56 @@
     width: 100%
     height: 100%
     overflow-y: auto
+    background: rgba($black, .8)
+    transition: all .3s ease
 
 
 .sidebar-container
     height: var(--navbar-height)
     width: 100%
-    position: relative
     display: flex
     justify-content: space-between
     flex-direction: row
     align-items: center
+    padding: 0 0 0 var(--gap)
     z-index: 100
     +desktop-sm
         height: 100%
         flex-direction: column
         align-items: center
+        padding: 0
 
 
 .sidebar-top
     flex: 1 1 100%
     width: 100%
-    padding: var(--gap)
+    z-index: 2
     +desktop-sm
         flex: 0 0 auto
+        padding: var(--gap) var(--gap)
 
 
 .sidebar-center
     flex: 1 1 100%
     display: none
     justify-content: center
-    padding: 0 var(--gap)
-    +tablet
-        width: 100%
-        padding: var(--gap) 0
     +desktop-sm
+        width: 100%
         display: flex
+        flex-direction: column
         align-items: center
-        justify-content: flex-start
+        justify-content: center
+        padding: 0 var(--gap)
 
 
 .sidebar-bottom
     display: none
     flex: 1 1 100%
     width: 100%
-    padding: var(--gap)
     +desktop-sm
         flex: 0 0 auto
         display: block
+        padding: var(--gap) var(--gap)
     
 
 .sidebar-mobile
@@ -91,20 +94,22 @@
     +desktop-sm
         flex-direction: column
         align-items: flex-start
-
-
     &-picture
         flex: 0 0 auto
         width: auto
         position: relative
         & > img
-            height: var(--icon)
-            width: var(--icon)
+            height: 32px
+            width: 32px
             object-fit: cover
             border-radius: 50%
             border: 0
-            
-
+            +tablet
+                height: 44px
+                width: 44px
+            +desktop
+                height: 54px
+                width: 54px
     &-header
         display: none
         width: 100%
@@ -112,12 +117,11 @@
         margin: var(--gap-s) 0
         +desktop-sm
             display: block
-
     &-beta
         display: inline-block
         position: relative
-        color: $blue
-        background: rgba($blue, .1)
+        color: $red
+        background: rgba($red, .1)
         font-size: var(--size-typo-xs)
         text-transform: uppercase
         font-weight: 500
@@ -125,12 +129,11 @@
         line-height: var(--line-height-typo-xs)
         border: 0
         // border-radius: $border-radius
-        border-radius: 24px
+        border-radius: $border-radius
         padding: 2px var(--gap)
         margin-left: var(--gap-s)
         +desktop-sm
             margin-left: 0
-
 
 
 // Desktop Navigation
@@ -140,58 +143,46 @@
     display: none
     +desktop-sm
         display: block
-    &-item
+    & > &-item + &-item
+        margin-top: var(--gap-s)
+    & > &-item
         width: 100%
+    & + &
+        margin-top: var(--gap)
+
+    
+.sidebar-links-header
+    color: $color-font-secondary
+    font-size: var(--size-typo-xs)
+    font-weight: 500
+    line-height: var(--line-height-typo-xs)
+    margin-bottom: var(--gap-xs)
 
 
 .sidebar-link
     color: $color-font-secondary
-    font-size: var(--size-typo-m)
-    font-weight: 400
-    line-height: var(--line-height-typo-m)
+    font-size: var(--size-typo-s)
+    font-weight: 500
+    line-height: var(--line-height-typo-s)
     letter-spacing: .02em
+    border: 0
+    border-radius: $border-radius
     appearance: none
     text-decoration: none
     outline: none
     width: 100%
     display: block
-    padding: var(--gap-s) var(--gap)
     vertical-align: baseline
     &:hover
-        background: $gray-light
-    &.active
         color: $color-font-primary
-        font-weight: 600
-        // border-color: $color-primary
-        background: $gray-light
-    & > span + span
-        margin-left: var(--gap-xxs)
+    &.active
+        color: $color-secondary-hover
+    &-icon
+        min-width: 18px
+        display: inline-block
+        text-align: center
+        margin-right: var(--gap-xs)
 
-
-// Footer
-.sidebar-footer
-    display: block
-    &-item + &-item
-        margin-top: var(--gap-s)
-
-
-.sidebar-footer-link
-    color: $color-font-secondary
-    font-size: var(--size-typo-s)
-    font-weight: 400
-    line-height: var(--line-height-typo-s)
-    vertical-align: baseline
-    position: relative
-    & > span + span
-        margin-left: var(--gap-xxs)
-      
-
-.sidebar-footer-card
-    border: 1px solid $color-border-dark
-    border-radius: $border-radius
-    padding: var(--gap-xs)
-    &-body
-        margin-top: var(--gap-xs)
 
 
 // Mobile -> Hamburget + Collapse
@@ -235,6 +226,7 @@ $btn-delay: .05s
         +tablet
             display: block
 
+
 .sidebar-burger.is-open
     .sidebar-burger-container
         transform: rotate(90deg)
@@ -242,7 +234,6 @@ $btn-delay: .05s
         transition: $btn-transition
         transition-delay: $btn-delay
         background: $color-font-primary
-
         &Top
             transform: translateY(4px) rotate(45deg)
         &Btm
@@ -271,7 +262,6 @@ $btn-delay: .05s
         opacity: 1
         pointer-events: all
         transform: translateY(0)
-        bottom: 0
 
 
 .sidebar-collapse-block
@@ -283,40 +273,37 @@ $btn-delay: .05s
 
 .sidebar-collapse-link
     color: $color-font-primary
-    font-weight: 600
+    font-weight: 500
     font-size: var(--size-typo-m)
     line-height: var(--line-height-typo-m)
     padding: var(--gap-s) var(--gap-r)
     display: flex
     flex-direction: row
-    // align-items: center
     .sidebar-collapse-link-icon
         flex: 0 0 auto
         width: 22px
-        margin-right: var(--gap-xs)
+        text-align: center
+        margin-right: var(--gap-s)
         vertical-align: middle
     .sidebar-collapse-link-content
         flex: 1 1 100%
         max-width: 100%
-
     &:hover, &:focus, &.active
-        color: $color-font-primary
-        background: $gray-light
+        color: $color-secondary-hover
+        background: $gray-lighter
 
 
 .sidebar-collapse-profile
     padding: var(--gap-r) var(--gap-r)
     display: flex
     align-items: center
-
     .sidebar-collapse-profile-avatar
         flex: 0 0 auto
         width: auto
         border: 0
         border-radius: 50%
         overflow: hidden
-        margin-right: var(--gap-xs)
-
+        margin-right: var(--gap-s)
         & > img
             height: 42px
             width: 42px

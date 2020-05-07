@@ -1,27 +1,24 @@
 // Content width
-$content-width-primary: calc(1512px + (var(--gap-r) * 2))
-$content-width-page: calc(1120px + (var(--gap-r) * 2))
+$content-width-primary: calc(1312px + (var(--gap-r) * 2))
+$content-width-page: calc(1110px + (var(--gap-r) * 2))
 $content-width-tight: calc(642px + (var(--gap-r) * 2))
 $content-width-product: calc(1120px + (var(--gap-r) * 2))
 
-
-
-$border-radius: 4px
-
+$border-radius: 0px
 
 
 // CSS variables
 \:root
-    --font: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif
-    --size-typo-default: 0.875em
+    --font: Clarkson, "Helvetica Neue", Helvetica, Arial, sans-serif
+    --size-typo-default: 1.05em
     --size-typo-xs: 0.75em
     --size-typo-s: 0.95em
     --size-typo-m: 1.0625em
     --size-typo-l: 1.25em
-    --size-typo-xl: 1.5em
-    --size-typo-xxl: 1.75em
+    --size-typo-xl: 1.75em
+    --size-typo-xxl: 2.25em
     --size-typo-xxxl: 2em
-    --size-typo-xxxxl: 2.15em
+    --size-typo-xxxxl: 3em
 
     --line-height-typo-xs: 1.5
     --line-height-typo-s: 1.5
@@ -32,17 +29,22 @@ $border-radius: 4px
     --line-height-typo-xxxl: 1.2
     --line-height-typo-xxxxl: 1.2222222222
 
-    --navbar-height: 50px
+    --navbar-height: 54px
 
     +tablet
-        --size-typo-xxl: 2.35em
+        --size-typo-l: 1.35em
+        --size-typo-xl: 2.45em
+        --size-typo-xxl: 3.35em
         --size-typo-xxxl: 2.75em
-        --size-typo-xxxxl: 4.35em
+        --size-typo-xxxxl: 3.75em
+
+    +desktop-sm
+        --size-typo-xl: 2.75em
+        --size-typo-xxl: 3.35em
+        --size-typo-xxxxl: 5.2em
 
         --navbar-height: 64px
 
-
     +desktop
-        --size-typo-xxl: 2.75em
         --size-typo-xxxl: 3.25em
-        --size-typo-xxxxl: 5.15em
+        // --size-typo-xxxxl: 5.45em

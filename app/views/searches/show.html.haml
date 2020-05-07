@@ -11,23 +11,34 @@
   %div(class="content")
     
     - if @products.present?
-      %div(class="section-top")
-        %div(class="section-top-title")
-          %h1(class="text text-xl text-medium") Explore #{params[:query]}
-          - if @products.suggestions.any?
+      - if @products.suggestions.any?
+        %div(class="section-top")
+          %div(class="section-top-title")
+            %h1(class="text text-l") 
+              Here's what we found for 
+              %span(class="text-bold") #{params[:query]}
             %p(class="text text-l text-secondary space-top-m") 
               Did you mean:
-              %a(href="/search?utf8=✓&query=#{@products.suggestions.first}" class="link") #{@products.suggestions.first}
+              - @products.suggestions.each do |s|
+                %a(href="/search?utf8=✓&query=#{s}" class="link") #{s}
       %div(class="section-body")
         %div(class="grid-products")
-          - @products.each_with_index do |product, index|
-            %div(class="col-products")
-              = render partial: "products/elements/product", :locals => {:product => product, :index => index}
+          = render partial: "products/elements/product", collection: @products, cache: true
+          -# - @products.each_with_index do |product, index|
+          -#   %div(class="col-products")
+          -#     = render partial: "products/elements/product", :locals => {:product => product, :index => index}
       %div(class="section-pagination")
         != pagy_nav(@pagy)
     
     
     - else
       %div(class="section-block")
-        %h1(class="text text-xl text-bold") No results
-        %p(class="text text-l text-secondary") We couldn't find anything matching your search. Try searching other keywords.
+        %h1(class="text text-l text-bold") No results
+        %p(class="text text-m text-secondary") We couldn't find anything matching your search. Try searching other keywords.
+      
+      %div(class="section-block")
+        %div(class="section-top section-top-separator")
+          %p(class="text text-eyebrow") Featured Products
+        %div(class="section-body")
+          %div(class="grid-products")
+            = render partial: "products/elements/product", collection: @default

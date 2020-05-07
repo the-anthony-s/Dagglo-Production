@@ -1,0 +1,10 @@
+%div(class="category-explore")
+    %meta{:content => "#{category.name}", :itemprop => "name"}/
+    %meta{:content => "#{index}", :itemprop => "position"}/
+    %meta{:content => "#{category_url(category)}", :itemprop => "url"}/
+    = link_to category_path(category), class: "category-explore-link" do
+        %div(class="category-explore-container")
+            %div(class="category-explore-cover")
+                = image_tag category.background(500, 354), loading: "lazy"
+        %div(class="category-explore-title")
+            %h1(class="text text-m text-bold text-primary-light") #{category.name}

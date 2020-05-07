@@ -1,0 +1,65 @@
+.link
+    color: $blue
+    font-size: inhitit
+    font-weight: 400
+    text-decoration: none
+    display: inline-block
+
+    &:hover, &:focus
+        color: $blue-dark
+        text-decoration: none
+
+    & > span + span
+        margin-left: var(--gap-xs)
+
+
+
+.link-secondary
+    color: $color-font-secondary
+
+    &:hover
+        color: $color-font-primary
+
+
+.link-report
+    color: $color-font-secondary
+    &:hover
+        color: $red-dark
+
+
+.link-icon
+    display: inline-block
+    position: relative
+    color: $color-font-secondary
+    font-size: var(--size-typo-l)
+    font-weight: 500
+    line-height: var(--line-height-typo-l)
+    height: 44px
+    width: 44px
+    display: flex
+    align-items: center
+    justify-content: center
+    text-align: center
+    border: 1px solid $color-border
+    border-radius: 100%
+    background: $white
+    &:hover, &:focus, &:active
+        color: $color-font-primary
+        background: $gray-lighter
+
+.link-icon-favourite
+    color: $yellow !important
+    &:hover, &:focus, &:active
+        color: $yellow !important
+
+
+.link-promo
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    border-bottom: 1px solid $color-font-primary
+    padding: var(--gap-xs) 0
+    color: $color-font-primary
+    font-weight: 500
+    font-size: var(--size-typo-xxxl)
+    line-height: var(--line-height-size-xxl)

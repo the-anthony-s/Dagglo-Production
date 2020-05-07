@@ -2,23 +2,22 @@
 #
 # Table name: products
 #
-#  id                    :bigint           not null, primary key
-#  name                  :string
-#  barcode               :string
-#  about                 :text
-#  country               :string
-#  min_price             :money
-#  num_offers            :integer
-#  manufacturer_warranty :boolean
-#  status                :integer          default("0")
-#  image_data            :text
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  category_id           :bigint
-#  owner_user_id         :bigint
-#  owner_seller_id       :bigint
-#  slug                  :string
-#  deleted_at            :datetime
+#  id                 :bigint           not null, primary key
+#  name               :string
+#  description        :text
+#  variations         :hstore
+#  country_code       :string
+#  barcode            :string
+#  status             :integer          default("pending")
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  category_id        :bigint
+#  owner_user_id      :bigint
+#  owner_seller_id    :bigint
+#  deleted_at         :datetime
+#  views              :integer
+#  slug               :string
+#  product_barcode_id :bigint
 #
 
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

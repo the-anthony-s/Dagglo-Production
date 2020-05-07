@@ -13,6 +13,9 @@ module Dagglo
 
     # Use SuckerPunch for background jobs.
     config.active_job.queue_adapter = :sucker_punch
+
+    # https://www.schneems.com/2017/11/08/80-smaller-rails-footprint-with-rack-deflate/
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
     
     # Internationalization
     # config.i18n.available_locales = [:en, :ru]
@@ -20,6 +23,9 @@ module Dagglo
     # config.i18n.fallbacks = true
 
     config.autoload_paths += %w[lib]
+
+    # set the default currency
+    config.default_currency = :usd
 
     # supports :s3, :s3_multipart, or :app
     config.upload_server = if ENV["UPLOAD_SERVER"].present?

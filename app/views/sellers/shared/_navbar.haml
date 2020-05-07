@@ -1,0 +1,62 @@
+%nav(id="navbar#{@seller.id}" class="navbar"){class: content_for?(:navbar_class) ? yield(:navbar_class) : nil}
+    %div(class="navbar-in")
+        %div(class="navbar-container")
+
+
+            %div(class="navbar-left")
+                = link_to home_seller_path, class: "navbar-root" do
+                    %h1(class="text text-m text-medium text-primary-light") Dagglo
+
+
+            %div(class="navbar-center")
+                %ul(class="navbar-links")
+                    %li
+                        = active_link_to "Home", home_seller_path, class: "navbar-link", active: :exclusive
+                    %li
+                        = active_link_to "Inventory", seller_products_path, class: "navbar-link", active: [['sellers/seller_products', 'product_barcodes', 'products'], []]
+                    %li
+                        = active_link_to "Settings", settings_seller_path, class: "navbar-link", active: [['sellers', 'sellers/seller_locations'], ['settings', 'general', 'billing', 'account', 'index', 'show', 'edit', 'new']]
+
+
+            %div(class="navbar-right")
+            
+                %div(class="navbar-desktop")
+                    %ul(class="navbar-links")
+                        - if !@seller.subscribed?
+                            %li(class="navbar-links-button")
+                                = link_to "Subscribe", seller_pricing_path, class: "button button-primary button-small button-action"
+                        %li(class="navbar-dropdown-item")
+                            = button_tag class: "navbar-profile navbar-dropdown-trigger" do
+                                %div(class="navbar-profile-name")
+                                    %div(class="navbar-profile-name-business") #{@seller.name}
+                                    %div(class="navbar-profile-name-user") #{current_user.full_name}
+                                %div(class="navbar-profile-logo")
+                                    = image_tag @seller.logo(200, 200), 'data-src': @seller.logo(200, 200), loading: "lazy", class: "lazy"
+                            %div(class="navbar-dropdown")
+                                %div(class="navbar-dropdown-list")
+                                    %div(class="navbar-dropdown-list-item")
+                                        %div(class="navbar-dropdown-list-profile")
+                                            %p(class="text text-s text-medium") #{current_user.full_name}
+                                            %p(class="text text-xs text-secondary") #{current_user.email}
+                                        %div(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
+                                            = link_to "Help", "", class: "navbar-dropdown-link"
+                                        %div(class="navbar-dropdown-list-item navbar-dropdown-list-item-separator")
+                                            = link_to edit_user_registration_path, target: :_blank, class: "navbar-dropdown-link" do
+                                                %span #{icon "far", "external-link-alt"}
+                                                %span Account
+                                        %div(class="navbar-dropdown-list-item")
+                                            = link_to root_path, target: :_blank, class: "navbar-dropdown-link" do
+                                                %span #{icon "far", "external-link-alt"}
+                                                %span To Dagglo
+                                        %div(class="navbar-dropdown-list-item")
+                                            = link_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-dropdown-link navbar-dropdown-link-logout"
+            
+
+
+                %div(class="navbar-mobile")
+                    %ul(class="navbar-links")
+                        %li
+                            %div(id="navbarBurger" class="navbar-burger")
+                                %div(class="navbar-burger-container")
+                                    %div(class="navbar-burger-container-bar navbar-burger-container-barTop")
+                                    %div(class="navbar-burger-container-bar navbar-burger-container-barBtm")

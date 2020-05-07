@@ -7,6 +7,17 @@ class Sellers::SellerLocationsController < ApplicationController
   layout :seller_dashboard_layout
 
 
+  def show
+    @members = SellerAccount.where(seller_location_id: @seller_location, seller_id: @seller).includes(:user).all
+    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(trackable_type: "SellerLocation", trackable_id: @seller_location, recipient_id: @seller_location.seller_id).limit(5).order(created_at: :desc)
+  end
+
+
+  def index
+    @locations = @seller.seller_locations.all
+  end
+
+
   def new
     @seller_location = SellerLocation.new
   end
@@ -16,22 +27,18 @@ class Sellers::SellerLocationsController < ApplicationController
     @seller_location = @seller.seller_locations.build(seller_location_params)
 
     if @seller_location.save
-      redirect_to location_path(@seller_location), notice: "New location added to #{@seller_location.seller.name}"
+      # redirect_to seller_location_path(@seller_location), flash: {"Success" => "#{@seller_location.name} created"}
+      redirect_to seller_locations_path, flash: {"Success" => "#{@seller_location.name} created"}
     else
-      render :new, notice: "Something went wrong. Please try again."
+      render :new, flash: {"Location Error" => "Something went wrong. Please try again."}
     end
   end
 
 
   def destroy
+    SellerAccount.where(seller_id: @seller, seller_location_id: @seller_location).update_all(seller_location_id: nil)
     @seller_location.destroy
-    redirect_to locations_seller_path, notice: "Location removed"
-
-    # @seller_location = SellerLocation.where(seller_id: @seller).find(params[:id])
-    #   @seller_location.destroy
-    #   flash[:notice] = "Location removed"
-    # rescue
-    #   redirect_to locations_seller_path, notice: "Location removed"
+    redirect_to seller_locations_path, flash: {"Success" => "Location removed"}
   end
 
 
@@ -41,15 +48,11 @@ class Sellers::SellerLocationsController < ApplicationController
 
   def update
     if @seller_location.update(seller_location_params)
-      redirect_to location_path(@seller_location), notice: "#{@seller_location.name} updated"
+      # redirect_to seller_location_path(@seller_location), notice: "#{@seller_location.name} updated"
+      redirect_to seller_locations_path, notice: "#{@seller_location.name} updated"
     else
-      render :edit, notice: "Something went wrong. Please try again."
+      render :edit, flash: {"Update Error" => "Something went wrong. Please try again."}
     end
-  end
-
-
-  def show
-    @activities = PublicActivity::Activity.all.includes(:trackable, :owner).where(trackable_type: "SellerLocation", trackable_id: @seller_location, recipient_id: @seller_location.seller_id).limit(5).order(created_at: :desc)
   end
 
 

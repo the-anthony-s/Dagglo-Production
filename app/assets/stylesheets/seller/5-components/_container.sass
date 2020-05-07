@@ -1,6 +1,10 @@
 .container
-    padding-top: var(--gap)
-    padding-bottom: 45vh
+    padding-top: var(--space-xs)
+    padding-bottom: 35vh
     display: block
     position: relative
     z-index: 1
+    +tablet
+        padding-bottom: 45vh
+    +desktop-sm
+        padding-top: var(--space-md)

@@ -1,28 +1,28 @@
 .status
-    color: $color-font-primary
-    font-size: var(--size-typo-xs)
-    font-weight: 500
-    text-transform: uppercase
-    letter-spacing: 0.2px
-    padding: 4px 8px
-    display: inline-block
     border: 0
     border-radius: $border-radius
-    position: relative
-    background: $gray
+    background: $gray-lighter
+    display: inline-block
+    padding: var(--gap-xxs) var(--gap-s)
+    color: $gray-dark
+    font-size: 11px
+    font-weight: 500
+    letter-spacing: .03em
+    line-height: var(--line-height-typo-default)
+    text-transform: uppercase
 
-    &-pending
-        color: $blue
-        background: rgba($blue, 0.1)
+.status-pending
+    color: $blue
+    background: rgba($blue-dark, .1)
 
-    &-banned
-        color: $red
-        background: rgba($red, 0.1)
+.status-active
+    color: $color-secondary
+    background: rgba($color-secondary, .1)
 
-    &-active
-        color: $green
-        background: rgba($green, 0.1)
+.status-paused
+    color: $red
+    background: rgba($red, .1)
 
-    &-paused
-        color: $red
-        background: rgba($red, 0.1)
+.status-banned
+    color: $color-font-primary
+    background: rgba($color-font-primary, .1)

@@ -1,0 +1,29 @@
+= render partial: "users/registrations/elements/links"
+
+
+%section(class="section section-page")
+    %div(class="content-tight")
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form", method: :put }) do |f|
+            -# Profile picture
+            %div(class="section-block")
+                %div(class="section-top")
+                    %div(class="section-top-title")
+                        %h1(class="text text-l text-medium") Change password
+                %div(class="section-body")
+                    %div(class="form-row")
+                        %div(class="form-label")
+                            = f.label :current_password, "Old password"
+                        %div(class="form-input")
+                            = f.password_field :current_password, placeholder: "Old password", class: "form-control", autocomplete: "new-password"
+                    %div(class="form-row")
+                        %div(class="form-label")
+                            = f.label :password, "New password"
+                        %div(class="form-input")
+                            = f.password_field :password, placeholder: "New password", class: "form-control", autocomplete: "new-password"
+                    %div(class="form-row")
+                        %div(class="form-label")
+                            = f.label :password_confirmation, "Confirm New password"
+                        %div(class="form-input")
+                            = f.password_field :password_confirmation, placeholder: "Confirm new password", class: "form-control", autocomplete: "new-password"
+                    %div(class="form-submit")
+                        = button_tag "Save", class: "button button-go", data: {disable_with: "<i class='far fa-spinner fa-spin'></i>"}
