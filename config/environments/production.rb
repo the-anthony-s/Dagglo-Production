@@ -43,7 +43,8 @@ Rails.application.configure do
   config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
+  config.serve_static_assets = true
   config.assets.compress = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
