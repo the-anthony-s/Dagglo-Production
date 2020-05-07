@@ -474,6 +474,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
     unicode_utils (1.4.0)
     uniform_notifier (1.13.0)
@@ -576,6 +578,7 @@ DEPENDENCIES
   test-unit
   turbolinks (~> 5)
   tzinfo-data
+  uglifier
   uppy-s3_multipart (>= 0.3.2)
   web-console (>= 3.3.0)
   webdrivers
