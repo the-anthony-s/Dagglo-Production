@@ -93,6 +93,8 @@ gem 'pagy', '~> 3.5'
 # Charts
 gem 'chartkick'
 gem 'groupdate'
+# Ruby wrapper for UglifyJS JavaScript compressor
+gem 'uglifier'
 
 
 ## Errors
