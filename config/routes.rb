@@ -136,6 +136,6 @@ Rails.application.routes.draw do
   # root to: "pages#root"
   root to: "pages#home"
 
-  # match "*path" => redirect("/"), via: [:get, :post] # if 404 -> go to homepage
+  match "*path" => redirect("/"), via: [:get, :post] # if 404 -> go to homepage
 
 end # end of routes

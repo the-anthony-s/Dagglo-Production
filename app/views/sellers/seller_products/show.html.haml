@@ -11,16 +11,16 @@
         %div(class="page-top-main")
           %div(class="page-top-main-title")
             %h1(class="text text-xl text-medium") #{@seller_product.product.name}
-        -# %div(class="page-top-actions")
-        -#   - if @seller_product.product.get_status == "active"
-        -#     %div(class="page-top-actions-item") 
-        -#       = link_to show_product_path(@seller_product.product), class: "button-circle button-circle", target: :_blank do
-        -#         %span(class="button-circle-icon") #{icon "fal", "external-link"}
-        -#         %span(class="button-circle-name") Online
-        -#   %div(class="page-top-actions-item") 
-        -#     = link_to edit_seller_product_path(@seller_product), class: "button-circle button-circle-action" do
-        -#       %span(class="button-circle-icon") #{icon "fal", "cog"}
-        -#       %span(class="button-circle-name") Edit
+        %div(class="page-top-actions")
+          - if @seller_product.product.get_status == "active"
+            %div(class="page-top-actions-item") 
+              = link_to show_product_path(@seller_product.product), class: "button-circle button-circle", target: :_blank do
+                %span(class="button-circle-icon") #{icon "fal", "external-link"}
+                %span(class="button-circle-name") Online
+          %div(class="page-top-actions-item") 
+            = link_to edit_seller_product_path(@seller_product), class: "button-circle button-circle-action" do
+              %span(class="button-circle-icon") #{icon "fal", "cog"}
+              %span(class="button-circle-name") Edit
 
 
 
